@@ -783,6 +783,11 @@ body.voting #stage,body.voting #home{display:none}
 .clara .cvoice .spk{font:800 15px Manrope,sans-serif;border:1.5px solid rgba(255,79,216,.6);background:transparent;color:#FF4FD8;border-radius:99px;padding:6px 14px}
 .clara .cvoice .spk.on{background:#FF4FD8;color:#2a0322}
 .clara .cvoice .orb{width:112px;height:112px;margin:-40px -6px -34px 0}
+/* Navegación táctil */
+#tnav{position:fixed;left:0;right:0;bottom:max(14px,env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;padding:0 max(14px,env(safe-area-inset-left,0px));z-index:150;pointer-events:none}
+#tnav button{pointer-events:auto;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(207,230,242,.35);background:rgba(7,23,34,.75);color:#F2F8FB;font:800 30px/1 Manrope,sans-serif;display:grid;place-items:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#tnav button:active{background:#00C8D6;color:#032027}
+body.voting #tnav{display:none}
 
 </style>
 </head>
@@ -3976,7 +3981,7 @@ function edi(root){
   form.onsubmit=function(e){e.preventDefault();var q=inp.value.trim();if(q&&!busy){inp.value='';ask(q);}};
   async function ask(q){if(busy)return;busy=true;
     log.appendChild(h('div','bb u',esc(q)));var a=h('div','bb a wait','Buscando en la revista…');log.appendChild(a);log.scrollTop=1e6;
-    var fr=se(q+' '+q,8),by={};fr.forEach(function(d,k){by['r'+(k+1)]={fuente:ref(d),corto:(R.secs[d.s].a||'Revista').replace(/ (y|e) .*/,' et al.').replace(/^Consejo.*$/,'Barómetro')+', p. '+d.p,url:'#'};});
+    var fr=se(q+' '+q,14),by={};fr.forEach(function(d,k){by['r'+(k+1)]={fuente:ref(d),corto:(R.secs[d.s].a||'Revista').replace(/ (y|e) .*/,' et al.').replace(/^Consejo.*$/,'Barómetro')+', p. '+d.p,url:'#'};});
     var sample=await getSample(),ok=false;
     if(sample&&fr.length){
       var prompt='Responde la pregunta usando SOLO los fragmentos de la Revista Enfermedades Raras de la Fundación Weber (vol. 10, núm. 2, septiembre de 2025). Español de México, máximo 90 palabras, cifras exactas como aparecen. Después de cada dato pon la etiqueta del fragmento entre corchetes, por ejemplo [r2]. Si la respuesta no está en los fragmentos, dilo.\n\nFRAGMENTOS:\n'+fr.map(function(d,k){return '[r'+(k+1)+'] ('+ref(d)+') '+d.t;}).join('\n')+'\n\nPREGUNTA: '+q;
@@ -3988,13 +3993,25 @@ function edi(root){
     log.scrollTop=1e6;busy=false;}
 }
 
+/* ---------- navegación táctil: botones y deslizar en celulares y tabletas ---------- */
+function touchNav(){
+  var key=function(k){dispatchEvent(new KeyboardEvent('keydown',{key:k}));};
+  var bar=h('div','',null);bar.id='tnav';bar.innerHTML='<button type="button" data-k="ArrowLeft" aria-label="Lámina anterior">‹</button><button type="button" data-k="ArrowRight" aria-label="Siguiente">›</button>';
+  document.body.appendChild(bar);
+  $$('button',bar).forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();key(b.dataset.k);});});
+  var x0=null,y0=0,t0=0,inApp=false;
+  document.addEventListener('touchstart',function(e){if(document.body.classList.contains('voting'))return;var t=e.touches[0];x0=t.clientX;y0=t.clientY;t0=Date.now();inApp=!!(e.target.closest&&e.target.closest('.app,#tnav,#index,#help'));},{passive:true});
+  document.addEventListener('touchend',function(e){if(x0===null||inApp){x0=null;return;}var t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;x0=null;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.2&&Date.now()-t0<800)key(dx<0?'ArrowRight':'ArrowLeft');},{passive:true});
+}
+if(matchMedia('(pointer:coarse)').matches||('ontouchstart' in window))touchNav();
+
 /* ---------- arranque ---------- */
 var map={rumbo:rumbo,clara:clara,atlas:atlas,baro:baro,hist:hist,edi:edi};
 $$('[data-app]').forEach(function(el){el.classList.add('app');guard(el);try{map[el.dataset.app](el.querySelector('.chat')||el.querySelector('.pn')||el);}catch(e){console.error('[polar]',e);}});
 if($('[data-app=baro]')){
   voter();
-  var narrow=Math.min(screen.width,innerWidth)<700&&matchMedia('(pointer:coarse)').matches;
-  if(location.hash==='#votar'||narrow)document.body.classList.add('voting');
+  if(location.hash==='#votar')document.body.classList.add('voting');
   addEventListener('hashchange',function(){if(location.hash==='#votar')document.body.classList.add('voting');});
 }
 })();
