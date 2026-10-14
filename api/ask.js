@@ -25,7 +25,8 @@ module.exports = async (req, res) => {
   const wantJson = !!body.json;
   const payload = {
     model: process.env.ANTHROPIC_MODEL || 'claude-haiku-5-5',
-    max_tokens: wantJson ? 900 : 700,
+    // Margen amplio: los modelos recientes pueden razonar antes de escribir y ese razonamiento también cuenta
+    max_tokens: Number(process.env.MAX_TOKENS || 4000),
     system: SYSTEM + (wantJson ? ' Devuelve solo el objeto JSON pedido, sin texto antes ni después y sin bloque de código.' : ''),
     messages,
     stream: !wantJson,
@@ -43,10 +44,11 @@ module.exports = async (req, res) => {
   if (wantJson) {
     const d = await r.json();
     const text = (d.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+    if (!text) console.error('respuesta sin texto', d.stop_reason, (d.content || []).map(b => b.type));
     let json = null;
     try { const a = text.indexOf('{'), b = text.lastIndexOf('}'); json = JSON.parse(text.slice(a, b + 1)); } catch {}
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
-    return res.end(JSON.stringify({ json, text }));
+    return res.end(JSON.stringify({ json, text, stop: d.stop_reason }));
   }
 
   // Streaming: reenviamos solo el texto, conforme llega
@@ -66,6 +68,7 @@ module.exports = async (req, res) => {
       try {
         const ev = JSON.parse(line.slice(5));
         if (ev.type === 'content_block_delta' && ev.delta && ev.delta.type === 'text_delta') res.write(ev.delta.text);
+        if (ev.type === 'message_delta' && ev.delta && ev.delta.stop_reason && ev.delta.stop_reason !== 'end_turn') console.error('stop', ev.delta.stop_reason);
       } catch {}
     }
   }
