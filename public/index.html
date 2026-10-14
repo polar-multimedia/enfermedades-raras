@@ -788,10 +788,26 @@ body.voting #stage,body.voting #home{display:none}
 #tnav button{pointer-events:auto;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(207,230,242,.35);background:rgba(7,23,34,.75);color:#F2F8FB;font:800 30px/1 Manrope,sans-serif;display:grid;place-items:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 #tnav button:active{background:#00C8D6;color:#032027}
 body.voting #tnav{display:none}
+/* Demo a pantalla completa */
+.mk[data-app]>.fsbtn{position:absolute;right:0;top:-54px;font:800 17px Manrope,sans-serif;color:#F2F8FB;background:rgba(7,23,34,.82);border:1.5px solid rgba(0,200,214,.7);border-radius:99px;padding:9px 18px;cursor:pointer;backdrop-filter:blur(6px)}
+.mk[data-app]>.fsbtn:hover{background:#00C8D6;color:#032027}
+.mk.ph[data-app]>.fsbtn{top:-50px}
+.mk.fs>.fsbtn{display:none}
+#demofs{display:none;position:fixed;inset:0;z-index:180;background:radial-gradient(ellipse at 70% 20%,#123247 0%,#071722 60%);overflow:auto;cursor:auto;-webkit-overflow-scrolling:touch}
+#demofs.on{display:block}
+#demofs *{cursor:auto}#demofs button,#demofs a{cursor:pointer}
+#demofs .fsbar{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));background:rgba(7,23,34,.9);backdrop-filter:blur(8px);font-family:Manrope,sans-serif;color:#F2F8FB}
+#demofs .fsbar b{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:20px}
+#demofs .fsx{font:800 15px Manrope,sans-serif;color:#F2F8FB;background:transparent;border:1.5px solid rgba(207,230,242,.35);border-radius:99px;padding:8px 14px}
+#demofs .fsbody{display:flex;justify-content:center;padding:12px 12px 40px}
+#demofs .mk.fs{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;margin:0 auto;flex:none}
+body.fs-open #tnav{display:none}
+@media (max-width:899px){#demofs .mk.fs .chat{height:calc(100vh - 140px)!important}#demofs .mk.fs .pn{padding:16px}#demofs .clara .grid{grid-template-columns:70px 1fr 1fr}#demofs .edi .mag{grid-template-columns:1fr}#demofs .edi .cv{display:none}#demofs .atlas .seg5{flex-wrap:wrap}}
+.mk[data-app]{overflow:visible!important}
 
 </style>
 </head>
-<body>
+<body><script>window.__H0=location.hash;</script>
 
 <div id="bgwrap"><div class="layer" id="layerA"></div><div class="layer" id="layerB"></div><div id="shade"></div><div id="scan"></div></div>
 
@@ -3534,7 +3550,7 @@ var started=false;
 function ready(){if(started)return;started=true;
   var h=parseInt((location.hash||'').slice(1),10),i=(h>0&&h<=slides.length)?h-1:0;
   cur=i;render(i,0,1,true);setTimeout(function(){document.getElementById('loading').classList.add('done');},150);}
-setTimeout(ready,6000);
+setTimeout(ready,500);
 window.__deck={go:go,next:next,render:render,slides:slides,maxStep:maxStep};
 })();
 </script>
@@ -4000,11 +4016,40 @@ function touchNav(){
   document.body.appendChild(bar);
   $$('button',bar).forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();key(b.dataset.k);});});
   var x0=null,y0=0,t0=0,inApp=false;
-  document.addEventListener('touchstart',function(e){if(document.body.classList.contains('voting'))return;var t=e.touches[0];x0=t.clientX;y0=t.clientY;t0=Date.now();inApp=!!(e.target.closest&&e.target.closest('.app,#tnav,#index,#help'));},{passive:true});
+  document.addEventListener('touchstart',function(e){if(document.body.classList.contains('voting'))return;var t=e.touches[0];x0=t.clientX;y0=t.clientY;t0=Date.now();inApp=!!(e.target.closest&&e.target.closest('.app,#tnav,#index,#help,#demofs'));},{passive:true});
   document.addEventListener('touchend',function(e){if(x0===null||inApp){x0=null;return;}var t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;x0=null;
     if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.2&&Date.now()-t0<800)key(dx<0?'ArrowRight':'ArrowLeft');},{passive:true});
 }
 if(matchMedia('(pointer:coarse)').matches||('ontouchstart' in window))touchNav();
+
+
+/* ---------- abrir cada demo a pantalla completa ---------- */
+var DEMO_NAME={rumbo:'Rumbo',clara:'Clara Sospecha',atlas:'Atlas',baro:'Barómetro en Vivo',hist:'Historias que Cuentan MX',edi:'Edición México'};
+function demoFull(){
+  var ov=h('div','',null);ov.id='demofs';ov.innerHTML='<div class="fsbar"><b></b><button type="button" class="fsx">✕ Volver a la presentación</button></div><div class="fsbody"></div>';
+  document.body.appendChild(ov);var body=$('.fsbody',ov),cur=null,home=null,next=null;
+  ['keydown','keyup'].forEach(function(t){ov.addEventListener(t,function(e){e.stopPropagation();});});
+  ov.addEventListener('wheel',function(e){e.stopPropagation();},{passive:true});
+  addEventListener('keydown',function(e){if(!ov.classList.contains('on'))return;if(e.key==='Escape'){close();}e.stopImmediatePropagation();},true);
+  function fit(){if(!cur)return;cur.style.transform='';var w=cur.offsetWidth,hh=cur.offsetHeight,vw=innerWidth,vh=innerHeight-70;
+    if(vw<900){cur.style.width='calc(100vw - 24px)';return;}
+    var k=Math.min((vw-48)/w,vh/hh,1.6);cur.style.transformOrigin='top center';cur.style.transform='scale('+k+')';body.style.height=Math.max(vh,hh*k+20)+'px';}
+  function open(el){if(cur)close();var app=el.dataset.app;home=el.parentNode;next=el.nextSibling;cur=el;body.appendChild(el);el.classList.add('fs');
+    $('.fsbar b',ov).textContent=DEMO_NAME[app]||'Demo';ov.classList.add('on');document.body.classList.add('fs-open');
+    try{history.replaceState(null,'','#'+app);}catch(e){}
+    try{if(ov.requestFullscreen&&!document.fullscreenElement&&innerWidth>=900)ov.requestFullscreen().catch(function(){});}catch(e){}
+    requestAnimationFrame(fit);setTimeout(fit,300);}
+  function close(){if(!cur)return;cur.classList.remove('fs');cur.style.transform='';cur.style.width='';body.style.height='';
+    home.insertBefore(cur,next);cur=null;ov.classList.remove('on');document.body.classList.remove('fs-open');
+    try{if(document.fullscreenElement)document.exitFullscreen();}catch(e){}
+    try{var n=(document.getElementById('num')||{}).textContent||'';history.replaceState(null,'','#'+(parseInt(n)||1));}catch(e){}}
+  $('.fsx',ov).onclick=close;addEventListener('resize',fit);
+  $$('[data-app]').forEach(function(el){var b=h('button','fsbtn','⛶ Abrir demo completo');b.type='button';
+    b.addEventListener('click',function(e){e.stopPropagation();open(el);});el.appendChild(b);});
+  var h0=(window.__H0||location.hash||'').slice(1);
+  if(DEMO_NAME[h0]){var el=$('[data-app="'+h0+'"]');if(el)setTimeout(function(){open(el);},400);}
+}
+demoFull();
 
 /* ---------- arranque ---------- */
 var map={rumbo:rumbo,clara:clara,atlas:atlas,baro:baro,hist:hist,edi:edi};
