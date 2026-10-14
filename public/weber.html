@@ -3937,7 +3937,7 @@ function edi(root){
   form.onsubmit=function(e){e.preventDefault();var q=inp.value.trim();if(q&&!busy){inp.value='';ask(q);}};
   async function ask(q){if(busy)return;busy=true;
     log.appendChild(h('div','bb u',esc(q)));var a=h('div','bb a wait','Buscando en la revista…');log.appendChild(a);log.scrollTop=1e6;
-    var fr=se(q+' '+q,8),by={};fr.forEach(function(d,k){by['r'+(k+1)]={fuente:ref(d),corto:(R.secs[d.s].a||'Revista').replace(/ (y|e) .*/,' et al.').replace(/^Consejo.*$/,'Barómetro')+', p. '+d.p,url:'#'};});
+    var fr=se(q+' '+q,14),by={};fr.forEach(function(d,k){by['r'+(k+1)]={fuente:ref(d),corto:(R.secs[d.s].a||'Revista').replace(/ (y|e) .*/,' et al.').replace(/^Consejo.*$/,'Barómetro')+', p. '+d.p,url:'#'};});
     var sample=await getSample(),ok=false;
     if(sample&&fr.length){
       var prompt='Responde la pregunta usando SOLO los fragmentos de la Revista Enfermedades Raras de la Fundación Weber (vol. 10, núm. 2, septiembre de 2025). Español de México, máximo 90 palabras, cifras exactas como aparecen. Después de cada dato pon la etiqueta del fragmento entre corchetes, por ejemplo [r2]. Si la respuesta no está en los fragmentos, dilo.\n\nFRAGMENTOS:\n'+fr.map(function(d,k){return '[r'+(k+1)+'] ('+ref(d)+') '+d.t;}).join('\n')+'\n\nPREGUNTA: '+q;
