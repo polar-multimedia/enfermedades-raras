@@ -1,0 +1,7 @@
+{
+  "name": "polar-enfermedades-raras",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Rumbo, Clara Sospecha, Atlas y Barómetro en Vivo — versión web pública de Polar Multimedia",
+  "engines": { "node": ">=18" }
+}
