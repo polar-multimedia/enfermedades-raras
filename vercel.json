@@ -1,14 +1,30 @@
 {
   "outputDirectory": "public",
   "functions": {
-    "api/ask.js": { "maxDuration": 60 },
-    "api/tts.js": { "maxDuration": 30 },
-    "api/room.js": { "maxDuration": 10 }
+    "api/ask.js": {
+      "maxDuration": 60
+    },
+    "api/tts.js": {
+      "maxDuration": 30
+    },
+    "api/room.js": {
+      "maxDuration": 10
+    }
   },
   "headers": [
-    { "source": "/(.*)", "headers": [
-      { "key": "X-Content-Type-Options", "value": "nosniff" },
-      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-    ]}
-  ]
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "cleanUrls": true
 }
