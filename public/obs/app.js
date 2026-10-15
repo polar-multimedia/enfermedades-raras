@@ -103,8 +103,7 @@ var V={};
 V.inicio=function(){
   var nFichas=C.length,nVid=RM.w.filter(function(w){return w.t==='video';}).length,nPts=PD.atlas.pts.length;
   view.innerHTML=
-  '<section class="hero"><div class="wrap">'+
-   '<div class="fan" aria-hidden="true">'+[-60,-36,-12,12,36,60].map(function(a,i){return '<i style="transform:translateX(-50%) rotate('+a+'deg);animation-delay:'+(i*.35)+'s"></i>';}).join('')+'</div>'+
+  '<section class="hero"><div class="bgimg" aria-hidden="true"></div><div class="wrap">'+
    '<span class="kick">Capítulo México</span>'+
    '<h1>El conocimiento sobre las enfermedades poco frecuentes existe. <em>Está disperso.</em> Aquí lo reunimos.</h1>'+
    '<p class="lead">El Observatorio mide cómo se vive con una enfermedad poco frecuente en México y Latinoamérica. Su Acervo pone ese conocimiento al alcance de cada quien: familias, médicos, asociaciones de pacientes y quienes deciden la política pública.</p>'+
@@ -134,7 +133,7 @@ V.inicio=function(){
 
   '<section class="blk"><div class="wrap">'+
    '<span class="kick y">Cómo está hecho</span><h2>Un observatorio que mide. Un acervo que acompaña.</h2>'+
-   '<div class="arch">'+
+   '<div class="arch"><div class="brandshot"><img src="/obs/img/brand/faro-3d.webp" alt="El faro del Observatorio: una torre con piel de cebra, el símbolo de las enfermedades poco frecuentes, coronada por un ojo con iris de colores y rodeada de rayos de luz en forma de manos" loading="lazy"></div>'+
     '<div class="card"><span class="pill y">El Observatorio</span><h3 style="margin-top:10px">Mide y da la cara</h3><p>Publica el Barómetro y el Atlas, lleva los datos al Senado y firma los informes. Tiene consejo honorífico y presidencia médica.</p></div>'+
     '<div class="card"><span class="pill">El Acervo</span><h3 style="margin-top:10px">Reúne y responde</h3><p>Fichas, entrevistas, videos y asistentes que responden solo con información aprobada. Hoy contiene <b>'+nFichas+' fichas con fuente</b>, <b>'+nVid+' videos</b> y <b>'+nPts+' puntos de atención</b> sobre cuatro enfermedades.</p></div>'+
    '</div>'+
@@ -350,7 +349,7 @@ V.asociaciones=function(){
 V.barometro=function(){
   var url=location.origin+'/#votar';
   view.innerHTML='<section class="blk"><div class="wrap">'+
-   '<span class="kick y">Para foros y el Senado</span><h1>Barómetro en Vivo</h1><p class="lead">La primera medición mexicana de cómo se vive con una enfermedad poco frecuente. Los asistentes votan desde su celular, las barras se llenan al momento en la pantalla y cada resultado se compara con España.</p>'+
+   '<div class="pagehero" style="--img:url(/obs/img/brand/faro-manos.webp)"><span class="kick y">Para foros y el Senado</span><h1>Barómetro en Vivo</h1><p class="lead">La primera medición mexicana de cómo se vive con una enfermedad poco frecuente. Los asistentes votan desde su celular, las barras se llenan al momento en la pantalla y cada resultado se compara con España.</p></div>'+
    '<div class="grid g2" style="margin-top:26px;align-items:start">'+
     '<div class="card"><h3>Cómo funciona en la sala</h3><ul style="margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px"><li>Cada asistente escanea el código y vota.</li><li>Dos preguntas de opción única y una de opción múltiple, con los mismos reactivos del barómetro español.</li><li>Después del foro se publica el informe con la pregunta de jerarquía: el primer barómetro mexicano.</li></ul>'+
     '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn" href="/#votar">Abrir la votación</a><a class="btn ghost" href="/">Ver la presentación</a></div></div>'+
@@ -358,6 +357,41 @@ V.barometro=function(){
    '</div></div></section>';
 };
 
+
+/* ---------- fondo animado: el abanico de manos de luz ---------- */
+var FX=(function(){
+  var cv=document.getElementById('fx');if(!cv||!cv.getContext)return {go:function(){}};
+  var ctx=cv.getContext('2d'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COL=[[255,79,216],[139,92,246],[56,189,248],[74,222,128],[255,143,177]],BASE=[-58,-24,6,34,64],FING=[.62,.9,1,.88,.6];
+  /* posición del abanico (fracción de pantalla), escala, giro y qué mano resalta en cada sección */
+  var CFG={inicio:{x:.86,y:1.12,s:1.1,rot:-6,hi:null,a:.34},acervo:{x:.92,y:1.15,s:.95,rot:-14,hi:1,a:.3},rumbo:{x:.08,y:1.18,s:.9,rot:18,hi:2,a:.3},
+    clara:{x:.92,y:1.18,s:.9,rot:-18,hi:0,a:.3},atlas:{x:.5,y:1.3,s:1.05,rot:0,hi:3,a:.24},asociaciones:{x:.1,y:1.15,s:.95,rot:14,hi:4,a:.3},barometro:{x:.5,y:1.2,s:1.15,rot:0,hi:null,a:.34}};
+  var W=0,H=0,dpr=Math.min(1.5,window.devicePixelRatio||1),cur=null,from=null,to=null,t0=0,DUR=1400;
+  function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);if(cur)draw(cur,performance.now(),0);}
+  function st(name){var c=CFG[name]||CFG.inicio,al=[];for(var i=0;i<5;i++)al[i]=c.hi==null?c.a:(i===c.hi?c.a*1.9:c.a*.45);return {x:c.x,y:c.y,s:c.s,rot:c.rot,a:al};}
+  function lerp(a,b,k){return a+(b-a)*k;}
+  function mix(p,q,k){return {x:lerp(p.x,q.x,k),y:lerp(p.y,q.y,k),s:lerp(p.s,q.s,k),rot:lerp(p.rot,q.rot,k),a:p.a.map(function(v,i){return lerp(v,q.a[i],k);})};}
+  function ease(k){return k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;}
+  function finger(px,py,ang,len,w,c,al){var ex=px+Math.sin(ang)*len,ey=py-Math.cos(ang)*len,g=ctx.createLinearGradient(px,py,ex,ey);
+    g.addColorStop(0,'rgba('+c+','+(al*.04)+')');g.addColorStop(.5,'rgba('+c+','+(al*.65)+')');g.addColorStop(1,'rgba('+c+','+al+')');
+    ctx.save();ctx.translate(px,py);ctx.rotate(ang);ctx.beginPath();ctx.moveTo(-w*.55,0);ctx.lineTo(-w/2,-len+w/2);ctx.arc(0,-len+w/2,w/2,Math.PI,0);ctx.lineTo(w*.55,0);ctx.closePath();ctx.restore();ctx.fillStyle=g;ctx.fill();}
+  function draw(s,time,close){ctx.clearRect(0,0,W,H);ctx.globalCompositeOperation='lighter';
+    var u=Math.min(W,H*1.4)/1100,br=RM?0:Math.sin(time/2400)*.035,flare=1+close*1.2;
+    for(var hnd=0;hnd<5;hnd++){var al=Math.min(.9,s.a[hnd]*flare);if(al<.01)continue;var c=COL[hnd].join(',');
+      var base=(BASE[hnd]*(1-close*.6)+s.rot)*Math.PI/180,L=520*s.s*u*(1+(RM?0:Math.sin(time/3100+hnd)*.03)),Wd=74*s.s*u,px=s.x*W+(hnd-2)*24*s.s*u,py=s.y*H;
+      for(var f=0;f<5;f++){var ang=base+((f-2)*(13+br*40)*(1-close*.5))*Math.PI/180;finger(px+Math.sin(base)*40*s.s*u,py,ang,L*FING[f],Wd*(f===0||f===4?.82:1),c,al*.6);}
+      var rg=ctx.createRadialGradient(px,py-140*s.s*u,0,px,py-140*s.s*u,300*s.s*u);rg.addColorStop(0,'rgba('+c+','+(al*.3)+')');rg.addColorStop(1,'rgba('+c+',0)');ctx.fillStyle=rg;ctx.fillRect(px-340*s.s*u,py-460*s.s*u,680*s.s*u,680*s.s*u);}
+    ctx.globalCompositeOperation='source-over';}
+  function frame(time){var s=cur,close=0;
+    if(to){var k=Math.min(1,(time-t0)/DUR),e=ease(k);s=mix(from,to,e);close=Math.sin(Math.PI*k)*.85;s.rot=lerp(from.rot-60,to.rot,e);if(k>=1){cur=to;to=null;}}
+    if(s)draw(s,time,close);if(!RM||to)requestAnimationFrame(frame);}
+  addEventListener('resize',size);size();
+  return {go:function(name){var n=st(name);
+    if(!cur||RM){cur=n;to=null;draw(n,0,0);if(!RM)requestAnimationFrame(frame);return;}
+    from=to?mix(from,to,ease(Math.min(1,(performance.now()-t0)/DUR))):cur;to=n;t0=performance.now();
+    var sw=document.getElementById('sweep');if(sw){sw.classList.remove('go');void sw.offsetWidth;sw.classList.add('go');}}};
+})();
+var firstRoute=true;
 /* ---------- enrutador ---------- */
 function route(){
   var hs=location.hash.replace(/^#\/?/,''),parts=hs.split('?'),name=parts[0]||'inicio',q={};
@@ -366,6 +400,7 @@ function route(){
   voice.stop();
   $$('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.v===name);if(a.dataset.v===name)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   V[name](q);window.scrollTo(0,0);if(name!=='inicio')view.focus({preventScroll:true});
+  FX.go(name);view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter');firstRoute=false;
   document.title=(name==='inicio'?'':({acervo:'Acervo',rumbo:'Rumbo',clara:'Clara',atlas:'Atlas',asociaciones:'Asociaciones',barometro:'Barómetro'})[name]+' · ')+'Observatorio · Enfermedades Poco Frecuentes';}
 
 fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){

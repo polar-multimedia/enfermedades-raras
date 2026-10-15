@@ -6,15 +6,20 @@
 <title>Observatorio · Enfermedades Poco Frecuentes</title>
 <meta name="description" content="Observatorio Latinoamericano de Enfermedades Poco Frecuentes · Capítulo México. El Acervo: conocimiento vivo para familias, médicos, asociaciones y quien decide.">
 <meta name="theme-color" content="#06121c">
+<link rel="icon" type="image/png" href="/obs/img/brand/favicon.png">
+<link rel="apple-touch-icon" href="/obs/img/brand/apple-touch-icon.png">
+<link rel="preload" as="image" href="/obs/img/brand/faro-costa.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..700,50&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/obs/app.css">
 </head>
 <body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="sweep" aria-hidden="true"></div>
 <header class="top">
   <a class="brand" href="#/">
-    <span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <img class="mark" src="/obs/img/brand/icono.webp" alt="" width="44" height="44">
     <span class="bt"><b>Observatorio</b><small>Latinoamericano de Enfermedades Poco Frecuentes · Capítulo México</small></span>
   </a>
   <nav class="nav" aria-label="Secciones">
@@ -31,7 +36,7 @@
 
 <footer class="foot">
   <div class="fw">
-    <div><b>Observatorio Latinoamericano de Enfermedades Poco Frecuentes</b><span>Capítulo México</span></div>
+    <div><b class="serif">Observatorio Latinoamericano de Enfermedades Poco Frecuentes</b><span>Capítulo México</span></div>
     <p>Versión de demostración construida con información pública; cada dato enlaza a su fuente. En la versión final, los contenidos los aportan y validan los laboratorios patrocinadores, las asociaciones de pacientes y un comité médico. La información orienta y no sustituye la consulta médica.</p>
     <p class="by">Plataforma desarrollada y operada por Polar Multimedia</p>
   </div>
