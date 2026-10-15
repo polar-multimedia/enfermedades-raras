@@ -372,3 +372,9 @@ body.light .tz span.bar{background:rgba(0,0,0,.06)}
 @media (min-width:901px){body:not(.home) .top{grid-template-columns:auto 1fr}body:not(.home) .nav{justify-content:flex-end}}
 .bt,.cmx{flex:none}
 @media (min-width:901px) and (max-width:1180px){body:not(.home) .cmx{display:none}body:not(.home) .bt::after{content:"Capítulo México";display:block;font:800 9.5px Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#4ADE80;margin-top:3px}}
+/* el home también lleva el nombre completo y Capítulo México */
+.bt b.short{display:none}.bt b.long{display:block}
+@media (min-width:901px){.top{grid-template-columns:auto 1fr}.nav{justify-content:flex-end}}
+@media (min-width:901px) and (max-width:1180px){.cmx{display:none}.bt::after{content:"Capítulo México";display:block;font:800 9.5px Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#4ADE80;margin-top:3px}}
+@media (max-width:520px){.bt b.long{display:none}.bt b.short{display:block}}
+.home .bt b.long{text-shadow:0 1px 12px rgba(0,0,0,.45)}
