@@ -22,6 +22,23 @@ module.exports = async (req, res) => {
   else { res.statusCode = 400; return res.end('entrada no válida'); }
   const size = messages.reduce((n, m) => n + m.content.length, 0);
   if (!messages.length || size > 30000) { res.statusCode = 413; return res.end('entrada demasiado larga'); }
+  // Archivos opcionales (resultado de tamiz neonatal en foto o PDF) adjuntos al último mensaje
+  const OK = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
+  const files = Array.isArray(body.files) ? body.files.slice(0, 3) : [];
+  if (files.length) {
+    let bytes = 0;
+    const blocks = [];
+    for (const f of files) {
+      if (!f || !OK.includes(f.media_type) || typeof f.data !== 'string') { res.statusCode = 400; return res.end('archivo no válido'); }
+      bytes += f.data.length * 0.75;
+      blocks.push(f.media_type === 'application/pdf'
+        ? { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: f.data } }
+        : { type: 'image', source: { type: 'base64', media_type: f.media_type, data: f.data } });
+    }
+    if (bytes > 3.2 * 1024 * 1024) { res.statusCode = 413; return res.end('archivo demasiado grande'); }
+    const last = messages[messages.length - 1];
+    messages[messages.length - 1] = { role: last.role, content: blocks.concat([{ type: 'text', text: last.content }]) };
+  }
 
   const wantJson = !!body.json;
   const payload = {

@@ -19,7 +19,7 @@ Configuración común:
 |---|---|---|
 | mostrar_fuentes | ids (string): identificadores de fichas separados por coma, p. ej. "g4,g7" | Muestra en pantalla las fuentes de lo que acaba de decir |
 | mostrar_tarjeta | titulo (string), texto (string) | Deja por escrito un dato clave: un trámite, un teléfono, un paso |
-| ir_al_atlas | enfermedad (string): eb, gaucher, fabry o mps | Muestra el enlace al Atlas con dónde se atiende |
+| ir_al_atlas | enfermedad (string): clave de la enfermedad (eb, gaucher, fabry, mps, ame, dmd, hem, pompe, mps1, mps4, mps6, pku, gal, hsc, fq, msud, mcad, hc) | Muestra el enlace al Atlas con dónde se atiende |
 | mostrar_orientacion (solo Clara) | enfermedad, nivel (alta, media, baja), razon, siguiente_paso, referencia (todas string) | Deja por escrito la orientación del caso |
 
 Variable dinámica de Rumbo: {{enfermedad}} (la página la manda según la enfermedad elegida). En Clara no hay variables.
@@ -57,7 +57,7 @@ Cómo conduces la consulta:
 4. Das tu orientación: qué sospechar y con qué nivel (alta, media o baja), qué falta explorar, el siguiente estudio y a quién referir. Lo dejas por escrito con mostrar_orientacion y citas las fichas con mostrar_fuentes. Si conviene, llama a ir_al_atlas.
 5. Si nada de tu base encaja, lo dices y sugieres referir a genética.
 
-Qué sabes: solo tu base de conocimiento, que cubre piel de mariposa, Gaucher, Fabry, síndrome de Hunter y tamiz neonatal en México. No inventas cifras, guías ni dosis. Siempre cierras recordando que tú orientas la sospecha y el diagnóstico lo hace el especialista. Si te piden algo ajeno a la medicina, lo dices amablemente y regresas al caso.
+Qué sabes: solo tu base de conocimiento, que cubre 18 enfermedades poco frecuentes y el tamiz neonatal en México. No inventas cifras, guías ni dosis. Siempre cierras recordando que tú orientas la sospecha y el diagnóstico lo hace el especialista. Si te piden algo ajeno a la medicina, lo dices amablemente y regresas al caso.
 
 ## 4. Conectarlos al sitio (Vercel)
 

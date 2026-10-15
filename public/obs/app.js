@@ -12,7 +12,29 @@ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cl
 
 var DIS={eb:'piel de mariposa (epidermólisis bullosa)',gaucher:'enfermedad de Gaucher',fabry:'enfermedad de Fabry',mps:'síndrome de Hunter (mucopolisacaridosis tipo II)'};
 var DSHORT={eb:'Piel de mariposa',gaucher:'Gaucher',fabry:'Fabry',mps:'Hunter (MPS II)',general:'General'};
-var K2D={e:'eb',g:'gaucher',f:'fabry',m:'mps'},D2K={eb:'e',gaucher:'g',fabry:'f',mps:'m'};
+var K2D={e:'eb',g:'gaucher',f:'fabry',m:'mps'};
+/* registro de enfermedades: las 4 originales + las que llegan en acervo.json */
+var GRUPOS=[
+  {k:'tamiz',t:'Le salió alterado el tamiz del talón',s:'Enfermedades del metabolismo y de las hormonas que se buscan al nacer'},
+  {k:'musculo',t:'Debilidad en los músculos',s:'No sostiene la cabeza, se cae seguido, se cansa o le cuesta respirar'},
+  {k:'sangre',t:'Sangra mucho o le salen moretones',s:'Sangrados que tardan en parar, golpes que se hinchan'},
+  {k:'piel',t:'Ampollas o heridas en la piel',s:'La piel se lastima con un roce mínimo'},
+  {k:'lisosomal',t:'Huesos, crecimiento, bazo grande o rasgos que cambian',s:'Dolor de huesos, talla baja, articulaciones rígidas, infecciones seguidas'},
+  {k:'dolor',t:'Ardor en manos y pies',s:'Dolor que quema, casi no suda; con los años afecta riñón y corazón'}];
+var BASE4=[
+  {key:'eb',nombre:'Piel de mariposa (epidermólisis bullosa)',corto:'Piel de mariposa',grupo:'piel',familia:'La piel es tan frágil que se lastima y forma ampollas con un roce mínimo, como las alas de una mariposa.',sinonimos:['epidermolisis bullosa','EB','ampollas','ampollas al nacer','piel fragil','heridas en la piel','se le levanta la piel','DEBRA'],senales:['Ampollas con roces mínimos desde el nacimiento','Heridas en la boca al comer','Uñas que se caen o se engrosan','Heridas que tardan en sanar']},
+  {key:'gaucher',nombre:'Enfermedad de Gaucher',corto:'Gaucher',grupo:'lisosomal',familia:'Falta una enzima y se acumula grasa en bazo, hígado y huesos: panza grande, moretones, cansancio y dolor de huesos.',sinonimos:['gaucher','bazo grande','panza grande','plaquetas bajas','moretones','dolor de huesos','cansancio','enzima'],senales:['Panza que crece por bazo o hígado grandes','Moretones y sangrado de nariz','Cansancio y anemia','Dolor de huesos o fracturas']},
+  {key:'fabry',nombre:'Enfermedad de Fabry',corto:'Fabry',grupo:'dolor',familia:'Falta una enzima y se acumula grasa en vasos y nervios: ardor en manos y pies; con los años afecta riñón y corazón.',sinonimos:['fabry','ardor en manos','ardor en pies','dolor quemante','no suda','manchitas rojas','riñon','proteina en orina'],senales:['Ardor en manos y pies, sobre todo con calor o ejercicio','Casi no suda','Manchitas rojo oscuro en la piel','Dolor de panza y diarrea frecuentes']},
+  {key:'mps',nombre:'Síndrome de Hunter (MPS II)',corto:'Hunter (MPS II)',grupo:'lisosomal',familia:'Falta una enzima y se acumulan sustancias en todo el cuerpo: rasgos que cambian, articulaciones rígidas e infecciones seguidas.',sinonimos:['hunter','mucopolisacaridosis','MPS II','MPS 2','rasgos toscos','hernia','ronca','infecciones de oido','articulaciones rigidas'],senales:['Infecciones de oído y respiratorias seguidas','Ronca o hace pausas al dormir','Rasgos de la cara que se van engrosando','Manos y articulaciones rígidas']}];
+var ENF=BASE4.slice(),ENFBY={};BASE4.forEach(function(e){ENFBY[e.key]=e;});
+var GCOL={tamiz:'c-p',musculo:'c-b',sangre:'c-m',piel:'c-m',lisosomal:'c-g',dolor:'c-v'};
+function initDis(list){(list||[]).forEach(function(e){if(ENFBY[e.key])return;ENF.push(e);ENFBY[e.key]=e;});
+  ENF.forEach(function(e){DIS[e.key]=DIS[e.key]||e.nombre;DSHORT[e.key]=DSHORT[e.key]||e.corto;if(!DCOL[e.key])DCOL[e.key]=GCOL[e.grupo]||'c-b';});}
+function disOptions(cur,all){return (all?'<option value="all"'+(cur==='all'?' selected':'')+'>Todas las enfermedades</option>':'')+GRUPOS.map(function(g){var L=ENF.filter(function(e){return e.grupo===g.k;});return L.length?'<optgroup label="'+esc(g.t)+'">'+L.map(function(e){return '<option value="'+e.key+'"'+(cur===e.key?' selected':'')+'>'+esc(e.corto===e.nombre?e.nombre:e.corto+' · '+e.nombre)+'</option>';}).join('')+'</optgroup>':'';}).join('');}
+function disMatch(q){q=fold(q).trim();if(q.length<2)return [];var qt=q.split(/\s+/).filter(function(w){return w.length>2&&!STOP[w]&&!/^(mucho|mucha|poco|salio|tiene|bebe|nino|nina|hijo|hija)$/.test(w);});
+  return ENF.map(function(e){var hay=fold([e.nombre,e.corto].concat(e.sinonimos||[]).join(' | ')),s=0;
+    if(hay.indexOf(q)>=0)s+=6;(e.sinonimos||[]).forEach(function(w){if(fold(w).indexOf(q)===0)s+=3;});qt.forEach(function(t){if(hay.indexOf(t.slice(0,6))>=0)s+=1.5;});return [s,e];})
+   .filter(function(x){return x[0]>0;}).sort(function(a,b){return b[0]-a[0];}).filter(function(x,i,arr){return x[0]>=Math.max(1.5,arr[0][0]*.6);}).slice(0,5).map(function(x){return x[1];});}
 var SRC_DX={t:'EURORDIS, Rare Barometer: encuesta a más de 10,000 pacientes en 42 países (2024)',u:'https://www.eurordis.org/survey-reveals-lengthy-diagnostic-delays'},
     SRC_ESP={t:'Benito-Lozano et al., Int J Environ Res Public Health 2022 (Registro Español de Pacientes, 1,216 personas)',u:'https://repisalud.isciii.es/entities/publication/feeadffd-12e4-49be-a62e-cda35bb99713'},
     SRC_DISC={t:'EURORDIS, Rare Barometer: encuesta a 9,591 personas en 43 países (feb. 2025)',u:'https://www.eurordis.org/rare-barometer-findings-daily-life-survey'};
@@ -48,7 +70,7 @@ function Index(docs,textOf){
 var C=[],CBY={},cSearch=null;
 function fragBlock(fr){return fr.map(function(d){return '['+d.id+'] ('+d.fuente+' · '+d.tema+') '+d.texto;}).join('\n');}
 function cite(text){var used=[];
-  var html=esc(text).replace(/\[([a-z]\d{1,2}(?:\s*,\s*[a-z]\d{1,2})*)\]/gi,function(_,ids){
+  var html=esc(text).replace(/\[([a-z]{1,4}\d{1,3}(?:\s*,\s*[a-z]{1,4}\d{1,3})*)\]/gi,function(_,ids){
     return ids.split(/\s*,\s*/).map(function(id){id=id.toLowerCase();if(!CBY[id])return '';if(used.indexOf(id)<0)used.push(id);return '<sup class="c">'+(used.indexOf(id)+1)+'</sup>';}).join('');});
   html=html.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n{2,}/g,'<br><br>');
   return {html:html,used:used};}
@@ -86,7 +108,7 @@ function renderW(w){var b=h('div','wg'),L={video:'Video',steps:'Paso a paso',che
   else if(w.t==='stat')H+='<div class="sb"><b>'+esc(w.big)+'</b><div class="bars"><i style="width:'+parseInt(w.big)+'%"></i><i class="c" style="width:'+parseInt(w.vs)+'%"></i></div></div><p>'+esc(w.label)+'</p><p class="wn">'+esc(w.sub)+'</p>'+wSrc(w);
   else if(w.t==='contact')H+='<b class="wt">'+esc(w.title)+'</b><p class="wn">'+esc(w.sub)+'</p><dl>'+w.rows.map(function(r){return '<dt>'+esc(r[0])+'</dt><dd><span>'+esc(r[1])+'</span>'+(r[0]==='Teléfono'||r[0]==='Correo'?'<button type="button" class="cp" data-v="'+esc(r[1])+'">Copiar</button>':'')+'</dd>';}).join('')+'</dl><a class="wb" href="'+esc(w.url)+'" target="_blank" rel="noopener">Abrir sitio ↗</a>'+wSrc(w);
   else if(w.t==='link')H+='<a class="wlk" href="'+esc(w.url)+'" target="_blank" rel="noopener"><b>'+esc(w.title)+'</b><span class="wn">'+esc(w.sub)+'</span><em>'+esc(w.dom)+' ↗</em></a>';
-  else if(w.t==='map')H+='<b class="wt">'+esc(w.title)+'</b>'+miniMap(w.k)+'<a class="wb" href="#/atlas?d='+K2D[w.k]+'">Ver en el Atlas</a>';
+  else if(w.t==='map')H+='<b class="wt">'+esc(w.title)+'</b>'+miniMap(K2D[w.k]||w.k)+'<a class="wb" href="#/atlas?d='+(K2D[w.k]||w.k)+'">Ver en el Atlas</a>';
   else if(w.t==='inherit')H+='<b class="wt">'+esc(w.title)+'</b><p class="wn">'+esc(w.sub)+'</p>'+inheritSvg(w)+wSrc(w);
   else if(w.t==='compare')H+=wImg(w)+'<b class="wt">'+esc(w.title)+'</b><div class="cmp">'+w.cols.map(function(c){return '<div><b>'+esc(c[0])+'</b><span>'+esc(c[1])+'</span><span><i>Cómo:</i> '+esc(c[2])+'</span><span><i>Para:</i> '+esc(c[3])+'</span></div>';}).join('')+'</div><p class="wn">'+esc(w.nota)+'</p>'+wSrc(w);
   else if(w.t==='chips')H+='<b class="wt">'+esc(w.title)+'</b><div class="chp">'+w.items.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div>'+wSrc(w);
@@ -99,6 +121,31 @@ function pickW(ids,dis,fr){var ok=function(w){return w&&(w.d===dis||w.d==='gener
   if(!out.length){var sc=RM.w.filter(ok).map(function(w){var s=0;fr.slice(0,3).forEach(function(d,i){if((w.fr||[]).indexOf(d.id)>=0)s+=3-i;});return [s,w];}).filter(function(x){return x[0]>0;}).sort(function(a,b){return b[0]-a[0];});
     var nv=sc.filter(function(x){return x[1].t!=='video';})[0],v=sc.filter(function(x){return x[1].t==='video';})[0];if(nv)out.push(nv[1]);if(v)out.push(v[1]);}
   return out.slice(0,3);}
+
+/* ---------- laboratorios con tratamientos en México ---------- */
+var LAB_SHOW=['sanofi','takeda','biomarin','roche','biogen','novartis','pfizer','bayer','novo-nordisk','vertex','abbott'];
+var LAB_LOGO={sanofi:'sanofi.svg',takeda:'takeda.svg',biomarin:'biomarin.svg',roche:'roche.svg',biogen:'biogen.svg',novartis:'novartis.svg',pfizer:'pfizer.svg',bayer:'bayer.svg',vertex:'vertex.svg',abbott:'abbott.svg'};
+var LAB_MARCA={'taliglucerasa alfa':'Elelyso','damoctocog alfa pegol':'Jivi','eptacog alfa (FVIIa recombinante)':'NovoSeven'};
+function labsData(){return (PD.laboratorios||[]).filter(function(l){return LAB_SHOW.indexOf(l.id)>=0;}).sort(function(a,b){return LAB_SHOW.indexOf(a.id)-LAB_SHOW.indexOf(b.id);});}
+function labState(p){var c=String(p.cofepris||'');if(p.cuadro_basico_imss===true)return ['cb','En Cuadro Básico del IMSS'];
+  if(/autorizado|aprobado/i.test(c)&&!/no aprobado/i.test(c))return ['ok','Con autorización de Cofepris'];
+  if(/contradictorio/i.test(c))return ['rv','Registro por confirmar en México'];
+  if(/ensayo/i.test(p.marca||'')||/solo en ensayo|probado en México/i.test(c))return ['tr','En ensayo clínico en México'];
+  if(/no aprobado|evaluar/i.test(c))return ['no','Aún no aprobado en México'];
+  return ['rv','Registro por confirmar en México'];}
+function labName(l){return l.nombre.replace(/\s*\(.*\)$/,'');}
+function labCards(){return labsData().map(function(l){var lg=LAB_LOGO[l.id];
+  var enf={};l.productos.forEach(function(p){enf[p.enfermedad]=1;});
+  return '<button type="button" class="labc" data-id="'+l.id+'" aria-expanded="false"><span class="lgo">'+(lg?'<img src="/obs/img/labs/'+lg+'" alt="'+esc(labName(l))+'" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'b\'),{textContent:this.alt}))">':'<b>'+esc(labName(l))+'</b>')+'</span><span class="lnm">'+esc(labName(l))+'</span><span class="lct">'+l.productos.length+' medicamento'+(l.productos.length>1?'s':'')+' · '+Object.keys(enf).length+' enfermedad'+(Object.keys(enf).length>1?'es':'')+'</span></button>';}).join('');}
+function bindLabs(){var cur=null;$$('#lg .labc').forEach(function(b){b.onclick=function(){var id=b.dataset.id;cur=cur===id?null:id;
+  $$('#lg .labc').forEach(function(x){var on=x.dataset.id===cur;x.classList.toggle('on',on);x.setAttribute('aria-expanded',on);});
+  var l=labsData().filter(function(x){return x.id===cur;})[0],P=$('#lp');if(!l){P.innerHTML='';return;}
+  var by={};l.productos.forEach(function(p){(by[p.enfermedad]=by[p.enfermedad]||[]).push(p);});
+  P.innerHTML='<div class="labx"><div class="labx-h"><h3>'+esc(labName(l))+'</h3><button type="button" class="wb" id="lx">Cerrar</button></div>'+(l.mx&&!/investigaci|no detallad|no documentad|no confirmad|no se encontr/i.test(l.mx)?'<p class="note">'+esc(l.mx)+'</p>':'')+
+    '<div class="labx-g">'+Object.keys(by).map(function(e){return '<div class="labx-e"><span class="tk">'+esc(e)+'</span>'+by[e].map(function(p){var st=labState(p),mk=p.marca&&!/^\(/.test(p.marca)?p.marca:(LAB_MARCA[p.generico]||'');
+      return '<div class="medi"><b>'+esc(mk||p.generico)+'</b>'+(mk?'<span>'+esc(p.generico)+'</span>':'')+'<i class="st '+st[0]+'">'+esc(st[1])+'</i>'+(p.url?'<a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.fuente||'Fuente')+' ↗</a>':'')+'</div>';}).join('')+'</div>';}).join('')+'</div></div>';
+  $('#lx').onclick=function(){cur=null;P.innerHTML='';$$('#lg .labc').forEach(function(x){x.classList.remove('on');x.setAttribute('aria-expanded','false');});b.focus();};
+  P.scrollIntoView({block:'nearest',behavior:'smooth'});};});}
 
 /* video en loop de la portada: solo escritorio, sin ahorro de datos ni 'reducir movimiento' */
 function heroVideo(){var bg=$('.hero .bgimg');if(!bg)return;
@@ -118,6 +165,8 @@ V.inicio=function(){
   '<section class="hero"><div class="bgimg" aria-hidden="true"></div><div class="wrap">'+
    '<h1 class="hero-t">Nadie debería navegar solo una enfermedad poco frecuente.</h1>'+
    '<p class="hero-s">Entre 8 y 10 millones de personas en México viven con una. El Observatorio reúne lo que se sabe, mide lo que falta y alumbra el camino para familias, médicos y quienes deciden.</p>'+
+   '<div class="hero-doors"><a class="hd fam" href="#/rumbo"><small>Soy familia o paciente</small><b>Rumbo</b><span>Qué sigue y a dónde acudir, en tus palabras</span><i aria-hidden="true">→</i></a>'+
+   '<a class="hd med" href="#/clara"><small>Soy médico</small><b>Clara</b><span>Orientación clínica y referencia · solo profesionales de la salud</span><i aria-hidden="true">→</i></a></div>'+
   '</div>'+
   '<a class="hero-cta" href="#/acervo"><i aria-hidden="true"></i>Explorar el Acervo</a>'+
   '<p class="hero-hint">Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
@@ -138,7 +187,7 @@ V.inicio=function(){
    '<span class="kick">El Acervo</span><h2>¿Por dónde entras?</h2><p class="sub">Una sola base de conocimiento, cuatro puertas. Cada quien recibe la información a su medida y con la fuente a la vista.</p>'+
    '<div class="grid g4" style="margin-top:22px">'+
     '<a class="door" href="#/rumbo"><span class="who">Soy familia o paciente</span><h3>Rumbo</h3><p>Qué sigue después del diagnóstico: cuidados en casa, trámites, apoyos y a dónde acudir.</p><span class="go">Preguntar a Rumbo →</span></a>'+
-    '<a class="door m" href="#/clara"><span class="who">Soy médico</span><h3>Clara</h3><p>Para el pediatra y el médico de primer contacto: pensar a tiempo en una enfermedad poco frecuente y saber a dónde referir.</p><span class="go">Analizar un caso →</span></a>'+
+    '<a class="door m" href="#/clara"><span class="who">Solo para médicos</span><h3>Clara</h3><p>Para el pediatra y el médico de primer contacto: pensar a tiempo en una enfermedad poco frecuente y saber a dónde referir.</p><span class="go">Analizar un caso →</span></a>'+
     '<a class="door t" href="#/asociaciones"><span class="who">Soy asociación de pacientes</span><h3>Asociaciones</h3><p>Acceso sin costo, directorio, materiales y herramientas para dar a conocer su causa.</p><span class="go">Ver el espacio →</span></a>'+
     '<a class="door y" href="#/atlas"><span class="who">Decido política pública</span><h3>Atlas</h3><p>El mapa de dónde hay atención en México y dónde no: hospitales, asociaciones y ensayos clínicos.</p><span class="go">Abrir el mapa →</span></a>'+
    '</div>'+
@@ -148,17 +197,18 @@ V.inicio=function(){
    '<span class="kick y">Cómo está hecho</span><h2>Un observatorio que mide. Un acervo que acompaña.</h2>'+
    '<div class="arch"><div class="brandshot"><img src="/obs/img/brand/faro-3d.webp" alt="El faro del Observatorio: una torre con piel de cebra, el símbolo de las enfermedades poco frecuentes, coronada por un ojo con iris de colores y rodeada de rayos de luz en forma de manos" loading="lazy"></div>'+
     '<div class="card"><span class="pill y">El Observatorio</span><h3 style="margin-top:10px">Mide y da la cara</h3><p>Publica el Atlas y los informes, lleva los datos al Senado y firma los informes. Tiene consejo honorífico y presidencia médica.</p></div>'+
-    '<div class="card"><span class="pill">El Acervo</span><h3 style="margin-top:10px">Reúne y responde</h3><p>Fichas, entrevistas, videos y asistentes que responden solo con información aprobada. Hoy contiene <b>'+nFichas+' fichas con fuente</b>, <b>'+nVid+' videos</b> y <b>'+nPts+' puntos de atención</b> sobre cuatro enfermedades.</p></div>'+
+    '<div class="card"><span class="pill">El Acervo</span><h3 style="margin-top:10px">Reúne y responde</h3><p>Fichas, entrevistas, videos y asistentes que responden solo con información aprobada. Hoy contiene <b>'+nFichas+' fichas con fuente</b>, <b>'+nVid+' videos</b> y <b>'+nPts+' puntos de atención</b> sobre '+ENF.length+' enfermedades.</p></div>'+
    '</div>'+
-   '<p class="sub" style="margin-top:18px">Enfermedades en esta demostración: piel de mariposa (epidermólisis bullosa), Gaucher, Fabry y síndrome de Hunter (MPS II).</p>'+
+   '<p class="sub" style="margin-top:18px">Enfermedades en esta demostración: '+esc(ENF.map(function(e){return e.nombre.replace(/^Enfermedad de /,'');}).join(', '))+'.</p>'+
   '</div></section>'+
 
-  '<section class="blk"><div class="wrap">'+
-   '<span class="kick">Quién lo hace posible</span><h2>Laboratorios que patrocinan conocimiento, no producto</h2>'+
-   '<p class="sub">Cada laboratorio patrocina el contenido de su área terapéutica y lo dice abiertamente. Las asociaciones de pacientes participan sin costo y validan lo que se publica.</p>'+
-   '<div class="spons">'+[1,2,3,4,5].map(function(){return '<div class="slot">Espacio para laboratorio patrocinador</div>';}).join('')+'<div class="slot ong">Asociaciones de pacientes aliadas</div></div>'+
+  '<section class="blk" id="labs"><div class="wrap">'+
+   '<span class="kick">Laboratorios con tratamientos en México</span><h2>Quién tiene medicamentos para estas enfermedades</h2>'+
+   '<p class="sub">Laboratorios con al menos un medicamento para alguna de las enfermedades del Acervo en el Cuadro Básico del IMSS o con autorización sanitaria en México. Toca uno para ver sus medicamentos.</p>'+
+   '<div class="labs" id="lg">'+labCards()+'</div><div class="labp" id="lp" aria-live="polite"></div>'+
+   '<p class="note" style="margin-top:14px">Información pública: Cuadro Básico y Catálogo de Insumos del IMSS (julio de 2026), Cofepris y comunicados de cada compañía. Aparecer aquí no implica patrocinio ni recomendación de un medicamento.</p>'+
   '</div></section>';
-  heroVideo();
+  heroVideo();bindLabs();
 };
 
 /* ---------- voz: dictado (Web Speech) y respuesta hablada (ElevenLabs si está configurado; si no, la mejor voz femenina en español del navegador) ---------- */
@@ -182,7 +232,7 @@ try{speechSynthesis.onvoiceschanged=function(){};}catch(e){}
 var voice={a:null,ava:null,on:true,
   stop:function(){if(this.a){this.a.pause();this.a=null;}try{speechSynthesis.cancel();}catch(e){}if(this.ava)this.ava.classList.remove('talk');},
   speak:async function(text,ava){if(!this.on||!text)return;this.stop();this.ava=ava;var self=this,done=function(){if(ava)ava.classList.remove('talk');};
-    text=text.replace(/\[[a-z]\d+(?:\s*,\s*[a-z]\d+)*\]/gi,'').replace(/\*\*/g,'');
+    text=text.replace(/\[[a-z]{1,4}\d+(?:\s*,\s*[a-z]{1,4}\d+)*\]/gi,'').replace(/\*\*/g,'');
     if(ava)ava.classList.add('talk');
     try{var r=await fetch('/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text})});
       if(r.ok){self.a=new Audio(URL.createObjectURL(await r.blob()));self.a.onended=done;self.a.onerror=done;await self.a.play();return;}}catch(e){}
@@ -222,7 +272,7 @@ async function startCall(o){
 window.addEventListener('hashchange',function(){if(CALL.o)endCall();});
 /* herramientas que el agente puede usar en pantalla mientras habla */
 function voiceTools(log,extra){var t={
-  mostrar_fuentes:function(p){var ids=String(p&&p.ids||'').toLowerCase().match(/[a-z]\d+/g)||[];ids=ids.filter(function(x){return CBY[x];});if(!ids.length)return 'Sin fuentes con esos identificadores.';
+  mostrar_fuentes:function(p){var ids=String(p&&p.ids||'').toLowerCase().match(/[a-z]{1,4}\d+/g)||[];ids=ids.filter(function(x){return CBY[x];});if(!ids.length)return 'Sin fuentes con esos identificadores.';
     log.appendChild(h('div','bb a src-only',srcLinks(ids)));log.scrollTop=1e6;return 'Fuentes mostradas en pantalla.';},
   mostrar_tarjeta:function(p){log.appendChild(h('div','box','<b>'+esc(p&&p.titulo||'')+'</b><p style="margin-top:6px">'+esc(p&&p.texto||'')+'</p>'));log.scrollTop=1e6;return 'Tarjeta mostrada.';},
   ir_al_atlas:function(p){var k=String(p&&p.enfermedad||'').toLowerCase(),d=DIS[k]?k:'';log.appendChild(h('div','box','<a class="go" href="#/atlas'+(d?'?d='+d:'')+'" style="text-decoration:none">Ver en el Atlas dónde se atiende'+(d?' '+esc(DSHORT[d].toLowerCase()):'')+' →</a>'));log.scrollTop=1e6;return 'Enlace al Atlas mostrado.';}};
@@ -235,12 +285,11 @@ var EUROPA=srcA(SRC_DISC);
 /* ---------- Acervo ---------- */
 V.acervo=function(q){
   var dis=q.d||'all',aud=q.p||'all',shown=11,ctl=null;
-  var opts=[['all','Todo'],['eb','Piel de mariposa'],['gaucher','Gaucher'],['fabry','Fabry'],['mps','Hunter (MPS II)'],['tamiz','Tamiz neonatal'],['general','Trámites y apoyos']];
   view.innerHTML='<section class="pg"><div class="wrap">'+
    '<div class="pg-h"><div><span class="tk">El Acervo</span><h1>Conocimiento vivo, con la fuente a la vista</h1><p>Fichas, videos y respuestas sobre enfermedades poco frecuentes. Pregunta con tus palabras: cada dato dice de dónde sale.</p></div></div>'+
    '<div class="bento">'+
     '<div class="tile s4 c-b"><span class="tk">Pregunta al Acervo</span><form class="ask" id="ask" style="margin-top:4px;max-width:none"><input id="q" placeholder="Por ejemplo: ¿qué detecta el tamiz neonatal en el IMSS?" maxlength="300" aria-label="Pregunta al Acervo">'+MIC+'<button class="btn" type="submit">Preguntar</button></form><div class="answer" id="ans" style="max-width:none"></div></div>'+
-    '<div class="tile s4" style="padding:14px"><div class="chips" id="fd">'+opts.map(function(o){return '<button type="button" data-d="'+o[0]+'"'+(dis===o[0]?' class="on"':'')+'>'+o[1]+'</button>';}).join('')+'</div><div class="chips" id="fa" style="margin-top:8px">'+[['all','Para todos'],['familia','Para familias'],['medico','Para médicos']].map(function(o){return '<button type="button" data-p="'+o[0]+'"'+(aud===o[0]?' class="on"':'')+'>'+o[1]+'</button>';}).join('')+'</div></div>'+
+    '<div class="tile s4 af" style="padding:14px"><div class="afr"><label class="tk" for="fd">Mostrar</label><select id="fd"><option value="all">Todo el Acervo</option><option value="tamiz"'+(dis==='tamiz'?' selected':'')+'>Tamiz neonatal</option><option value="general"'+(dis==='general'?' selected':'')+'>Trámites y apoyos</option>'+disOptions(dis,false)+'</select></div><div class="chips" id="fa" style="margin-top:8px">'+[['all','Para todos'],['familia','Para familias'],['medico','Para médicos']].map(function(o){return '<button type="button" data-p="'+o[0]+'"'+(aud===o[0]?' class="on"':'')+'>'+o[1]+'</button>';}).join('')+'</div></div>'+
    '</div><div class="bento" id="tiles" style="margin-top:14px"></div><div class="more" id="more"></div>'+
   '</div></section>';
   var ans=$('#ans');
@@ -252,7 +301,7 @@ V.acervo=function(q){
     $('#tiles').innerHTML=H||'<p class="note">Sin fichas para este filtro.</p>';
     $('#more').innerHTML=L.length>shown?'<button class="btn ghost" type="button">Ver más ('+(L.length-shown)+')</button>':'';
     var mb=$('#more button');if(mb)mb.onclick=function(){shown+=12;list();};}
-  $$('#fd button').forEach(function(b){b.onclick=function(){$$('#fd button').forEach(function(x){x.classList.toggle('on',x===b);});dis=b.dataset.d;shown=11;list();};});
+  $('#fd').onchange=function(){dis=this.value;shown=11;list();};
   $$('#fa button').forEach(function(b){b.onclick=function(){$$('#fa button').forEach(function(x){x.classList.toggle('on',x===b);});aud=b.dataset.p;shown=11;list();};});
   list();
   dictado($('#ask .mic'),$('#q'),function(){$('#ask').requestSubmit();});
@@ -260,28 +309,56 @@ V.acervo=function(q){
     if(ctl)ctl.abort();ctl=new AbortController();
     var fr=cSearch(qq+' '+qq,7,function(d){return dis==='all'||d.enfermedad===dis||d.enfermedad==='general';});
     ans.innerHTML='<div class="box" style="margin-top:12px"><span class="wait">Buscando en el Acervo</span></div>';var box=ans.firstChild;
-    if(!fr.length){box.innerHTML='No encontré información sobre eso en el Acervo. En esta demostración cubre cuatro enfermedades (piel de mariposa, Gaucher, Fabry y síndrome de Hunter), el tamiz neonatal en México y apoyos y trámites.';return;}
+    if(!fr.length){box.innerHTML='No encontré información sobre eso en el Acervo. En esta demostración cubre '+ENF.length+' enfermedades poco frecuentes, el tamiz neonatal en México y apoyos y trámites.';return;}
     var prompt='Eres el Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes (Capítulo México). Responde en español de México, claro y cálido, en un máximo de 110 palabras. Usa SOLO la información de los FRAGMENTOS. Después de cada dato, pon entre corchetes la etiqueta del fragmento, por ejemplo [g4]. Si la respuesta no está en los fragmentos, dilo con honestidad. No indiques dosis ni hagas diagnósticos. Sin títulos.\n\nFRAGMENTOS:\n'+fragBlock(fr)+'\n\nPREGUNTA: '+qq;
     try{var t=await aiStream(prompt,function(t){box.innerHTML=cite(t).html;},ctl.signal);var c=cite(t);box.innerHTML=c.html+srcLinks(c.used);}
     catch(err){if(err.name==='AbortError')return;box.innerHTML='<p class="note">'+esc(errCopy(err))+'</p><br><b>'+esc(fr[0].tema)+'.</b> '+esc(fr[0].texto)+'<sup class="c">1</sup>'+srcLinks([fr[0].id]);}};
   if(q.q){$('#q').value=q.q;$('#ask').requestSubmit();}
 };
 
+/* ---------- selector de enfermedad para quien no sabe nada todavía ---------- */
+function picker(root,onPick,opts){opts=opts||{};
+  root.innerHTML='<div class="pick">'+
+   '<label class="pk-s"><span class="pk-ic" aria-hidden="true"></span><input id="pks" autocomplete="off" placeholder="'+esc(opts.ph||'¿Qué les dijo el médico o qué notan?')+'" aria-label="Buscar enfermedad"></label><p class="note pk-ex">Por ejemplo: «ampollas», «hemofilia», «no sostiene la cabeza», «salió alterado el tamiz».</p>'+
+   '<div class="pk-res" id="pkr" aria-live="polite"></div>'+
+   '<p class="pk-or">o elige lo que más se parece a lo que están viviendo</p>'+
+   '<div class="pk-g">'+GRUPOS.map(function(g){var L=ENF.filter(function(e){return e.grupo===g.k;});if(!L.length)return '';
+     return '<details class="pk-c '+(GCOL[g.k]||'')+'"><summary><b>'+esc(g.t)+'</b><span>'+esc(g.s)+'</span><i aria-hidden="true"></i></summary><div class="pk-l">'+
+       L.map(function(e){return '<button type="button" data-k="'+e.key+'"><b>'+esc(e.corto)+'</b>'+(e.corto!==e.nombre?'<small>'+esc(e.nombre)+'</small>':'')+'<span>'+esc(e.familia||'')+'</span></button>';}).join('')+'</div></details>';}).join('')+'</div>'+
+   (opts.sin===false?'':'<button type="button" class="pk-no" data-k="sin"><b>Todavía no tenemos diagnóstico</b><span>Te ayudamos a saber a quién acudir y qué preguntar.</span></button>')+
+  '</div>';
+  var inp=$('#pks',root),res=$('#pkr',root);
+  function bind(){$$('button[data-k]',root).forEach(function(b){b.onclick=function(){onPick(b.dataset.k);};});}
+  inp.oninput=function(){var L=disMatch(inp.value);res.innerHTML=inp.value.trim().length<2?'':(L.length?L.map(function(e){return '<button type="button" data-k="'+e.key+'" class="'+(GCOL[e.grupo]||'')+'"><b>'+esc(e.corto)+'</b>'+(e.corto!==e.nombre?' <small>'+esc(e.nombre)+'</small>':'')+'<span>'+esc(e.familia||'')+'</span></button>';}).join(''):'<p class="note">No encontré algo parecido. Prueba con otra palabra o elige abajo lo que más se parece.</p>');bind();};
+  bind();}
+
 /* ---------- Rumbo (luz clara) ---------- */
 V.rumbo=function(q){
-  var dis=DIS[q.d]?q.d:'eb',turns=[],busy=false,ctl=null;
+  if(!q.d||(!DIS[q.d]&&q.d!=='sin')){
+    view.innerHTML='<section class="pg"><div class="wrap narrow">'+
+     '<div class="pg-h"><div><span class="tk c-b">Para familias y pacientes</span><h1>Rumbo</h1><p>No necesitas saber términos médicos. Cuéntanos qué les dijeron o qué notan, y te acompañamos con información aprobada, con la fuente a la vista.</p></div></div>'+
+     '<div class="tile pk-tile" id="pkw"></div></div></section>';
+    picker($('#pkw'),function(k){location.hash='#/rumbo?d='+k;});return;}
+  var sin=q.d==='sin',dis=sin?'general':q.d,E=ENFBY[dis]||{},turns=[],busy=false,ctl=null;
   var SUG={eb:['¿Cómo cargo y visto a mi bebé?','¿Cómo hago una curación?','¿Dónde la atienden en México?','¿Hay algún apoyo económico?','¿Con quién puedo hablar?'],
     gaucher:['¿Qué es y cómo se hereda?','¿Cómo se confirma el diagnóstico?','¿Qué tratamientos hay?','¿Dónde la atienden en México?','¿Puedo pedir la pensión por discapacidad?'],
     fabry:['¿Por qué me arden las manos y los pies?','¿Cómo se hereda?','¿Las mujeres también la tienen?','¿Qué tratamientos hay?','¿Hay una asociación de pacientes?'],
-    mps:['¿Qué es el síndrome de Hunter?','¿Cuáles son los primeros signos?','¿Qué tratamiento hay?','¿Qué cuidados necesita en la escuela?','¿Con quién puedo hablar?']};
+    mps:['¿Qué es el síndrome de Hunter?','¿Cuáles son los primeros signos?','¿Qué tratamiento hay?','¿Qué cuidados necesita en la escuela?','¿Con quién puedo hablar?'],
+    general:['¿Cómo pido que lo vea un especialista?','¿Qué es el tamiz neonatal y cómo pido el resultado?','¿Dónde hay hospitales con experiencia?','¿Qué apoyos existen?']};
+  var SUGT=['¿Qué significa que salió alterado el tamiz?','¿Qué estudios siguen para confirmarlo?','¿Tiene tratamiento?','¿Dónde la atienden en México?','¿Qué cuidados necesita en casa?'];
+  var SUGN=['¿Qué es y por qué pasa?','¿Qué señales debo vigilar?','¿Tiene tratamiento en México?','¿Dónde la atienden?','¿Hay familias que pasen por lo mismo?'];
   var HOLA={eb:'Hola, soy Rumbo. Te acompaño con la piel de mariposa: cuidados en casa, dónde atenderse en México y qué apoyos existen. ¿En qué te ayudo?',
     gaucher:'Hola, soy Rumbo. Te acompaño con la enfermedad de Gaucher: qué es, cómo se confirma, tratamientos y apoyos en México. ¿En qué te ayudo?',
     fabry:'Hola, soy Rumbo. Te acompaño con la enfermedad de Fabry: síntomas, cómo se hereda, tratamientos y dónde atenderse. ¿En qué te ayudo?',
-    mps:'Hola, soy Rumbo. Te acompaño con el síndrome de Hunter: primeros signos, cuidados en casa y escuela, tratamiento y dónde atenderse. ¿En qué te ayudo?'};
+    mps:'Hola, soy Rumbo. Te acompaño con el síndrome de Hunter: primeros signos, cuidados en casa y escuela, tratamiento y dónde atenderse. ¿En qué te ayudo?',
+    general:'Hola, soy Rumbo. No tener un diagnóstico todavía es muy común y agotador. Te ayudo a saber a quién acudir, qué pedir y qué preguntar. ¿Por dónde empezamos?'};
+  var hola=HOLA[dis]||('Hola, soy Rumbo. Te acompaño con '+(E.nombre||'').toLowerCase().replace(/^(.)/,function(m){return m;})+': qué es, qué vigilar, tratamiento y dónde atenderse en México. Pregúntame con tus palabras.');
+  var sugs=SUG[dis]||(E.grupo==='tamiz'?SUGT:SUGN);
   var ASO={eb:'debra',gaucher:'nord',fabry:'grupo_fabry',mps:'palito'};
+  var title=sin?'Sin diagnóstico todavía':(E.corto||DSHORT[dis]);
   view.innerHTML='<section class="pg"><div class="wrap">'+
-   '<div class="pg-h"><div><span class="tk c-b">Para familias y pacientes</span><h1>Rumbo</h1><p>Qué sigue después del diagnóstico, en tus palabras. Escríbele o háblale: responde con información aprobada y te dice de dónde sale cada dato.</p></div>'+
-   '<div class="chips" id="dz">'+['eb','gaucher','fabry','mps'].map(function(d){return '<button type="button" data-d="'+d+'"'+(dis===d?' class="on"':'')+'>'+DSHORT[d]+'</button>';}).join('')+'</div></div>'+
+   '<div class="pg-h"><div><span class="tk c-b">Para familias y pacientes</span><h1>Rumbo</h1><p>Qué sigue, en tus palabras. Escríbele o háblale: responde con información aprobada y te dice de dónde sale cada dato.</p></div>'+
+   '<a class="dpill '+(DCOL[dis]||'')+'" href="#/rumbo"><span><small>Te acompaño con</small><b>'+esc(title)+'</b></span><em>Cambiar</em></a></div>'+
    '<div class="bento">'+
     '<div class="tile s2 r3 c-b" id="chat"><div class="who">'+ava()+'<div><h3>Rumbo</h3><p>Tu acompañante · responde con fuentes</p></div><span class="hdr-r">'+callBtn('Rumbo')+voiceToggle()+'</span></div><p class="callst" id="cst" aria-live="polite"></p>'+
      '<div class="log" id="log" aria-live="polite"></div><div class="sug" id="sug"></div>'+
@@ -295,35 +372,41 @@ V.rumbo=function(q){
    '</div></div></section>';
   var log=$('#log'),sug=$('#sug'),inp=$('#inp'),form=$('#f'),av=$('#chat .ava');
   bindVoiceToggle($('#chat'));
-  $('#chat .callbtn').onclick=function(){startCall({agente:'rumbo',nombre:'Rumbo',ava:av,btn:this,vars:{enfermedad:DIS[dis]},
+  $('#chat .callbtn').onclick=function(){startCall({agente:'rumbo',nombre:'Rumbo',ava:av,btn:this,vars:{enfermedad:sin?'una enfermedad todavía sin diagnóstico':DIS[dis]},
     status:function(t){$('#cst').textContent=t;},say:function(w,t){log.appendChild(h('div','bb '+w,esc(t)));log.scrollTop=1e6;},tools:voiceTools(log,{})});};
   function side(){
     $('#w-dato').innerHTML='<span class="tk">Dato que importa</span><div class="big">8 <small>de cada 10</small></div><p>personas con una enfermedad poco frecuente viven con alguna discapacidad, y apenas 57% ha tenido una valoración. En Europa ya se mide; en Latinoamérica todavía no.</p><span class="src">'+EUROPA+'</span>';
-    var P=PD.atlas.pts.filter(function(p){return p.d.indexOf(D2K[dis])>=0;}),nh=P.filter(function(p){return p.l==='h';}).length,na=P.filter(function(p){return p.l==='a';}).length;
-    var w=$('#w-cerca');w.href='#/atlas?d='+dis;w.innerHTML='<span class="tk">Dónde atienden</span><div class="big">'+nh+' <small>hospitales</small></div><p>'+na+' asociación'+(na===1?'':'es')+' de pacientes con experiencia en '+esc(DSHORT[dis].toLowerCase())+'.</p><span class="go">Ver en el mapa →</span>';
+    var P=PD.atlas.pts.filter(function(p){return sin||p.d.indexOf(dis)>=0;}),nh=P.filter(function(p){return p.l==='h';}).length,na=P.filter(function(p){return p.l==='a';}).length;
+    var w=$('#w-cerca');w.href='#/atlas?ruta=1'+(sin?'':'&d='+dis);w.innerHTML='<span class="tk">Dónde atienden</span><div class="big">'+nh+' <small>hospitales</small></div><p>'+(sin||!na?'con experiencia'+(sin?' en enfermedades poco frecuentes':' en '+esc((DSHORT[dis]||'').toLowerCase()))+'. Te decimos cuáles quedan más cerca.':na+(na===1?' asociación':' asociaciones')+' de pacientes con experiencia en '+esc((DSHORT[dis]||'').toLowerCase())+'.')+'</p><span class="go">Buscar el más cercano →</span>';
     var v=RM.w.filter(function(x){return x.t==='video'&&x.d===dis;})[0];
-    $('#w-video').innerHTML=v?'<span class="tk">Para entenderla</span><a href="https://www.youtube.com/watch?v='+esc(v.yt)+'" target="_blank" rel="noopener" style="display:block;aspect-ratio:16/9;border-radius:12px;background:#000 url('+esc(v.thumb)+') center/cover"></a><b style="font-size:14px;line-height:1.35">'+esc(v.title)+'</b><span class="note">'+esc(v.canal)+'</span>':'';
-    $('#w-tramite').innerHTML='<span class="tk">Trámite</span><h3>Pensión por discapacidad</h3><p>Quién la puede pedir, qué documentos llevar y cómo registrarse.</p><span class="go">Preguntar a Rumbo →</span>';
-    var a=RW[ASO[dis]];
-    $('#w-aso').innerHTML=a?'<span class="tk" style="color:#FF8FB1">No estás sola, no estás solo</span><h3>'+esc(a.title)+'</h3><p style="color:#cfd8e3">'+esc(a.sub||'')+'</p><a class="go" style="color:#FF8FB1;text-decoration:none" href="'+esc(a.url)+'" target="_blank" rel="noopener">Conocer a la asociación ↗</a>':'';}
-  $('#w-tramite').onclick=function(){send('¿Puedo pedir la pensión por discapacidad y qué necesito?');};
-  function hello(){voice.stop();log.innerHTML='';turns=[];log.appendChild(h('div','bb a',esc(HOLA[dis])));
-    sug.innerHTML=SUG[dis].map(function(s){return '<button type="button">'+esc(s)+'</button>';}).join('');
+    $('#w-video').innerHTML=v?'<span class="tk">Para entenderla</span><a href="https://www.youtube.com/watch?v='+esc(v.yt)+'" target="_blank" rel="noopener" style="display:block;aspect-ratio:16/9;border-radius:12px;background:#000 url('+esc(v.thumb)+') center/cover"></a><b style="font-size:14px;line-height:1.35">'+esc(v.title)+'</b><span class="note">'+esc(v.canal)+'</span>'
+      :(E.senales&&E.senales.length?'<span class="tk">Señales que vale la pena vigilar</span><ul class="ck sm">'+E.senales.slice(0,5).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>'
+      :'<span class="tk">Antes de la consulta</span><ul class="ck sm"><li>Anota desde cuándo empezó y qué ha cambiado</li><li>Junta estudios y resultados, incluido el tamiz</li><li>Lleva fotos o videos de lo que notas</li><li>Pregunta: ¿a qué especialista nos refiere?</li></ul>');
+    var tz=E.grupo==='tamiz';
+    $('#w-tramite').innerHTML=tz?'<span class="tk">Si salió alterado</span><h3>Qué sigue después del tamiz</h3><p>Una prueba alterada no es un diagnóstico: hay que confirmarlo pronto. Te explicamos los pasos.</p><span class="go">Preguntar a Rumbo →</span>'
+      :'<span class="tk">Trámite</span><h3>Pensión por discapacidad</h3><p>Quién la puede pedir, qué documentos llevar y cómo registrarse.</p><span class="go">Preguntar a Rumbo →</span>';
+    $('#w-tramite').onclick=function(){send(tz?'El tamiz de mi bebé salió alterado, ¿qué sigue?':'¿Puedo pedir la pensión por discapacidad y qué necesito?');};
+    var a=RW[ASO[dis]],pa=PD.atlas.pts.filter(function(p){return p.l==='a'&&p.d.indexOf(dis)>=0;})[0];
+    $('#w-aso').innerHTML=a?'<span class="tk" style="color:#FF8FB1">No estás sola, no estás solo</span><h3>'+esc(a.title)+'</h3><p style="color:#cfd8e3">'+esc(a.sub||'')+'</p><a class="go" style="color:#FF8FB1;text-decoration:none" href="'+esc(a.url)+'" target="_blank" rel="noopener">Conocer a la asociación ↗</a>'
+      :pa?'<span class="tk" style="color:#FF8FB1">No estás sola, no estás solo</span><h3>'+esc(pa.n)+'</h3><p style="color:#cfd8e3">'+esc(pa.x||'')+'</p><a class="go" style="color:#FF8FB1;text-decoration:none" href="'+esc(pa.u)+'" target="_blank" rel="noopener">Conocer a la asociación ↗</a>'
+      :'<span class="tk" style="color:#FF8FB1">No estás sola, no estás solo</span><h3>Asociaciones de pacientes</h3><p style="color:#cfd8e3">Hay familias que ya recorrieron este camino. En el directorio del Observatorio puedes encontrar una cerca de ti.</p><a class="go" style="color:#FF8FB1;text-decoration:none" href="#/asociaciones">Ver el directorio →</a>';}
+  function hello(){voice.stop();log.innerHTML='';turns=[];log.appendChild(h('div','bb a',esc(hola)));
+    sug.innerHTML=sugs.map(function(s){return '<button type="button">'+esc(s)+'</button>';}).join('');
     $$('button',sug).forEach(function(b){b.onclick=function(){send(b.textContent);};});side();}
-  $$('#dz button').forEach(function(b){b.onclick=function(){$$('#dz button').forEach(function(x){x.classList.toggle('on',x===b);});if(ctl)ctl.abort();busy=false;dis=b.dataset.d;hello();};});
   form.onsubmit=function(e){e.preventDefault();var t=inp.value.trim();if(t&&!busy){inp.value='';send(t);}};
   dictado($('#f .mic'),inp,function(){form.requestSubmit();});
   function clean(t){return t.split(/\n?\s*WIDGETS?\s*:/i)[0].trim();}
+  function okDoc(d){return (d.enfermedad===dis||d.enfermedad==='general'||(E.grupo==='tamiz'||sin)&&d.enfermedad==='tamiz');}
   async function send(qq){if(busy)return;busy=true;voice.stop();form.querySelector('.btn').disabled=true;
     log.appendChild(h('div','bb u',esc(qq)));var a=h('div','bb a','<span class="wait">Buscando en las fuentes</span>');log.appendChild(a);log.scrollTop=1e6;
     var ctx=turns.slice(-2).map(function(t){return t.content;}).join(' ');
-    var fr=cSearch(qq+' '+qq+' '+ctx,6,function(d){return (d.enfermedad===dis||d.enfermedad==='general')&&d.publico!=='medico';});
-    if(fr.length<3)fr=fr.concat(cSearch(qq,6,function(d){return d.enfermedad===dis||d.enfermedad==='general';}).filter(function(d){return fr.indexOf(d)<0;})).slice(0,6);
+    var fr=cSearch(qq+' '+qq+' '+ctx,6,function(d){return okDoc(d)&&d.publico!=='medico';});
+    if(fr.length<3)fr=fr.concat(cSearch(qq,6,okDoc).filter(function(d){return fr.indexOf(d)<0;})).slice(0,6);
     var cat=RM.w.filter(function(w){return w.d===dis||w.d==='general';}).map(function(w){return w.id+': '+w.desc;}).join('\n');
     var text='',ids=[],done=false;
     if(fr.length){
       var hist=turns.slice(-4).map(function(t){return (t.role==='user'?'Familia: ':'Rumbo: ')+t.content;}).join('\n');
-      var prompt='Eres Rumbo, el acompañante para familias del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. La familia vive con '+DIS[dis]+'. Habla como una mujer mexicana de unos 35 a 40 años: cálida, clara y serena. Responde en un máximo de 80 palabras, porque la respuesta se lee en voz alta y va acompañada de tarjetas visuales. Usa SOLO la información de los FRAGMENTOS. Después de cada dato, pon entre corchetes la etiqueta del fragmento, por ejemplo [e7]. Si la respuesta no está en los fragmentos, dilo con honestidad y sugiere hablar con su equipo médico o con la asociación de pacientes. No indiques dosis ni hagas diagnósticos. Sin títulos ni listas.\n\nAl final, en una línea aparte, escribe WIDGETS: seguido de 1 a 3 identificadores del CATÁLOGO que mejor complementan la respuesta (de preferencia uno visual y, si hay uno pertinente, un video), separados por comas.\n\nCATÁLOGO:\n'+cat+'\n\nFRAGMENTOS:\n'+fragBlock(fr)+(hist?'\n\nCONVERSACIÓN PREVIA:\n'+hist:'')+'\n\nPREGUNTA DE LA FAMILIA: '+qq;
+      var prompt='Eres Rumbo, el acompañante para familias del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. '+(sin?'La familia todavía no tiene un diagnóstico; ayúdale a orientarse sin adivinar enfermedades.':'La familia vive con '+DIS[dis]+'.')+' Puede ser su primer contacto con el tema: no des nada por sabido y explica cualquier término. Habla como una mujer mexicana de unos 35 a 40 años: cálida, clara y serena. Responde en un máximo de 80 palabras, porque la respuesta se lee en voz alta y va acompañada de tarjetas visuales. Usa SOLO la información de los FRAGMENTOS. Después de cada dato, pon entre corchetes la etiqueta del fragmento, por ejemplo [e7]. Si la respuesta no está en los fragmentos, dilo con honestidad y sugiere hablar con su equipo médico o con la asociación de pacientes. No indiques dosis ni hagas diagnósticos. Sin títulos ni listas.'+(cat?'\n\nAl final, en una línea aparte, escribe WIDGETS: seguido de 1 a 3 identificadores del CATÁLOGO que mejor complementan la respuesta (de preferencia uno visual y, si hay uno pertinente, un video), separados por comas.\n\nCATÁLOGO:\n'+cat:'')+'\n\nFRAGMENTOS:\n'+fragBlock(fr)+(hist?'\n\nCONVERSACIÓN PREVIA:\n'+hist:'')+'\n\nPREGUNTA DE LA FAMILIA: '+qq;
       ctl=new AbortController();
       try{var r=await aiStream(prompt,function(t){a.innerHTML=cite(clean(t)).html;log.scrollTop=1e6;},ctl.signal);
         var m=r.match(/WIDGETS?\s*:\s*(.+)/i);ids=m?m[1].split(/[\s,]+/).map(function(s){return s.replace(/[^\w-]/g,'');}).filter(Boolean):[];
@@ -336,21 +419,52 @@ V.rumbo=function(q){
     voice.speak(text,av);
     var ws=pickW(ids,dis,fr);
     if(ws.length){var g=h('div','wgs');ws.forEach(function(w){g.appendChild(renderW(w));});log.appendChild(g);}
-    turns.push({role:'user',content:qq},{role:'assistant',content:text.replace(/\[[a-z]\d+\]/gi,'')});
+    turns.push({role:'user',content:qq},{role:'assistant',content:text.replace(/\[[a-z]{1,4}\d+(?:\s*,\s*[a-z]{1,4}\d+)*\]/gi,'')});
     a.scrollIntoView({block:'nearest'});busy=false;form.querySelector('.btn').disabled=false;}
   hello();
 };
 
-/* ---------- Clara: consulta guiada, sin elegir enfermedad ---------- */
+/* ---------- Clara: solo médicos; ficha del caso, tamiz y consulta guiada ---------- */
+var MED=false;try{MED=sessionStorage.getItem('obs-medico')==='1';}catch(e){}
+function claraGate(){
+  view.innerHTML='<section class="pg"><div class="wrap narrow">'+
+   '<div class="gate tile c-m"><div class="who">'+ava()+'<div><span class="tk c-m">Acceso para profesionales de la salud</span><h1 style="margin:2px 0 0">Clara</h1></div></div>'+
+   '<p class="lead">Clara es una herramienta de apoyo clínico <b>exclusiva para médicos y profesionales de la salud</b>. Orienta la sospecha de enfermedades poco frecuentes y la referencia; no diagnostica.</p>'+
+   '<form id="gf" class="gate-f"><label class="ckl"><input type="checkbox" id="g1" required> Confirmo que soy médico o profesional de la salud.</label>'+
+   '<div class="field"><label for="gc">Cédula profesional <span class="note">(opcional en esta demostración)</span></label><input id="gc" inputmode="numeric" maxlength="10" placeholder="Ej. 12345678"></div>'+
+   '<button class="btn" type="submit">Entrar a Clara</button></form>'+
+   '<div class="gate-alt"><b>¿Eres familiar o paciente?</b><p>Rumbo está hecho para ti: te explica con tus palabras y te dice a dónde acudir.</p><a class="btn ghost" href="#/rumbo">Ir a Rumbo →</a></div>'+
+   '</div></div></section>';
+  $('#gf').onsubmit=function(e){e.preventDefault();if(!$('#g1').checked)return;MED=true;try{sessionStorage.setItem('obs-medico','1');}catch(x){}V.clara();};}
+
+var HALL=[['Neuromuscular',['Hipotonía','Debilidad progresiva','Pérdida de hitos del desarrollo','Signo de Gowers o caídas frecuentes','Pseudohipertrofia de pantorrillas','CPK elevada']],
+  ['Hematológico',['Sangrado prolongado o hematomas','Hemartrosis','Plaquetopenia','Anemia']],
+  ['Visceral y óseo',['Hepatoesplenomegalia','Dolor óseo','Talla baja o disostosis','Rigidez articular','Rasgos faciales toscos','Hernias umbilicales o inguinales']],
+  ['Piel',['Ampollas o erosiones con roce mínimo','Angioqueratomas','Hipohidrosis']],
+  ['Neonatal y metabólico',['Vómito y letargia neonatal','Hipoglucemia','Acidosis o hiperamonemia','Olor peculiar en orina','Ictericia prolongada o cataratas','Genitales ambiguos o crisis perdedora de sal','Íleo meconial o sudor salado']],
+  ['Otros',['Dolor neuropático en manos y pies','Retraso global del desarrollo','Infecciones respiratorias de repetición','Apnea obstructiva o ronquido','Proteinuria o enfermedad renal','Miocardiopatía']]];
+var TZI=['No sé','No se realizó','Secretaría de Salud / IMSS-Bienestar','IMSS','ISSSTE','Pemex','SEDENA / Semar','Privado'];
+function fileB64(f){return new Promise(function(ok,ko){
+  if(/pdf$/i.test(f.type)){if(f.size>3e6)return ko(new Error('grande'));var r=new FileReader();r.onload=function(){ok({media_type:'application/pdf',data:String(r.result).split(',')[1]});};r.onerror=ko;r.readAsDataURL(f);return;}
+  if(!/^image\//.test(f.type))return ko(new Error('tipo'));
+  var u=URL.createObjectURL(f),im=new Image();im.onload=function(){var m=1800,s=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);ok({media_type:'image/jpeg',data:c.toDataURL('image/jpeg',.86).split(',')[1]});};im.onerror=ko;im.src=u;});}
+async function aiJsonF(input,files){
+  var r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({input:input,json:true,files:files})});
+  if(!r.ok){var e=new Error('HTTP '+r.status);e.code=r.status;throw e;}
+  var o=await r.json();if(o.json==null)throw new Error('json');return o.json;}
+
 V.clara=function(){
-  var busy=false,stage='caso',caso='',preguntas=[],resp={};
+  if(!MED)return claraGate();
+  var busy=false,caso='',preguntas=[],resp={},tzFile=null,tzRead=null;
   var EJ=[['Adolescente con bazo grande','Mujer de 15 años. Fatiga desde hace dos años, dolor de huesos en las piernas, moretones fáciles. A la exploración, bazo aumentado. Biometría con plaquetas bajas y anemia leve. Ha visto a 4 especialistas.'],
     ['Ardor en manos y pies','Hombre de 19 años. Ardor en manos y pies desde los 9 años que empeora con el ejercicio y la fiebre; casi no suda; dolor abdominal y diarrea frecuentes; pequeñas manchas rojo violáceas alrededor del ombligo. Proteína en orina. Ha visto a 5 especialistas.'],
-    ['Niño con infecciones y rasgos toscos','Niño de 3 años. Infecciones de oído y respiratorias de repetición desde el primer año, ronquido y pausas al dormir, hernia umbilical operada, rasgos faciales toscos, lengua grande, hígado y bazo palpables, rigidez en las manos. Ha visto a 4 especialistas.'],
+    ['Lactante hipotónico','Lactante de 5 meses, hombre. Desde los 2 meses se nota flácido, no sostiene la cabeza, llanto débil y respiración abdominal. Reflejos osteotendinosos ausentes, fasciculaciones en lengua. Tamiz neonatal básico de la Secretaría de Salud, normal. Lo han visto 2 especialistas.'],
+    ['Niño que se cae','Niño de 5 años. Se cae con frecuencia, le cuesta subir escaleras y se levanta del piso apoyándose en sus piernas. Pantorrillas grandes. CPK de 12,000 U/L. Ha visto a 3 especialistas.'],
     ['Recién nacido con ampollas','Recién nacido de 10 días con ampollas en manos, pies y rodillas que aparecen con el roce mínimo; erosiones en la boca al alimentarse. Sin antecedentes familiares conocidos. Lo han visto 2 especialistas.']];
   var T=PD.tamiz||{panel:[],mort:{}},mx=Math.max.apply(null,T.panel.map(function(p){return p.v;}).concat([1]));
   view.innerHTML='<section class="pg"><div class="wrap">'+
-   '<div class="pg-h"><div><span class="tk c-m">Para el médico de primer contacto</span><h1>Clara</h1><p>Cuéntale el caso como se lo contarías a un colega. Clara te hace las preguntas que faltan y te orienta: qué sospechar, qué explorar y a dónde referir.</p></div></div>'+
+   '<div class="pg-h"><div><span class="tk c-m">Solo para profesionales de la salud</span><h1>Clara</h1><p>Llena la ficha del caso o sube el resultado del tamiz neonatal. Clara te hace las preguntas que faltan y te orienta: qué sospechar, qué explorar y a dónde referir.</p></div></div>'+
    '<div class="bento">'+
     '<div class="tile s3 r3 c-m" id="cons"><div class="who">'+ava()+'<div><h3>Clara</h3><p>Consulta guiada · no diagnostica, orienta</p></div><span class="hdr-r">'+callBtn('Clara')+voiceToggle()+'</span></div><p class="callst" id="cst" aria-live="polite"></p>'+
      '<div class="log" id="clog" aria-live="polite"></div>'+
@@ -358,58 +472,106 @@ V.clara=function(){
     '<div class="tile c-p"><span class="tk">El tiempo cuenta</span><div class="big">4.7 <small>años</small></div><p>tarda en promedio un diagnóstico en Europa; los adolescentes esperan 10.4.</p><span class="src">'+srcA(SRC_DX)+'</span></div>'+
     '<div class="tile c-y"><span class="tk">Tamiz al nacer</span><p style="margin-bottom:2px">Sin tamiz ampliado, la mortalidad fue casi el doble:</p><div class="big">'+(T.mort.no||'')+'% <small>vs '+(T.mort.si||'')+'%</small></div><a class="src" href="'+esc(T.mort.url||'#')+'" target="_blank" rel="noopener">'+esc(T.mort.src||'')+' ↗</a></div>'+
     '<div class="tile c-v"><span class="tk">Casos de ejemplo</span><p>Cárgalo y Clara empieza a orientar.</p><div class="chips" id="ejs" style="gap:6px">'+EJ.map(function(e,i){return '<button type="button" data-i="'+i+'" style="font-size:12.5px;padding:6px 11px">'+esc(e[0])+'</button>';}).join('')+'</div></div>'+
-    '<div class="tile s4 c-g"><span class="tk">¿Qué se buscó en este bebé al nacer?</span><p>El tamiz neonatal depende de dónde nació. Preguntarlo cambia la sospecha.</p><div class="tz">'+T.panel.map(function(p){return '<div class="'+(/Referencia/.test(p.n)?'ref':'')+'" title="'+esc(p.nota)+'"><span>'+esc(p.n)+'</span><span class="bar"><i style="width:'+Math.round(p.v/mx*100)+'%"></i></span><b>'+p.v+'</b></div>';}).join('')+'</div><a class="src" href="#/acervo?d=tamiz">Fuentes: IMSS, Rev Mex Pediatr, CNEGSR, HRSA · ver fichas del tamiz →</a></div>'+
+    '<div class="tile s4 c-g"><span class="tk">¿Qué se buscó en este bebé al nacer?</span><p>El tamiz neonatal depende de dónde nació. Preguntarlo cambia la sospecha.</p><div class="tz">'+T.panel.map(function(p){return '<div class="'+(/Referencia/.test(p.n)?'ref':'')+'" title="'+esc(p.nota)+'"><span>'+esc(p.n)+'</span><span class="bar"><i style="width:'+Math.round(p.v/mx*100)+'%"></i></span><b>'+p.v+'</b></div>';}).join('')+'</div><a class="src" href="#/atlas?vista=tamiz">Qué detecta cada institución · ver en el Atlas →</a></div>'+
    '</div></div></section>';
   var clog=$('#clog'),cin=$('#cin'),av=$('#cons .ava');bindVoiceToggle($('#cons'));
   $('#cons .callbtn').onclick=function(){if(!CALL.o){voice.stop();cin.innerHTML='';}
-    startCall({agente:'clara',nombre:'Clara',ava:av,btn:this,vars:{},status:function(t){$('#cst').textContent=t;if(!CALL.o&&!cin.innerHTML)(t?inputCaso():endButtons());},
+    startCall({agente:'clara',nombre:'Clara',ava:av,btn:this,vars:{},status:function(t){$('#cst').textContent=t;if(!CALL.o&&!cin.innerHTML)(t?ficha():endButtons());},
       say:function(w,t){clog.appendChild(h('div','bb '+w,esc(t)));clog.scrollTop=1e6;},
       tools:voiceTools(clog,{mostrar_orientacion:function(p){p=p||{};var d=String(p.enfermedad||'').toLowerCase(),lv=String(p.nivel||'').toLowerCase();
         clog.appendChild(h('div','box','<b>'+esc(DSHORT[d]||p.enfermedad||'Orientación')+'</b>'+(lv?'<span class="lvl '+esc(lv)+'">Sospecha '+esc(lv)+'</span>':'')+(p.razon?'<p style="margin-top:6px">'+esc(p.razon)+'</p>':'')+(p.siguiente_paso?'<p style="margin-top:8px"><b>Siguiente paso</b></p><p>'+esc(p.siguiente_paso)+'</p>':'')+(p.referencia?'<p style="margin-top:8px"><b>Referir a</b></p><p>'+esc(p.referencia)+'</p>':'')+(DIS[d]?'<a class="go" href="#/atlas?d='+d+'" style="display:inline-block;margin-top:8px;text-decoration:none">Dónde referir en el Atlas →</a>':'')));
         clog.scrollTop=1e6;return 'Orientación mostrada en pantalla.';}})});};
   function say(html,spoken){var b=h('div','bb a',html);clog.appendChild(b);clog.scrollTop=1e6;if(spoken)voice.speak(spoken,av);return b;}
   function me(t){clog.appendChild(h('div','bb u',esc(t)));clog.scrollTop=1e6;}
-  function inputCaso(){cin.innerHTML='<form class="row" id="cf"><input id="ci" placeholder="Edad, sexo, qué ves, cuántos especialistas lo han visto…" maxlength="900" aria-label="Describe el caso">'+MIC+'<button class="btn" type="submit">Enviar</button></form>';
-    var f=$('#cf'),i=$('#ci');dictado($('#cf .mic'),i,function(){f.requestSubmit();});
-    f.onsubmit=function(e){e.preventDefault();var t=i.value.trim();if(t&&!busy)paso1(t);};}
-  function start(){voice.stop();stage='caso';caso='';preguntas=[];resp={};clog.innerHTML='';
-    say('Hola, soy Clara. Cuéntame del paciente con tus palabras: edad, sexo, qué te preocupa, qué encontraste y cuántos especialistas lo han visto. Puedes escribirlo o dictarlo.');inputCaso();}
-  $$('#ejs button').forEach(function(b){b.onclick=function(){if(busy)return;start();paso1(EJ[+b.dataset.i][1]);};});
-  function frAll(t,k){return cSearch(t+' sospecha diagnóstico confirmación referencia signos',k,function(d){return d.publico!=='familia'&&d.enfermedad!=='general';});}
+  /* ficha del caso */
+  function ficha(){tzFile=null;tzRead=null;
+    cin.innerHTML='<form class="intake" id="cf" novalidate>'+
+     '<div class="drop" id="drop" tabindex="0" role="button" aria-label="Subir resultado de tamiz neonatal"><input type="file" id="tzf" accept="image/*,application/pdf" hidden><b>¿Tienes el resultado del tamiz neonatal?</b><span>Súbelo en foto o PDF y empiezo con él.</span><em id="tzn">Elegir archivo</em></div>'+
+     '<div class="frow"><div class="field"><label for="ce">Edad</label><div class="ig"><input id="ce" type="number" min="0" max="120" inputmode="numeric"><select id="cu" aria-label="Unidad de edad"><option>días</option><option>meses</option><option selected>años</option></select></div></div>'+
+      '<div class="field"><span class="lbl">Sexo</span><div class="seg2" id="cs"><button type="button" data-v="F">Mujer</button><button type="button" data-v="M">Hombre</button></div></div>'+
+      '<div class="field"><label for="cn">Especialistas que lo han visto</label><input id="cn" type="number" min="0" max="40" inputmode="numeric" placeholder="0"></div></div>'+
+     '<div class="field"><label for="cm">Motivo de consulta y evolución</label><textarea id="cm" rows="2" maxlength="600" placeholder="Qué te preocupa, desde cuándo y cómo ha cambiado"></textarea></div>'+
+     '<div class="field"><span class="lbl">Hallazgos <span class="note">(toca los que apliquen)</span></span><div class="hall">'+HALL.map(function(g){return '<div><small>'+esc(g[0])+'</small><div class="mchips">'+g[1].map(function(x){return '<button type="button" aria-pressed="false">'+esc(x)+'</button>';}).join('')+'</div></div>';}).join('')+'</div></div>'+
+     '<div class="frow"><div class="field"><label for="ct">Tamiz neonatal</label><select id="ct">'+TZI.map(function(x){return '<option>'+esc(x)+'</option>';}).join('')+'</select></div>'+
+      '<div class="field"><span class="lbl">Antecedentes</span><div class="mchips" id="cx"><button type="button" aria-pressed="false">Consanguinidad</button><button type="button" aria-pressed="false">Familiar con cuadro similar</button><button type="button" aria-pressed="false">Muerte temprana en la familia</button></div></div></div>'+
+     '<div class="field"><label for="cl">Estudios y resultados relevantes <span class="note">(opcional)</span></label><input id="cl" maxlength="400" placeholder="Ej. CPK 12,000 U/L; plaquetas 80,000; TSH 35"></div>'+
+     '<div class="factions"><button class="btn" type="submit">Orientar el caso</button><button class="btn ghost" type="button" id="libre">Prefiero contarlo con mis palabras</button></div>'+
+     '<p class="note">No escribas nombres ni datos que identifiquen al paciente. El archivo del tamiz se usa solo para esta consulta y no se guarda.</p></form>';
+    var sx=null;$$('#cs button').forEach(function(b){b.onclick=function(){sx=sx===b.dataset.v?null:b.dataset.v;$$('#cs button').forEach(function(x){x.classList.toggle('on',x.dataset.v===sx);});};});
+    $$('#cf .mchips button').forEach(function(b){b.onclick=function(){var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);b.classList.toggle('on',on);};});
+    var fi=$('#tzf'),dr=$('#drop');dr.onclick=function(){fi.click();};dr.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();fi.click();}};
+    dr.ondragover=function(e){e.preventDefault();dr.classList.add('ov');};dr.ondragleave=function(){dr.classList.remove('ov');};
+    dr.ondrop=function(e){e.preventDefault();dr.classList.remove('ov');if(e.dataTransfer.files[0])takeFile(e.dataTransfer.files[0]);};
+    fi.onchange=function(){if(fi.files[0])takeFile(fi.files[0]);};
+    function takeFile(f){tzFile=f;$('#tzn').textContent=f.name+' · listo';dr.classList.add('ok');if($('#ct').selectedIndex<2)$('#ct').selectedIndex=0;}
+    $('#libre').onclick=libre;
+    $('#cf').onsubmit=async function(e){e.preventDefault();if(busy)return;
+      var ed=$('#ce').value,un=$('#cu').value,n=$('#cn').value,mo=$('#cm').value.trim(),hs=$$('.hall button.on').map(function(b){return b.textContent;}),ax=$$('#cx button.on').map(function(b){return b.textContent;}),tz=$('#ct').value,lb=$('#cl').value.trim();
+      if(!mo&&!hs.length&&!tzFile){$('#cm').focus();$('#cm').placeholder='Cuéntame al menos el motivo de consulta, marca hallazgos o sube el tamiz';return;}
+      var t=(sx?(sx==='F'?'Mujer':'Hombre'):'Paciente')+(ed?' de '+ed+' '+un:'')+'. '+(mo?mo+(/[.!?]$/.test(mo)?'':'.')+' ':'')+(hs.length?'Hallazgos: '+hs.join(', ').toLowerCase()+'. ':'')+(lb?'Estudios: '+lb+'. ':'')+(ax.length?'Antecedentes: '+ax.join(', ').toLowerCase()+'. ':'')+'Tamiz neonatal: '+tz+'. '+(n!==''?'Lo han visto '+n+' especialistas.':'');
+      var meta={edad:ed?(un==='años'?+ed:un==='meses'?+ed/12:+ed/365):null,sexo:sx,especialistas:n!==''?+n:null};
+      if(tzFile){busy=true;cin.innerHTML='';me('Te comparto el resultado del tamiz neonatal: '+tzFile.name);await leerTamiz(t,meta);}else{cin.innerHTML='';paso1(t,meta);}};}
+  function libre(){cin.innerHTML='<form class="row" id="cf2"><input id="ci" placeholder="Edad, sexo, qué ves, cuántos especialistas lo han visto…" maxlength="900" aria-label="Describe el caso">'+MIC+'<button class="btn" type="submit">Enviar</button></form><button type="button" class="linkish" id="vf">← Volver a la ficha</button>';
+    var f=$('#cf2'),i=$('#ci');dictado($('#cf2 .mic'),i,function(){f.requestSubmit();});i.focus();$('#vf').onclick=ficha;
+    f.onsubmit=function(e){e.preventDefault();var t=i.value.trim();if(t&&!busy){cin.innerHTML='';paso1(t);}};}
+  async function leerTamiz(t,meta){var w=say('<span class="wait">Leyendo el resultado del tamiz</span>');
+    var keys=ENF.map(function(e){return e.key+' ('+e.nombre+')';}).join('; ');
+    var prompt='Eres Clara, apoyo para médicos de primer contacto del Observatorio Latinoamericano de Enfermedades Poco Frecuentes (México). El médico adjunta el resultado de un tamiz neonatal (foto o PDF). Léelo con cuidado y extrae SOLO lo que está escrito; si algo no se lee, dilo. No inventes valores. Contexto del médico: '+t+'\n\nEnfermedades que cubre el Acervo (usa estas claves en "sugiere"): '+keys+'.\n\nDevuelve SOLO un objeto JSON: {"legible":true|false,"institucion":"o null","laboratorio":"o null","fecha_toma":"o null","horas_vida_toma":número o null,"panel":"básico, ampliado o desconocido","resultados":[{"analito":"","valor":"","unidad":"","referencia":"","estado":"alterado"|"limítrofe"|"normal"}],"interpretacion":"qué patrón sugieren los alterados, máximo 35 palabras, sin diagnosticar","sugiere":["claves del Acervo compatibles con lo alterado"],"advertencias":"toma temprana, transfusión, prematurez, muestra inadecuada o vacío"}. En "resultados" incluye todos los alterados y limítrofes y, como máximo, 6 normales.';
+    var f=null;try{f=await fileB64(tzFile);}catch(e){w.innerHTML='No pude abrir el archivo. Usa una foto (JPG o PNG) o un PDF de menos de 3 MB.';busy=false;ficha();return;}
+    var j=null;try{j=await aiJsonF(prompt,[f]);}catch(e){}
+    if(!j||j.legible===false){w.innerHTML=j?'No alcanzo a leer bien el resultado. Intenta con una foto más nítida, de frente y con buena luz, o captura los valores alterados en la ficha.':esc(errCopy({}));busy=false;if(!j)return paso1(t,meta);ficha();return;}
+    tzRead=j;var R=(j.resultados||[]),alt=R.filter(function(r){return r.estado!=='normal';});
+    w.innerHTML='<b>Lo que leí en el tamiz</b>'+(j.institucion||j.laboratorio?'<p class="note">'+esc([j.institucion,j.laboratorio,j.fecha_toma?'toma: '+j.fecha_toma:''].filter(Boolean).join(' · '))+'</p>':'')+
+      '<table class="tzr"><thead><tr><th>Analito</th><th>Valor</th><th>Referencia</th></tr></thead><tbody>'+R.map(function(r){return '<tr class="'+esc(r.estado)+'"><td>'+esc(r.analito)+'</td><td><b>'+esc(r.valor)+'</b> '+esc(r.unidad||'')+'</td><td>'+esc(r.referencia||'')+'</td></tr>';}).join('')+'</tbody></table>'+
+      (j.interpretacion?'<p style="margin-top:8px">'+esc(j.interpretacion)+'</p>':'')+(j.advertencias?'<p class="note" style="margin-top:6px">⚠ '+esc(j.advertencias)+'</p>':'')+
+      '<p class="note" style="margin-top:6px">Verifica que coincida con el documento antes de seguir.</p>';
+    voice.speak('Leí el tamiz. '+(alt.length?'Encontré '+alt.length+' valor'+(alt.length>1?'es':'')+' fuera de rango. ':'No veo valores fuera de rango. ')+(j.interpretacion||''),av);
+    cin.innerHTML='<div class="chips"><button type="button" id="tok">Es correcto, continuar</button><button type="button" id="tno">Hay un error, corregir</button></div>';
+    $('#tok').onclick=function(){cin.innerHTML='';var txt=t+' Resultado del tamiz neonatal'+(j.institucion?' ('+j.institucion+')':'')+': '+(alt.length?alt.map(function(r){return r.analito+' '+r.valor+(r.unidad?' '+r.unidad:'')+(r.referencia?' (referencia '+r.referencia+')':'')+' '+r.estado;}).join('; '):'sin valores alterados')+'.'+(j.advertencias?' Advertencias: '+j.advertencias:'');paso1(txt,meta,j.sugiere);};
+    $('#tno').onclick=function(){cin.innerHTML='<form class="row" id="tfix"><input id="tfi" placeholder="Escribe el valor correcto, ej. TSH 8.2 µUI/mL" maxlength="300">'+MIC+'<button class="btn" type="submit">Continuar</button></form>';var ff=$('#tfix');dictado($('#tfix .mic'),$('#tfi'),function(){ff.requestSubmit();});
+      ff.onsubmit=function(e){e.preventDefault();var c=$('#tfi').value.trim();cin.innerHTML='';me(c||'Sin corrección');paso1(t+' Resultado del tamiz neonatal según el médico: '+alt.map(function(r){return r.analito+' '+r.valor;}).join('; ')+'. Corrección: '+c,meta,j.sugiere);};};
+    busy=false;}
+  function start(){voice.stop();caso='';preguntas=[];resp={};clog.innerHTML='';
+    say('Hola, soy Clara. Llena la ficha, sube el tamiz neonatal o cuéntamelo con tus palabras. Con eso te hago las preguntas que faltan.');ficha();}
+  $$('#ejs button').forEach(function(b){b.onclick=function(){if(busy)return;start();cin.innerHTML='';paso1(EJ[+b.dataset.i][1]);};});
+  function frAll(t,k,pref){var f=cSearch(t+' sospecha diagnóstico confirmación referencia signos '+(pref||[]).map(function(x){return DIS[x]||'';}).join(' '),k,function(d){return d.publico!=='familia'&&d.enfermedad!=='general';});return f;}
   function bias(o){var a=[],e=+o.edad,esp=+o.especialistas;
-    if(e>=10&&e<=19)a.push('Adolescente: es el grupo con mayor retraso diagnóstico, 10.4 años en promedio.');
+    if(o.edad!=null&&e>=10&&e<=19)a.push('Adolescente: es el grupo con mayor retraso diagnóstico, 10.4 años en promedio.');
     if(o.sexo==='F')a.push('Mujer: el retraso promedio es de 5.4 años, frente a 3.7 en hombres.');
     if(esp>10)a.push('Haber consultado a más de 10 especialistas se asocia con 2.6 veces más probabilidad de retraso.');else if(esp>=3)a.push('Ya pasó por '+esp+' especialistas sin diagnóstico: la ruta se está alargando.');
     return a;}
-  async function paso1(t){busy=true;caso=t;me(t);cin.innerHTML='';var w=say('<span class="wait">Leyendo el caso</span>');
-    var fr=frAll(t,10);
-    var prompt='Eres Clara, apoyo para médicos de primer contacto (pediatría, medicina general, medicina interna) del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. El médico te describe un caso. Tu tarea ahora NO es diagnosticar: es identificar los datos clave y hacer de 2 a 3 preguntas breves que más ayuden a orientar la sospecha, apoyándote en los FRAGMENTOS (que cubren piel de mariposa, enfermedad de Gaucher, enfermedad de Fabry, síndrome de Hunter y tamiz neonatal en México). Si el paciente es menor de 2 años o el dato es relevante, una de las preguntas debe ser si tuvo tamiz neonatal y en qué institución nació. Cada pregunta con 2 a 4 opciones cortas.\n\nCASO: '+t+'\n\nFRAGMENTOS:\n'+fragBlock(fr)+'\n\nDevuelve SOLO un objeto JSON: {"edad":número o null,"sexo":"F"|"M"|null,"especialistas":número o null,"resumen":"el caso en una línea, máximo 25 palabras","preguntas":[{"q":"pregunta, máximo 14 palabras","opciones":["...","..."]}]}';
+  function listaEnf(){return ENF.map(function(e){return e.key+' ('+e.nombre+')';}).join(', ');}
+  async function paso1(t,meta,pref){busy=true;caso=t;if(!tzRead||meta==null)me(t);cin.innerHTML='';var w=say('<span class="wait">Leyendo el caso</span>');
+    var fr=frAll(t,10,pref);
+    var prompt='Eres Clara, apoyo para médicos de primer contacto (pediatría, medicina general, medicina interna) del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. El médico te describe un caso. Tu tarea ahora NO es diagnosticar: es identificar los datos clave y hacer de 2 a 3 preguntas breves que más ayuden a orientar la sospecha, apoyándote en los FRAGMENTOS. El Acervo cubre: '+listaEnf()+', además del tamiz neonatal en México. No repitas preguntas cuya respuesta ya esté en el caso. Si el paciente es menor de 2 años o el dato es relevante y no lo sabes, pregunta si tuvo tamiz neonatal y en qué institución nació. Cada pregunta con 2 a 4 opciones cortas.\n\nCASO: '+t+'\n\nFRAGMENTOS:\n'+fragBlock(fr)+'\n\nDevuelve SOLO un objeto JSON: {"edad":años como número o null,"sexo":"F"|"M"|null,"especialistas":número o null,"resumen":"el caso en una línea, máximo 25 palabras","preguntas":[{"q":"pregunta, máximo 14 palabras","opciones":["...","..."]}]}';
     var j=null;try{j=await aiJson(prompt);}catch(e){}
-    if(!j||!j.preguntas||!j.preguntas.length){w.innerHTML='<span class="note">'+esc(errCopy({}))+'</span>';return analizar([],fr);}
+    if(!j||!j.preguntas||!j.preguntas.length){w.innerHTML='<span class="note">'+(j?'Con lo que me diste puedo orientar directamente.':esc(errCopy({})))+'</span>';return analizar([],pref);}
+    if(meta){['edad','sexo','especialistas'].forEach(function(k){if(meta[k]!=null)j[k]=meta[k];});}
     preguntas=j.preguntas.slice(0,3);var b=bias(j);
     w.innerHTML=(j.resumen?'<b>Entendí:</b> '+esc(j.resumen)+'<br><br>':'')+'Para orientarte mejor, ayúdame con '+(preguntas.length===1?'una pregunta':preguntas.length+' preguntas')+':';
     if(b.length)clog.appendChild(h('div','box alert','<b>Alerta de sesgo</b> · '+b.map(esc).join(' ')+'<div class="note" style="margin-top:6px">Fuentes: '+srcA(SRC_DX)+' · '+srcA(SRC_ESP)+'</div>'));
     voice.speak((j.resumen?'Entendí: '+j.resumen+'. ':'')+'Para orientarte mejor, ayúdame con estas preguntas.',av);
-    var k=0;function next(){if(k>=preguntas.length){analizar(preguntas.map(function(p,i){return p.q+' → '+(resp[i]||'sin dato');}),fr);return;}
+    var k=0;function next(){if(k>=preguntas.length){analizar(preguntas.map(function(p,i){return p.q+' → '+(resp[i]||'sin dato');}),pref);return;}
       var p=preguntas[k];say('<b>'+esc(p.q)+'</b>');
       cin.innerHTML='<div class="chips" id="op">'+(p.opciones||[]).concat(['No sé']).map(function(o){return '<button type="button">'+esc(o)+'</button>';}).join('')+'</div>';
       $$('#op button').forEach(function(bt){bt.onclick=function(){resp[k]=bt.textContent;me(bt.textContent);k++;next();};});}
     busy=false;next();}
-  async function analizar(qa,fr){busy=true;cin.innerHTML='';var w=say('<span class="wait">Revisando las guías</span>');
-    fr=frAll(caso+' '+qa.join(' '),9);
-    var prompt='Eres Clara, apoyo para médicos de primer contacto del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. No diagnosticas: orientas la sospecha. Usa SOLO los FRAGMENTOS como evidencia y cita sus etiquetas. Las enfermedades que cubre el Acervo son: eb (piel de mariposa, epidermólisis bullosa), gaucher (enfermedad de Gaucher), fabry (enfermedad de Fabry) y mps (síndrome de Hunter). Si ninguna encaja, dilo y sugiere ampliar el estudio con genética.\n\nCASO: '+caso+(qa.length?'\nRESPUESTAS DEL MÉDICO:\n'+qa.join('\n'):'')+'\n\nFRAGMENTOS:\n'+fragBlock(fr)+'\n\nDevuelve SOLO un objeto JSON: {"candidatas":[{"enfermedad":"eb"|"gaucher"|"fabry"|"mps","nivel":"alta"|"media"|"baja","razon":"máximo 30 palabras","coinciden":["máximo 4"],"explorar":["máximo 3"]}],"ninguna":"si ninguna encaja, explica en 25 palabras; si no, vacío","siguiente_paso":"máximo 35 palabras","referencia":"a qué servicio referir, máximo 20 palabras","tamiz":"una frase sobre el tamiz neonatal si aplica, o vacío","fuentes":["g2"]}. Ordena candidatas de mayor a menor sospecha; máximo 2.';
+  async function analizar(qa,pref){busy=true;cin.innerHTML='';var w=say('<span class="wait">Revisando las guías</span>');
+    var fr=frAll(caso+' '+qa.join(' '),10,pref),keys=ENF.map(function(e){return '"'+e.key+'"';}).join('|');
+    var prompt='Eres Clara, apoyo para médicos de primer contacto del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. No diagnosticas: orientas la sospecha. Usa SOLO los FRAGMENTOS como evidencia y cita sus etiquetas. Las enfermedades que cubre el Acervo son: '+listaEnf()+'. Si ninguna encaja, dilo y sugiere ampliar el estudio con genética. Si hay un tamiz neonatal alterado, prioriza la confirmación urgente y la referencia inmediata cuando aplique.\n\nCASO: '+caso+(qa.length?'\nRESPUESTAS DEL MÉDICO:\n'+qa.join('\n'):'')+'\n\nFRAGMENTOS:\n'+fragBlock(fr)+'\n\nDevuelve SOLO un objeto JSON: {"candidatas":[{"enfermedad":'+keys+',"nivel":"alta"|"media"|"baja","razon":"máximo 30 palabras","coinciden":["máximo 4"],"explorar":["máximo 3"]}],"ninguna":"si ninguna encaja, explica en 25 palabras; si no, vacío","urgencia":"si requiere atención o confirmación urgente, en 15 palabras; si no, vacío","siguiente_paso":"máximo 35 palabras","referencia":"a qué servicio referir, máximo 20 palabras","tamiz":"una frase sobre el tamiz neonatal si aplica, o vacío","fuentes":["etiquetas"]}. Ordena candidatas de mayor a menor sospecha; máximo 2.';
     var j=null;try{j=await aiJson(prompt);}catch(e){}
     if(!j){var top=fr.slice(0,3);w.innerHTML='<span class="note">'+esc(errCopy({}))+'</span>'+top.map(function(d,i){return '<p style="margin-top:8px"><b>'+esc(d.tema)+'.</b> '+esc(d.texto)+'<sup class="c">'+(i+1)+'</sup></p>';}).join('')+srcLinks(top.map(function(d){return d.id;}));endButtons();busy=false;return;}
     var li=function(a){return (a&&a.length)?'<ul>'+a.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'';};
     var ids=(j.fuentes||[]).map(function(x){return String(x).toLowerCase();}).filter(function(x){return CBY[x];});
     w.remove();
+    if(j.urgencia)clog.appendChild(h('div','box alert','<b>Atención</b> · '+esc(j.urgencia)));
     (j.candidatas||[]).forEach(function(c){var lv=String(c.nivel||'').toLowerCase();
-      clog.appendChild(h('div','box','<b>'+esc(DIS[c.enfermedad]?DSHORT[c.enfermedad]:c.enfermedad)+'</b><span class="lvl '+esc(lv)+'">Sospecha '+esc(lv)+'</span><p style="margin-top:6px">'+esc(c.razon||'')+'</p>'+(c.coinciden&&c.coinciden.length?'<p style="margin-top:8px"><b>Coinciden</b></p>'+li(c.coinciden):'')+(c.explorar&&c.explorar.length?'<p style="margin-top:8px"><b>Falta explorar</b></p>'+li(c.explorar):'')+(DIS[c.enfermedad]?'<a class="go" href="#/atlas?d='+c.enfermedad+'" style="display:inline-block;margin-top:8px;text-decoration:none">Dónde referir en el Atlas →</a>':'')));});
+      clog.appendChild(h('div','box','<b>'+esc(DIS[c.enfermedad]?DIS[c.enfermedad]:c.enfermedad)+'</b><span class="lvl '+esc(lv)+'">Sospecha '+esc(lv)+'</span><p style="margin-top:6px">'+esc(c.razon||'')+'</p>'+(c.coinciden&&c.coinciden.length?'<p style="margin-top:8px"><b>Coinciden</b></p>'+li(c.coinciden):'')+(c.explorar&&c.explorar.length?'<p style="margin-top:8px"><b>Falta explorar</b></p>'+li(c.explorar):'')+(DIS[c.enfermedad]?'<a class="go" href="#/atlas?d='+c.enfermedad+'" style="display:inline-block;margin-top:8px;text-decoration:none">Dónde referir en el Atlas →</a>':'')));});
     if(j.ninguna)clog.appendChild(h('div','box','<b>Fuera de lo que cubre el Acervo</b><p style="margin-top:6px">'+esc(j.ninguna)+'</p>'));
     clog.appendChild(h('div','box','<b>Siguiente paso</b><p>'+esc(j.siguiente_paso||'')+'</p><p style="margin-top:8px"><b>Referir a</b></p><p>'+esc(j.referencia||'')+'</p>'+(j.tamiz?'<p style="margin-top:8px"><b>Tamiz neonatal</b></p><p>'+esc(j.tamiz)+'</p>':'')+srcLinks(ids)));
     clog.scrollTop=1e6;
     var c0=(j.candidatas||[])[0];
-    voice.speak((c0?'Sospecha '+(c0.nivel||'')+' de '+(DIS[c0.enfermedad]||c0.enfermedad)+'. '+(c0.razon||'')+' ':(j.ninguna||''))+' Siguiente paso: '+(j.siguiente_paso||'')+' Referir a: '+(j.referencia||'')+'. Recuerda: yo oriento la sospecha; el diagnóstico lo hace el especialista.',av);
+    voice.speak((j.urgencia?j.urgencia+'. ':'')+(c0?'Sospecha '+(c0.nivel||'')+' de '+(DIS[c0.enfermedad]||c0.enfermedad)+'. '+(c0.razon||'')+' ':(j.ninguna||''))+' Siguiente paso: '+(j.siguiente_paso||'')+' Referir a: '+(j.referencia||'')+'. Recuerda: yo oriento la sospecha; el diagnóstico lo hace el especialista.',av);
     endButtons();busy=false;}
   function endButtons(){cin.innerHTML='<div class="chips"><button type="button" id="nuevo">Nuevo caso</button></div>';$('#nuevo').onclick=start;}
   start();
@@ -417,26 +579,70 @@ V.clara=function(){
 
 /* ---------- Atlas (noche) ---------- */
 var LAY={h:{c:'#00C8D6',n:'Hospitales con experiencia'},a:{c:'#FF4FD8',n:'Asociaciones de pacientes'},t:{c:'#F2D14B',n:'Ensayos clínicos'}};
+var SERV=[['imss','IMSS'],['issste','ISSSTE'],['pemex','Pemex'],['mil','SEDENA o Semar'],['bien','No tengo seguridad social (IMSS-Bienestar)'],['priv','Atención privada']];
+var SRE={imss:/IMSS|UMAE|Siglo XXI|La Raza|Centro Médico Nacional de Occidente|Ignacio García Téllez/i,issste:/ISSSTE|20 de Noviembre/i,pemex:/Pemex/i,mil:/Militar|SEDENA|Semar|Naval|Marina/i,
+  priv:/Español|Ángeles|Christus|TecSalud|San José|Camino|Médica Sur|ABC/i};
+var PASO={imss:['Acude a tu Unidad de Medicina Familiar y pide a tu médico familiar la referencia a tu hospital de zona.','Desde el hospital de zona te envían a la Unidad Médica de Alta Especialidad (UMAE) que corresponda.','Si ya tienes un diagnóstico de otra institución, llévalo: acelera la referencia.'],
+  issste:['Pide en tu Clínica de Medicina Familiar la referencia a tu hospital regional.','Para estudios especializados, el hospital regional puede enviarte al Centro Médico Nacional 20 de Noviembre.'],
+  pemex:['Tu unidad médica de Pemex te refiere a su red de especialidad; el Hospital Central Sur de Alta Especialidad atiende enfermedades metabólicas y lisosomales.'],
+  mil:['Tu unidad médica militar o naval te refiere al Hospital Central Militar o a los servicios de sanidad de Semar.'],
+  bien:['Ve a tu centro de salud y pide que te refieran al hospital del estado; hoy la mayoría de los estados opera con IMSS-Bienestar.','Los Institutos Nacionales de Salud y el Hospital Infantil de México también reciben a personas sin seguridad social: pregunta en Trabajo Social por costos y apoyos.'],
+  priv:['Pide a tu médico una referencia por escrito con resumen clínico.','Busca la especialidad indicada (genética, neurología, hematología, endocrinología) en los hospitales de la lista.']};
+var CENT=null;
+function stateCentroids(){if(CENT)return CENT;CENT=PD.atlas.mx.p.map(function(o){var x=0,y=0,n=0;o.d.replace(/[ML](-?[\d.]+),(-?[\d.]+)/g,function(_,a,b){x+=+a;y+=+b;n++;});return [x/n,y/n];});return CENT;}
 V.atlas=function(q){
-  var A=PD.atlas,dis=DIS[q.d]?q.d:'all',on={h:1,a:1,t:1},sel=null,area=null;
-  var T=PD.tamiz||{panel:[],mort:{}},mx=Math.max.apply(null,T.panel.map(function(p){return p.v;}).concat([1]));
+  var A=PD.atlas,dis=DIS[q.d]?q.d:'all',on={h:1,a:1,t:1},sel=null,area=null,conSS=false;
+  var T=PD.tamiz||{panel:[],mort:{}},TI=T.inst||[],TE=T.estados||[];
+  var MX=ENF.filter(function(e){return e.tamiz;});
+  var yn=function(v){return v===true?'<i class="yn y" title="Sí la detecta">✓</i>':v===false?'<i class="yn n" title="No la detecta">–</i>':'<i class="yn u" title="Sin dato público">?</i>';};
+  var states=A.mx.p.map(function(p,i){return [p.n,i];}).sort(function(a,b){return a[0].localeCompare(b[0],'es');});
   view.innerHTML='<section class="pg"><div class="wrap">'+
-   '<div class="pg-h"><div><span class="tk c-y">Para quien decide</span><h1>Atlas</h1><p>Dónde hay atención para las enfermedades poco frecuentes en México, dónde no, y qué se le busca a cada bebé al nacer según dónde nace.</p></div>'+
-   '<div class="chips" id="az">'+[['all','Todas']].concat(['eb','gaucher','fabry','mps'].map(function(d){return [d,DSHORT[d]];})).map(function(o){return '<button type="button" data-d="'+o[0]+'"'+(dis===o[0]?' class="on"':'')+'>'+o[1]+'</button>';}).join('')+'</div></div>'+
+   '<div class="pg-h"><div><span class="tk c-y">Para familias y para quien decide</span><h1>Atlas</h1><p>Dónde hay atención para las enfermedades poco frecuentes en México, dónde no, y qué se le busca a cada bebé al nacer según dónde nace.</p></div></div>'+
    '<div class="bento">'+
+    '<div class="tile s4 c-b route" id="ruta"><div class="route-h"><span class="tk">Si buscas atención por primera vez</span><h2>Te decimos a dónde ir y qué llevar</h2><p>Tres preguntas. No necesitas saber términos médicos.</p></div>'+
+     '<form id="rf" class="route-f"><div class="field"><label for="rd">1 · ¿Qué tiene tu familiar?</label><select id="rd"><option value="sin">Todavía no sabemos</option>'+disOptions(dis==='all'?'':dis,false)+'</select></div>'+
+     '<div class="field"><label for="re">2 · ¿En qué estado viven?</label><select id="re" required><option value="">Elige tu estado</option>'+states.map(function(s){return '<option value="'+s[1]+'">'+esc(s[0])+'</option>';}).join('')+'</select></div>'+
+     '<div class="field"><label for="rs">3 · ¿Qué servicio de salud tienen?</label><select id="rs">'+SERV.map(function(s){return '<option value="'+s[0]+'"'+(s[0]==='bien'?' selected':'')+'>'+esc(s[1])+'</option>';}).join('')+'</select></div>'+
+     '<button class="btn" type="submit">Ver a dónde ir</button></form><div id="rout" aria-live="polite"></div></div>'+
+    '<div class="tile s4 af"><label for="az" class="tk">Ver el mapa de</label><select id="az">'+disOptions(dis,true)+'</select></div>'+
     '<div class="tile c-b" id="k-h"></div><div class="tile c-m" id="k-a"></div><div class="tile c-y" id="k-t"></div><div class="tile c-g" id="k-e"></div>'+
     '<div class="tile s3 r3" style="padding:10px"><div class="map" id="map" style="border:0;background:transparent;padding:0"></div><div class="legend" id="leg" style="padding:0 8px 6px"></div></div>'+
     '<div class="tile r3 plt"><div class="plist" id="pl" aria-live="polite"></div></div>'+
-    '<div class="tile s3 c-p"><span class="tk">El tamiz neonatal: lo que se busca en un bebé según dónde nace</span><div class="tz">'+T.panel.map(function(p){return '<div class="'+(/Referencia/.test(p.n)?'ref':'')+'"><span>'+esc(p.n)+'<br><small class="note">'+esc(p.nota)+'</small></span><span class="bar"><i style="width:'+Math.round(p.v/mx*100)+'%"></i></span><b>'+p.v+'</b></div>';}).join('')+'</div><a class="src" href="#/acervo?d=tamiz">Fuentes: '+esc(T.panel.map(function(p){return p.src;}).join(' · '))+' · ver fichas →</a></div>'+
-    '<div class="tile c-y"><span class="tk">Lo que cuesta no tamizar</span><div class="big">'+(T.mort.no||'')+'% <small>vs '+(T.mort.si||'')+'%</small></div><p>mortalidad en niños con errores innatos del metabolismo sin y con tamiz ampliado.</p><a class="src" href="'+esc(T.mort.url||'#')+'" target="_blank" rel="noopener">'+esc(T.mort.src||'')+' ↗</a></div>'+
-   '</div><div class="demo-flag">Solo datos públicos y agregados por institución. El Atlas nunca muestra información de pacientes individuales. Corte: '+esc(new Date(A.corte+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'}))+'.</div>'+
+    '<div class="tile s4 c-p" id="tzsec"><span class="tk">Tamiz neonatal</span><h2 style="margin:4px 0 6px">Lo que se busca en un bebé depende de dónde nace</h2>'+
+     '<div class="tzt"><table><thead><tr><th>Institución</th><th>Cuántas</th><th>Qué incluye</th></tr></thead><tbody>'+TI.map(function(t){return '<tr'+(/Referencia/.test(t.inst)?' class="ref"':'')+'><td><b>'+esc(t.inst)+'</b>'+(t.desde?'<small>'+esc(t.desde)+'</small>':'')+'</td><td class="n">'+esc(t.n)+'</td><td>'+esc(t.cuales||'')+(t.url?' <a href="'+esc(t.url)+'" target="_blank" rel="noopener">Fuente ↗</a>':'')+'</td></tr>';}).join('')+'</tbody></table></div></div>'+
+    '<div class="tile s2 c-g"><span class="tk">¿La detecta el tamiz?</span><table class="mx"><thead><tr><th></th><th>Sin seguridad social</th><th>IMSS</th><th>Pemex</th><th>Privado</th></tr></thead><tbody>'+MX.map(function(e){var t=e.tamiz;return '<tr title="'+esc(t.nota||'')+'"><td>'+esc(e.corto)+'</td><td>'+yn(t.ssa)+'</td><td>'+yn(t.imss)+'</td><td>'+yn(t.pemex)+'</td><td>'+yn(t.privado)+'</td></tr>';}).join('')+'</tbody></table><p class="note">✓ la detecta · – no la detecta · ? sin dato público. Pasa el cursor para ver la nota.</p></div>'+
+    '<div class="tile s2 c-y"><span class="tk">Tamiz público por estado</span><div class="seg2 sm" id="tzss"><button type="button" class="on" data-v="0">Sin seguridad social</button><button type="button" data-v="1">Con seguridad social</button></div><div id="tzm"></div><p class="note" id="tzn">Toca un estado para ver el detalle.</p></div>'+
+    '<div class="tile s2 c-m"><span class="tk">Lo que cuesta no tamizar</span><div class="big">'+(T.mort.no||'')+'% <small>vs '+(T.mort.si||'')+'%</small></div><p>mortalidad en niños con errores innatos del metabolismo sin y con tamiz ampliado.</p><a class="src" href="'+esc(T.mort.url||'#')+'" target="_blank" rel="noopener">'+esc(T.mort.src||'')+' ↗</a></div>'+
+    '<div class="tile s2 ink"><span class="tk" style="color:#F2D14B">Sin transparencia</span><div class="big">'+TE.filter(function(e){return e.cat==='sin_dato';}).length+' <small>de 32</small></div><p style="color:#cfd8e3">estados sin un documento público que diga qué enfermedades busca su tamiz para bebés sin seguridad social.</p></div>'+
+   '</div><div class="demo-flag">Solo datos públicos y agregados por institución. El Atlas nunca muestra información de pacientes individuales. Las distancias son aproximadas. Corte: '+esc(new Date(A.corte+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'}))+'.</div>'+
   '</div></section>';
-  function pts(){return A.pts.filter(function(p){return on[p.l]&&(dis==='all'||p.d.indexOf(D2K[dis])>=0);});}
+  /* ruta para familias */
+  $('#rf').onsubmit=function(e){e.preventDefault();var d=$('#rd').value,si=$('#re').value,sv=$('#rs').value,out=$('#rout');
+    if(si===''){$('#re').focus();return;}si=+si;var C=stateCentroids()[si],E=ENFBY[d]||null,stn=A.mx.p[si].n;
+    var H=A.pts.filter(function(p){return p.l==='h'&&p.px!=null&&(d==='sin'||p.d.indexOf(d)>=0);});
+    var mine=function(p){return sv==='bien'?!/IMSS|UMAE|ISSSTE|Pemex|Militar|SEDENA|Semar|Naval|Español|Ángeles|Christus|TecSalud|San José|Camino/i.test(p.n):SRE[sv]?SRE[sv].test(p.n):true;};
+    var km=function(p){return Math.round(Math.hypot(p.px-C[0],p.py-C[1])*3.3/10)*10;};
+    H.forEach(function(p){p._km=p.s===si?0:km(p);});
+    var red=H.filter(mine).sort(function(a,b){return a._km-b._km;}).slice(0,3),near=H.slice().sort(function(a,b){return a._km-b._km;}).filter(function(p){return red.indexOf(p)<0;}).slice(0,2);
+    var aso=A.pts.filter(function(p){return p.l==='a'&&(d==='sin'||p.d.indexOf(d)>=0);}).slice(0,3);
+    var card=function(p){return '<div class="rcard"><b>'+esc(p.n)+'</b><span>'+esc(p.c)+' · '+(p._km===0?'en tu estado':'a unos '+p._km+' km')+'</span>'+'<p>Experiencia documentada en: '+esc(p.d.slice().sort(function(x,y){return (y===d)-(x===d);}).map(function(k){return DSHORT[k]||k;}).join(', '))+'</p><a href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></div>';};
+    out.innerHTML='<div class="rres">'+
+      (E&&E.grupo==='tamiz'?'<div class="box alert"><b>Si el tamiz salió alterado, no esperes.</b> La confirmación es urgente: llama hoy a la unidad donde tomaron la muestra o acude a urgencias pediátricas si el bebé está decaído, vomita o no come.</div>':'')+
+      '<div class="rcol"><h3>'+(red.length?'En tu red de atención':'Hospitales con experiencia')+'</h3>'+(red.length?red.map(card).join(''):'<p class="note">No encontramos un hospital de tu red con experiencia documentada en '+esc(E?E.corto:'enfermedades poco frecuentes')+'. Te mostramos los más cercanos de cualquier institución.</p>')+(near.length?'<h4>También cerca</h4>'+near.map(card).join(''):'')+'</div>'+
+      '<div class="rcol"><h3>Tu primer paso</h3><ol>'+(PASO[sv]||[]).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ol>'+
+       '<h4>Lleva contigo</h4><ul class="ck sm"><li>CURP y, si tienen, número de afiliación</li><li>Resumen clínico y todos los estudios previos</li><li>El resultado del tamiz neonatal</li><li>Fotos o videos de lo que notan</li><li>Sus dudas, escritas</li></ul>'+
+       (aso.length?'<h4>Familias que ya pasaron por esto</h4>'+aso.map(function(p){return '<a class="aso" href="'+esc(p.u)+'" target="_blank" rel="noopener"><b>'+esc(p.n)+'</b><span>'+esc(p.c)+'</span></a>';}).join(''):'')+
+       '<a class="btn ghost" style="margin-top:12px" href="#/rumbo?d='+(d||'sin')+'">Preguntarle a Rumbo →</a></div>'+
+      '</div><p class="note">'+esc(stn)+': distancias aproximadas en línea recta desde el centro del estado.</p>';
+    out.scrollIntoView({block:'nearest',behavior:'smooth'});};
+  if(dis!=='all')$('#rd').value=dis;
+  /* mapa de atención */
+  function pts(){return A.pts.filter(function(p){return on[p.l]&&(dis==='all'||p.d.indexOf(dis)>=0);});}
   function clusters(P){var g={};P.filter(function(p){return p.px!=null;}).forEach(function(p){var k=Math.round(p.px/24)+'_'+Math.round(p.py/24);(g[k]=g[k]||[]).push(p);});
     return Object.keys(g).map(function(k){var a=g[k],x=0,y=0,cnt={};a.forEach(function(p){x+=p.px;y+=p.py;cnt[p.l]=(cnt[p.l]||0)+1;});
       var top=Object.keys(cnt).sort(function(m,n){return cnt[n]-cnt[m];})[0];return {k:k,pts:a,x:x/a.length,y:y/a.length,l:top,mixed:Object.keys(cnt).length>1};});}
   function draw(){var P=pts(),states={};P.forEach(function(p){if(p.s!=null)states[p.s]=1;});
-    var cnt=function(l){return A.pts.filter(function(p){return p.l===l&&(dis==='all'||p.d.indexOf(D2K[dis])>=0);}).length;};
+    var cnt=function(l){return A.pts.filter(function(p){return p.l===l&&(dis==='all'||p.d.indexOf(dis)>=0);}).length;};
     $('#k-h').innerHTML='<span class="tk">Hospitales</span><div class="big">'+cnt('h')+'</div><p>con experiencia documentada</p>';
     $('#k-a').innerHTML='<span class="tk">Asociaciones</span><div class="big">'+cnt('a')+'</div><p>de pacientes identificadas</p>';
     $('#k-t').innerHTML='<span class="tk">Ensayos clínicos</span><div class="big">'+cnt('t')+'</div><p>con sede en México</p>';
@@ -450,11 +656,20 @@ V.atlas=function(q){
     $$('#leg button').forEach(function(b){b.onclick=function(){on[b.dataset.l]=on[b.dataset.l]?0:1;draw();};});
     var ac=area&&CL.filter(function(c){return c.k===area;})[0],L=(ac?ac.pts:P).slice().sort(function(a,b){return a.l.localeCompare(b.l);});
     $('#pl').innerHTML=(ac?'<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>'+ac.pts.length+' en '+esc(ac.pts[0].c.replace(/\s*\(.*$/,''))+'</b><button type="button" class="wb" id="all">Ver todos</button></div>':'<span class="tk">Toca un círculo del mapa</span>')+
-      L.map(function(p){var i=A.pts.indexOf(p);return '<div class="pt'+(p===sel?' sel':'')+'" data-i="'+i+'" tabindex="0" style="border-left:3px solid '+LAY[p.l].c+'"><b>'+esc(p.n)+'</b><span class="c">'+esc(p.c)+' · '+p.d.map(function(k){return DSHORT[K2D[k]];}).join(', ')+'</span>'+(p===sel?'<p>'+esc(p.x)+'</p>'+(p.more||[]).map(function(m){return '<p>'+esc(m.x)+'</p>';}).join(''):'')+'<a href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></div>';}).join('')||'<p class="note">Sin puntos para este filtro.</p>';
+      L.map(function(p){var i=A.pts.indexOf(p);return '<div class="pt'+(p===sel?' sel':'')+'" data-i="'+i+'" tabindex="0" style="border-left:3px solid '+LAY[p.l].c+'"><b>'+esc(p.n)+'</b><span class="c">'+esc(p.c)+' · '+p.d.map(function(k){return DSHORT[k]||k;}).join(', ')+'</span>'+(p===sel?'<p>'+esc(p.x)+'</p>'+(p.more||[]).map(function(m){return '<p>'+esc(m.x)+'</p>';}).join(''):'')+'<a href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></div>';}).join('')||'<p class="note">Sin puntos para este filtro.</p>';
     var all=$('#all');if(all)all.onclick=function(){area=null;draw();};
     $$('#pl .pt').forEach(function(el){var t=function(e){if(e.target.tagName==='A')return;var p=A.pts[+el.dataset.i];sel=sel===p?null:p;draw();};el.onclick=t;el.onkeydown=function(e){if(e.key==='Enter')t(e);};});}
-  $$('#az button').forEach(function(b){b.onclick=function(){$$('#az button').forEach(function(x){x.classList.toggle('on',x===b);});dis=b.dataset.d;sel=null;area=null;draw();};});
-  draw();
+  $('#az').onchange=function(){dis=this.value;sel=null;area=null;draw();};
+  /* mapa del tamiz por estado */
+  var TC={basico:['#F2D14B','Básico documentado (5 o 6)'],ampliado_hist:['#4ADE80','Ampliado, solo histórico'],anuncio:['#A78BFA','Anunciado o piloto'],sin_dato:['#3b4b5a','Sin dato público']};
+  function tzDraw(){var by={};TE.forEach(function(e){by[e.estado]=e;});
+    $('#tzm').innerHTML='<svg viewBox="60 0 940 640" class="tzmap" role="img" aria-label="Tamiz neonatal público por estado">'+A.mx.p.map(function(p,i){var e=by[p.n]||{cat:'sin_dato'},c=conSS?'#00C8D6':TC[e.cat][0];return '<path d="'+p.d+'" data-i="'+i+'" fill="'+c+'"'+(e.ley&&!conSS?' stroke="#FF4FD8" stroke-width="3"':'')+'><title>'+esc(p.n)+'</title></path>';}).join('')+'</svg>'+
+      '<div class="tzleg">'+(conSS?'<span><i style="background:#00C8D6"></i>IMSS: 47 padecimientos · Pemex: 76 · en todo el país</span>':Object.keys(TC).map(function(k){return '<span><i style="background:'+TC[k][0]+'"></i>'+TC[k][1]+'</span>';}).join('')+'<span><i style="background:transparent;box-shadow:inset 0 0 0 2px #FF4FD8"></i>Su ley menciona tamiz ampliado</span>')+'</div>';
+    $$('#tzm path').forEach(function(pa){pa.onclick=function(){var n=A.mx.p[+pa.dataset.i].n,e=by[n];$('#tzn').innerHTML=conSS?'<b>'+esc(n)+'</b>: con IMSS el bebé recibe el tamiz de 47 padecimientos; con Pemex, 76.':'<b>'+esc(n)+'</b>: '+esc(e?e.nota:'Sin dato.')+(e&&e.url?' <a href="'+esc(e.url)+'" target="_blank" rel="noopener">Fuente ↗</a>':'');};});}
+  $$('#tzss button').forEach(function(b){b.onclick=function(){conSS=b.dataset.v==='1';$$('#tzss button').forEach(function(x){x.classList.toggle('on',x===b);});tzDraw();$('#tzn').textContent=conSS?'Con seguridad social el panel no depende del estado.':'Toca un estado para ver el detalle.';};});
+  draw();tzDraw();
+  if(q.ruta)setTimeout(function(){$('#ruta').scrollIntoView({block:'start'});$('#re').focus({preventScroll:true});},60);
+  if(q.vista==='tamiz')setTimeout(function(){$('#tzsec').scrollIntoView({block:'start'});},60);
 };
 
 /* ---------- Asociaciones (luz clara) ---------- */
@@ -467,7 +682,7 @@ V.asociaciones=function(){
     '<div class="tile c-v"><span class="tk">Contenido</span><h3>Voz en el Acervo</h3><p>Testimonios, guías y eventos. Revisan y aprueban lo que se dice de su enfermedad antes de publicarse.</p></div>'+
     '<div class="tile c-g"><span class="tk">Herramientas</span><h3>Para crecer</h3><p>Registro de pacientes con consentimiento, convocatorias de financiamiento y materiales para su incidencia.</p></div>'+
     '<div class="tile ink"><span class="tk" style="color:#FF8FB1">Sin costo</span><div class="big">$0</div><p style="color:#cfd8e3">El Observatorio lo sostienen laboratorios que patrocinan conocimiento, no producto.</p></div>'+
-    A.map(function(p,i){return '<article class="tile s2 '+col[i%5]+'"><span class="tk">'+p.d.map(function(k){return DSHORT[K2D[k]];}).join(' · ')+'</span><h3>'+esc(p.n)+'</h3><p class="note">'+esc(p.c)+'</p><p>'+esc(p.x)+'</p><a class="src" href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></article>';}).join('')+
+    A.map(function(p,i){return '<article class="tile s2 '+col[i%5]+'"><span class="tk">'+p.d.map(function(k){return DSHORT[k];}).join(' · ')+'</span><h3>'+esc(p.n)+'</h3><p class="note">'+esc(p.c)+'</p><p>'+esc(p.x)+'</p><a class="src" href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></article>';}).join('')+
     '<form class="tile s2 c-y" id="join"><span class="tk">Súmese</span><h3>Solicitud para formar parte</h3>'+
      '<div class="field"><label for="jn">Nombre de la asociación</label><input id="jn" required></div>'+
      '<div class="field"><label for="je">Enfermedad o grupo de enfermedades</label><input id="je" required></div>'+
@@ -541,7 +756,7 @@ function route(){
   document.title=(name==='inicio'?'':({acervo:'Acervo',rumbo:'Rumbo',clara:'Clara',atlas:'Atlas',asociaciones:'Asociaciones',barometro:'Barómetro'})[name]+' · ')+'Observatorio · Enfermedades Poco Frecuentes';}
 
 fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
-  PD=d;C=PD.corpus||[];C.forEach(function(x){CBY[x.id]=x;});
+  PD=d;C=PD.corpus||[];C.forEach(function(x){CBY[x.id]=x;});initDis(PD.enfermedades);
   cSearch=Index(C,function(x){return x.tema+' '+x.tema+' '+x.texto;});
   RM=PD.rumbo||RM;RM.w.forEach(function(w){RW[w.id]=w;});
   window.addEventListener('hashchange',route);route();

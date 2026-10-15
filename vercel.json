@@ -9,6 +9,9 @@
     },
     "api/room.js": {
       "maxDuration": 10
+    },
+    "api/voz.js": {
+      "maxDuration": 10
     }
   },
   "headers": [

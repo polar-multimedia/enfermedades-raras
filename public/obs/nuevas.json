@@ -1,0 +1,4207 @@
+{
+ "enfermedades": [
+  {
+   "key": "ame",
+   "nombre": "Atrofia muscular espinal",
+   "corto": "AME",
+   "sinonimos": [
+    "AME",
+    "SMA",
+    "atrofia muscular espinal 5q",
+    "Werdnig-Hoffmann",
+    "bebé flojito",
+    "bebé de trapo",
+    "no sostiene la cabeza",
+    "no se sienta",
+    "dejó de caminar",
+    "piernas débiles",
+    "le cuesta respirar",
+    "no puede tragar bien",
+    "Spinraza",
+    "Evrysdi",
+    "Zolgensma"
+   ],
+   "grupo": "musculo",
+   "familia": "Enfermedad genética que debilita los músculos porque se pierden las neuronas que los mueven. Hay tratamientos que frenan su avance.",
+   "senales": [
+    "Su bebé se siente flojito, como \"de trapo\"",
+    "No sostiene la cabeza o tarda mucho en sentarse",
+    "Deja de hacer cosas que ya hacía, como sentarse o caminar",
+    "Las piernas se ven más débiles que los brazos",
+    "Le cuesta respirar, comer o tragar",
+    "Llora o succiona con poca fuerza"
+   ],
+   "senales_medico": [
+    "Hipotonía con retraso del desarrollo psicomotor (\"lactante hipotónico\")",
+    "Debilidad progresiva de predominio proximal, sobre todo en miembros inferiores",
+    "Pérdida de hitos ya adquiridos (sedestación, marcha)",
+    "Inicio antes de 6 meses (tipo 1), entre 6 y 18 meses (tipo 2) o después de 18 meses (tipo 3)",
+    "Dificultad respiratoria o para deglutir en el lactante",
+    "Diagnóstico tardío documentado en todos los pacientes de la serie del INP: referir a neurología pediátrica ante la sospecha"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": false,
+    "pemex": false,
+    "privado": null,
+    "nota": "Ningún programa público la detecta hoy. SEDENA espera incorporarla por PCR desde diciembre de 2026."
+   },
+   "brecha": {
+    "estimados": "≈1,300 a 2,600 personas (cálculo con prevalencia de 1–2 por 100,000)",
+    "diagnosticados": "Sin registro nacional; el INP documentó 31 pacientes en 18 años",
+    "fuente": "Verhaart et al. 2017; Acta Pediatr Mex (serie INP)",
+    "url": "https://actapediatrica.org.mx/descarga/1061"
+   },
+   "odisea": {
+    "texto": "Unos 28 meses entre el primer síntoma y el diagnóstico en la AME tipo 2 y unos 40 meses en la tipo 3 (medianas, INP)",
+    "fuente": "Acta Pediatr Mex, serie INP 2001–2019",
+    "url": "https://actapediatrica.org.mx/descarga/1061"
+   },
+   "sostenibilidad": "media"
+  },
+  {
+   "key": "dmd",
+   "nombre": "Distrofia muscular de Duchenne",
+   "corto": "Duchenne",
+   "sinonimos": [
+    "DMD",
+    "Duchenne",
+    "distrofia muscular",
+    "distrofia de Duchenne",
+    "distrofina",
+    "se cae mucho al caminar",
+    "le cuesta subir escaleras",
+    "se levanta del piso apoyándose en las piernas",
+    "camina de puntitas",
+    "camina como pato",
+    "pantorrillas grandes",
+    "pie plano que no mejora",
+    "CK alta",
+    "transaminasas altas en un niño"
+   ],
+   "grupo": "musculo",
+   "familia": "Enfermedad genética, casi siempre en varones, en la que falta una proteína que protege al músculo y este se debilita desde la infancia.",
+   "senales": [
+    "Tarda en sentarse o en caminar",
+    "Se cae mucho y le dicen que es \"pie plano\"",
+    "Le cuesta subir escaleras",
+    "Para levantarse del piso se apoya con las manos en sus piernas",
+    "Camina de puntitas o \"como pato\"",
+    "Tarda en hablar"
+   ],
+   "senales_medico": [
+    "Varón con CK muy elevada, aun como hallazgo casual",
+    "Transaminasas elevadas sin enfermedad hepática: pedir CK antes de referir a hepatología",
+    "Retraso psicomotor (sedestación después de los 6 meses, marcha tardía)",
+    "Caídas frecuentes atribuidas a \"pie plano\"",
+    "Signo de Gowers o dificultad para subir escaleras",
+    "Retraso global del desarrollo o del lenguaje en un varón",
+    "Pseudohipertrofia de pantorrillas y marcha de puntillas o anadeante"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": false,
+    "pemex": false,
+    "privado": null,
+    "nota": "No la detecta el tamiz de ninguna institución pública mexicana."
+   },
+   "brecha": {
+    "estimados": "≈3,700 a 4,500 personas (cálculo con prevalencia internacional)",
+    "diagnosticados": "119 pacientes en el INR, única cifra pública; sin registro nacional",
+    "fuente": "Crisafulli et al. 2020; LaSalud.mx, sep 2026",
+    "url": "https://lasalud.mx/2026/09/11/instituto-nacional-de-rehabilitacion-fortalece-la-atencion-de-pacientes-con-duchenne/"
+   },
+   "odisea": {
+    "texto": "Diagnóstico promedio a los 7 a 8 años en el INR; muchos llegan cuando ya no suben escaleras",
+    "fuente": "La Crónica, 2025 (INR)",
+    "url": "https://www.cronica.com.mx/nacional/2025/09/07/adecuado-tratamiento-en-distrofia-muscular-duchenne-permite-una-buena-calidad-de-vida/"
+   },
+   "sostenibilidad": "media-baja"
+  },
+  {
+   "key": "hem",
+   "nombre": "Hemofilia A y B",
+   "corto": "Hemofilia",
+   "sinonimos": [
+    "hemofilia",
+    "hemofilia A",
+    "hemofilia B",
+    "factor VIII",
+    "factor IX",
+    "sangra mucho",
+    "sangrado que no para",
+    "moretones grandes",
+    "se le hinchan las rodillas",
+    "articulación hinchada sin golpe",
+    "sangra al sacarle una muela",
+    "reglas muy abundantes",
+    "TTPa prolongado",
+    "coagulopatía"
+   ],
+   "grupo": "sangre",
+   "familia": "La sangre no coagula bien y hay sangrados largos, sobre todo en las articulaciones. Con tratamiento preventivo se vive casi normal.",
+   "senales": [
+    "Moretones grandes al empezar a gatear o caminar",
+    "Rodillas, codos o tobillos hinchados y dolorosos sin un golpe fuerte",
+    "Sangrados que tardan mucho en parar (vacunas, dientes, cortadas)",
+    "Sangrado prolongado después de una circuncisión o una extracción dental",
+    "En mujeres de la familia: reglas muy abundantes"
+   ],
+   "senales_medico": [
+    "Varón con manifestaciones hemorrágicas, aun sin antecedentes familiares",
+    "TTPa prolongado de forma aislada con TP y TT normales: medir actividad de FVIII y FIX",
+    "30% de los casos sin historia familiar",
+    "Hemartrosis sin trauma importante",
+    "Hematomas grandes al iniciar el gateo o la marcha",
+    "Sangrado prolongado tras circuncisión, vacunas o extracción dental; sangrado de cordón o cefalohematoma neonatal",
+    "Mujeres portadoras con sangrado menstrual abundante"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": false,
+    "pemex": false,
+    "privado": null,
+    "nota": "No se detecta en el tamiz neonatal; se recomienda estudiar a los familiares de los pacientes."
+   },
+   "brecha": {
+    "estimados": "≈13,350 personas esperadas (cálculo con prevalencia internacional)",
+    "diagnosticados": "6,691 registradas en 2024 (≈50%)",
+    "fuente": "Federación Mundial de Hemofilia, Annual Global Survey 2024",
+    "url": "https://www1.wfh.org/publications/files/pdf-2588.pdf"
+   },
+   "odisea": {
+    "texto": "19.5 meses de edad media al diagnóstico en niños de Villahermosa (rango de 1 mes a 4 años)",
+    "fuente": "Tesis UNAM, HRAE del Niño \"Dr. Rodolfo Nieto Padrón\"",
+    "url": "https://ru.dgb.unam.mx/server/api/core/bitstreams/03054dec-043e-40da-a5a2-c1759f7c5b4d/content"
+   },
+   "sostenibilidad": "alta"
+  },
+  {
+   "key": "pompe",
+   "nombre": "Enfermedad de Pompe (glucogenosis tipo II)",
+   "corto": "Pompe",
+   "sinonimos": [
+    "Pompe",
+    "glucogenosis tipo II",
+    "deficiencia de maltasa ácida",
+    "GAA",
+    "bebé de trapo",
+    "bebé flojito",
+    "no sostiene la cabeza",
+    "corazón grande en un bebé",
+    "lengua grande",
+    "camina como pato",
+    "le cuesta levantarse de la silla",
+    "sueño en el día",
+    "distrofia muscular sin diagnóstico",
+    "Myozyme",
+    "Lumizyme"
+   ],
+   "grupo": "musculo",
+   "familia": "Falta una enzima y se acumula glucógeno en los músculos, incluidos el corazón y los de la respiración. Puede empezar en bebés o en adultos.",
+   "senales": [
+    "Su bebé se ve \"de trapo\" y no sostiene la cabeza",
+    "Succiona débil y sube poco de peso",
+    "Infecciones respiratorias muy seguidas en el primer año",
+    "En jóvenes o adultos: cuesta levantarse o subir escaleras",
+    "Camina \"como pato\"",
+    "Sueño durante el día o dolor de cabeza al despertar"
+   ],
+   "senales_medico": [
+    "Lactante hipotónico con pobre succión y escasa ganancia de peso",
+    "Cardiomegalia o miocardiopatía hipertrófica en el lactante, con macroglosia y hepatomegalia",
+    "Infecciones o dificultad respiratoria recurrentes en el primer año",
+    "Adolescente o adulto con debilidad proximal y axial (89.5% en la cohorte mexicana)",
+    "Marcha anadeante e hiperlordosis",
+    "Somnolencia diurna, cefalea matutina u ortopnea por debilidad diafragmática",
+    "CK o transaminasas elevadas sin causa hepática y EMG miopática: incluir músculos paraespinales",
+    "Diagnóstico de \"distrofia muscular\" sin confirmación genética"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": null,
+    "pemex": true,
+    "privado": true,
+    "nota": "Pemex la incluye entre seis lisosomales; el Hospital Español también la tamiza."
+   },
+   "brecha": {
+    "estimados": "~3,150 personas (techo teórico con 1:40,000)",
+    "diagnosticados": "Menos de 100 (estimado 2013); ~30 en cohortes publicadas",
+    "fuente": "Rev Med IMSS 2013; Gac Med Mex 2022; Rev Neurol 2022",
+    "url": "https://revistamedica.imss.gob.mx/index.php/revista_medica/article/view/917"
+   },
+   "odisea": {
+    "texto": "19 años de mediana entre el primer síntoma y el diagnóstico en la forma tardía (rango 2 a 43)",
+    "fuente": "Rev Neurol 2022, cohorte mexicana de 19 pacientes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10280748/"
+   },
+   "sostenibilidad": "media"
+  },
+  {
+   "key": "mps1",
+   "nombre": "Mucopolisacaridosis tipo I (Hurler, Hurler-Scheie, Scheie)",
+   "corto": "MPS I (Hurler)",
+   "sinonimos": [
+    "MPS I",
+    "MPS 1",
+    "mucopolisacaridosis",
+    "Hurler",
+    "Scheie",
+    "Hurler-Scheie",
+    "hernia que regresa después de operar",
+    "jorobita en la espalda",
+    "cabeza grande",
+    "panza abultada",
+    "otitis muy seguidas",
+    "catarros todo el tiempo",
+    "articulaciones rígidas",
+    "córnea opaca",
+    "Aldurazyme"
+   ],
+   "grupo": "lisosomal",
+   "familia": "Falta una enzima y se acumulan azúcares complejos en huesos, articulaciones, corazón, ojos y, en la forma grave, en el cerebro.",
+   "senales": [
+    "Catarros u otitis muy seguidos desde los primeros meses",
+    "Hernia en el ombligo o la ingle que regresa después de operarse",
+    "Una \"jorobita\" en la parte baja de la espalda",
+    "Cabeza grande, facciones toscas y panza abultada",
+    "Articulaciones rígidas o que no se estiran bien",
+    "Retraso en el desarrollo"
+   ],
+   "senales_medico": [
+    "Infecciones de vías respiratorias altas u otitis recurrentes desde los primeros meses",
+    "Hernia umbilical o inguinal, sobre todo si recidiva tras la cirugía",
+    "Giba dorsolumbar baja (cifosis toracolumbar), signo temprano en la forma grave",
+    "Facies tosca, macrocefalia y hepatoesplenomegalia desde ~2 meses",
+    "Retraso del desarrollo en la forma grave",
+    "Rigidez y contracturas articulares como primera señal en la forma atenuada",
+    "Opacidad corneal, hipoacusia, valvulopatía y talla baja en la forma moderada (3 a 8 años)"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": null,
+    "pemex": true,
+    "privado": true,
+    "nota": "Pemex la tamiza; el Hospital Español también. No está en la Secretaría de Salud."
+   },
+   "brecha": {
+    "estimados": "~240 a 1,260 personas (techo teórico)",
+    "diagnosticados": "Sin cifra nacional; cohortes de 11, 4 y 3 pacientes",
+    "fuente": "GPC IMSS-338-10; Mendoza-Ruvalcaba 2020; Alonzo-Rojo 2017",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7198031"
+   },
+   "odisea": {
+    "texto": "Unos 6 años entre el primer síntoma y el diagnóstico en la forma atenuada (IMSS Guadalajara)",
+    "fuente": "Alonzo-Rojo et al., Genet Mol Res 2017",
+    "url": "https://geneticsmr.com/wp-content/uploads/2024/04/gmr.16032602.pdf"
+   },
+   "sostenibilidad": "media-baja"
+  },
+  {
+   "key": "mps4",
+   "nombre": "Mucopolisacaridosis tipo IVA (síndrome de Morquio A)",
+   "corto": "Morquio A",
+   "sinonimos": [
+    "Morquio",
+    "Morquio A",
+    "MPS IV",
+    "MPS IVA",
+    "MPS 4",
+    "mucopolisacaridosis",
+    "talla baja",
+    "no crece",
+    "tronco corto",
+    "cuello corto",
+    "joroba",
+    "rodillas hacia adentro",
+    "pie plano",
+    "Perthes",
+    "dolor de cadera",
+    "cojea",
+    "Vimizim"
+   ],
+   "grupo": "lisosomal",
+   "familia": "Falta una enzima y se acumula un azúcar complejo en huesos y cartílago: el niño crece poco y sus articulaciones se deforman.",
+   "senales": [
+    "Crece poco y tiene el tronco y el cuello cortos",
+    "Joroba en la espalda",
+    "Rodillas hacia adentro y pie plano",
+    "Dolor de cadera o cojera",
+    "Dientes con esmalte débil o mal alineados",
+    "Un hermano con problemas de huesos o infecciones respiratorias repetidas"
+   ],
+   "senales_medico": [
+    "Talla baja con tronco corto, giba dorsal, genu valgo y pie plano",
+    "Limitación o laxitud de grandes articulaciones con alteraciones esqueléticas radiológicas",
+    "Dolor de cadera y cojera diagnosticados como \"Perthes bilateral\"",
+    "Hernia umbilical o inguinal y hepatoesplenomegalia",
+    "Antecedente de hermano con infecciones respiratorias y displasia",
+    "Alteraciones del esmalte dental y maloclusión",
+    "Inestabilidad cervical y riesgo respiratorio en cirugía o anestesia"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": null,
+    "pemex": false,
+    "privado": null,
+    "nota": "Ningún tamiz mexicano documentado la incluye; Pemex solo cubre MPS I."
+   },
+   "brecha": {
+    "estimados": "~630 a 1,386 personas (techo teórico)",
+    "diagnosticados": "~50 personas (Grupo Fabry, 2022)",
+    "fuente": "Mendoza-Ruvalcaba 2020; UDGTV 2022",
+    "url": "https://udgtv.com/noticias/denuncian-que-el-imss-desatiende-a-derechohabientes-que-sufren-el-sindrome-de-morquio/44540"
+   },
+   "odisea": {
+    "texto": "Mediana de diagnóstico a los 6.8 años en León, la más tardía de todas las MPS",
+    "fuente": "Tesis UNAM 2023 (HRAE del Bajío y Hospital de Especialidades Pediátrico de León)",
+    "url": "https://ru.dgb.unam.mx/server/api/core/bitstreams/ec97314b-0ea3-42e5-bf99-14274f8c262b/content"
+   },
+   "sostenibilidad": "alta"
+  },
+  {
+   "key": "mps6",
+   "nombre": "Mucopolisacaridosis tipo VI (síndrome de Maroteaux-Lamy)",
+   "corto": "MPS VI",
+   "sinonimos": [
+    "Maroteaux-Lamy",
+    "MPS VI",
+    "MPS 6",
+    "mucopolisacaridosis",
+    "ronca mucho",
+    "nariz siempre tapada",
+    "deja de respirar al dormir",
+    "no crece",
+    "cabeza alargada",
+    "lengua grande",
+    "joroba",
+    "hernia",
+    "articulaciones rígidas",
+    "Naglazyme"
+   ],
+   "grupo": "lisosomal",
+   "familia": "Falta una enzima y se acumula un azúcar complejo en huesos, articulaciones, corazón y vías respiratorias. La inteligencia suele ser normal.",
+   "senales": [
+    "Ronca, respira por la boca o hace pausas al dormir",
+    "Nariz tapada con moco muy seguido",
+    "Crece y sube de peso poco desde el primer año",
+    "Hernia en el ombligo o la ingle",
+    "Cabeza alargada, lengua grande o joroba en la espalda",
+    "Articulaciones rígidas"
+   ],
+   "senales_medico": [
+    "Obstrucción de vía aérea alta, rinorrea purulenta, respiración oral y apneas del sueño en los primeros meses",
+    "Talla y peso bajos desde el primer año",
+    "Hernia inguinal o umbilical",
+    "Dolicocefalia, frente amplia y giba dorsolumbar",
+    "Macroglosia, facies tosca y hepatoesplenomegalia (consulta habitual entre los 6 y 24 meses)",
+    "Limitación de la movilidad articular y rigidez",
+    "Caminata de 6 minutos menor de 350 m o baja capacidad vital (criterios para iniciar TRE)"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": null,
+    "pemex": false,
+    "privado": null,
+    "nota": "Ningún tamiz mexicano documentado la incluye."
+   },
+   "brecha": {
+    "estimados": "~214 a 508 personas (techo teórico)",
+    "diagnosticados": "~15 a 30 visibles; 10 sin tratamiento en el INP (2026)",
+    "fuente": "GPC IMSS-498-11; Expoknews 2010; Frontera Informativa 2026",
+    "url": "https://fronterainformativa.com.mx/contenido/43638/pacientes-con-enfermedades-raras-denuncian-desabasto-de-tratamientos-en-mexico"
+   },
+   "odisea": {
+    "texto": "Mediana de diagnóstico a los 1.7 años en León y 10 meses más hasta iniciar tratamiento",
+    "fuente": "Tesis UNAM 2023",
+    "url": "https://ru.dgb.unam.mx/server/api/core/bitstreams/ec97314b-0ea3-42e5-bf99-14274f8c262b/content"
+   },
+   "sostenibilidad": "media-baja"
+  },
+  {
+   "key": "pku",
+   "nombre": "Fenilcetonuria (hiperfenilalaninemia)",
+   "corto": "Fenilcetonuria",
+   "sinonimos": [
+    "PKU",
+    "fenilcetonuria",
+    "hiperfenilalaninemia",
+    "HFA",
+    "fenilalanina",
+    "salió alterado el tamiz",
+    "prueba del talón alterada",
+    "olor a humedad",
+    "olor a moho en la orina",
+    "piel reseca",
+    "convulsiones",
+    "retraso en el desarrollo",
+    "fórmula especial",
+    "Phenex"
+   ],
+   "grupo": "tamiz",
+   "familia": "El cuerpo no procesa la fenilalanina de las proteínas y daña el cerebro. Con dieta y fórmula especial desde el inicio, el niño crece sano.",
+   "senales": [
+    "Le avisaron que la prueba del talón salió alterada",
+    "Olor a humedad o moho en el cuerpo o la orina",
+    "Irritabilidad o poco interés en su alrededor",
+    "Piel seca y descamada",
+    "Convulsiones",
+    "Retraso en el desarrollo"
+   ],
+   "senales_medico": [
+    "Tamiz no realizado o tomado fuera del día 3–5 de vida",
+    "Olor a humedad o moho",
+    "Irritabilidad, inquietud o apatía",
+    "Crisis convulsivas",
+    "Eccema",
+    "Microcefalia",
+    "Retraso del desarrollo psicomotor",
+    "Iniciar tratamiento de preferencia antes del día 10 de vida"
+   ],
+   "tamiz": {
+    "ssa": true,
+    "imss": true,
+    "pemex": true,
+    "privado": true,
+    "nota": "Está en el tamiz básico y en todos los paneles ampliados."
+   },
+   "brecha": {
+    "estimados": "≈1,180 en la cohorte de 0 a 18 años (≈65 casos nuevos al año; cálculo)",
+    "diagnosticados": "59 en seguimiento en el IMSS (2023); 219 confirmados por la SSA (2012–2018)",
+    "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 329/2023",
+    "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1719/1100"
+   },
+   "odisea": {
+    "texto": "El 82% de los niños afectados llegó al INP después del primer mes de vida",
+    "fuente": "Acta Pediatr Mex 2012",
+    "url": "https://actapediatrica.org.mx/descarga/4675"
+   },
+   "sostenibilidad": "alta"
+  },
+  {
+   "key": "gal",
+   "nombre": "Galactosemia",
+   "corto": "Galactosemia",
+   "sinonimos": [
+    "galactosemia",
+    "galactosa",
+    "intolerancia a la leche en recién nacido",
+    "salió alterado el tamiz",
+    "vomita la leche",
+    "muy amarillo",
+    "ictericia",
+    "hígado grande",
+    "cataratas en un bebé",
+    "bebé muy dormido",
+    "deficiencia de galactocinasa",
+    "GALT"
+   ],
+   "grupo": "tamiz",
+   "familia": "El bebé no puede procesar el azúcar de la leche, incluida la materna, y se vuelve tóxico. Cambiar de inmediato su alimentación salva vidas.",
+   "senales": [
+    "Vomita o rechaza la leche",
+    "Se pone muy amarillo o por mucho tiempo",
+    "Diarrea",
+    "Está muy dormido o \"flojito\"",
+    "Le avisaron que el tamiz salió alterado"
+   ],
+   "senales_medico": [
+    "Vómito, diarrea o rechazo al alimento al iniciar la leche",
+    "Ictericia intensa o prolongada",
+    "Hepatomegalia o falla hepática (89% de los neonatos sintomáticos)",
+    "Sepsis, en especial por E. coli",
+    "Cataratas",
+    "Letargia, hipotonía o irritabilidad",
+    "Sangrado o alteraciones de la coagulación"
+   ],
+   "tamiz": {
+    "ssa": true,
+    "imss": true,
+    "pemex": null,
+    "privado": null,
+    "nota": "Obligatoria en el tamiz básico desde 2011; el IMSS la tamiza desde 2012."
+   },
+   "brecha": {
+    "estimados": "≈730 en la cohorte de 0 a 18 años (≈40 casos nuevos al año; cálculo)",
+    "diagnosticados": "34 en seguimiento en el IMSS (2023); 169 confirmados por la SSA (2012–2018)",
+    "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 329/2023",
+    "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+   },
+   "odisea": null,
+   "sostenibilidad": "media"
+  },
+  {
+   "key": "hsc",
+   "nombre": "Hiperplasia suprarrenal congénita",
+   "corto": "Suprarrenal congénita",
+   "sinonimos": [
+    "HSC",
+    "hiperplasia suprarrenal",
+    "hiperplasia suprarrenal congénita",
+    "21-hidroxilasa",
+    "perdedora de sal",
+    "salió alterado el tamiz",
+    "17-OHP",
+    "genitales ambiguos",
+    "no se sabe si es niño o niña",
+    "vomita y se deshidrata",
+    "no sube de peso",
+    "pubertad adelantada",
+    "crisis adrenal",
+    "fludrocortisona"
+   ],
+   "grupo": "tamiz",
+   "familia": "Las glándulas suprarrenales no producen bien algunas hormonas. Algunos bebés tienen crisis graves; con medicina diaria se controla.",
+   "senales": [
+    "Una niña nace con genitales que no se ven típicos",
+    "Vómito y deshidratación en las primeras tres semanas",
+    "No sube de peso",
+    "Le avisaron que el tamiz salió alterado",
+    "Más adelante: pubertad muy temprana o crecimiento muy acelerado"
+   ],
+   "senales_medico": [
+    "Genitales ambiguos en recién nacida",
+    "Vómito y deshidratación en las semanas 1 a 3 (crisis perdedora de sal)",
+    "Pobre ganancia de peso",
+    "Hiponatremia o hiperpotasemia",
+    "Varón aparentemente sano con choque o \"sepsis\" sin foco",
+    "Pubertad precoz o crecimiento acelerado (formas no clásicas)",
+    "Abandono del tratamiento por falta de fludrocortisona"
+   ],
+   "tamiz": {
+    "ssa": true,
+    "imss": true,
+    "pemex": true,
+    "privado": null,
+    "nota": "Está en el tamiz básico (17-OHP); el IMSS la tamiza desde 2005."
+   },
+   "brecha": {
+    "estimados": "≈4,100 en la cohorte de 0 a 18 años (≈227 casos nuevos al año; cálculo)",
+    "diagnosticados": "871 en seguimiento en el IMSS (2023); 527 confirmados por la SSA (2012–2018)",
+    "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 329/2023",
+    "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1718/1099"
+   },
+   "odisea": null,
+   "sostenibilidad": "alta"
+  },
+  {
+   "key": "fq",
+   "nombre": "Fibrosis quística",
+   "corto": "Fibrosis quística",
+   "sinonimos": [
+    "FQ",
+    "fibrosis quística",
+    "mucoviscidosis",
+    "CFTR",
+    "sabe salado",
+    "sudor salado",
+    "bronquitis que no se quita",
+    "asma que no mejora",
+    "neumonías repetidas",
+    "diarrea con grasa",
+    "no sube de peso aunque coma",
+    "salió alterado el tamiz",
+    "prueba del sudor",
+    "Trikafta"
+   ],
+   "grupo": "tamiz",
+   "familia": "Un defecto genético hace el moco espeso y tapa pulmones y páncreas. Con diagnóstico temprano y tratamiento continuo, la vida se alarga.",
+   "senales": [
+    "Al besar a su bebé, sabe salado",
+    "\"Bronquitis\" o \"asma\" que no se quita",
+    "Neumonías o infecciones respiratorias repetidas",
+    "Diarrea frecuente o popó grasosa",
+    "No sube de peso aunque coma bien",
+    "Se deshidrata con facilidad"
+   ],
+   "senales_medico": [
+    "Sudor muy salado",
+    "Infecciones respiratorias o neumonías recurrentes; \"asma\" o \"bronquitis\" refractarias",
+    "Diarrea crónica o esteatorrea",
+    "Falla de medro con buena ingesta",
+    "Deshidratación",
+    "Sinusitis crónica",
+    "IRT elevado en el tamiz sin segunda muestra oportuna (solo 54% la obtuvo a tiempo)"
+   ],
+   "tamiz": {
+    "ssa": true,
+    "imss": true,
+    "pemex": null,
+    "privado": true,
+    "nota": "Está en el tamiz básico (IRT) y en el IMSS desde 2018; algunos estados, como BCS, no la reportan."
+   },
+   "brecha": {
+    "estimados": "≈212 casos nuevos al año (1:8,500; cálculo)",
+    "diagnosticados": "Solo el 15% se diagnostica en vida, según la AMFQ",
+    "fuente": "Grupo Animal (AMFQ); Rev Invest Clin 2013",
+    "url": "https://grupoanimal.mx/noticias/pacientes-fibrosis-quistica-padecen-atencion-deficiente-falta-medicamento-mexico"
+   },
+   "odisea": {
+    "texto": "Diagnóstico promedio a los 3.3 años con insuficiencia pancreática y a los 11.1 años con suficiencia",
+    "fuente": "Rev Invest Clin 2013, 230 pacientes mexicanos",
+    "url": "https://www.medigraphic.com/pdfs/revinvcli/nn-2013/nn136e.pdf"
+   },
+   "sostenibilidad": "media-alta"
+  },
+  {
+   "key": "msud",
+   "nombre": "Enfermedad de orina con olor a jarabe de arce",
+   "corto": "Orina jarabe de arce",
+   "sinonimos": [
+    "MSUD",
+    "jarabe de arce",
+    "maple",
+    "leucinosis",
+    "olor a jarabe en la orina",
+    "olor a piloncillo",
+    "olor dulce en la orina",
+    "bebé deja de comer",
+    "bebé muy dormido",
+    "convulsiones en recién nacido",
+    "aminoácidos de cadena ramificada"
+   ],
+   "grupo": "tamiz",
+   "familia": "El cuerpo no procesa tres aminoácidos de las proteínas, que en días intoxican el cerebro del bebé. Requiere fórmula especial de por vida.",
+   "senales": [
+    "Olor dulce, como a piloncillo o jarabe, en la orina, el sudor o la cera de los oídos",
+    "Deja de comer o succiona débil",
+    "Está cada vez más dormido",
+    "Vomita",
+    "Se pone rígido o muy flojo, o convulsiona"
+   ],
+   "senales_medico": [
+    "Olor a jarabe de arce en orina, sudor o cerumen",
+    "Rechazo al alimento o succión débil en la primera semana",
+    "Letargia progresiva",
+    "Vómito",
+    "Alternancia de hipotonía e hipertonía con posturas anormales",
+    "Convulsiones o coma"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": true,
+    "pemex": true,
+    "privado": true,
+    "nota": "No está en el tamiz básico; sí en IMSS (desde 2024), Semar, Pemex y paneles privados."
+   },
+   "brecha": {
+    "estimados": "≈10 casos nuevos al año (estimado con tasa internacional 1:185,000)",
+    "diagnosticados": "36 pacientes en el INP en 16 años (1991–2006)",
+    "fuente": "Gac Med Mex 2007; CEEIM IMSS 2023",
+    "url": "https://www.medigraphic.com/pdfs/gaceta/gm-2007/gm073d.pdf"
+   },
+   "odisea": {
+    "texto": "Diagnóstico a los 247 días en promedio en la serie del INP, con 50% de mortalidad",
+    "fuente": "Gac Med Mex 2007",
+    "url": "https://www.medigraphic.com/pdfs/gaceta/gm-2007/gm073d.pdf"
+   },
+   "sostenibilidad": "media-baja"
+  },
+  {
+   "key": "mcad",
+   "nombre": "Deficiencia de acil-CoA deshidrogenasa de cadena media",
+   "corto": "Deficiencia de MCAD",
+   "sinonimos": [
+    "MCAD",
+    "MCADD",
+    "oxidación de ácidos grasos",
+    "hipoglucemia",
+    "baja de azúcar",
+    "se pone mal cuando no come",
+    "vomita después de ayunar",
+    "muerte de cuna",
+    "muerte súbita de un bebé",
+    "convulsiones con fiebre y sin comer",
+    "síndrome de Reye"
+   ],
+   "grupo": "tamiz",
+   "familia": "Si pasa horas sin comer, el cuerpo no logra usar sus grasas y el azúcar baja mucho. Con tomas frecuentes y plan de emergencia se vive bien.",
+   "senales": [
+    "Vomita y está muy decaído después de pasar horas sin comer",
+    "Se pone muy mal durante una infección o diarrea",
+    "Convulsiones",
+    "En la familia hubo una muerte súbita de un bebé"
+   ],
+   "senales_medico": [
+    "Hipoglucemia sin cetonas durante ayuno o infección",
+    "Vómito y letargia tras ayuno, a menudo entre los 3 y 24 meses",
+    "Convulsiones",
+    "Hepatomegalia",
+    "Episodio tipo Reye",
+    "Muerte súbita del lactante o de un hermano",
+    "Muerte neonatal súbita, incluso antes del resultado del tamiz"
+   ],
+   "tamiz": {
+    "ssa": false,
+    "imss": true,
+    "pemex": true,
+    "privado": true,
+    "nota": "No está en el tamiz básico; sí en IMSS (desde 2024), Semar, Pemex y paneles privados."
+   },
+   "brecha": null,
+   "odisea": null,
+   "sostenibilidad": "baja"
+  },
+  {
+   "key": "hc",
+   "nombre": "Hipotiroidismo congénito",
+   "corto": "Hipotiroidismo",
+   "sinonimos": [
+    "hipotiroidismo congénito",
+    "HC",
+    "tiroides",
+    "TSH alta",
+    "salió alterado el tamiz",
+    "prueba del talón",
+    "bebé muy amarillo",
+    "estreñido",
+    "llanto ronco",
+    "lengua grande",
+    "hernia en el ombligo",
+    "muy dormido",
+    "levotiroxina"
+   ],
+   "grupo": "tamiz",
+   "familia": "El bebé nace sin suficiente hormona tiroidea y su cerebro no se desarrolla bien. Una pastilla diaria desde las primeras semanas lo evita.",
+   "senales": [
+    "Al nacer casi nunca hay señales: por eso se hace la prueba del talón",
+    "Se queda amarillo por mucho tiempo",
+    "Estreñimiento",
+    "Llanto ronco y mucho sueño",
+    "Piel seca y fría, lengua grande o hernia en el ombligo"
+   ],
+   "senales_medico": [
+    "Ictericia prolongada",
+    "Estreñimiento",
+    "Llanto ronco",
+    "Hernia umbilical",
+    "Piel seca y fría",
+    "Macroglosia",
+    "Somnolencia y succión pobre",
+    "Signos casi siempre ausentes al nacer: confirmar todo tamiz sospechoso"
+   ],
+   "tamiz": {
+    "ssa": true,
+    "imss": true,
+    "pemex": true,
+    "privado": true,
+    "nota": "Obligatorio desde 1988; lo hacen todas las instituciones."
+   },
+   "brecha": {
+    "estimados": "≈1,300 casos nuevos al año (1:1,373; cálculo)",
+    "diagnosticados": "3,952 en seguimiento en el IMSS (2023); 2,781 confirmados por la SSA (2012–2018)",
+    "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 329/2023",
+    "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1717/1098"
+   },
+   "odisea": {
+    "texto": "El 78.1% de los sospechosos se confirmó después del primer mes de vida (evaluación de 2008)",
+    "fuente": "Acta Pediatr Mex 2012",
+    "url": "https://actapediatrica.org.mx/descarga/4675"
+   },
+   "sostenibilidad": "alta"
+  }
+ ],
+ "corpus": [
+  {
+   "id": "ame1",
+   "enfermedad": "ame",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "La atrofia muscular espinal (AME 5q) es una enfermedad genética en la que se van perdiendo las neuronas de la médula espinal que mueven los músculos, y el bebé o el niño se debilita cada vez más. Hoy hay tratamientos que frenan su avance y funcionan mejor mientras antes se empiecen. En el mundo afecta a cerca de 1 de cada 10,000 recién nacidos; en México, un estudio piloto encontró 1 portador por cada 38 adultos.",
+   "fuente": "Orphanet ORPHA:70; Exp Ther Med 2015",
+   "url": "https://www.orpha.net/es/disease/detail/70"
+  },
+  {
+   "id": "ame2",
+   "enfermedad": "ame",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Pida valoración si su bebé se siente flojito o \"de trapo\", no sostiene la cabeza, tarda en sentarse o deja de hacer cosas que ya hacía, como sentarse o caminar. En la forma más grave los síntomas empiezan antes de los 6 meses y puede haber problemas para respirar o tragar.",
+   "fuente": "Orphanet ORPHA:70",
+   "url": "https://www.orpha.net/es/disease/detail/70"
+  },
+  {
+   "id": "ame3",
+   "enfermedad": "ame",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Sospechar ante hipotonía con retraso psicomotor, debilidad progresiva de predominio proximal (sobre todo en piernas) o pérdida de habilidades adquiridas. El inicio es antes de los 6 meses en el tipo 1, entre 6 y 18 meses en el tipo 2 y después de los 18 meses en el tipo 3. En la serie del INP el diagnóstico fue tardío en todos los pacientes, y los médicos de primer y segundo nivel \"no estaban sensibilizados\".",
+   "fuente": "Acta Pediatr Mex, serie INP",
+   "url": "https://actapediatrica.org.mx/descarga/1061"
+  },
+  {
+   "id": "ame4",
+   "enfermedad": "ame",
+   "publico": "medico",
+   "tema": "Retraso diagnóstico y confirmación",
+   "texto": "En 31 pacientes del INP (2001–2019), la mediana de inicio y de diagnóstico fue de 3 y 7 meses en el tipo 1, de 10 y 38 meses en el tipo 2, y de 18 y 58 meses en el tipo 3. La confirmación es genética: 23 de los 31 la tuvieron. En un foro legislativo de 2022 se advirtió que algunas instituciones prefieren no confirmar el diagnóstico si no pueden dar la terapia.",
+   "fuente": "Acta Pediatr Mex, serie INP; foro Cámara de Diputados 2022",
+   "url": "https://actapediatrica.org.mx/descarga/1061"
+  },
+  {
+   "id": "ame5",
+   "enfermedad": "ame",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "El nusinersen (Spinraza, intratecal, Biogen; clave 010.000.7089.00) y el risdiplam (Evrysdi, oral, Roche; clave 010.000.7088.00) están en el Cuadro Básico del IMSS, actualizado al 27 de julio de 2026. El nusinersen está indicado en AME 5q tipos 1 y 2 en pediatría y el risdiplam desde los 2 meses de edad. La terapia génica onasemnogén (Zolgensma, Novartis) no está en el Cuadro Básico.",
+   "fuente": "Cuadro Básico IMSS, Grupo 14 Neurología",
+   "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N14-Neurologia-R.pdf"
+  },
+  {
+   "id": "ame6",
+   "enfermedad": "ame",
+   "publico": "ambos",
+   "tema": "Acceso y amparos",
+   "texto": "En 2023 un tribunal de Monterrey ordenó al IMSS dar los medicamentos \"idóneos\" a una niña de 5 años con AME tipo 1, en un amparo iniciado en 2019. La Suprema Corte, a partir del caso de un niño con AME tipo 1 atendido en el CMN 20 de Noviembre, extendió la licencia por cuidados del IMSS y del ISSSTE más allá del cáncer.",
+   "fuente": "Órgano de Administración Judicial, nota 15/2023; SCJN AR 590/2023",
+   "url": "https://www.oaj.gob.mx/documentos/notasInformativas/docsNotasInformativas/2023/notaInformativa15.pdf"
+  },
+  {
+   "id": "ame7",
+   "enfermedad": "ame",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Tienen experiencia documentada el Instituto Nacional de Pediatría y el Hospital Infantil de México Federico Gómez (CDMX), el Antiguo Hospital Civil de Guadalajara y el Hospital Christus Muguerza Alta Especialidad (Monterrey). Los tres primeros fueron sede de ensayos de nusinersen. La terapia génica se aplica en centros especializados de CDMX, Guadalajara y Monterrey.",
+   "fuente": "ClinicalTrials.gov; Rev Med IMSS 2024",
+   "url": "https://clinicaltrials.gov/study/NCT04089566"
+  },
+  {
+   "id": "ame8",
+   "enfermedad": "ame",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "Hoy ningún programa público de tamiz en México detecta la AME al nacer. La SEDENA espera incorporarla por PCR a partir de diciembre de 2026, lo que la haría el primer programa público con esta prueba. En Estados Unidos ya forma parte del panel recomendado de tamiz.",
+   "fuente": "Gaceta Facultad de Medicina UNAM, jul 2026",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "id": "ame9",
+   "enfermedad": "ame",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "La Fundación CurAME A.C. hace incidencia legislativa, informa a familias y lanzó la campaña \"¿Cuántos somos? ¿Dónde estamos?\" para contar a los pacientes. En Monterrey existe la Fundación Atrofia Muscular Espinal México, formada por padres de familia.",
+   "fuente": "Boletín Cámara de Diputados 2022; Yo También",
+   "url": "https://comunicacion.diputados.gob.mx/sintesis/LINKSIN/160622_P_BOLETIN_0_REALIZANFORO_PERSONASCONATROFIAMUSCULARESPINAL_5PAN.pdf"
+  },
+  {
+   "id": "dmd1",
+   "enfermedad": "dmd",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "La distrofia muscular de Duchenne es una enfermedad genética ligada al cromosoma X que afecta casi siempre a varones. Falta la distrofina, una proteína que protege al músculo, y los músculos se debilitan desde la primera infancia; con los años se afectan también el corazón y la respiración. Orphanet estima entre 1 de cada 3,500 y 1 de cada 9,300 varones nacidos.",
+   "fuente": "Orphanet ORPHA:98896",
+   "url": "https://www.orpha.net/es/disease/detail/98896"
+  },
+  {
+   "id": "dmd2",
+   "enfermedad": "dmd",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Pida valoración si su hijo tarda en sentarse o en caminar, se cae mucho y le dicen que es \"pie plano\", le cuesta subir escaleras o se apoya en sus piernas con las manos para levantarse del piso. Según el Instituto Nacional de Rehabilitación, muchos niños llegan al diagnóstico cuando ya no pueden hacer estas cosas.",
+   "fuente": "La Crónica 2025 (INR)",
+   "url": "https://www.cronica.com.mx/nacional/2025/09/07/adecuado-tratamiento-en-distrofia-muscular-duchenne-permite-una-buena-calidad-de-vida/"
+  },
+  {
+   "id": "dmd3",
+   "enfermedad": "dmd",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Pensar en DMD ante un varón con CK muy elevada, aun como hallazgo casual: cuando la CK fue el primer dato, el retraso diagnóstico fue de 6.4 meses, frente a años en los demás casos. Las transaminasas elevadas sin enfermedad hepática llevan a envíos innecesarios a hepatología e incluso a biopsias de hígado, por lo que conviene pedir CK. El retraso global del desarrollo o del lenguaje en un varón también debe hacer sospechar.",
+   "fuente": "Frontiers in Pediatrics 2023",
+   "url": "https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2023.1276144/full"
+  },
+  {
+   "id": "dmd4",
+   "enfermedad": "dmd",
+   "publico": "medico",
+   "tema": "Edad al diagnóstico",
+   "texto": "En el INR la edad promedio al diagnóstico es de 7 a 8 años (2025). En cohortes de Estados Unidos el primer síntoma aparece a los 2.5 años y el diagnóstico llega a los 4.9 años; en el estudio FOR-DMD pasaron 25.9 meses hasta el diagnóstico genético.",
+   "fuente": "La Crónica 2025; Frontiers in Pediatrics 2023",
+   "url": "https://www.cronica.com.mx/nacional/2025/09/07/adecuado-tratamiento-en-distrofia-muscular-duchenne-permite-una-buena-calidad-de-vida/"
+  },
+  {
+   "id": "dmd5",
+   "enfermedad": "dmd",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "No se pudo verificar ninguna terapia específica para DMD con registro en México. Los esteroides deflazacort y prednisona están en el Cuadro Básico del IMSS, aunque el deflazacort con una indicación genérica y no específica para DMD; el INR los prescribe a los candidatos. Ataluren, los oligonucleótidos (eteplirsen, golodirsen, casimersen, viltolarsen) y la terapia génica no están en el Cuadro Básico.",
+   "fuente": "Cuadro Básico IMSS, Grupo 5",
+   "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+  },
+  {
+   "id": "dmd6",
+   "enfermedad": "dmd",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "El Instituto Nacional de Rehabilitación \"Luis Guillermo Ibarra Ibarra\" (Tlalpan, CDMX) es el primer Centro Duchenne de México y Latinoamérica certificado por la World Duchenne Organization. En septiembre de 2026 atendía a 119 pacientes, sobre todo de la CDMX y el Estado de México.",
+   "fuente": "Secretaría de Salud; LaSalud.mx 2026",
+   "url": "https://www.gob.mx/salud/prensa/038-inrlgii-primer-centro-latinoamericano-certificado-para-distrofia-de-duchenne?idiom=es"
+  },
+  {
+   "id": "dmd7",
+   "enfermedad": "dmd",
+   "publico": "ambos",
+   "tema": "Estimados y diagnosticados",
+   "texto": "Con la prevalencia internacional (7.1 por 100,000 varones) se esperarían unos 4,500 varones con DMD en México; es un cálculo del Observatorio. No hay registro nacional: la única cifra pública es la del INR, con 119 pacientes. Una especialista del INR habla de unas 6,000 personas, cifra que podría incluir la distrofia de Becker.",
+   "fuente": "Crisafulli et al. 2020; La Crónica 2025",
+   "url": "https://www.institut-myologie.org/en/?p=25667"
+  },
+  {
+   "id": "dmd8",
+   "enfermedad": "dmd",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "Duchenne México Parent Project A.C. ofrece información médica, guías, apoyo psicológico y un registro de pacientes. La Asociación Duchenne Tijuana A.C. acompañaba a 41 familias en 2020, y la Red Mexicana de Asociaciones de Distrofia Muscular agrupa a organizaciones de varios estados.",
+   "fuente": "Duchenne México; El Imparcial 2020",
+   "url": "https://duchennemexico.org/quienes-somos/"
+  },
+  {
+   "id": "dmd9",
+   "enfermedad": "dmd",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "La DMD no se detecta en el tamiz neonatal de ninguna institución pública mexicana: Secretaría de Salud, IMSS-Bienestar, ISSSTE, Pemex ni SEDENA. Por eso la sospecha clínica temprana y la medición de CK son la principal vía de diagnóstico.",
+   "fuente": "Gaceta Facultad de Medicina UNAM, jul 2026",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "id": "hem1",
+   "enfermedad": "hem",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "La hemofilia es una condición hereditaria en la que la sangre no coagula bien porque falta el factor VIII (hemofilia A) o el factor IX (hemofilia B). Se presenta casi siempre en varones y provoca moretones y sangrados prolongados, sobre todo dentro de las articulaciones. Con profilaxis regular se puede llevar una vida casi normal.",
+   "fuente": "IMSS Boletín 451/2026; Orphanet",
+   "url": "https://www.imss.gob.mx/sites/all/statics/i2f_news/IMSS.%20Bolet%C3%ADn.%20451.pdf"
+  },
+  {
+   "id": "hem2",
+   "enfermedad": "hem",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Consulte si su hijo tiene moretones grandes al empezar a gatear o caminar, articulaciones hinchadas y dolorosas sin un golpe fuerte, o sangrados que tardan en parar. En México el 30% de los casos no tiene antecedentes en la familia. Las mujeres portadoras con reglas muy abundantes también deben valorarse.",
+   "fuente": "Diario de Yucatán 2018 (CMN La Raza); Plano Informativo 2026",
+   "url": "https://www.yucatan.com.mx/salud/2018/04/10/hemofilia-enfermedad-puede-ocasionar-incapacidad-al-paciente.html"
+  },
+  {
+   "id": "hem3",
+   "enfermedad": "hem",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "La GPC del IMSS indica sospechar hemofilia en todo varón con manifestaciones hemorrágicas, aun sin antecedentes familiares. El hallazgo típico es un TTPa prolongado de forma aislada, con TP y TT normales; el siguiente paso es medir la actividad de los factores VIII y IX. Los casos graves pueden tener 50 o más sangrados al año.",
+   "fuente": "GPC-IMSS-141-18",
+   "url": "https://www.imss.gob.mx/sites/all/statics/guiasclinicas/141GER.pdf"
+  },
+  {
+   "id": "hem4",
+   "enfermedad": "hem",
+   "publico": "medico",
+   "tema": "Diagnóstico y odisea",
+   "texto": "En 24 niños del HRAE del Niño \"Dr. Rodolfo Nieto Padrón\" (Villahermosa), la edad media al diagnóstico fue de 19.5 meses, con rango de 1 mes a 4 años; la tesis menciona retrasos por falta de sospecha y de pruebas. El Consenso mexicano recomienda estudiar a los familiares de los pacientes y hacer diagnóstico prenatal o en sangre de cordón donde haya recursos.",
+   "fuente": "Tesis UNAM; Consenso de Hemofilia, Gac Med Mex 2021",
+   "url": "https://ru.dgb.unam.mx/server/api/core/bitstreams/03054dec-043e-40da-a5a2-c1759f7c5b4d/content"
+  },
+  {
+   "id": "hem5",
+   "enfermedad": "hem",
+   "publico": "ambos",
+   "tema": "Diagnosticados y brecha",
+   "texto": "El registro de la Federación de Hemofilia de la República Mexicana reportó en 2024 a 6,691 personas con hemofilia: 5,491 con hemofilia A, 836 con hemofilia B y 364 sin tipo especificado. Con la prevalencia internacional se esperarían unas 13,350, así que alrededor de la mitad no tiene diagnóstico.",
+   "fuente": "Federación Mundial de Hemofilia 2024",
+   "url": "https://www1.wfh.org/publications/files/pdf-2588.pdf"
+  },
+  {
+   "id": "hem6",
+   "enfermedad": "hem",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "El Cuadro Básico del IMSS (27 de julio de 2026) incluye emicizumab (Hemlibra, Roche), factores VIII plasmáticos y recombinantes, damoctocog alfa pegol (Bayer), factor IX, el complejo coagulante anti-inhibidor (FEIBA, Takeda) y eptacog alfa (Novo Nordisk) para pacientes con inhibidores. Concizumab, marstacimab, fitusiran, efanesoctocog alfa y la terapia génica no están incluidos; el consenso mexicano de 2026 pide integrarlos.",
+   "fuente": "Cuadro Básico IMSS, Grupo 10 Hematología",
+   "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N10-Hematologia-R.pdf"
+  },
+  {
+   "id": "hem7",
+   "enfermedad": "hem",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "El IMSS atiende a 6 de cada 10 personas registradas con hemofilia. La Clínica de Hemofilia del CMN La Raza atiende a unas 500, de ellas unas 170 niñas y niños. Más del 80% de los pacientes del IMSS recibe profilaxis gracias a un programa de atención domiciliaria, y existe un \"Código Hemofilia\" en urgencias.",
+   "fuente": "IMSS Boletín 451/2026",
+   "url": "https://www.imss.gob.mx/sites/all/statics/i2f_news/IMSS.%20Bolet%C3%ADn.%20451.pdf"
+  },
+  {
+   "id": "hem8",
+   "enfermedad": "hem",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "La Federación de Hemofilia de la República Mexicana A.C. (CDMX) lleva el registro nacional que se reporta a la Federación Mundial, agrupa a asociaciones estatales y organiza el Congreso Nacional de Hemofilia. En el sureste, la Asociación Tabasqueña de Hemofilia A.C. reúne a unas 550 personas.",
+   "fuente": "Federación Mundial de Hemofilia; LaSalud.mx 2022",
+   "url": "https://lasalud.mx/2022/12/12/historia-de-la-hemofilia-en-tabasco/"
+  },
+  {
+   "id": "hem9",
+   "enfermedad": "hem",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "La hemofilia no se detecta en el tamiz neonatal de ninguna institución mexicana. Por eso es clave sospecharla ante sangrados en varones y estudiar a los familiares de quienes ya tienen el diagnóstico.",
+   "fuente": "Gaceta Facultad de Medicina UNAM, jul 2026; Consenso 2021",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "id": "pom1",
+   "enfermedad": "pompe",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la enfermedad de Pompe (glucogenosis tipo II) falta una enzima que deshace el glucógeno dentro de las células; el glucógeno se acumula y daña los músculos, incluidos el corazón y los de la respiración. Puede aparecer en bebés, con el corazón agrandado, o en niños y adultos, con debilidad que avanza poco a poco. En México se desconoce su incidencia.",
+   "fuente": "Gac Med Mex 2022",
+   "url": "https://www.gacetamedicademexico.com/files/es/gmm_22_158_5_275-280.pdf"
+  },
+  {
+   "id": "pom2",
+   "enfermedad": "pompe",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "En un bebé: se ve \"de trapo\", no sostiene la cabeza, succiona débil, sube poco de peso o tiene infecciones respiratorias seguidas. En jóvenes y adultos: cuesta levantarse o subir escaleras, se camina \"como pato\" y hay sueño de día o dolor de cabeza al despertar, que pueden indicar debilidad del músculo de la respiración.",
+   "fuente": "Infogen",
+   "url": "https://infogen.org.mx/enfermedad-de-pompe/"
+  },
+  {
+   "id": "pom3",
+   "enfermedad": "pompe",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "En una cohorte mexicana de 19 pacientes con forma tardía, el 89.5% tenía debilidad proximal y axial y el 89.5% marcha anadeante. Sospechar ante CK o transaminasas elevadas sin causa hepática y EMG miopática, e incluir músculos paraespinales en la EMG, que solo se evaluaron en el 26% de los casos. En San Luis Potosí, el 6% de 49 adultos con diagnóstico de \"distrofia muscular\" resultó tener Pompe.",
+   "fuente": "Rev Neurol 2022; tesis UASLP 2025",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10280748/"
+  },
+  {
+   "id": "pom4",
+   "enfermedad": "pompe",
+   "publico": "medico",
+   "tema": "Odisea diagnóstica",
+   "texto": "En la forma tardía, la mediana entre el primer síntoma y el diagnóstico fue de 19 años (rango de 2 a 43). En la forma infantil, los síntomas empezaron a los 4 meses y el diagnóstico llegó a los 8 meses en mediana; los autores lo atribuyen al desconocimiento de la enfermedad en el ámbito médico.",
+   "fuente": "Rev Neurol 2022; Gac Med Mex 2022",
+   "url": "https://www.imrpress.com/journal/RN/75/5/10.33588/rn.7505.2022227"
+  },
+  {
+   "id": "pom5",
+   "enfermedad": "pompe",
+   "publico": "medico",
+   "tema": "Guías y cifras",
+   "texto": "Existe la GPC IMSS-506-11, \"Diagnóstico y Tratamiento de Glucogenosis tipo II\", y un documento del Grupo Mexicano de Estudio de la Enfermedad de Pompe (Rev Med IMSS 2013). En 2013 se estimaban menos de 100 casos en México, incluidos los fallecidos; hoy hay unas 30 personas en cohortes publicadas.",
+   "fuente": "Rev Med IMSS 2013",
+   "url": "https://revistamedica.imss.gob.mx/index.php/revista_medica/article/view/917"
+  },
+  {
+   "id": "pom6",
+   "enfermedad": "pompe",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "La alglucosidasa alfa (Sanofi), terapia de reemplazo enzimático de 20 mg/kg cada 2 semanas, está en el Cuadro Básico del IMSS con la clave 010.000.5548.00. La avalglucosidasa alfa (Nexviazyme, Sanofi) aparece en Vademecum México, pero no está en el Cuadro Básico. No se encontró el número de registro COFEPRIS.",
+   "fuente": "Cuadro Básico IMSS, Grupo 5",
+   "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+  },
+  {
+   "id": "pom7",
+   "enfermedad": "pompe",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Hay experiencia documentada en el CMN La Raza, el Hospital Central Militar, el INCMNSZ, el CMN 20 de Noviembre, el INP y el HIMFG (CDMX); el HE 25 del IMSS (Monterrey); el HE 14 del IMSS (Veracruz); el HRAE del Niño (Villahermosa); el Centenario Hospital Miguel Hidalgo (Aguascalientes) y el Hospital Central de San Luis Potosí, entre otros.",
+   "fuente": "Gac Med Mex 2022; Rev Neurol 2022",
+   "url": "https://www.gacetamedicademexico.com/files/es/gmm_22_158_5_275-280.pdf"
+  },
+  {
+   "id": "pom8",
+   "enfermedad": "pompe",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "Pemex incluye Pompe en su tamiz neonatal, junto con otras cinco enfermedades lisosomales. El Hospital Español (CDMX) también la tamiza: en 10,442 recién nacidos solo encontró pseudodeficiencias o portadores. No está en los paneles de la Secretaría de Salud.",
+   "fuente": "Gaceta Facultad de Medicina UNAM 2026; Rev Mex Pediatr 2023",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "id": "pom9",
+   "enfermedad": "pompe",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "No se encontró una asociación mexicana específica de Pompe. Grupo Fabry de México I.A.P. funciona como organización paraguas de enfermedades lisosomales, y el Proyecto Pide un Deseo México publicó un folleto para pacientes y familias con Pompe.",
+   "fuente": "Grupo Fabry de México; Pide un Deseo México",
+   "url": "https://issuu.com/pideundeseomexico/docs/informacion-para-px-y-familias-pomp"
+  },
+  {
+   "id": "mpa1",
+   "enfermedad": "mps1",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la mucopolisacaridosis tipo I falta la enzima alfa-L-iduronidasa, y unos azúcares complejos (glucosaminoglucanos) se acumulan en huesos, articulaciones, corazón, ojos y, en la forma grave, en el cerebro. La forma grave (Hurler) da síntomas en el primer año de vida; las formas atenuadas, en la infancia o la adolescencia. A nivel internacional afecta a 1 de cada 100,000 nacidos vivos.",
+   "fuente": "GPC IMSS-338-10",
+   "url": "https://dcs.uqroo.mx/paginas/guiasclinicas/gpc/docs/IMSS-338-10-ER.pdf"
+  },
+  {
+   "id": "mpa2",
+   "enfermedad": "mps1",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Consulte si su bebé tiene catarros u otitis muy seguidos, una hernia en el ombligo o la ingle que regresa después de operarse, una \"jorobita\" en la parte baja de la espalda, la cabeza grande o la panza abultada. En las formas leves, las articulaciones rígidas pueden ser la primera señal.",
+   "fuente": "GPC IMSS-338-10; Genet Mol Res 2017",
+   "url": "https://dcs.uqroo.mx/paginas/guiasclinicas/gpc/docs/IMSS-338-10-ER.pdf"
+  },
+  {
+   "id": "mpa3",
+   "enfermedad": "mps1",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Según la GPC IMSS-338-10: infecciones respiratorias altas u otitis recurrentes desde los primeros meses, hernia umbilical o inguinal recidivante, giba dorsolumbar, facies tosca, macrocefalia y hepatoesplenomegalia desde los 2 meses, y retraso del desarrollo. En la forma moderada (3 a 8 años) aparecen opacidad corneal, hipoacusia, valvulopatía y talla baja.",
+   "fuente": "GPC IMSS-338-10",
+   "url": "https://dcs.uqroo.mx/paginas/guiasclinicas/gpc/docs/IMSS-338-10-ER.pdf"
+  },
+  {
+   "id": "mpa4",
+   "enfermedad": "mps1",
+   "publico": "medico",
+   "tema": "Odisea diagnóstica",
+   "texto": "En 11 pacientes del IMSS Guadalajara, la forma grave empezó a los 7 meses y se diagnosticó a los 2.1 años; la atenuada empezó a los 1.6 años y se diagnosticó a los 7.6 años, unos 6 años de retraso. Solo el 27% se diagnosticó en el primer año. La incidencia observada en México (0.19 por 100,000 nacimientos) es unas cinco veces menor que la internacional, lo que sugiere subdiagnóstico.",
+   "fuente": "Genet Mol Res 2017; Mendoza-Ruvalcaba 2020",
+   "url": "https://geneticsmr.com/wp-content/uploads/2024/04/gmr.16032602.pdf"
+  },
+  {
+   "id": "mpa5",
+   "enfermedad": "mps1",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "La laronidasa (Aldurazyme), terapia de reemplazo enzimático semanal, está en el Cuadro Básico del IMSS con la clave 010.000.5547.00, en programa de control de la prescripción. En la forma grave, el trasplante de células hematopoyéticas es de elección antes de los 2 años. Grupo Fabry denunció que en instituciones públicas la terapia solo se prescribía a menores de 10 años.",
+   "fuente": "GPC IMSS-338-10; Cuadro Básico IMSS; LaSalud.mx 2026",
+   "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+  },
+  {
+   "id": "mpa6",
+   "enfermedad": "mps1",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "Pemex incluye la MPS I en su tamiz neonatal y documentó a un paciente detectado así que empezó tratamiento antes de los 2 meses y hoy tiene un desarrollo psicomotor adecuado. El Hospital Español también la tamiza. No está en el tamiz de la Secretaría de Salud ni en el del IMSS.",
+   "fuente": "Gaceta Facultad de Medicina UNAM, jul 2026",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "id": "mpa7",
+   "enfermedad": "mps1",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Hay experiencia documentada en el CMN de Occidente y el Centro de Investigación Biomédica de Occidente del IMSS (Guadalajara), el HRAE del Bajío y el Hospital de Especialidades Pediátrico de León, el INP y el HIMFG en la CDMX, y el INR para adultos.",
+   "fuente": "Genet Mol Res 2017; tesis UNAM 2023; LaSalud.mx 2026",
+   "url": "https://geneticsmr.com/wp-content/uploads/2024/04/gmr.16032602.pdf"
+  },
+  {
+   "id": "mpa8",
+   "enfermedad": "mps1",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "Grupo Fabry de México I.A.P. coordina un Programa Nacional de Pacientes que incluye a las mucopolisacaridosis. En 2024 reportó un registro de 203 pacientes con MPS, de los cuales 75 recibían atención.",
+   "fuente": "Swissinfo / EFE 2024",
+   "url": "https://www.swissinfo.ch/spa/ong-exige-mejorar-condiciones-de-salud-para-pacientes-con-mucopolisacaridosis-en-m%C3%A9xico/77652281"
+  },
+  {
+   "id": "mpq1",
+   "enfermedad": "mps4",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En el síndrome de Morquio A (MPS IVA) falta la enzima GALNS y un azúcar complejo, el queratán sulfato, se acumula sobre todo en huesos y cartílago. El niño crece poco, con tronco y cuello cortos, y sus articulaciones se deforman; la inteligencia suele ser normal. En un centro de referencia del IMSS en Guadalajara fue la MPS más frecuente, con 1.10 casos por 100,000 nacimientos.",
+   "fuente": "Mendoza-Ruvalcaba et al., Genet Mol Biol 2020",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7198031"
+  },
+  {
+   "id": "mpq2",
+   "enfermedad": "mps4",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Consulte si su hijo crece poco y tiene el tronco corto, una joroba en la espalda, las rodillas hacia adentro, pie plano, dolor de cadera o cojera, o problemas en el esmalte de los dientes. Si un hermano tuvo infecciones respiratorias repetidas y problemas de huesos, coméntelo con el médico.",
+   "fuente": "Cohorte del Bajío (PMC6349567); caso clínico PMC8930368",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6349567/"
+  },
+  {
+   "id": "mpq3",
+   "enfermedad": "mps4",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Sospechar ante talla baja con tronco corto, giba dorsal, genu valgo y pie plano, con alteraciones esqueléticas en la radiografía. En México hay un caso de Morquio que primero se diagnosticó como \"Perthes bilateral\", y los antecedentes familiares fueron la clave. Hay que vigilar la inestabilidad cervical y el compromiso respiratorio en cirugía o anestesia.",
+   "fuente": "Caso clínico PMC8930368; cohorte del Bajío",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8930368/"
+  },
+  {
+   "id": "mpq4",
+   "enfermedad": "mps4",
+   "publico": "medico",
+   "tema": "Odisea diagnóstica",
+   "texto": "En León, la mediana de edad al diagnóstico fue de 6.8 años, la más tardía de todas las MPS. El inicio del tratamiento se retrasó por la demora en el registro de la elosulfasa alfa en el cuadro básico.",
+   "fuente": "Tesis UNAM 2023",
+   "url": "https://ru.dgb.unam.mx/server/api/core/bitstreams/ec97314b-0ea3-42e5-bf99-14274f8c262b/content"
+  },
+  {
+   "id": "mpq5",
+   "enfermedad": "mps4",
+   "publico": "ambos",
+   "tema": "Tratamiento, cuadro básico y amparos",
+   "texto": "La elosulfasa alfa (Vimizim, BioMarin) está hoy en el Cuadro Básico del IMSS con la clave 010.000.6073.00. Antes, el IMSS negó el medicamento a un niño de Monterrey por estar fuera de su cuadro básico, y el caso llegó a la Suprema Corte (2021–2022). En 2026 todavía se denuncian interrupciones del tratamiento en el INP y en el Hospital de la Niñez Poblana.",
+   "fuente": "SCJN, Facultad de Atracción 52/2021; LaSalud.mx 2026",
+   "url": "https://www2.scjn.gob.mx/juridica/engroses/1/2021/24/2_279865_5789_firmado.pdf"
+  },
+  {
+   "id": "mpq6",
+   "enfermedad": "mps4",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Hay experiencia documentada en el HE 25 del IMSS (Monterrey); el INP, el HIMFG y el INR, que tiene un programa de transición a la atención de adultos (CDMX); el Hospital de la Niñez Poblana (Cholula); el HRAE del Bajío y el Hospital de Especialidades Pediátrico de León, y el CIBO del IMSS en Guadalajara para el diagnóstico enzimático.",
+   "fuente": "LaSalud.mx 2026; tesis UNAM 2023; SCJN 52/2021",
+   "url": "https://lasalud.mx/2026/05/15/un-nuevo-horizonte-en-la-atencion-de-mucopolisacaridosis-en-mexico/"
+  },
+  {
+   "id": "mpq7",
+   "enfermedad": "mps4",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "La MPS IVA no se detecta en ningún tamiz neonatal mexicano documentado; Pemex solo cubre la MPS tipo I. Por eso su diagnóstico depende de que el pediatra o el ortopedista reconozcan las señales.",
+   "fuente": "Gaceta Facultad de Medicina UNAM, jul 2026",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "id": "mpq8",
+   "enfermedad": "mps4",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "Grupo Fabry de México I.A.P. es la principal voz de los pacientes con Morquio. En 2022 estimó unas 50 personas con el síndrome en todo el país, 8 de ellas registradas en Jalisco, y denunció que en el IMSS ningún paciente con Morquio recibía terapia de reemplazo.",
+   "fuente": "UDGTV 2022",
+   "url": "https://udgtv.com/noticias/denuncian-que-el-imss-desatiende-a-derechohabientes-que-sufren-el-sindrome-de-morquio/44540"
+  },
+  {
+   "id": "mpv1",
+   "enfermedad": "mps6",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En el síndrome de Maroteaux-Lamy (MPS VI) falta la enzima arilsulfatasa B y el dermatán sulfato se acumula en huesos, articulaciones, corazón, vías respiratorias y córneas. Los niños crecen poco y tienen las articulaciones rígidas, pero su inteligencia suele ser normal. A nivel internacional afecta a 1 de cada 248,000 a 300,000 nacidos vivos.",
+   "fuente": "GPC IMSS-498-11",
+   "url": "http://www.imss.gob.mx/sites/all/statics/guiasclinicas/498GRR.pdf"
+  },
+  {
+   "id": "mpv2",
+   "enfermedad": "mps6",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Los papás suelen consultar entre los 6 y los 24 meses porque el niño ronca, tiene la nariz tapada con moco, respira por la boca o hace pausas al dormir. También pueden notar una hernia, que crece poco, la cabeza alargada, la lengua grande o una joroba en la espalda.",
+   "fuente": "GPC IMSS-498-11",
+   "url": "http://www.imss.gob.mx/sites/all/statics/guiasclinicas/498GRR.pdf"
+  },
+  {
+   "id": "mpv3",
+   "enfermedad": "mps6",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Según la GPC IMSS-498-11: síntomas respiratorios repetidos en los primeros meses (obstrucción de vía aérea alta, rinorrea purulenta, respiración oral, apneas del sueño), talla y peso bajos desde el primer año, hernia inguinal o umbilical, dolicocefalia, giba dorsolumbar, macroglosia, facies tosca y hepatoesplenomegalia. Una caminata de 6 minutos menor de 350 m o una capacidad vital baja son criterios para iniciar tratamiento.",
+   "fuente": "GPC IMSS-498-11",
+   "url": "http://www.imss.gob.mx/sites/all/statics/guiasclinicas/498GRR.pdf"
+  },
+  {
+   "id": "mpv4",
+   "enfermedad": "mps6",
+   "publico": "medico",
+   "tema": "Odisea diagnóstica",
+   "texto": "En León (3 pacientes), la mediana de edad al diagnóstico fue de 1.7 años y pasaron 10 meses más hasta iniciar el tratamiento. En 2010 se calculaban unos 15 pacientes con MPS VI en México sin tratamiento y unos 30 sin diagnosticar, porque la comunidad médica no estaba informada.",
+   "fuente": "Tesis UNAM 2023; Expoknews 2010",
+   "url": "https://ru.dgb.unam.mx/server/api/core/bitstreams/ec97314b-0ea3-42e5-bf99-14274f8c262b/content"
+  },
+  {
+   "id": "mpv5",
+   "enfermedad": "mps6",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "La galsulfasa (Naglazyme, BioMarin), 1 mg/kg a la semana, está en el Cuadro Básico del IMSS con la clave 010.000.5543.00. La primera terapia de reemplazo para MPS VI en México se aplicó en 2010 a un niño de 6 años en un hospital del ISSSTE de Guadalajara. En agosto de 2026 se denunció que 10 pacientes del INP estaban sin tratamiento.",
+   "fuente": "Cuadro Básico IMSS, Grupo 5; Expoknews 2010; Frontera Informativa 2026",
+   "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+  },
+  {
+   "id": "mpv6",
+   "enfermedad": "mps6",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Hay experiencia documentada en el INP (CDMX), el HRAE del Bajío y el Hospital de Especialidades Pediátrico de León, el CIBO del IMSS en Guadalajara (diagnóstico enzimático) y Christus Muguerza del Parque en Chihuahua, donde se hizo un estudio de tamizaje de MPS I, II y VI en niños de alto riesgo.",
+   "fuente": "Tesis UNAM 2023; ClinicalTrials.gov NCT02095015",
+   "url": "https://clinicaltrials.gov/study/NCT02095015"
+  },
+  {
+   "id": "mpv7",
+   "enfermedad": "mps6",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "La MPS VI no se detecta en ningún tamiz neonatal mexicano documentado. Un estudio con sede en Chihuahua la buscó en niños de alto riesgo, como los operados de hernia junto con cirugía de oído, nariz o garganta.",
+   "fuente": "ClinicalTrials.gov NCT02095015",
+   "url": "https://clinicaltrials.gov/study/NCT02095015"
+  },
+  {
+   "id": "mpv8",
+   "enfermedad": "mps6",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "Grupo Fabry de México I.A.P. y el Proyecto Pide un Deseo México acompañan a familias con mucopolisacaridosis; Pide un Deseo tiene videos de pacientes con MPS VI. La Asociación MPS JAJAX, de Guadalajara, organizó en 2010 el primer congreso de mucopolisacaridosis; no se sabe si sigue activa.",
+   "fuente": "Pide un Deseo México; Expoknews 2010",
+   "url": "https://www.pideundeseo.org/"
+  },
+  {
+   "id": "pku1",
+   "enfermedad": "pku",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la fenilcetonuria el cuerpo no puede procesar la fenilalanina, una parte de las proteínas, que se acumula y daña el cerebro. Con una dieta especial y fórmula médica desde las primeras semanas, el niño puede desarrollarse con normalidad. En el programa de la Secretaría de Salud se detectó 1 caso por cada 27,546 recién nacidos (2017–2018).",
+   "fuente": "Acta Pediatr Mex 2018",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1719/1100"
+  },
+  {
+   "id": "pku2",
+   "enfermedad": "pku",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "La prueba del talón la detecta antes de que haya síntomas; por eso es clave hacerla entre el día 3 y el 5 de vida. Si no se trata, el bebé puede tener olor a humedad en el cuerpo o la orina, irritabilidad, piel seca, convulsiones y retraso en el desarrollo. Si le llaman porque el tamiz salió alterado, acuda de inmediato a la prueba confirmatoria.",
+   "fuente": "IMSS; Acta Pediatr Mex 2018",
+   "url": "https://www.imss.gob.mx/sites/all/statics/i2f_news/057_DOC.doc"
+  },
+  {
+   "id": "pku3",
+   "enfermedad": "pku",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Las señales son tardías: olor a humedad o moho, irritabilidad o apatía, convulsiones, eccema, microcefalia y retraso psicomotor. El tratamiento debe empezar de preferencia antes del día 10 de vida. En el programa de la SSA, el 18.7% de las muestras se tomó después del día 5.",
+   "fuente": "Protocolo INP, Acta Pediatr Mex 2026; Acta Pediatr Mex 2018",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/3437/1763"
+  },
+  {
+   "id": "pku4",
+   "enfermedad": "pku",
+   "publico": "medico",
+   "tema": "Confirmación y seguimiento",
+   "texto": "En el programa de la SSA de 2017–2018, 220 de 793 sospechosos (27.7%) no se pudieron confirmar, sobre todo porque no se localizó a la familia. El 82% de los niños afectados llegó al INP después del primer mes de vida.",
+   "fuente": "Acta Pediatr Mex 2018; Acta Pediatr Mex 2012",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1719/1100"
+  },
+  {
+   "id": "pku5",
+   "enfermedad": "pku",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "El tratamiento es una dieta baja en fenilalanina con fórmulas libres de fenilalanina, como Phenex-1 y Phenex-2 (Abbott), Enastamine o Alfamir (Nucitec) y Beu 2 Intoleranz (Fraca); en 2020 una lata de 400 g costaba de 551 a 1,150 pesos. Las fórmulas de inicio y de seguimiento tienen las claves 010.000.5400.00 y 010.000.5401.00 en el catálogo del Consejo de Salubridad General. La sapropterina no está en el Cuadro Básico del IMSS.",
+   "fuente": "Bol Med Hosp Infant Mex; Acta Pediatr Mex 2018",
+   "url": "https://www.scielo.org.mx/pdf/bmim/v78n6/1665-1146-bmhim-78-6-612.pdf"
+  },
+  {
+   "id": "pku6",
+   "enfermedad": "pku",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Se atiende en el Laboratorio de Errores Innatos del Metabolismo y Tamiz del INP, en la Clínica de Excelencia en Errores Innatos del Metabolismo del CMN Siglo XXI del IMSS y en el módulo de enfermedad metabólica congénita del IMSS CDMX Norte. En Monterrey, en el Departamento de Genética del Hospital Universitario de la UANL.",
+   "fuente": "Acta Pediatr Mex; Salud Pública IMSS 2023; IMSS Boletín 329/2023",
+   "url": "https://www.medigraphic.com/pdfs/pediat/sp-2023/sp234h.pdf"
+  },
+  {
+   "id": "pku7",
+   "enfermedad": "pku",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal y guía",
+   "texto": "La detectan el tamiz básico de la Secretaría de Salud e IMSS-Bienestar, el IMSS, Pemex, Semar y los hospitales privados. La GPC IMSS-554-12 orienta el tratamiento dietético en los tres niveles de atención.",
+   "fuente": "Acta Pediatr Mex 2018; GPC IMSS-554-12",
+   "url": "https://www.imss.gob.mx/sites/all/statics/guiasclinicas/554GER.pdf"
+  },
+  {
+   "id": "pku8",
+   "enfermedad": "pku",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "La Asociación Mexicana de Fenilcetonuria, A.C. fue una de las organizaciones fundadoras de la alianza internacional de fenilcetonuria en 2017.",
+   "fuente": "ESPKU 2017",
+   "url": "https://www.espku.org/wp-content/uploads/2017/08/Global-PKU-announcment-August-1-2017.pdf"
+  },
+  {
+   "id": "gal1",
+   "enfermedad": "gal",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la galactosemia el bebé no puede procesar la galactosa, el azúcar de la leche, incluida la materna, y esta se vuelve tóxica para el hígado, los ojos y el cerebro. Cambiar de inmediato a una alimentación sin galactosa puede salvarle la vida. En el programa de la Secretaría de Salud se detectó 1 caso por cada 44,443 recién nacidos.",
+   "fuente": "Acta Pediatr Mex 2018",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "id": "gal2",
+   "enfermedad": "gal",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Si su bebé vomita o rechaza la leche, se pone muy amarillo o por mucho tiempo, tiene diarrea o está muy dormido o \"flojito\", acuda de inmediato. Si le avisan que el tamiz salió alterado, no espere a que haya síntomas.",
+   "fuente": "GPC Galactosemia (IMSS)",
+   "url": "https://nutritotal.com.br/pro/wp-content/uploads/2015/09/437-GER_Galactosemia.pdf"
+  },
+  {
+   "id": "gal3",
+   "enfermedad": "gal",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "En un recién nacido que empieza a tomar leche: vómito, diarrea o rechazo al alimento, ictericia intensa o prolongada, hepatomegalia o falla hepática (presente en el 89% de los neonatos sintomáticos), sepsis por E. coli, cataratas, letargia o hipotonía y alteraciones de la coagulación.",
+   "fuente": "GPC Galactosemia (IMSS)",
+   "url": "https://nutritotal.com.br/pro/wp-content/uploads/2015/09/437-GER_Galactosemia.pdf"
+  },
+  {
+   "id": "gal4",
+   "enfermedad": "gal",
+   "publico": "medico",
+   "tema": "Formas y confirmación",
+   "texto": "En Nuevo León, 5 de 6 casos detectados tenían variantes en GALK1 (deficiencia de galactocinasa) y no en GALT (galactosemia clásica), así que las cifras del tamiz mezclan formas de gravedad distinta. Un caso diagnosticado por clínica llegó ya con sepsis, falla hepática y cataratas, y otro se diagnosticó a los 7 años por bajo rendimiento escolar.",
+   "fuente": "Rev Mex Pediatr 88(4)",
+   "url": "https://www.scielo.org.mx/pdf/rmp/v88n4/0035-0052-rmp-88-04-143.pdf"
+  },
+  {
+   "id": "gal5",
+   "enfermedad": "gal",
+   "publico": "ambos",
+   "tema": "Tratamiento",
+   "texto": "El tratamiento es una dieta sin galactosa de por vida, con fórmula de soya o elemental, y vigilancia de calcio, vitamina D y densitometría desde los 8 a 10 años. No hay un fármaco específico aprobado en México. La GPC IMSS-536-12 orienta el tamizaje, el diagnóstico y la intervención nutricional.",
+   "fuente": "Acta Pediatr Mex 2018; GPC IMSS-536-12",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1724/1105"
+  },
+  {
+   "id": "gal6",
+   "enfermedad": "gal",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Se atiende en el INP y en la Clínica de Excelencia en Errores Innatos del Metabolismo del CMN Siglo XXI del IMSS, en la CDMX, y en el Hospital Universitario de la UANL, en Monterrey.",
+   "fuente": "Acta Pediatr Mex 2018; Rev Mex Pediatr 88(4)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1724/1105"
+  },
+  {
+   "id": "gal7",
+   "enfermedad": "gal",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "La detección de galactosemia es obligatoria desde 2011 y está en el tamiz básico de la Secretaría de Salud; el IMSS la tamiza desde 2012. En 2023 el IMSS daba seguimiento a 34 pacientes detectados por tamiz.",
+   "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 329/2023",
+   "url": "https://www.imss.gob.mx/sites/all/statics/i2f_news/IMSS.%20Bolet%C3%ADn.%20329_0.docx"
+  },
+  {
+   "id": "hsc1",
+   "enfermedad": "hsc",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la hiperplasia suprarrenal congénita las glándulas suprarrenales no producen bien cortisol ni aldosterona y producen hormonas masculinas de más. Algunos bebés pierden sal y pueden morir en una crisis en las primeras semanas; con medicamento diario se controla. México tiene casi el doble de frecuencia que el promedio europeo: 1 de cada 7,920 recién nacidos en el programa de la SSA.",
+   "fuente": "GPC IMSS-715-14; Acta Pediatr Mex 2018",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1718/1099"
+  },
+  {
+   "id": "hsc2",
+   "enfermedad": "hsc",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Acuda de inmediato si su bebé vomita, no sube de peso o se ve deshidratado en las primeras tres semanas, o si al nacer una niña tiene genitales que no se ven típicos. En los varones la enfermedad puede no notarse al nacer. Si el tamiz salió alterado, no espere: la crisis puede ser grave.",
+   "fuente": "Salud Jalisco 2025",
+   "url": "https://www.medigraphic.com/pdfs/saljalisco/sj-2025/sj253i.pdf"
+  },
+  {
+   "id": "hsc3",
+   "enfermedad": "hsc",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Sospechar ante genitales ambiguos en una recién nacida, vómito y deshidratación en las semanas 1 a 3, pobre ganancia de peso, hiponatremia o hiperpotasemia y, en formas no clásicas, pubertad precoz o crecimiento acelerado. La crisis adrenal es la principal causa de muerte.",
+   "fuente": "Acta Pediatr Mex 2018; Salud Jalisco 2025",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1718/1099"
+  },
+  {
+   "id": "hsc4",
+   "enfermedad": "hsc",
+   "publico": "medico",
+   "tema": "Confirmación y seguimiento",
+   "texto": "En el tamiz de la SSA de 2017–2018 hubo 1,820 sospechosos: 106 fallecieron y 408 no fueron localizados. La SSA no confirma con espectrometría de masas en tándem ni con estudios genéticos.",
+   "fuente": "Acta Pediatr Mex 2018",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1718/1099"
+  },
+  {
+   "id": "hsc5",
+   "enfermedad": "hsc",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "El tratamiento es hidrocortisona (10 a 20 mg/m² al día) más fludrocortisona. La fludrocortisona está en el Cuadro Básico del IMSS, pero no se encontró hidrocortisona oral pediátrica: solo el succinato inyectable. Un caso del IMSS en Jalisco tuvo una crisis adrenal tras abandonar el tratamiento por el difícil acceso a la fludrocortisona.",
+   "fuente": "GPC IMSS-715-14; Cuadro Básico IMSS; Salud Jalisco 2025",
+   "url": "https://www.imss.gob.mx/sites/all/statics/guiasclinicas/715GER.pdf"
+  },
+  {
+   "id": "hsc6",
+   "enfermedad": "hsc",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Hay experiencia documentada en el INP (CDMX), el HGR 46 del IMSS (Guadalajara), el Hospital Universitario de la UANL (Monterrey) y los Servicios de Sanidad de la Secretaría de Marina.",
+   "fuente": "Acta Pediatr Mex 2018; Salud Jalisco 2025",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1718/1099"
+  },
+  {
+   "id": "hsc7",
+   "enfermedad": "hsc",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "Está en el tamiz básico de la Secretaría de Salud (17-OHP) y el IMSS la tamiza desde 2005. En 2023 el IMSS daba seguimiento a 871 niñas y niños con HSC detectados por tamiz. Campeche, Guerrero y Nuevo León tuvieron las tasas más altas en el programa de la SSA.",
+   "fuente": "IMSS Boletín 329/2023; Acta Pediatr Mex 2018",
+   "url": "https://www.imss.gob.mx/sites/all/statics/i2f_news/IMSS.%20Bolet%C3%ADn.%20329_0.docx"
+  },
+  {
+   "id": "cfq1",
+   "enfermedad": "fq",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la fibrosis quística un defecto genético hace que el moco sea espeso y tape pulmones y páncreas, lo que causa infecciones repetidas y desnutrición. Diagnosticada temprano y con tratamiento continuo, la vida se alarga mucho. La OMS estima 1 caso por cada 8,500 nacidos vivos; la incidencia real en México es desconocida.",
+   "fuente": "Rev Invest Clin 2013; GPC IMSS-627-13",
+   "url": "https://www.medigraphic.com/pdfs/revinvcli/nn-2013/nn136e.pdf"
+  },
+  {
+   "id": "cfq2",
+   "enfermedad": "fq",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Consulte si al besar a su bebé sabe salado, si tiene \"bronquitis\" o \"asma\" que no se quita, neumonías repetidas, diarrea con grasa o no sube de peso aunque coma bien.",
+   "fuente": "Quadratín 2013; Grupo Animal",
+   "url": "https://mexico.quadratin.com.mx/revelan-tratamiento-que-evita-muerte-prematura-a-ninos-con-fibrosis-quistica/"
+  },
+  {
+   "id": "cfq3",
+   "enfermedad": "fq",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Señales de alarma: sudor muy salado, infecciones respiratorias o neumonías repetidas, diarrea crónica o esteatorrea, falla de medro pese a buena ingesta, deshidratación y sinusitis crónica. En el tamiz de la SSA, solo el 54% de los bebés con IRT elevado tuvo a tiempo la segunda muestra.",
+   "fuente": "Acta Pediatr Mex 2018",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1720/1101"
+  },
+  {
+   "id": "cfq4",
+   "enfermedad": "fq",
+   "publico": "medico",
+   "tema": "Confirmación y odisea",
+   "texto": "El tamiz usa tripsinógeno inmunorreactivo (IRT/IRT) y se confirma con prueba de sudor; en 2017 había 10 laboratorios de prueba de sudor en el país. En 230 pacientes mexicanos, la edad promedio al diagnóstico fue de 3.3 años con insuficiencia pancreática y de 11.1 años con suficiencia.",
+   "fuente": "Rev Invest Clin 2013; Grupo Animal",
+   "url": "https://www.medigraphic.com/pdfs/revinvcli/nn-2013/nn136e.pdf"
+  },
+  {
+   "id": "cfq5",
+   "enfermedad": "fq",
+   "publico": "ambos",
+   "tema": "Tratamiento y cuadro básico",
+   "texto": "COFEPRIS autorizó en septiembre de 2024 el elexacaftor/tezacaftor/ivacaftor (Trikafta, Vertex) desde los 2 años, pero no está en el Cuadro Básico del IMSS y cuesta unos 300 mil pesos al mes. El Cuadro Básico sí incluye alfa-dornasa, pancreatina y tobramicina inhalada, aunque las familias reportan que la tobramicina es casi imposible de conseguir.",
+   "fuente": "ADN40 2024; El Congresista; Cuadro Básico IMSS",
+   "url": "https://www.adn40.mx/salud/2024-09-29/por-que-cofepris-autoriza-el-tratamiento-para-fibrosis-quistica-en-mexico/"
+  },
+  {
+   "id": "cfq6",
+   "enfermedad": "fq",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Se atiende en la Clínica de Fibrosis Quística del HIMFG, el INP, el INER y el CMN Siglo XXI del IMSS (CDMX); el Hospital Civil \"Dr. Juan I. Menchaca\" (Guadalajara) y el CEPREP del Hospital Universitario de la UANL (Monterrey). El INMEGEN apoya el diagnóstico molecular.",
+   "fuente": "ClinicalTrials.gov; UdeG; Rev Invest Clin 2013",
+   "url": "https://www.comsoc.udg.mx/printpdf/62163"
+  },
+  {
+   "id": "cfq7",
+   "enfermedad": "fq",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "La fibrosis quística está en el tamiz básico de la Secretaría de Salud y el IMSS la incluye desde 2018, aunque algunos estados, como Baja California Sur, no la reportan en su panel. No hay un sistema formal de seguimiento ni de notificación de falsos negativos.",
+   "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 329/2023",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1720/1101"
+  },
+  {
+   "id": "cfq8",
+   "enfermedad": "fq",
+   "publico": "familia",
+   "tema": "Asociaciones y apoyo",
+   "texto": "La Asociación Mexicana de Fibrosis Quística, A.C. (AMFQ), fundada en 1982 en la CDMX, estima que solo el 15% de los casos se diagnostica en vida. También existen la Asociación de Fibrosis Quística de Occidente (Guadalajara) y la Asociación Regiomontana de Fibrosis Quística (Monterrey).",
+   "fuente": "GAAPP; Grupo Animal; UdeG",
+   "url": "https://gaapp.org/?p=14303"
+  },
+  {
+   "id": "msu1",
+   "enfermedad": "msud",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la enfermedad de orina con olor a jarabe de arce el cuerpo no puede procesar tres aminoácidos de las proteínas (leucina, isoleucina y valina), que se acumulan y en pocos días intoxican el cerebro del bebé. Requiere fórmula especial de por vida y atención urgente cada vez que el niño se enferma.",
+   "fuente": "Gac Med Mex 2007",
+   "url": "https://www.medigraphic.com/pdfs/gaceta/gm-2007/gm073d.pdf"
+  },
+  {
+   "id": "msu2",
+   "enfermedad": "msud",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Acuda de inmediato a urgencias si su recién nacido tiene olor dulce, como a piloncillo o jarabe, en la orina, el sudor o la cera de los oídos, deja de comer, vomita o está cada vez más dormido. Los síntomas suelen empezar en la primera semana de vida.",
+   "fuente": "Manual MSD; CEEIM IMSS 2023",
+   "url": "https://www.msdmanuals.com/es/professional/pediatr%C3%ADa/trastornos-hereditarios-del-metabolismo/trastornos-del-metabolismo-de-los-amino%C3%A1cidos-de-cadena-ramificada"
+  },
+  {
+   "id": "msu3",
+   "enfermedad": "msud",
+   "publico": "medico",
+   "tema": "Señales y odisea",
+   "texto": "Señales en la primera semana: olor a jarabe de arce, rechazo al alimento o succión débil, letargia progresiva, vómito, alternancia de hipotonía e hipertonía con posturas anormales, convulsiones o coma. En la serie del INP (36 pacientes, 1991–2006), 33 se diagnosticaron después de los síntomas, a una edad promedio de 247 días, y la mortalidad fue del 50%.",
+   "fuente": "Gac Med Mex 2007",
+   "url": "https://www.medigraphic.com/pdfs/gaceta/gm-2007/gm073d.pdf"
+  },
+  {
+   "id": "msu4",
+   "enfermedad": "msud",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "El tamiz básico de la Secretaría de Salud no la detecta. Sí la detectan el IMSS desde 2024, Semar, Pemex, los paneles privados de 76 enfermedades y el programa de la UANL en Nuevo León. En la serie del INP, los dos niños tamizados en Estados Unidos tienen desarrollo normal, y el único detectado en México no recibió tratamiento adecuado y murió a los 3 meses.",
+   "fuente": "IJNS 2023; IMSS Boletín 238/2024; Gac Med Mex 2007",
+   "url": "https://www.mdpi.com/2409-515x/9/4/59"
+  },
+  {
+   "id": "msu5",
+   "enfermedad": "msud",
+   "publico": "ambos",
+   "tema": "Tratamiento y dónde se atiende",
+   "texto": "El tratamiento es una fórmula libre de leucina, isoleucina y valina, con manejo especializado de las crisis. Se atiende en la Unidad de Genética de la Nutrición del INP, en la Clínica de Excelencia en Errores Innatos del Metabolismo del CMN Siglo XXI (IMSS) y en el HIMFG. No se encontraron claves de Cuadro Básico para sus fórmulas.",
+   "fuente": "Gac Med Mex 2007; CEEIM IMSS 2023",
+   "url": "https://www.medigraphic.com/pdfs/pediat/sp-2023/sp234h.pdf"
+  },
+  {
+   "id": "mca1",
+   "enfermedad": "mcad",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En la deficiencia de MCAD el cuerpo no puede usar bien sus grasas como energía cuando pasa horas sin comer, y una infección o un ayuno pueden provocar una baja grave de azúcar. Con tomas frecuentes y un plan de emergencia, los niños hacen vida normal. En 33 años, el INP documentó solo 7 casos.",
+   "fuente": "IJNS 2023",
+   "url": "https://www.mdpi.com/2409-515x/9/4/59"
+  },
+  {
+   "id": "mca2",
+   "enfermedad": "mcad",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Acuda a urgencias si su bebé o niño vomita, está muy decaído o convulsiona después de pasar varias horas sin comer o durante una infección. Comente con el médico si en la familia hubo una muerte súbita de un bebé.",
+   "fuente": "Mayo Clinic",
+   "url": "https://www.mayoclinic.org/es/diseases-conditions/mcad-deficiency/diagnosis-treatment/drc-20353747"
+  },
+  {
+   "id": "mca3",
+   "enfermedad": "mcad",
+   "publico": "medico",
+   "tema": "Señales y sospecha",
+   "texto": "Sospechar ante hipoglucemia sin cetonas durante ayuno o infección, vómito y letargia tras ayuno (a menudo entre los 3 y 24 meses), convulsiones, hepatomegalia, episodio tipo Reye o antecedente de muerte súbita de un hermano. Puede causar muerte neonatal súbita incluso antes de que llegue el resultado del tamiz.",
+   "fuente": "Mayo Clinic; PMC9110443",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9110443/"
+  },
+  {
+   "id": "mca4",
+   "enfermedad": "mcad",
+   "publico": "ambos",
+   "tema": "Tamiz y tratamiento",
+   "texto": "El tamiz básico de la Secretaría de Salud no la detecta; sí la detectan el IMSS desde 2024, Semar, Pemex y los paneles privados. El tratamiento consiste en evitar el ayuno, dar tomas frecuentes y tener un plan de emergencia con glucosa intravenosa. No se encontró L-carnitina en el Cuadro Básico del IMSS.",
+   "fuente": "IMSS Boletín 238/2024; Acta Pediatr Mex 2014",
+   "url": "https://imss.gob.mx/prensa/archivo/202405/238"
+  },
+  {
+   "id": "mca5",
+   "enfermedad": "mcad",
+   "publico": "ambos",
+   "tema": "Dónde se atiende",
+   "texto": "Hay experiencia documentada en el INP y en la Clínica de Excelencia en Errores Innatos del Metabolismo del CMN Siglo XXI del IMSS, en la CDMX, y en el Hospital Universitario de la UANL, en Monterrey.",
+   "fuente": "IJNS 2023; CEEIM IMSS 2023",
+   "url": "https://www.mdpi.com/2409-515x/9/4/59"
+  },
+  {
+   "id": "hcg1",
+   "enfermedad": "hc",
+   "publico": "ambos",
+   "tema": "Qué es",
+   "texto": "En el hipotiroidismo congénito el bebé nace sin hormona tiroidea suficiente y, sin ella, el cerebro no se desarrolla. Una pastilla diaria de levotiroxina, iniciada en las primeras semanas, previene el daño. Es la enfermedad más frecuente del tamiz: 1 de cada 1,373 recién nacidos en el programa de la SSA (2017–2018), y el 61% son niñas.",
+   "fuente": "Acta Pediatr Mex 2018",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1717/1098"
+  },
+  {
+   "id": "hcg2",
+   "enfermedad": "hc",
+   "publico": "familia",
+   "tema": "Señales para la familia",
+   "texto": "Al nacer casi nunca hay señales; por eso se hace la prueba del talón. Más adelante el bebé puede quedarse amarillo por mucho tiempo, estar estreñido, muy dormido, con llanto ronco, piel seca y fría, lengua grande o hernia en el ombligo.",
+   "fuente": "Orphanet ORPHA:442 (descripción clínica estándar)",
+   "url": "https://www.orpha.net/en/disease/detail/442"
+  },
+  {
+   "id": "hcg3",
+   "enfermedad": "hc",
+   "publico": "medico",
+   "tema": "Señales y confirmación",
+   "texto": "Las señales (ictericia prolongada, estreñimiento, llanto ronco, hernia umbilical, piel seca y fría, macroglosia, somnolencia y succión pobre) casi siempre están ausentes al nacer. En 2018 se confirmó menos del 80% de los casos sospechosos de hipotiroidismo, la cifra más baja del panel, y en 2008 el 78.1% de los sospechosos se confirmó después del primer mes.",
+   "fuente": "Acta Pediatr Mex 2018; Acta Pediatr Mex 2012",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1716/1097"
+  },
+  {
+   "id": "hcg4",
+   "enfermedad": "hc",
+   "publico": "ambos",
+   "tema": "Tratamiento y dónde se atiende",
+   "texto": "El tratamiento es levotiroxina de 10 a 15 µg/kg, que está en el Cuadro Básico del IMSS. Se da seguimiento en el primer nivel (PrevenIMSS, centros de salud) y en endocrinología pediátrica; en 2023 el IMSS hizo 219 referencias a endocrinología.",
+   "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 238/2024",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1717/1098"
+  },
+  {
+   "id": "hcg5",
+   "enfermedad": "hc",
+   "publico": "ambos",
+   "tema": "Tamiz neonatal",
+   "texto": "El tamiz de hipotiroidismo congénito es obligatorio desde 1988 y lo hacen todas las instituciones; el IMSS lo aplica desde 1994. La frecuencia cambia mucho entre estados: de 18.0 por 10,000 en Durango a 1.6 en Tabasco. En 2023 el IMSS daba seguimiento a 3,952 niñas y niños.",
+   "fuente": "Acta Pediatr Mex 2018; IMSS Boletín 329/2023",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1717/1098"
+  }
+ ],
+ "puntos": [
+  {
+   "l": "h",
+   "n": "Instituto Nacional de Pediatría",
+   "c": "Ciudad de México (Coyoacán), Ciudad de México",
+   "lat": 19.2906,
+   "lon": -99.1642,
+   "d": [
+    "ame",
+    "dmd",
+    "hem",
+    "pompe",
+    "mps1",
+    "mps4",
+    "mps6",
+    "pku",
+    "gal",
+    "hsc",
+    "fq",
+    "msud",
+    "mcad"
+   ],
+   "x": "Centro de referencia pediátrico: serie de 31 pacientes con AME, ensayos de AME, Duchenne y hemofilia, terapia de reemplazo para MPS y Laboratorio de Errores Innatos del Metabolismo y Tamiz.",
+   "f": "Acta Pediatr Mex (serie AME); IJNS 2023; ClinicalTrials.gov",
+   "u": "https://actapediatrica.org.mx/descarga/1061"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Infantil de México Federico Gómez",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4116,
+   "lon": -99.1525,
+   "d": [
+    "ame",
+    "hem",
+    "pompe",
+    "mps1",
+    "mps4",
+    "fq",
+    "msud"
+   ],
+   "x": "Neurología pediátrica y ensayos de nusinersen, estudio SIPPET de hemofilia, primer caso mexicano de Pompe de inicio tardío y Clínica de Fibrosis Quística.",
+   "f": "ClinicalTrials.gov; Bol Med HIM 2014",
+   "u": "https://clinicaltrials.gov/study/NCT04089566"
+  },
+  {
+   "l": "h",
+   "n": "UMAE Hospital de Pediatría, Centro Médico Nacional Siglo XXI (IMSS)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4062,
+   "lon": -99.1548,
+   "d": [
+    "ame",
+    "dmd",
+    "hem",
+    "pku",
+    "gal",
+    "msud",
+    "mcad",
+    "fq"
+   ],
+   "x": "Clínica de Excelencia en Errores Innatos del Metabolismo, unidades de investigación en genética, nutrición y enfermedades respiratorias, y ensayos de hemofilia.",
+   "f": "Salud Pública IMSS 2023; ClinicalTrials.gov",
+   "u": "https://www.medigraphic.com/pdfs/pediat/sp-2023/sp234h.pdf"
+  },
+  {
+   "l": "h",
+   "n": "UMAE Hospital General \"Dr. Gaudencio González Garza\", Centro Médico Nacional La Raza (IMSS)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.466,
+   "lon": -99.1405,
+   "d": [
+    "hem",
+    "pompe"
+   ],
+   "x": "Clínica de Hemofilia con unos 500 pacientes (170 niños) y más de 30 años de experiencia; casos publicados de Pompe infantil.",
+   "f": "IMSS Boletín 451/2026; Gac Med Mex 2022",
+   "u": "https://www.imss.gob.mx/sites/all/statics/i2f_news/IMSS.%20Bolet%C3%ADn.%20451.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Centro Médico Nacional 20 de Noviembre (ISSSTE)",
+   "c": "Ciudad de México (Benito Juárez), Ciudad de México",
+   "lat": 19.3726,
+   "lon": -99.1782,
+   "d": [
+    "ame",
+    "pompe"
+   ],
+   "x": "Atención de un niño con AME tipo 1 (caso que llegó a la Suprema Corte) y de pacientes con Pompe de inicio tardío.",
+   "f": "SCJN AR 590/2023; Rev Neurol 2022",
+   "u": "https://www.supremacorte.gob.mx/sites/default/files/listas/documento_dos/2024-02/AR%20590.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Central Militar (SEDENA)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4426,
+   "lon": -99.2132,
+   "d": [
+    "ame",
+    "pompe"
+   ],
+   "x": "Participó en el foro legislativo de AME; SEDENA prepara el tamiz de AME. Atiende pacientes con Pompe.",
+   "f": "Boletín Cámara de Diputados 2022; Gac Med Mex 2022",
+   "u": "https://comunicacion.diputados.gob.mx/sintesis/LINKSIN/160622_P_BOLETIN_0_REALIZANFORO_PERSONASCONATROFIAMUSCULARESPINAL_5PAN.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Instituto Nacional de Rehabilitación \"Luis Guillermo Ibarra Ibarra\"",
+   "c": "Ciudad de México (Tlalpan), Ciudad de México",
+   "lat": 19.2893,
+   "lon": -99.1534,
+   "d": [
+    "dmd",
+    "mps1",
+    "mps4"
+   ],
+   "x": "Primer Centro Duchenne certificado de México y Latinoamérica (119 pacientes) y atención de adultos con mucopolisacaridosis.",
+   "f": "Secretaría de Salud; LaSalud.mx 2026",
+   "u": "https://www.gob.mx/salud/prensa/038-inrlgii-primer-centro-latinoamericano-certificado-para-distrofia-de-duchenne?idiom=es"
+  },
+  {
+   "l": "h",
+   "n": "Hospital General de México \"Dr. Eduardo Liceaga\"",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4128,
+   "lon": -99.153,
+   "d": [
+    "hem"
+   ],
+   "x": "Sede del ensayo de emicizumab en pacientes con inhibidores (NCT03191799).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03191799"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Regional \"General Ignacio Zaragoza\" (ISSSTE)",
+   "c": "Ciudad de México (Iztapalapa), Ciudad de México",
+   "lat": 19.4086,
+   "lon": -99.0573,
+   "d": [
+    "hem"
+   ],
+   "x": "Sede de autores del consenso mexicano de hemofilia de 2026.",
+   "f": "Diseases 2026 (consenso)",
+   "u": "https://www.mdpi.com/2079-9721/14/7/259"
+  },
+  {
+   "l": "h",
+   "n": "Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán",
+   "c": "Ciudad de México (Tlalpan), Ciudad de México",
+   "lat": 19.289,
+   "lon": -99.156,
+   "d": [
+    "pompe"
+   ],
+   "x": "Atención de adultos con Pompe de inicio tardío.",
+   "f": "Rev Neurol 2022",
+   "u": "https://www.imrpress.com/journal/RN/75/5/10.33588/rn.7505.2022227"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Central Sur de Alta Especialidad (Pemex)",
+   "c": "Ciudad de México (Tlalpan), Ciudad de México",
+   "lat": 19.303,
+   "lon": -99.204,
+   "d": [
+    "pku",
+    "msud",
+    "mcad",
+    "pompe",
+    "mps1"
+   ],
+   "x": "Tamiz neonatal de 76 enfermedades, incluidas seis lisosomales; un bebé con MPS I detectado así inició tratamiento antes de los 2 meses.",
+   "f": "Rev Mex Pediatr 2023; Gaceta FacMed UNAM 2026",
+   "u": "https://www.scielo.org.mx/pdf/rmp/v90n2/0035-0052-rmp-90-02-57.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Español de México",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4403,
+   "lon": -99.1932,
+   "d": [
+    "pku",
+    "pompe",
+    "mps1"
+   ],
+   "x": "Tamiz privado de 76 condiciones con seis lisosomales; 10,442 recién nacidos tamizados de 2016 a 2023.",
+   "f": "Rev Mex Pediatr 2023",
+   "u": "https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0035-00522023000600221&lng=pt&nrm=iso"
+  },
+  {
+   "l": "h",
+   "n": "Módulo de atención a niños con enfermedad metabólica congénita, IMSS CDMX Norte",
+   "c": "Ciudad de México (norte), Ciudad de México",
+   "lat": 19.48,
+   "lon": -99.13,
+   "d": [
+    "pku",
+    "gal"
+   ],
+   "x": "Módulo creado en 2012 para el seguimiento de niñas y niños detectados por tamiz.",
+   "f": "IMSS Boletín 329/2023",
+   "u": "https://www.imss.gob.mx/sites/all/statics/i2f_news/IMSS.%20Bolet%C3%ADn.%20329_0.docx"
+  },
+  {
+   "l": "h",
+   "n": "Instituto Nacional de Enfermedades Respiratorias (INER)",
+   "c": "Ciudad de México (Tlalpan), Ciudad de México",
+   "lat": 19.2925,
+   "lon": -99.1575,
+   "d": [
+    "fq"
+   ],
+   "x": "Atención de fibrosis quística y sede de un ensayo con glicina (NCT01417481).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT01417481"
+  },
+  {
+   "l": "h",
+   "n": "Instituto Nacional de Medicina Genómica (INMEGEN)",
+   "c": "Ciudad de México (Tlalpan), Ciudad de México",
+   "lat": 19.303,
+   "lon": -99.18,
+   "d": [
+    "fq"
+   ],
+   "x": "Diagnóstico molecular de fibrosis quística.",
+   "f": "Rev Invest Clin 2013",
+   "u": "https://www.medigraphic.com/pdfs/revinvcli/nn-2013/nn136e.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Instituto de Investigaciones Biomédicas, UNAM",
+   "c": "Ciudad de México (Coyoacán), Ciudad de México",
+   "lat": 19.329,
+   "lon": -99.183,
+   "d": [
+    "msud"
+   ],
+   "x": "Participó en la serie de 36 pacientes con MSUD del INP.",
+   "f": "Gac Med Mex 2007",
+   "u": "https://www.medigraphic.com/pdfs/gaceta/gm-2007/gm073d.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Servicios de Sanidad de la Secretaría de Marina (Semar)",
+   "c": "Ciudad de México (Coyoacán), Ciudad de México",
+   "lat": 19.326,
+   "lon": -99.12,
+   "d": [
+    "hsc",
+    "msud",
+    "mcad",
+    "pku",
+    "gal",
+    "fq"
+   ],
+   "x": "Tamiz neonatal ampliado con 99.43% de cobertura en 2012–2014, que incluye MSUD y MCAD.",
+   "f": "Acta Pediatr Mex 2014",
+   "u": "https://www.scielo.org.mx/pdf/apm/v35n6/v35n6a3.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Grupo Médico Camino",
+   "c": "Ciudad de México (Benito Juárez), Ciudad de México",
+   "lat": 19.372,
+   "lon": -99.158,
+   "d": [
+    "pku"
+   ],
+   "x": "Sitio del ensayo de sepiapterina para fenilcetonuria (NCT05099640).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05099640"
+  },
+  {
+   "l": "h",
+   "n": "Sistema Infantil Teletón (25 CRIT)",
+   "c": "Nacional (sede de referencia: Tlalnepantla, México)",
+   "lat": 19.537,
+   "lon": -99.195,
+   "d": [
+    "ame",
+    "dmd"
+   ],
+   "x": "Convenio con Roche (2026) para detectar enfermedades neuromusculares en sus 25 centros.",
+   "f": "Enfarma 2026",
+   "u": "https://www.enfarma.lat/index.php/noticias/12573-roche-mexico-y-fundacion-teleton-impulsan-deteccion-oportuna-y-atencion-integral-de-enfermedades-neuromusculares"
+  },
+  {
+   "l": "h",
+   "n": "Antiguo Hospital Civil de Guadalajara \"Fray Antonio Alcalde\"",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6868,
+   "lon": -103.3466,
+   "d": [
+    "ame",
+    "dmd"
+   ],
+   "x": "Sede de ensayos de nusinersen y de OAV101 intratecal para AME, y de un ensayo de Duchenne (NCT03400852).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05089656"
+  },
+  {
+   "l": "h",
+   "n": "Nuevo Hospital Civil de Guadalajara \"Dr. Juan I. Menchaca\"",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.694,
+   "lon": -103.337,
+   "d": [
+    "hem",
+    "fq"
+   ],
+   "x": "Neumología pediátrica con niños con fibrosis quística y sede de un ensayo de hemofilia (NCT00543439).",
+   "f": "UdeG 2019; ClinicalTrials.gov",
+   "u": "https://www.comsoc.udg.mx/printpdf/62163"
+  },
+  {
+   "l": "h",
+   "n": "UMAE Hospital de Pediatría, Centro Médico Nacional de Occidente (IMSS) y Centro de Investigación Biomédica de Occidente",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6858,
+   "lon": -103.3242,
+   "d": [
+    "hem",
+    "mps1",
+    "mps4",
+    "mps6"
+   ],
+   "x": "Laboratorio de referencia enzimática para MPS, cohorte de 11 pacientes con MPS I y sede del estudio SIPPET de hemofilia.",
+   "f": "Genet Mol Res 2017; Mendoza-Ruvalcaba 2020; ClinicalTrials.gov",
+   "u": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7198031"
+  },
+  {
+   "l": "h",
+   "n": "Hospital del ISSSTE en Guadalajara (nombre exacto no indicado)",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.683,
+   "lon": -103.415,
+   "d": [
+    "ame",
+    "mps6"
+   ],
+   "x": "Neurología pediátrica que participó en el foro de AME de 2022; ahí se aplicó en 2010 la primera terapia para MPS VI en México.",
+   "f": "Boletín Cámara de Diputados 2022; Expoknews 2010",
+   "u": "https://comunicacion.diputados.gob.mx/sintesis/LINKSIN/160622_P_BOLETIN_0_REALIZANFORO_PERSONASCONATROFIAMUSCULARESPINAL_5PAN.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Hospital General Regional No. 46 (IMSS)",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.644,
+   "lon": -103.33,
+   "d": [
+    "hsc"
+   ],
+   "x": "Caso publicado de crisis adrenal por difícil acceso a fludrocortisona.",
+   "f": "Salud Jalisco 2025",
+   "u": "https://www.medigraphic.com/pdfs/saljalisco/sj-2025/sj253i.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Hospital General de Occidente (Zoquipan)",
+   "c": "Zapopan, Jalisco",
+   "lat": 20.709,
+   "lon": -103.359,
+   "d": [
+    "hem"
+   ],
+   "x": "Hemato-Oncología Pediátrica; sitio del ensayo NCT03695978 en pacientes no tratados previamente.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03695978"
+  },
+  {
+   "l": "h",
+   "n": "PanAmerican Clinical Research",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.674,
+   "lon": -103.387,
+   "d": [
+    "pku"
+   ],
+   "x": "Sitio de ensayos de sepiapterina para fenilcetonuria.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05099640"
+  },
+  {
+   "l": "h",
+   "n": "Unidad Médica de Occidente e Instituto Jalisciense de Investigación Clínica",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.675,
+   "lon": -103.37,
+   "d": [
+    "fq"
+   ],
+   "x": "Sitio del ensayo de manitol inhalado en fibrosis quística (NCT02134353).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02134353"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Christus Muguerza Alta Especialidad",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.672,
+   "lon": -100.353,
+   "d": [
+    "ame"
+   ],
+   "x": "Sede del registro latinoamericano de AME (NCT05475691).",
+   "f": "ClinicalTrials.gov; Rev Med IMSS 2024",
+   "u": "https://clinicaltrials.gov/study/NCT05475691"
+  },
+  {
+   "l": "h",
+   "n": "Hospital San José TecSalud",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.656,
+   "lon": -100.344,
+   "d": [
+    "ame"
+   ],
+   "x": "Caso publicado de terapia combinada con nusinersen y onasemnogén.",
+   "f": "Rev Med IMSS",
+   "u": "https://revistamedica.imss.gob.mx/index.php/revista_medica/article/view/4155"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Universitario \"Dr. José Eleuterio González\" (UANL)",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.689,
+   "lon": -100.349,
+   "d": [
+    "hem",
+    "pku",
+    "gal",
+    "hsc",
+    "fq",
+    "msud",
+    "mcad"
+   ],
+   "x": "Sede de más de 8 ensayos de hemofilia, Departamento de Genética y tamiz por espectrometría de masas en tándem; CEPREP para fibrosis quística.",
+   "f": "ClinicalTrials.gov; Salud Publica Mex 2008",
+   "u": "https://clinicaltrials.gov/study/NCT04082429"
+  },
+  {
+   "l": "h",
+   "n": "UMAE Hospital de Especialidades No. 25, Centro Médico Nacional del Noreste (IMSS)",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.687,
+   "lon": -100.296,
+   "d": [
+    "pompe",
+    "mps4"
+   ],
+   "x": "Atención de pacientes con Pompe y del niño con Morquio cuyo caso llegó a la Suprema Corte.",
+   "f": "Gac Med Mex 2022; SCJN 52/2021",
+   "u": "https://www2.scjn.gob.mx/juridica/engroses/1/2021/24/2_279865_5789_firmado.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Escuela de Medicina, Tecnológico de Monterrey",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.651,
+   "lon": -100.29,
+   "d": [
+    "fq"
+   ],
+   "x": "Sitio del estudio de síndrome de obstrucción intestinal en fibrosis quística (NCT04613063).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04613063"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Ángeles Chihuahua",
+   "c": "Chihuahua, Chihuahua",
+   "lat": 28.638,
+   "lon": -106.086,
+   "d": [
+    "dmd"
+   ],
+   "x": "Sede de ensayos de ataluren y viltolarsen para Duchenne.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03179631"
+  },
+  {
+   "l": "h",
+   "n": "Christus Muguerza Hospital del Parque",
+   "c": "Chihuahua, Chihuahua",
+   "lat": 28.639,
+   "lon": -106.077,
+   "d": [
+    "mps1",
+    "mps6"
+   ],
+   "x": "Sede del estudio de tamizaje de MPS I, II y VI en niños de alto riesgo (NCT02095015).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02095015"
+  },
+  {
+   "l": "h",
+   "n": "Hospital General \"Presidente Lázaro Cárdenas\" (ISSSTE)",
+   "c": "Chihuahua, Chihuahua",
+   "lat": 28.653,
+   "lon": -106.087,
+   "d": [
+    "hem"
+   ],
+   "x": "Sede de autores del consenso mexicano de hemofilia de 2026.",
+   "f": "Diseases 2026 (consenso)",
+   "u": "https://www.mdpi.com/2079-9721/14/7/259"
+  },
+  {
+   "l": "h",
+   "n": "Centro de Salud de Témoris (telemedicina estatal)",
+   "c": "Guazapares, Chihuahua",
+   "lat": 27.27,
+   "lon": -108.27,
+   "d": [
+    "hem"
+   ],
+   "x": "Seguimiento por telemedicina y entrega del medicamento en la comunidad a un niño con hemofilia.",
+   "f": "Gobierno de Chihuahua",
+   "u": "https://www.chihuahua.gob.mx/prensa/madre-e-hijo-enfrentan-la-hemofilia-con-apoyo-de-la-telemedicina"
+  },
+  {
+   "l": "h",
+   "n": "Neurociencias Estudios Clínicos S.C.",
+   "c": "Culiacán, Sinaloa",
+   "lat": 24.8,
+   "lon": -107.394,
+   "d": [
+    "dmd"
+   ],
+   "x": "Sede de ensayos de eteplirsen, golodirsen y casimersen para Duchenne.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03992430"
+  },
+  {
+   "l": "h",
+   "n": "Instituto de Investigaciones Clínicas para la Salud A.C.",
+   "c": "Durango, Durango",
+   "lat": 24.0277,
+   "lon": -104.6532,
+   "d": [
+    "dmd"
+   ],
+   "x": "Sede de ensayos de Duchenne.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02500381"
+  },
+  {
+   "l": "h",
+   "n": "CRIT Teletón Baja California",
+   "c": "Tijuana, Baja California",
+   "lat": 32.515,
+   "lon": -117.01,
+   "d": [
+    "dmd"
+   ],
+   "x": "Terapia física de niños con Duchenne; ahí nació la Asociación Duchenne Tijuana.",
+   "f": "El Imparcial 2020",
+   "u": "https://www.elimparcial.com/tij/tijuana/2020/09/07/asociacion-apoya-menores-con-distrofia-muscular-de-duchenne-y-a-sus-padres/"
+  },
+  {
+   "l": "h",
+   "n": "Hospital General del Estado de Sonora",
+   "c": "Hermosillo, Sonora",
+   "lat": 29.089,
+   "lon": -110.96,
+   "d": [
+    "pompe"
+   ],
+   "x": "Atención de pacientes con Pompe de inicio tardío (nombre en la afiliación: \"Hospital General de Hermosillo\").",
+   "f": "Rev Neurol 2022",
+   "u": "https://www.imrpress.com/journal/RN/75/5/10.33588/rn.7505.2022227"
+  },
+  {
+   "l": "h",
+   "n": "Hospital General de Zona No. 1 (IMSS)",
+   "c": "La Paz, Baja California Sur",
+   "lat": 24.142,
+   "lon": -110.31,
+   "d": [
+    "pompe"
+   ],
+   "x": "Diagnóstico de un caso de Pompe infantil.",
+   "f": "Gac Med Mex 2022",
+   "u": "https://www.gacetamedicademexico.com/files/es/gmm_22_158_5_275-280.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Centenario Hospital Miguel Hidalgo",
+   "c": "Aguascalientes, Aguascalientes",
+   "lat": 21.878,
+   "lon": -102.29,
+   "d": [
+    "pompe",
+    "mps1"
+   ],
+   "x": "Diagnóstico de Pompe infantil y experiencia en MPS por ensayos de MPS II y VII.",
+   "f": "Gac Med Mex 2022; ClinicalTrials.gov",
+   "u": "https://www.gacetamedicademexico.com/files/es/gmm_22_158_5_275-280.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Central \"Dr. Ignacio Morones Prieto\"",
+   "c": "San Luis Potosí, San Luis Potosí",
+   "lat": 22.146,
+   "lon": -100.988,
+   "d": [
+    "pompe"
+   ],
+   "x": "Experiencia en Pompe; en San Luis Potosí el 6% de 49 adultos con diagnóstico de distrofia muscular tenía Pompe.",
+   "f": "Rev Med IMSS 2013; tesis UASLP 2025",
+   "u": "https://repositorioinstitucional.uaslp.mx/xmlui/handle/i/9650?show=full&locale-attribute=es"
+  },
+  {
+   "l": "h",
+   "n": "Facultad de Estomatología, Universidad Autónoma de San Luis Potosí",
+   "c": "San Luis Potosí, San Luis Potosí",
+   "lat": 22.145,
+   "lon": -100.985,
+   "d": [
+    "mps4"
+   ],
+   "x": "Manejo dental documentado de pacientes con Morquio.",
+   "f": "Case Rep Dent 2020",
+   "u": "https://doi.org/10.1155/2020/2565486"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Regional de Alta Especialidad del Bajío",
+   "c": "León, Guanajuato",
+   "lat": 21.153,
+   "lon": -101.709,
+   "d": [
+    "mps1",
+    "mps4",
+    "mps6"
+   ],
+   "x": "Serie de pacientes con MPS I, IVA y VI atendidos de 2015 a 2022.",
+   "f": "Tesis UNAM 2023",
+   "u": "https://ru.dgb.unam.mx/server/api/core/bitstreams/ec97314b-0ea3-42e5-bf99-14274f8c262b/content"
+  },
+  {
+   "l": "h",
+   "n": "Hospital de Especialidades Pediátrico de León",
+   "c": "León, Guanajuato",
+   "lat": 21.15,
+   "lon": -101.705,
+   "d": [
+    "mps1",
+    "mps4",
+    "mps6"
+   ],
+   "x": "Serie de pacientes con MPS I, IVA y VI atendidos de 2015 a 2022.",
+   "f": "Tesis UNAM 2023",
+   "u": "https://ru.dgb.unam.mx/server/api/core/bitstreams/ec97314b-0ea3-42e5-bf99-14274f8c262b/content"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Infantil de Morelia \"Eva Sámano de López Mateos\"",
+   "c": "Morelia, Michoacán",
+   "lat": 19.7,
+   "lon": -101.19,
+   "d": [
+    "hem"
+   ],
+   "x": "Sitio del ensayo NCT03695978 en pacientes con hemofilia no tratados previamente.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03695978"
+  },
+  {
+   "l": "h",
+   "n": "Hospital de la Niñez Poblana",
+   "c": "San Andrés Cholula, Puebla",
+   "lat": 19.03,
+   "lon": -98.24,
+   "d": [
+    "mps4"
+   ],
+   "x": "Atiende a pacientes con Morquio; en 2026 se denunciaron interrupciones de su tratamiento.",
+   "f": "LaSalud.mx 2026",
+   "u": "https://lasalud.mx/2026/08/11/la-continuidad-terapeutica-un-desafio-para-las-enfermedades-raras/"
+  },
+  {
+   "l": "h",
+   "n": "Unidad de Medicina Familiar No. 65 (IMSS)",
+   "c": "Oaxaca de Juárez, Oaxaca",
+   "lat": 17.07,
+   "lon": -96.72,
+   "d": [
+    "hsc"
+   ],
+   "x": "Estudio de tamiz neonatal con datos de hiperplasia suprarrenal congénita.",
+   "f": "Rev Mex Pediatr 2023",
+   "u": "https://www.scielo.org.mx/pdf/rmp/v90n6/0035-0052-rmp-90-06-227.pdf"
+  },
+  {
+   "l": "h",
+   "n": "UMAE Hospital de Especialidades No. 14 (IMSS)",
+   "c": "Veracruz, Veracruz",
+   "lat": 19.18,
+   "lon": -96.14,
+   "d": [
+    "pompe"
+   ],
+   "x": "Diagnóstico de un caso de Pompe infantil.",
+   "f": "Gac Med Mex 2022",
+   "u": "https://www.gacetamedicademexico.com/files/es/gmm_22_158_5_275-280.pdf"
+  },
+  {
+   "l": "h",
+   "n": "Hospital Regional de Alta Especialidad del Niño \"Dr. Rodolfo Nieto Padrón\" y Centro de Enseñanza en Hemofilia",
+   "c": "Villahermosa, Tabasco",
+   "lat": 17.999,
+   "lon": -92.944,
+   "d": [
+    "hem",
+    "pompe"
+   ],
+   "x": "Serie de 24 niños con hemofilia y diagnóstico de un caso de Pompe infantil.",
+   "f": "Tesis UNAM; Gac Med Mex 2022",
+   "u": "https://ru.dgb.unam.mx/server/api/core/bitstreams/03054dec-043e-40da-a5a2-c1759f7c5b4d/content"
+  },
+  {
+   "l": "h",
+   "n": "UMAE Centro Médico Nacional \"Ignacio García Téllez\" (IMSS)",
+   "c": "Mérida, Yucatán",
+   "lat": 20.963,
+   "lon": -89.615,
+   "d": [
+    "pompe"
+   ],
+   "x": "Diagnóstico de un caso de Pompe infantil.",
+   "f": "Gac Med Mex 2022",
+   "u": "https://www.gacetamedicademexico.com/files/es/gmm_22_158_5_275-280.pdf"
+  },
+  {
+   "l": "h",
+   "n": "CEMDEICY (centro de investigación)",
+   "c": "Mérida, Yucatán",
+   "lat": 20.98,
+   "lon": -89.62,
+   "d": [
+    "hem"
+   ],
+   "x": "Sede de ensayos de Mim8 y marstacimab para hemofilia.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05145127"
+  },
+  {
+   "l": "h",
+   "n": "Hospital de Especialidades Pediátricas (IMSS-Bienestar)",
+   "c": "Tuxtla Gutiérrez, Chiapas",
+   "lat": 16.777,
+   "lon": -93.14,
+   "d": [
+    "pompe"
+   ],
+   "x": "Caso publicado de un lactante con Pompe que recibió terapia de reemplazo.",
+   "f": "Rev Mex Pediatr 2025",
+   "u": "https://www.medigraphic.com/cgi-bin/new/resumen.cgi?IDARTICULO=122760"
+  },
+  {
+   "l": "a",
+   "n": "Federación de Hemofilia de la República Mexicana A.C.",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "hem"
+   ],
+   "x": "Lleva el registro nacional que se reporta a la Federación Mundial, agrupa a asociaciones estatales y organiza el Congreso Nacional de Hemofilia.",
+   "f": "Federación Mundial de Hemofilia; IMSS Boletín 451/2026",
+   "u": "https://www1.wfh.org/publications/files/pdf-2588.pdf"
+  },
+  {
+   "l": "a",
+   "n": "Asociación Tabasqueña de Hemofilia A.C.",
+   "c": "Villahermosa, Tabasco",
+   "lat": 17.989,
+   "lon": -92.93,
+   "d": [
+    "hem"
+   ],
+   "x": "Reúne a unas 550 personas del sureste e impulsó el Centro de Enseñanza en Hemofilia.",
+   "f": "LaSalud.mx 2022",
+   "u": "https://lasalud.mx/2022/12/12/historia-de-la-hemofilia-en-tabasco/"
+  },
+  {
+   "l": "a",
+   "n": "Fundación Atrofia Muscular Espinal México",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "ame"
+   ],
+   "x": "Fundación de padres de familia de pacientes con AME.",
+   "f": "Yo También",
+   "u": "https://www.yotambien.mx/comunidad/fundacion-atrofia-muscular-espinal-mexico/"
+  },
+  {
+   "l": "a",
+   "n": "Duchenne México Parent Project A.C.",
+   "c": "Cancún, Quintana Roo (sede sin confirmar)",
+   "lat": 21.1619,
+   "lon": -86.8515,
+   "d": [
+    "dmd"
+   ],
+   "x": "Información médica, guías, apoyo psicológico y registro de pacientes con Duchenne.",
+   "f": "Duchenne México",
+   "u": "https://duchennemexico.org/quienes-somos/"
+  },
+  {
+   "l": "a",
+   "n": "Asociación Duchenne Tijuana A.C.",
+   "c": "Tijuana, Baja California",
+   "lat": 32.5149,
+   "lon": -117.0382,
+   "d": [
+    "dmd"
+   ],
+   "x": "Acompaña a 41 familias de niños y jóvenes de 2 a 20 años con Duchenne (2020).",
+   "f": "El Imparcial 2020",
+   "u": "https://www.elimparcial.com/tij/tijuana/2020/09/07/asociacion-apoya-menores-con-distrofia-muscular-de-duchenne-y-a-sus-padres/"
+  },
+  {
+   "l": "a",
+   "n": "Grupo Fabry de México I.A.P.",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "pompe",
+    "mps1",
+    "mps4",
+    "mps6"
+   ],
+   "x": "Organización paraguas de enfermedades lisosomales; coordina un Programa Nacional de Pacientes que incluye mucopolisacaridosis.",
+   "f": "Grupo Fabry de México",
+   "u": "https://grupofabrymexico.org/"
+  },
+  {
+   "l": "a",
+   "n": "Asociación MPS JAJAX",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "mps1",
+    "mps6"
+   ],
+   "x": "Organizó en 2010 el Primer Congreso de Mucopolisacaridosis; no se sabe si sigue activa.",
+   "f": "Expoknews 2010",
+   "u": "https://www.expoknews.com/asociacion-mps-jajax-y-medicos-mexicanos-se-unen-para-apoyar-a-ninos-con-enfermedades/"
+  },
+  {
+   "l": "a",
+   "n": "Asociación Mexicana de Fibrosis Quística A.C. (AMFQ)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "fq"
+   ],
+   "x": "Fundada en 1982; informa a familias y estima que solo el 15% de los casos se diagnostica en vida.",
+   "f": "GAAPP; Grupo Animal",
+   "u": "https://gaapp.org/?p=14303"
+  },
+  {
+   "l": "a",
+   "n": "Asociación de Fibrosis Quística de Occidente",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "fq"
+   ],
+   "x": "Apoyo a familias de pacientes con fibrosis quística en el occidente del país.",
+   "f": "UdeG",
+   "u": "https://www.comsoc.udg.mx/printpdf/62163"
+  },
+  {
+   "l": "a",
+   "n": "Asociación Regiomontana de Fibrosis Quística",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "fq"
+   ],
+   "x": "Apoyo a familias de pacientes con fibrosis quística en Monterrey.",
+   "f": "ABC Noticias",
+   "u": "https://admin.abcnoticias.editor80.com/temas/dia-mundial-fibrosis-quistica-19695.html"
+  },
+  {
+   "l": "t",
+   "n": "NCT04089566 · Nusinersen en dosis altas (DEVOTE)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04089566"
+  },
+  {
+   "l": "t",
+   "n": "NCT04089566 · Nusinersen en dosis altas (DEVOTE)",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04089566"
+  },
+  {
+   "l": "t",
+   "n": "NCT04729907 · Nusinersen en dosis altas, seguridad a largo plazo",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04729907"
+  },
+  {
+   "l": "t",
+   "n": "NCT04729907 · Nusinersen en dosis altas, seguridad a largo plazo",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04729907"
+  },
+  {
+   "l": "t",
+   "n": "NCT05089656 · OAV101 intratecal en AME tipo 2 (STEER)",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05089656"
+  },
+  {
+   "l": "t",
+   "n": "NCT05089656 · OAV101 intratecal en AME tipo 2 (STEER)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05089656"
+  },
+  {
+   "l": "t",
+   "n": "NCT05475691 · Registro longitudinal de AME en Latinoamérica",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (estado desconocido).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05475691"
+  },
+  {
+   "l": "t",
+   "n": "NCT07159360 · Exoesqueleto de marcha pediátrico en trastornos neuromusculares",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "ame"
+   ],
+   "x": "Ensayo clínico con sitio en México (aún sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT07159360"
+  },
+  {
+   "l": "t",
+   "n": "NCT03992430 · Eteplirsen en dosis altas (MIS51ON)",
+   "c": "Culiacán, Sinaloa",
+   "lat": 24.8091,
+   "lon": -107.394,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03992430"
+  },
+  {
+   "l": "t",
+   "n": "NCT03992430 · Eteplirsen en dosis altas (MIS51ON)",
+   "c": "Durango, Durango",
+   "lat": 24.0277,
+   "lon": -104.6532,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03992430"
+  },
+  {
+   "l": "t",
+   "n": "NCT04768062 · Viltolarsen, extensión RACER53-X",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (estado desconocido).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04768062"
+  },
+  {
+   "l": "t",
+   "n": "NCT04060199 · Viltolarsen en niños que caminan (RACER53)",
+   "c": "Chihuahua, Chihuahua",
+   "lat": 28.6353,
+   "lon": -106.0889,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04060199"
+  },
+  {
+   "l": "t",
+   "n": "NCT04060199 · Viltolarsen en niños que caminan (RACER53)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04060199"
+  },
+  {
+   "l": "t",
+   "n": "NCT03179631 · Ataluren, resultados a largo plazo",
+   "c": "Chihuahua, Chihuahua",
+   "lat": 28.6353,
+   "lon": -106.0889,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03179631"
+  },
+  {
+   "l": "t",
+   "n": "NCT03179631 · Ataluren, resultados a largo plazo",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03179631"
+  },
+  {
+   "l": "t",
+   "n": "NCT02500381 · Casimersen y golodirsen (ESSENCE)",
+   "c": "Culiacán, Sinaloa",
+   "lat": 24.8091,
+   "lon": -107.394,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02500381"
+  },
+  {
+   "l": "t",
+   "n": "NCT02500381 · Casimersen y golodirsen (ESSENCE)",
+   "c": "Durango, Durango",
+   "lat": 24.0277,
+   "lon": -104.6532,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02500381"
+  },
+  {
+   "l": "t",
+   "n": "NCT03400852 · MNK-1411 (cosintropina) en Duchenne",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03400852"
+  },
+  {
+   "l": "t",
+   "n": "NCT03400852 · MNK-1411 (cosintropina) en Duchenne",
+   "c": "Culiacán, Sinaloa",
+   "lat": 24.8091,
+   "lon": -107.394,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03400852"
+  },
+  {
+   "l": "t",
+   "n": "NCT03400852 · MNK-1411 (cosintropina) en Duchenne",
+   "c": "Durango, Durango",
+   "lat": 24.0277,
+   "lon": -104.6532,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03400852"
+  },
+  {
+   "l": "t",
+   "n": "NCT01826422 · EPA y DHA en distrofias de Duchenne y Becker (IMSS)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "dmd"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT01826422"
+  },
+  {
+   "l": "t",
+   "n": "NCT06003387 · Etranacogén dezaparvovec, terapia génica para hemofilia B",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (reclutando).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT06003387"
+  },
+  {
+   "l": "t",
+   "n": "NCT05145127 · Marstacimab, extensión abierta",
+   "c": "Mérida, Yucatán",
+   "lat": 20.9674,
+   "lon": -89.5926,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (reclutando).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05145127"
+  },
+  {
+   "l": "t",
+   "n": "NCT05611801 · Marstacimab en pediatría (hemofilia A y B)",
+   "c": "Veracruz, Veracruz",
+   "lat": 19.1738,
+   "lon": -96.1342,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (reclutando).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05611801"
+  },
+  {
+   "l": "t",
+   "n": "NCT03695978 · Nuwiq, Octanate y Wilate en pacientes no tratados previamente",
+   "c": "Zapopan, Jalisco",
+   "lat": 20.7236,
+   "lon": -103.3848,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (reclutando).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03695978"
+  },
+  {
+   "l": "t",
+   "n": "NCT03695978 · Nuwiq, Octanate y Wilate en pacientes no tratados previamente",
+   "c": "Morelia, Michoacán",
+   "lat": 19.706,
+   "lon": -101.195,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (reclutando).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03695978"
+  },
+  {
+   "l": "t",
+   "n": "NCT03695978 · Nuwiq, Octanate y Wilate en pacientes no tratados previamente",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (reclutando).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03695978"
+  },
+  {
+   "l": "t",
+   "n": "NCT05662319 · Fitusiran en adolescentes",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05662319"
+  },
+  {
+   "l": "t",
+   "n": "NCT05662319 · Fitusiran en adolescentes",
+   "c": "Chihuahua, Chihuahua",
+   "lat": 28.6353,
+   "lon": -106.0889,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05662319"
+  },
+  {
+   "l": "t",
+   "n": "NCT05662319 · Fitusiran en adolescentes",
+   "c": "Veracruz, Veracruz",
+   "lat": 19.1738,
+   "lon": -96.1342,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05662319"
+  },
+  {
+   "l": "t",
+   "n": "NCT05685238 · Mim8 a largo plazo",
+   "c": "Mérida, Yucatán",
+   "lat": 20.9674,
+   "lon": -89.5926,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05685238"
+  },
+  {
+   "l": "t",
+   "n": "NCT04082429 · Concizumab en hemofilia sin inhibidores",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04082429"
+  },
+  {
+   "l": "t",
+   "n": "NCT04083781 · Concizumab en hemofilia con inhibidores",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (activo, sin reclutar).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04083781"
+  },
+  {
+   "l": "t",
+   "n": "NCT03191799 · Emicizumab en pacientes con inhibidores",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03191799"
+  },
+  {
+   "l": "t",
+   "n": "NCT03179748 · Turoctocog alfa en pacientes mexicanos",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT03179748"
+  },
+  {
+   "l": "t",
+   "n": "NCT01064284 · SIPPET: inhibidores en pacientes no tratados previamente",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT01064284"
+  },
+  {
+   "l": "t",
+   "n": "NCT01064284 · SIPPET: inhibidores en pacientes no tratados previamente",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "hem"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT01064284"
+  },
+  {
+   "l": "t",
+   "n": "NCT02782741 · COMET: avalglucosidasa frente a alglucosidasa en Pompe de inicio tardío",
+   "c": "México (estado no especificado; ubicado en Ciudad de México)",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "pompe"
+   ],
+   "x": "Ensayo clínico con sitio en México (completado). El registro no especifica la ciudad.",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02782741"
+  },
+  {
+   "l": "t",
+   "n": "NCT02095015 · Tamizaje de MPS I, II y VI en población de alto riesgo (HATT)",
+   "c": "Chihuahua, Chihuahua",
+   "lat": 28.6353,
+   "lon": -106.0889,
+   "d": [
+    "mps1",
+    "mps6"
+   ],
+   "x": "Estudio de tamizaje con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02095015"
+  },
+  {
+   "l": "t",
+   "n": "NCT05099640 · Sepiapterina (PTC923) en fenilcetonuria, fase 3",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "pku"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05099640"
+  },
+  {
+   "l": "t",
+   "n": "NCT05099640 · Sepiapterina (PTC923) en fenilcetonuria, fase 3",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "pku"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05099640"
+  },
+  {
+   "l": "t",
+   "n": "NCT05166161 · Sepiapterina, extensión de seguridad",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "pku"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05166161"
+  },
+  {
+   "l": "t",
+   "n": "NCT02134353 · Manitol inhalado en fibrosis quística, fase 3",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "fq"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02134353"
+  },
+  {
+   "l": "t",
+   "n": "NCT02134353 · Manitol inhalado en fibrosis quística, fase 3",
+   "c": "Guadalajara, Jalisco",
+   "lat": 20.6597,
+   "lon": -103.3496,
+   "d": [
+    "fq"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT02134353"
+  },
+  {
+   "l": "t",
+   "n": "NCT01417481 · Glicina en fibrosis quística (INER)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "fq"
+   ],
+   "x": "Ensayo clínico con sitio en México (detenido).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT01417481"
+  },
+  {
+   "l": "t",
+   "n": "NCT05276960 · Vitamina D en fibrosis quística (HIMFG)",
+   "c": "Ciudad de México, Ciudad de México",
+   "lat": 19.4326,
+   "lon": -99.1332,
+   "d": [
+    "fq"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT05276960"
+  },
+  {
+   "l": "t",
+   "n": "NCT04613063 · Síndrome de obstrucción intestinal distal en fibrosis quística",
+   "c": "Monterrey, Nuevo León",
+   "lat": 25.6866,
+   "lon": -100.3161,
+   "d": [
+    "fq"
+   ],
+   "x": "Ensayo clínico con sitio en México (terminado).",
+   "f": "ClinicalTrials.gov",
+   "u": "https://clinicaltrials.gov/study/NCT04613063"
+  }
+ ],
+ "tamiz_instituciones": [
+  {
+   "inst": "Secretaría de Salud / IMSS-Bienestar (sin seguridad social)",
+   "n": "5 a 6 según el estado",
+   "cuales": "Hipotiroidismo congénito, hiperplasia suprarrenal congénita, galactosemia, fenilcetonuria, fibrosis quística y deficiencia de G6PD. En algunos estados se tamiza biotinidasa en lugar de G6PD, y Baja California Sur no reporta fibrosis quística.",
+   "desde": "Hipotiroidismo obligatorio desde 1988; galactosemia desde 2011",
+   "nota": "Desde 2019 no hay contrato nacional: cada estado contrata por su cuenta, con inmunoensayo y sin espectrometría de masas en tándem. No incluye MSUD, MCAD, lisosomales ni AME.",
+   "fuente": "CNEGSR ante la Comisión de Salud, Boletín Diputados 2248 (2022)",
+   "url": "https://comunicacion.diputados.gob.mx/sintesis/LINKSIN/300722_P_BOLETIN_0_COMSIONDESALUD_REUNIONCNEGSRTAMIZNEONATAL_4MOR.pdf"
+  },
+  {
+   "inst": "IMSS (régimen ordinario)",
+   "n": "47 padecimientos (65 analitos)",
+   "cuales": "Lista completa no publicada. Incluye hipotiroidismo, fenilcetonuria, hiperplasia suprarrenal congénita, fibrosis quística, biotinidasa, galactosemia clásica, G6PD, hemoglobinopatías, aminoacidopatías (como MSUD), acidemias orgánicas y trastornos de oxidación de ácidos grasos (como MCAD).",
+   "desde": "2024 (antes 7: hipotiroidismo desde 1994; HSC, PKU y biotinidasa desde 2005; galactosemia desde 2012; fibrosis quística desde 2018)",
+   "nota": "Unos 350,758 tamices al año. No se encontró que incluya lisosomales ni AME.",
+   "fuente": "IMSS Boletín 058/2026; Boletín 329/2023",
+   "url": "http://www.imss.gob.mx/prensa/archivo/202601/058"
+  },
+  {
+   "inst": "ISSSTE",
+   "n": "77 analitos",
+   "cuales": "Tamiz ampliado; lista no publicada. No se reporta AME.",
+   "desde": "2025",
+   "nota": "Fuentes secundarias le atribuían antes \"hasta 66\"; el ISSSTE no publica una lista oficial.",
+   "fuente": "Gaceta Facultad de Medicina UNAM, jul 2026",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "inst": "Pemex",
+   "n": "76",
+   "cuales": "Aminoácidos, ácidos orgánicos, oxidación de ácidos grasos, hemoglobinopatías, G6PD, endocrinas y seis lisosomales (Fabry, Pompe, MPS I, Gaucher, Niemann-Pick y Krabbe).",
+   "desde": "69 en 2005; 76 desde 2012",
+   "nota": "Es el panel público más amplio del país. No incluye MPS II, IVA ni VI, ni AME.",
+   "fuente": "Rev Mex Pediatr 2023; Gaceta Facultad de Medicina UNAM 2026",
+   "url": "https://www.scielo.org.mx/pdf/rmp/v90n2/0035-0052-rmp-90-02-57.pdf"
+  },
+  {
+   "inst": "SEDENA",
+   "n": "41 analitos",
+   "cuales": "Panel ampliado; lista no publicada.",
+   "desde": "",
+   "nota": "Espera incorporar la AME por PCR a partir de diciembre de 2026; sería el primer programa público en México que la detecte.",
+   "fuente": "Gaceta Facultad de Medicina UNAM, jul 2026",
+   "url": "https://gaceta.facmed.unam.mx/index.php/2026/07/03/panorama-actual-del-tamizaje-neonatal/"
+  },
+  {
+   "inst": "Semar",
+   "n": "Panel ampliado (26 entidades en la tabla de 2014)",
+   "cuales": "Endocrinopatías, aminoacidopatías (incluidas fenilcetonuria y MSUD), acidemias orgánicas, oxidación de ácidos grasos (incluida MCAD), galactosemia, hemoglobinopatías, inmunodeficiencias y fibrosis quística.",
+   "desde": "",
+   "nota": "Dato de 2014: 5,205 tamizados en 2012–2014 con 99.43% de cobertura. Pemex, Semar y Sedena atienden juntos solo al 8% de los recién nacidos.",
+   "fuente": "Acta Pediatr Mex 2014; CNEGSR 2022",
+   "url": "https://www.scielo.org.mx/pdf/apm/v35n6/v35n6a3.pdf"
+  },
+  {
+   "inst": "Hospitales y laboratorios privados",
+   "n": "Hasta 76",
+   "cuales": "Ejemplo del Hospital Español (CDMX): 12 de oxidación de ácidos grasos, 19 de ácidos orgánicos, 22 de aminoácidos y ciclo de la urea, 6 lisosomales y 17 otras.",
+   "desde": "",
+   "nota": "Lo paga la familia: alrededor de 1,500 pesos en laboratorios de cadena y de 10,000 a 15,000 pesos en los paneles más amplios (2024). La mayoría no da seguimiento sistemático a los positivos.",
+   "fuente": "Rev Mex Pediatr 2023; UNAM 2024",
+   "url": "https://www.dgcs.unam.mx/ProyectoUNAM/imagenes/241025.pdf"
+  },
+  {
+   "inst": "Referencia: Estados Unidos (RUSP)",
+   "n": "66 (40 básicas y 26 secundarias)",
+   "cuales": "Incluye AME, inmunodeficiencia combinada grave (TREC), Pompe, MPS I y II, X-ALD y Krabbe.",
+   "desde": "Diciembre de 2025",
+   "nota": "Panel uniforme recomendado a nivel federal.",
+   "fuente": "HRSA, dic 2025",
+   "url": "https://mchb.hrsa.gov/sites/default/files/mchb/programs-impact/recommended-uniform-screening-panel-table-december-15-2025.pdf"
+  }
+ ],
+ "tamiz_estados": [
+  {
+   "estado": "Aguascalientes",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "No se encontró documento estatal; se presume el panel básico de la región Noroeste.",
+   "ley": false,
+   "imssb": false,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Baja California",
+   "cat": "basico",
+   "n": 5,
+   "nota": "Cinco enfermedades (2019); en 2024 el programa IMSS-Bienestar contrató el tamiz con Ensayos y Tamizajes de México.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "IMSS OOAD Baja California, adjudicación D244034 (2024); Zeta Tijuana 2019",
+   "url": "https://reposipot.imss.gob.mx/OOAD/BAJACALIFORNIA/2024%20-%2028-LGT_Art_70_Fr_XXVIII/ADJUDICACIONES/4TO%20TRIMESTRE/D244034%20TESTADO.pdf"
+  },
+  {
+   "estado": "Baja California Sur",
+   "cat": "basico",
+   "n": 5,
+   "nota": "Cinco enfermedades con biotinidasa y sin fibrosis quística ni G6PD (2024); resultado en unos 7 días.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "IERT BCS, abr 2024",
+   "url": "https://iert.bcs.gob.mx/?p=18183"
+  },
+  {
+   "estado": "Campeche",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; tuvo la tasa más alta de HSC en el programa SSA (42.9 por 100,000).",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Coahuila de Zaragoza",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Designado en 2022 sede de un Laboratorio Regional de Tamiz que en enero de 2024 seguía en adecuación.",
+   "ley": false,
+   "imssb": false,
+   "fuente": "Vanguardia, 22 ene 2024",
+   "url": "https://vanguardia.com.mx/coahuila/se-ubicara-en-coahuila-el-laboratorio-regional-de-tamiz-neonatal-FK10834265"
+  },
+  {
+   "estado": "Colima",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; sus indicadores presupuestarios 2021 no incluyen el tamiz.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Gobierno de Colima, fichas técnicas 2021",
+   "url": "https://plancolima.col.gob.mx/pbrsedx/Seguimiento/FTM_IVTrim_2021.pdf"
+  },
+  {
+   "estado": "Chiapas",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; se presume el básico de la región Sureste.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Chihuahua",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; solo hay una iniciativa de tamiz cardiaco (2023).",
+   "ley": false,
+   "imssb": false,
+   "fuente": "Congreso de Chihuahua, iniciativa 20624",
+   "url": "https://www.congresochihuahua2.gob.mx/biblioteca/iniciativas/archivosIniciativas/20624.pdf"
+  },
+  {
+   "estado": "Ciudad de México",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Hay una licitación de Sedesa de tamiz neonatal que no se pudo leer; una propuesta de 54 enfermedades no se aprobó.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Sedesa CDMX, convocatorias",
+   "url": "https://www.salud.cdmx.gob.mx/convocatorias/licitaciones/18"
+  },
+  {
+   "estado": "Durango",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Su ley menciona el tamiz ampliado desde 2014 y se reformó en 2026 \"según la infraestructura disponible\", sin panel definido.",
+   "ley": true,
+   "imssb": false,
+   "fuente": "Congreso de Durango, Decreto 406 (2026)",
+   "url": "https://congresodurango.gob.mx/Archivos/LXX/DECRETOS/DEC406.pdf"
+  },
+  {
+   "estado": "Guanajuato",
+   "cat": "basico",
+   "n": 6,
+   "nota": "Seis enfermedades con G6PD (licitación 2022); 67,237 recién nacidos tamizados en 2021. Universalizar el ampliado costaría unos 158.6 millones al año.",
+   "ley": true,
+   "imssb": false,
+   "fuente": "Congreso de Guanajuato, impacto presupuestal art. 62 Ter (2022)",
+   "url": "https://oficialiapartes.congresogto.gob.mx/DocsRecepcion/CA-LXV-25526.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; tuvo una de las tasas más altas de HSC en el programa SSA.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Hidalgo",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin panel publicado; el Hospital Materno Infantil hace unas 280 pruebas de tamiz al mes (2024).",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Vocales Online, nov 2024",
+   "url": "https://vocalesonline.com.mx/index.php/estatal/item/17575-realiza-imss-bienestar-tamizajes-gratuitos-para-el-bienestar-y-la-salud-de-los-recien-nacidos"
+  },
+  {
+   "estado": "Jalisco",
+   "cat": "basico",
+   "n": 6,
+   "nota": "Seis enfermedades con G6PD por licitación (2020 y 2021), aunque su ley menciona el tamiz ampliado.",
+   "ley": true,
+   "imssb": false,
+   "fuente": "OPD Servicios de Salud Jalisco, bases LCCC-007-2021",
+   "url": "https://info.jalisco.gob.mx/sites/default/files/programas/bases_servicio_integral_de_tamiz.pdf"
+  },
+  {
+   "estado": "México",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin panel publicado; la ficha técnica del IMIEM de 2024 no se pudo leer.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Michoacán de Ocampo",
+   "cat": "basico",
+   "n": 6,
+   "nota": "Seis enfermedades con biotinidasa y sin G6PD en el programa IMSS-Bienestar (contrato 2025).",
+   "ley": false,
+   "imssb": true,
+   "fuente": "IMSS OOAD Michoacán, contrato 050GYR033N18725-169-00",
+   "url": "https://reposipot.imss.gob.mx/OOAD/MICHOACAN/4to.%20Trimestre%202025/D255013.pdf"
+  },
+  {
+   "estado": "Morelos",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; se presume el básico de la región Centro.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Nayarit",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Una iniciativa de 2020 describe un panel de 5 y propone el ampliado; no se encontró su aprobación.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Congreso de Nayarit, iniciativa 2020",
+   "url": "https://procesolegislativo.congresonayarit.gob.mx/wp-content/uploads/iniciativas/qcTmtLN7p6_1244008461.pdf"
+  },
+  {
+   "estado": "Nuevo León",
+   "cat": "ampliado_hist",
+   "n": 30,
+   "nota": "Programa público con espectrometría de masas en tándem (unos 30 trastornos) de 2002 a 2017, para un tercio de los nacimientos; no se confirmó que siga operando.",
+   "ley": false,
+   "imssb": false,
+   "fuente": "Torres-Sepúlveda et al., Glob Pediatr Health 2024",
+   "url": "https://journals.sagepub.com/doi/10.1177/2333794X241280830"
+  },
+  {
+   "estado": "Oaxaca",
+   "cat": "basico",
+   "n": 6,
+   "nota": "Seis enfermedades con G6PD (2019); el estado pagó unos 500 mil pesos al mes durante la suspensión federal.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Excélsior, 10 abr 2019",
+   "url": "https://www.excelsior.com.mx/nacional/absorbe-oaxaca-gasto-para-seguir-pruebas-de-tamiz-neonatal/1306964"
+  },
+  {
+   "estado": "Puebla",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; se presume el básico de la región Noreste.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Querétaro",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin panel publicado; reporta 92% de cobertura del tamiz (2021).",
+   "ley": false,
+   "imssb": false,
+   "fuente": "Tesis UAQ 2025 (Secretaría de Salud de Querétaro 2021)",
+   "url": "https://ri-ng.uaq.mx/bitstream/123456789/12959/1/MEESN-320432.pdf"
+  },
+  {
+   "estado": "Quintana Roo",
+   "cat": "anuncio",
+   "n": null,
+   "nota": "Legisló el tamiz ampliado en 2021 y en 2022 anunció 67 a 70 enfermedades, pero no hay evidencia de que opere.",
+   "ley": true,
+   "imssb": true,
+   "fuente": "Congreso de Quintana Roo, dictamen DI-XVI-2021",
+   "url": "https://documentos.congresoqroo.gob.mx/dictamenes/DI-XVI-2021-09-04_792_12.pdf"
+  },
+  {
+   "estado": "San Luis Potosí",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; se presume el básico de la región Noreste.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Sinaloa",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; se presume el básico de la región Noroeste.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Sonora",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; se presume el básico de la región Noroeste.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Tabasco",
+   "cat": "anuncio",
+   "n": null,
+   "nota": "Hubo un piloto de tamiz ampliado, sin fecha ni detalle, que explica un aumento de casos en la cohorte del INP.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Ibarra-González et al., IJNS 2023",
+   "url": "https://www.mdpi.com/2409-515x/9/4/59"
+  },
+  {
+   "estado": "Tamaulipas",
+   "cat": "basico",
+   "n": null,
+   "nota": "El dictamen estatal menciona hipotiroidismo, fenilcetonuria, HSC y galactosemia; el estado lo sostiene \"en la medida de lo posible\".",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Congreso de Tamaulipas, dictamen LXIV-807",
+   "url": "https://www.congresotamaulipas.gob.mx/Parlamentario/Archivos/Dictamenes/LXIV-807%20DICTAMEN.pdf"
+  },
+  {
+   "estado": "Tlaxcala",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; se presume el básico de la región Centro.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "García-Flores et al., Acta Pediatr Mex 2018 (regiones de procesamiento)",
+   "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1722/1103"
+  },
+  {
+   "estado": "Veracruz de Ignacio de la Llave",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; el informe de labores 2021 de SESVER no menciona el tamiz.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "SESVER, Informe de Labores 2021",
+   "url": "https://ssaver.gob.mx/planeacion/wp-content/uploads/sites/20/2024/05/Informe_de_Labores_2021.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "cat": "basico",
+   "n": 6,
+   "nota": "Seis enfermedades con biotinidasa y sin G6PD en el programa IMSS-Bienestar (2024); se adhirió al OPD en mayo de 2026.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "IMSS OOAD Yucatán, contrato 050GYR011T15424-001",
+   "url": "https://reposipot.imss.gob.mx/OOAD/YUCATAN/EJERCICIO%202024/LICITACIONES/LA-50-GYR-050GYR011-T-154-2024/050GYR011T15424-001%20ENSAYOS%20Y%20TAMIZAJES.pdf"
+  },
+  {
+   "estado": "Zacatecas",
+   "cat": "sin_dato",
+   "n": null,
+   "nota": "Sin documento estatal del panel; asignado al futuro laboratorio regional de Coahuila.",
+   "ley": false,
+   "imssb": true,
+   "fuente": "Vanguardia, 22 ene 2024",
+   "url": "https://vanguardia.com.mx/coahuila/se-ubicara-en-coahuila-el-laboratorio-regional-de-tamiz-neonatal-FK10834265"
+  }
+ ],
+ "laboratorios": [
+  {
+   "id": "sanofi",
+   "nombre": "Sanofi (Genzyme)",
+   "mx": "Comercializa en México según Vademecum México y el Cuadro Básico; detalles de filial o planta no documentados en la investigación.",
+   "productos": [
+    {
+     "generico": "imiglucerasa",
+     "marca": "Cerezyme",
+     "enfermedad": "Gaucher",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5545.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "eliglustat",
+     "marca": "Cerdelga",
+     "enfermedad": "Gaucher",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado; hubo ensayos con sitio en México",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (ausente)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "agalsidasa beta",
+     "marca": "Fabrazyme",
+     "enfermedad": "Fabry",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (claves 010.000.5546.00 y 6116.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "alglucosidasa alfa",
+     "marca": "Myozyme / Lumizyme",
+     "enfermedad": "Pompe",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5548.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "avalglucosidasa alfa",
+     "marca": "Nexviazyme",
+     "enfermedad": "Pompe",
+     "cuadro_basico_imss": false,
+     "cofepris": "Aparece en Vademecum México con registro \"NA\"",
+     "fuente": "Vademecum México",
+     "url": "https://www.vademecum.es/mexico/medicamento/1621603/nexviazyme-polvo-para-concentrado-para-solucion-para-perfusion-100-mg"
+    },
+    {
+     "generico": "laronidasa",
+     "marca": "Aldurazyme",
+     "enfermedad": "MPS I",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado; cotitularidad BioMarin/Genzyme",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5547.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "takeda",
+   "nombre": "Takeda (antes Shire)",
+   "mx": "Opera en México: programa de infusión en casa para Gaucher en Nuevo León y Veracruz y ensayos con sitio en México.",
+   "productos": [
+    {
+     "generico": "velaglucerasa alfa",
+     "marca": "VPRIV",
+     "enfermedad": "Gaucher",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5615.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "agalsidasa alfa",
+     "marca": "Replagal",
+     "enfermedad": "Fabry",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5549.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "idursulfasa",
+     "marca": "Elaprase",
+     "enfermedad": "Hunter (MPS II)",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5550.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "complejo coagulante anti-inhibidor",
+     "marca": "FEIBA",
+     "enfermedad": "Hemofilia con inhibidores",
+     "cuadro_basico_imss": true,
+     "cofepris": "Implícito por estar en el Compendio; número no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 10 (claves 010.000.4218.00 y 4219.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N10-Hematologia-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "biomarin",
+   "nombre": "BioMarin",
+   "mx": "Comercializa en México según Vademecum México (Vimizim, Naglazyme); filial no documentada.",
+   "productos": [
+    {
+     "generico": "elosulfasa alfa",
+     "marca": "Vimizim",
+     "enfermedad": "Morquio A (MPS IVA)",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.6073.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "galsulfasa",
+     "marca": "Naglazyme",
+     "enfermedad": "Maroteaux-Lamy (MPS VI)",
+     "cuadro_basico_imss": true,
+     "cofepris": "Vademecum México indica registro \"NA\"",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5543.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "sapropterina",
+     "marca": "Kuvan",
+     "enfermedad": "Fenilcetonuria",
+     "cuadro_basico_imss": false,
+     "cofepris": "Registro vigente no encontrado; el INP la probó en 2012",
+     "fuente": "Acta Pediatr Mex 2012",
+     "url": "https://www.medigraphic.com/pdfs/actpedmex/apm-2012/apm126o.pdf"
+    },
+    {
+     "generico": "pegvaliasa",
+     "marca": "Palynziq",
+     "enfermedad": "Fenilcetonuria",
+     "cuadro_basico_imss": null,
+     "cofepris": "Registro en México no encontrado",
+     "fuente": "Investigación grupo C",
+     "url": "https://ojs.actapediatrica.org.mx/index.php/APM/article/view/1723/1104"
+    }
+   ]
+  },
+  {
+   "id": "pfizer",
+   "nombre": "Pfizer",
+   "mx": "Presencia en México no detallada en la investigación.",
+   "productos": [
+    {
+     "generico": "taliglucerasa alfa",
+     "marca": "(sin marca citada)",
+     "enfermedad": "Gaucher",
+     "cuadro_basico_imss": true,
+     "cofepris": "Número de registro no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (clave 010.000.5614.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "roche",
+   "nombre": "Roche",
+   "mx": "Roche México: convenio con Fundación Teletón (2026) para detectar enfermedades neuromusculares.",
+   "productos": [
+    {
+     "generico": "risdiplam",
+     "marca": "Evrysdi",
+     "enfermedad": "AME",
+     "cuadro_basico_imss": true,
+     "cofepris": "Aprobado (año no encontrado; posterior a febrero de 2021)",
+     "fuente": "Cuadro Básico IMSS, Grupo 14 (clave 010.000.7088.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N14-Neurologia-R.pdf"
+    },
+    {
+     "generico": "emicizumab",
+     "marca": "Hemlibra",
+     "enfermedad": "Hemofilia A",
+     "cuadro_basico_imss": true,
+     "cofepris": "Implícito por estar en el Compendio; número no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 10 (claves 010.000.6199.00 a 6202.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N10-Hematologia-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "biogen",
+   "nombre": "Biogen",
+   "mx": "Presencia en México no detallada en la investigación.",
+   "productos": [
+    {
+     "generico": "nusinersen",
+     "marca": "Spinraza",
+     "enfermedad": "AME",
+     "cuadro_basico_imss": true,
+     "cofepris": "Aprobado (número y año no encontrados)",
+     "fuente": "Cuadro Básico IMSS, Grupo 14 (clave 010.000.7089.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N14-Neurologia-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "novartis",
+   "nombre": "Novartis",
+   "mx": "Representante en México: Novartis Farmacéutica S.A. de C.V.",
+   "productos": [
+    {
+     "generico": "onasemnogén abeparvovec",
+     "marca": "Zolgensma",
+     "enfermedad": "AME",
+     "cuadro_basico_imss": false,
+     "cofepris": "Contradictorio: \"sin aprobación\" según la revista del IMSS (2024), pero Novartis México publicó su información para prescribir en 2025",
+     "fuente": "Novartis México, IPP jun 2025; Rev Med IMSS 2024",
+     "url": "https://www.pro.novartis.com/mx-es/sites/pro_novartis_com_mx/files/2025-09/ZOLG9_IPPA_12.Jun_.2025.pdf"
+    },
+    {
+     "generico": "onasemnogén abeparvovec intratecal (OAV101)",
+     "marca": "Itvisma",
+     "enfermedad": "AME",
+     "cuadro_basico_imss": false,
+     "cofepris": "No aprobado; COFEPRIS lo \"evaluará\"",
+     "fuente": "Alerta Chiapas 2026",
+     "url": "https://alertachiapas.com/2026/04/29/itvisma-terapia-genica-ame-novarti/"
+    }
+   ]
+  },
+  {
+   "id": "bayer",
+   "nombre": "Bayer",
+   "mx": "Presencia en México no detallada en la investigación.",
+   "productos": [
+    {
+     "generico": "damoctocog alfa pegol",
+     "marca": "(sin marca citada)",
+     "enfermedad": "Hemofilia A",
+     "cuadro_basico_imss": true,
+     "cofepris": "Implícito por estar en el Compendio; número no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 10 (claves 010.000.7082.00 a 7085.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N10-Hematologia-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "novo-nordisk",
+   "nombre": "Novo Nordisk",
+   "mx": "Presencia en México no detallada en la investigación.",
+   "productos": [
+    {
+     "generico": "eptacog alfa (FVIIa recombinante)",
+     "marca": "(sin marca citada)",
+     "enfermedad": "Hemofilia con inhibidores",
+     "cuadro_basico_imss": true,
+     "cofepris": "Implícito por estar en el Compendio; número no encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 10 (claves 010.000.4238.02, 4245.02 y 4250.02)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N10-Hematologia-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "csl-behring",
+   "nombre": "CSL Behring",
+   "mx": "Patrocina en la CDMX un ensayo de terapia génica para hemofilia B; presencia comercial no confirmada.",
+   "productos": [
+    {
+     "generico": "etranacogén dezaparvovec",
+     "marca": "(en ensayo)",
+     "enfermedad": "Hemofilia B",
+     "cuadro_basico_imss": false,
+     "cofepris": "No aprobado en México; solo en ensayo (NCT06003387)",
+     "fuente": "ClinicalTrials.gov",
+     "url": "https://clinicaltrials.gov/study/NCT06003387"
+    }
+   ]
+  },
+  {
+   "id": "ptc",
+   "nombre": "PTC Therapeutics",
+   "mx": "Presencia en México no confirmada; patrocinó ensayos con sitio en México.",
+   "productos": [
+    {
+     "generico": "ataluren",
+     "marca": "Translarna",
+     "enfermedad": "Duchenne",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado",
+     "fuente": "Invima (estado regulatorio internacional)",
+     "url": "https://www.invima.gov.co/alertas-sanitarias/estado-de-la-comercializacion-de-atalureno-en-la-union-europea-y-otras-agencias-de-referencia"
+    },
+    {
+     "generico": "sepiapterina (PTC923)",
+     "marca": "(en ensayo)",
+     "enfermedad": "Fenilcetonuria",
+     "cuadro_basico_imss": null,
+     "cofepris": "No encontrado; probado en México (NCT05099640)",
+     "fuente": "ClinicalTrials.gov",
+     "url": "https://clinicaltrials.gov/study/NCT05099640"
+    }
+   ]
+  },
+  {
+   "id": "sarepta",
+   "nombre": "Sarepta Therapeutics",
+   "mx": "Presencia comercial en México no confirmada; patrocinó ensayos en Culiacán y Durango.",
+   "productos": [
+    {
+     "generico": "eteplirsen",
+     "marca": "(en ensayo)",
+     "enfermedad": "Duchenne",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado",
+     "fuente": "ClinicalTrials.gov NCT03992430",
+     "url": "https://clinicaltrials.gov/study/NCT03992430"
+    },
+    {
+     "generico": "golodirsen y casimersen",
+     "marca": "(en ensayo)",
+     "enfermedad": "Duchenne",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado",
+     "fuente": "ClinicalTrials.gov NCT02500381",
+     "url": "https://clinicaltrials.gov/study/NCT02500381"
+    }
+   ]
+  },
+  {
+   "id": "vertex",
+   "nombre": "Vertex",
+   "mx": "Presencia de filial en México no confirmada; su producto tiene autorización COFEPRIS.",
+   "productos": [
+    {
+     "generico": "elexacaftor/tezacaftor/ivacaftor",
+     "marca": "Trikafta",
+     "enfermedad": "Fibrosis quística",
+     "cuadro_basico_imss": false,
+     "cofepris": "Autorizado en septiembre de 2024 desde los 2 años; alerta por lote falsificado en marzo de 2026",
+     "fuente": "ADN40 2024; Cuadro Básico IMSS, Grupo 13 (ausente)",
+     "url": "https://www.adn40.mx/salud/2024-09-29/por-que-cofepris-autoriza-el-tratamiento-para-fibrosis-quistica-en-mexico/"
+    }
+   ]
+  },
+  {
+   "id": "amicus",
+   "nombre": "Amicus Therapeutics",
+   "mx": "No se encontró presencia en México.",
+   "productos": [
+    {
+     "generico": "migalastat",
+     "marca": "Galafold",
+     "enfermedad": "Fabry",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (ausente)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "cipaglucosidasa alfa + miglustat",
+     "marca": "(sin marca citada)",
+     "enfermedad": "Pompe",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (ausente)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    }
+   ]
+  },
+  {
+   "id": "chiesi",
+   "nombre": "Chiesi",
+   "mx": "Presencia en México no confirmada en la investigación.",
+   "productos": [
+    {
+     "generico": "oleogel-S10 (triterpenos de corteza de abedul)",
+     "marca": "Filsuvez",
+     "enfermedad": "Piel de mariposa (epidermólisis bullosa)",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado",
+     "fuente": "Healio (aprobación FDA, dic 2023); Cuadro Básico IMSS, Grupo 4 (ausente)",
+     "url": "https://cm.healio.com/news/dermatology/20231220/fda-approves-topical-filsuvez-for-epidermolysis-bullosa"
+    }
+   ]
+  },
+  {
+   "id": "krystal",
+   "nombre": "Krystal Biotech",
+   "mx": "No se encontró presencia en México.",
+   "productos": [
+    {
+     "generico": "beremagén geperpavec",
+     "marca": "Vyjuvek",
+     "enfermedad": "Piel de mariposa (epidermólisis bullosa distrófica)",
+     "cuadro_basico_imss": false,
+     "cofepris": "No encontrado",
+     "fuente": "FDA, mayo 2023",
+     "url": "https://www.fda.gov/vaccines-blood-biologics/vyjuvek"
+    }
+   ]
+  },
+  {
+   "id": "abbott",
+   "nombre": "Abbott",
+   "mx": "Comercializa fórmulas metabólicas en México (precios 2020 documentados).",
+   "productos": [
+    {
+     "generico": "fórmula libre de fenilalanina",
+     "marca": "Phenex-1 / Phenex-2",
+     "enfermedad": "Fenilcetonuria",
+     "cuadro_basico_imss": null,
+     "cofepris": "Fórmulas de inicio y seguimiento con claves 010.000.5400.00 y 5401.00 en el catálogo del CSG",
+     "fuente": "Bol Med Hosp Infant Mex; Acta Pediatr Mex 2018",
+     "url": "https://www.scielo.org.mx/pdf/bmim/v78n6/1665-1146-bmhim-78-6-612.pdf"
+    }
+   ]
+  },
+  {
+   "id": "nucitec",
+   "nombre": "Nucitec",
+   "mx": "Comercializa fórmulas metabólicas en México (precios 2020 documentados).",
+   "productos": [
+    {
+     "generico": "fórmula libre de fenilalanina",
+     "marca": "Enastamine / Alfamir",
+     "enfermedad": "Fenilcetonuria",
+     "cuadro_basico_imss": null,
+     "cofepris": "Claves 010.000.5400.00 y 5401.00 en el catálogo del CSG (por tipo de fórmula)",
+     "fuente": "Bol Med Hosp Infant Mex; Acta Pediatr Mex 2018",
+     "url": "https://www.scielo.org.mx/pdf/bmim/v78n6/1665-1146-bmhim-78-6-612.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fraca",
+   "nombre": "Fraca",
+   "mx": "Comercializa fórmulas metabólicas en México (precio 2020 documentado).",
+   "productos": [
+    {
+     "generico": "fórmula libre de fenilalanina",
+     "marca": "Beu 2 Intoleranz",
+     "enfermedad": "Fenilcetonuria",
+     "cuadro_basico_imss": null,
+     "cofepris": "Claves 010.000.5400.00 y 5401.00 en el catálogo del CSG (por tipo de fórmula)",
+     "fuente": "Bol Med Hosp Infant Mex",
+     "url": "https://www.scielo.org.mx/pdf/bmim/v78n6/1665-1146-bmhim-78-6-612.pdf"
+    }
+   ]
+  },
+  {
+   "id": "genericos",
+   "nombre": "Varios titulares (genéricos y factores plasmáticos)",
+   "mx": "Medicamentos de múltiples fabricantes en el Cuadro Básico del IMSS.",
+   "productos": [
+    {
+     "generico": "deflazacort",
+     "marca": "(genérico)",
+     "enfermedad": "Duchenne",
+     "cuadro_basico_imss": true,
+     "cofepris": "Registrado; indicación genérica, no específica para DMD",
+     "fuente": "Cuadro Básico IMSS, Grupo 5 (claves 010.000.4505.00 y 4507.00)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "prednisona",
+     "marca": "(genérico)",
+     "enfermedad": "Duchenne",
+     "cuadro_basico_imss": true,
+     "cofepris": "Registrada",
+     "fuente": "Cuadro Básico IMSS, Grupos 5 y 20",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "factor antihemofílico humano (FVIII plasmático)",
+     "marca": "(varios)",
+     "enfermedad": "Hemofilia A",
+     "cuadro_basico_imss": true,
+     "cofepris": "Implícito por estar en el Compendio",
+     "fuente": "Cuadro Básico IMSS, Grupo 10",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N10-Hematologia-R.pdf"
+    },
+    {
+     "generico": "factor IX / nonacog alfa",
+     "marca": "(varios)",
+     "enfermedad": "Hemofilia B",
+     "cuadro_basico_imss": true,
+     "cofepris": "Implícito por estar en el Compendio",
+     "fuente": "Cuadro Básico IMSS, Grupo 10",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N10-Hematologia-R.pdf"
+    },
+    {
+     "generico": "fludrocortisona",
+     "marca": "(genérico)",
+     "enfermedad": "Hiperplasia suprarrenal congénita",
+     "cuadro_basico_imss": true,
+     "cofepris": null,
+     "fuente": "Cuadro Básico IMSS, Grupo 5",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "hidrocortisona oral pediátrica",
+     "marca": "(genérico)",
+     "enfermedad": "Hiperplasia suprarrenal congénita",
+     "cuadro_basico_imss": false,
+     "cofepris": null,
+     "fuente": "Cuadro Básico IMSS (solo succinato inyectable, Grupo 7)",
+     "url": "https://www.imss.gob.mx/sites/all/statics/guiasclinicas/715GER.pdf"
+    },
+    {
+     "generico": "levotiroxina",
+     "marca": "(genérico)",
+     "enfermedad": "Hipotiroidismo congénito",
+     "cuadro_basico_imss": true,
+     "cofepris": null,
+     "fuente": "Cuadro Básico IMSS, Grupo 5",
+     "url": "https://www.imss.gob.mx/sites/all/statics/pdf/cuadros-basicos/Grupo-N5-Endocrinologia-y-Metabolismo-R.pdf"
+    },
+    {
+     "generico": "pancreatina",
+     "marca": "(genérico)",
+     "enfermedad": "Fibrosis quística",
+     "cuadro_basico_imss": true,
+     "cofepris": null,
+     "fuente": "Cuadro Básico IMSS, Grupo 8",
+     "url": "https://grupoanimal.mx/noticias/pacientes-fibrosis-quistica-padecen-atencion-deficiente-falta-medicamento-mexico"
+    },
+    {
+     "generico": "tobramicina inhalada",
+     "marca": "(genérico)",
+     "enfermedad": "Fibrosis quística",
+     "cuadro_basico_imss": true,
+     "cofepris": null,
+     "fuente": "Grupo Animal (en Cuadro Básico pero difícil de conseguir)",
+     "url": "https://grupoanimal.mx/noticias/pacientes-fibrosis-quistica-padecen-atencion-deficiente-falta-medicamento-mexico"
+    },
+    {
+     "generico": "elexacaftor/tezacaftor/ivacaftor genérico argentino",
+     "marca": "Trixacar",
+     "enfermedad": "Fibrosis quística",
+     "cuadro_basico_imss": false,
+     "cofepris": "En evaluación por COFEPRIS (2025)",
+     "fuente": "El Congresista 2025",
+     "url": "https://elcongresista.mx/politica/nacional/impulso-validacion-trixacar-fibrosis-quistica-mexico"
+    }
+   ]
+  }
+ ]
+}
