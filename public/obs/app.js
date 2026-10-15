@@ -96,6 +96,14 @@ function pickW(ids,dis,fr){var ok=function(w){return w&&(w.d===dis||w.d==='gener
     var nv=sc.filter(function(x){return x[1].t!=='video';})[0],v=sc.filter(function(x){return x[1].t==='video';})[0];if(nv)out.push(nv[1]);if(v)out.push(v[1]);}
   return out.slice(0,3);}
 
+/* video en loop de la portada: solo escritorio, sin ahorro de datos ni 'reducir movimiento' */
+function heroVideo(){var bg=$('.hero .bgimg');if(!bg)return;
+  var c=navigator.connection||{},rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(rm||c.saveData||/2g/.test(c.effectiveType||'')||innerWidth<900)return;
+  var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;v.preload='auto';v.setAttribute('aria-hidden','true');v.poster='/obs/img/brand/isla.webp';
+  v.innerHTML='<source src="/obs/video/isla-loop.webm" type="video/webm"><source src="/obs/video/isla-loop.mp4" type="video/mp4">';
+  v.addEventListener('playing',function(){v.classList.add('ready');},{once:true});
+  bg.appendChild(v);var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});}
 /* ================= vistas ================= */
 var V={};
 
@@ -146,6 +154,7 @@ V.inicio=function(){
    '<p class="sub">Cada laboratorio patrocina el contenido de su área terapéutica y lo dice abiertamente. Las asociaciones de pacientes participan sin costo y validan lo que se publica.</p>'+
    '<div class="spons">'+[1,2,3,4,5].map(function(){return '<div class="slot">Espacio para laboratorio patrocinador</div>';}).join('')+'<div class="slot ong">Asociaciones de pacientes aliadas</div></div>'+
   '</div></section>';
+  heroVideo();
 };
 
 /* ---------- Acervo ---------- */
