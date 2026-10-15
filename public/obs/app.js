@@ -13,7 +13,11 @@ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cl
 var DIS={eb:'piel de mariposa (epidermólisis bullosa)',gaucher:'enfermedad de Gaucher',fabry:'enfermedad de Fabry',mps:'síndrome de Hunter (mucopolisacaridosis tipo II)'};
 var DSHORT={eb:'Piel de mariposa',gaucher:'Gaucher',fabry:'Fabry',mps:'Hunter (MPS II)',general:'General'};
 var K2D={e:'eb',g:'gaucher',f:'fabry',m:'mps'},D2K={eb:'e',gaucher:'g',fabry:'f',mps:'m'};
-var WEBER='Revista Enfermedades Raras (Fundación Weber), vol. 10, núm. 2, sep. 2025, p. 91';
+var SRC_DX={t:'EURORDIS, Rare Barometer: encuesta a más de 10,000 pacientes en 42 países (2024)',u:'https://www.eurordis.org/survey-reveals-lengthy-diagnostic-delays'},
+    SRC_ESP={t:'Benito-Lozano et al., Int J Environ Res Public Health 2022 (Registro Español de Pacientes, 1,216 personas)',u:'https://repisalud.isciii.es/entities/publication/feeadffd-12e4-49be-a62e-cda35bb99713'},
+    SRC_DISC={t:'EURORDIS, Rare Barometer: encuesta a 9,591 personas en 43 países (feb. 2025)',u:'https://www.eurordis.org/rare-barometer-findings-daily-life-survey'};
+function srcA(o){return '<a href="'+o.u+'" target="_blank" rel="noopener">'+esc(o.t)+' ↗</a>';}
+var WEBER=SRC_DX.t;
 function seg(cur,all){return '<div class="seg" role="tablist">'+(all?'<button data-d="all"'+(cur==='all'?' class="on"':'')+'>Todas</button>':'')+['eb','gaucher','fabry','mps'].map(function(d){return '<button data-d="'+d+'"'+(cur===d?' class="on"':'')+'>'+DSHORT[d]+'</button>';}).join('')+'</div>';}
 function bindSeg(root,fn){$$('.seg button',root).forEach(function(b){b.onclick=function(){$$('button',b.parentNode).forEach(function(x){x.classList.toggle('on',x===b);});fn(b.dataset.d);};});}
 
@@ -124,10 +128,10 @@ V.inicio=function(){
    '<div class="stats">'+
     '<div class="stat"><b>4.7 años</b><span>tarda en promedio un diagnóstico en Europa</span></div>'+
     '<div class="stat"><b>10.4 años</b><span>esperan los adolescentes, el grupo con mayor retraso</span></div>'+
-    '<div class="stat"><b>× 2.6</b><span>riesgo de retraso tras consultar a más de 10 especialistas</span></div>'+
+    '<div class="stat"><b>× 2.6</b><span>más probabilidad de retraso tras consultar a más de 10 especialistas</span></div>'+
     '<div class="stat"><b>× 2.1</b><span>si hay que salir de la propia región para ver a un especialista</span></div>'+
    '</div>'+
-   '<p class="note" style="margin-top:16px">Fuente: '+WEBER+'. Para México se estiman entre 8 y 10 millones de personas con una enfermedad poco frecuente, sin censo nacional (<a href="'+esc(CBY.x2?CBY.x2.url:'#')+'" target="_blank" rel="noopener">Excélsior, feb. 2026</a>). Medir la cifra mexicana es la primera tarea del Observatorio.</p>'+
+   '<p class="note" style="margin-top:16px">Fuentes: '+srcA(SRC_DX)+' · '+srcA(SRC_ESP)+'. Para México se estiman entre 8 y 10 millones de personas con una enfermedad poco frecuente, sin censo nacional (<a href="'+esc(CBY.x2?CBY.x2.url:'#')+'" target="_blank" rel="noopener">Excélsior, feb. 2026</a>). Medir la cifra mexicana es la primera tarea del Observatorio.</p>'+
   '</div></section>'+
 
   '<section class="blk"><div class="wrap">'+
@@ -188,9 +192,45 @@ function voiceToggle(){return '<button type="button" class="vtog" aria-pressed="
 function bindVoiceToggle(root){var b=$('.vtog',root);if(!b)return;b.onclick=function(){voice.on=!voice.on;if(!voice.on)voice.stop();b.textContent=voice.on?'Voz activada':'Voz en silencio';b.setAttribute('aria-pressed',voice.on);};}
 var MIC='<button type="button" class="mic" aria-label="Dictar con tu voz" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12h-2Z" fill="currentColor"/></svg></button>';
 
+/* ---------- conversación por voz en tiempo real (agentes de ElevenLabs, como PULSO) ---------- */
+var EL_SRC='/obs/vendor/elevenlabs-client-1.25.0.min.js',elLoad=null;
+function loadEL(){if(window.ElevenLabsClient)return Promise.resolve(window.ElevenLabsClient);
+  if(!elLoad)elLoad=new Promise(function(ok,ko){var s=document.createElement('script');s.src=EL_SRC;s.onload=function(){ok(window.ElevenLabsClient);};s.onerror=ko;document.head.appendChild(s);});return elLoad;}
+function callBtn(nombre){return '<button type="button" class="callbtn" aria-pressed="false"><i aria-hidden="true"></i><span>Hablar con '+nombre+'</span></button>';}
+var CALL={c:null,raf:0,o:null};
+function endCall(){var c=CALL.c;CALL.c=null;cancelAnimationFrame(CALL.raf);if(c)try{c.endSession();}catch(e){}
+  var o=CALL.o;CALL.o=null;if(!o)return;o.ava.classList.remove('live','talk');o.ava.style.removeProperty('--lv');
+  o.btn.classList.remove('on');o.btn.setAttribute('aria-pressed','false');o.btn.querySelector('span').textContent='Hablar con '+o.nombre;o.btn.disabled=false;o.status('');}
+async function startCall(o){
+  if(CALL.c||CALL.o){endCall();return;}
+  voice.stop();CALL.o=o;o.btn.disabled=true;o.status('Conectando…');
+  var cfg=null;try{var r=await fetch('/api/voz?agente='+o.agente);if(r.ok)cfg=await r.json();}catch(e){}
+  if(!cfg){CALL.o=null;o.btn.disabled=false;o.status('La conversación por voz todavía no está conectada. Mientras, puedes escribir o dictar.');return;}
+  try{var st=await navigator.mediaDevices.getUserMedia({audio:true});st.getTracks().forEach(function(t){t.stop();});}
+  catch(e){CALL.o=null;o.btn.disabled=false;o.status('Para hablar con '+o.nombre+' necesito permiso para usar tu micrófono.');return;}
+  var EL;try{EL=await loadEL();}catch(e){CALL.o=null;o.btn.disabled=false;o.status('No pude cargar la voz. Revisa tu conexión.');return;}
+  var opts={connectionType:'webrtc',dynamicVariables:o.vars||{},clientTools:o.tools||{},
+    onConnect:function(){o.btn.disabled=false;o.btn.classList.add('on');o.btn.setAttribute('aria-pressed','true');o.btn.querySelector('span').textContent='Colgar';o.ava.classList.add('live');o.status('Te escucho. Habla con naturalidad.');},
+    onDisconnect:function(){endCall();},
+    onError:function(m){console.warn('voz',m);o.status('Se cortó la conversación. Intenta de nuevo.');},
+    onModeChange:function(m){if(CALL.o)o.status(m.mode==='speaking'?o.nombre+' está hablando… puedes interrumpirla.':'Te escucho.');},
+    onMessage:function(m){if(m&&m.message)o.say(m.source==='user'||m.role==='user'?'u':'a',m.message);}};
+  if(cfg.conversationToken)opts.conversationToken=cfg.conversationToken;else opts.agentId=cfg.agentId;
+  try{CALL.c=await EL.Conversation.startSession(opts);}catch(e){console.warn(e);CALL.o=null;o.btn.disabled=false;o.status('No pude iniciar la conversación. Intenta de nuevo.');return;}
+  (function loop(){if(!CALL.c)return;var sp=CALL.c.getOutputVolume?CALL.c.getOutputVolume():0,mi=CALL.c.getInputVolume?CALL.c.getInputVolume():0;
+    o.ava.style.setProperty('--lv',Math.min(1,Math.max(sp*1.6,mi*.7)).toFixed(3));CALL.raf=requestAnimationFrame(loop);})();}
+window.addEventListener('hashchange',function(){if(CALL.o)endCall();});
+/* herramientas que el agente puede usar en pantalla mientras habla */
+function voiceTools(log,extra){var t={
+  mostrar_fuentes:function(p){var ids=String(p&&p.ids||'').toLowerCase().match(/[a-z]\d+/g)||[];ids=ids.filter(function(x){return CBY[x];});if(!ids.length)return 'Sin fuentes con esos identificadores.';
+    log.appendChild(h('div','bb a src-only',srcLinks(ids)));log.scrollTop=1e6;return 'Fuentes mostradas en pantalla.';},
+  mostrar_tarjeta:function(p){log.appendChild(h('div','box','<b>'+esc(p&&p.titulo||'')+'</b><p style="margin-top:6px">'+esc(p&&p.texto||'')+'</p>'));log.scrollTop=1e6;return 'Tarjeta mostrada.';},
+  ir_al_atlas:function(p){var k=String(p&&p.enfermedad||'').toLowerCase(),d=DIS[k]?k:'';log.appendChild(h('div','box','<a class="go" href="#/atlas'+(d?'?d='+d:'')+'" style="text-decoration:none">Ver en el Atlas dónde se atiende'+(d?' '+esc(DSHORT[d].toLowerCase()):'')+' →</a>'));log.scrollTop=1e6;return 'Enlace al Atlas mostrado.';}};
+  for(var k in extra)t[k]=extra[k];return t;}
+
 var DCOL={eb:'c-m',gaucher:'c-b',fabry:'c-v',mps:'c-g',general:'c-y',tamiz:'c-p'};
 DSHORT.tamiz='Tamiz neonatal';
-var EUROPA='EURORDIS, citado en la Revista Enfermedades Raras (Fundación Weber), vol. 10, núm. 2, sep. 2025';
+var EUROPA=srcA(SRC_DISC);
 
 /* ---------- Acervo ---------- */
 V.acervo=function(q){
@@ -243,7 +283,7 @@ V.rumbo=function(q){
    '<div class="pg-h"><div><span class="tk c-b">Para familias y pacientes</span><h1>Rumbo</h1><p>Qué sigue después del diagnóstico, en tus palabras. Escríbele o háblale: responde con información aprobada y te dice de dónde sale cada dato.</p></div>'+
    '<div class="chips" id="dz">'+['eb','gaucher','fabry','mps'].map(function(d){return '<button type="button" data-d="'+d+'"'+(dis===d?' class="on"':'')+'>'+DSHORT[d]+'</button>';}).join('')+'</div></div>'+
    '<div class="bento">'+
-    '<div class="tile s2 r3 c-b" id="chat"><div class="who">'+ava()+'<div><h3>Rumbo</h3><p>Tu acompañante · responde con fuentes</p></div><span style="margin-left:auto">'+voiceToggle()+'</span></div>'+
+    '<div class="tile s2 r3 c-b" id="chat"><div class="who">'+ava()+'<div><h3>Rumbo</h3><p>Tu acompañante · responde con fuentes</p></div><span class="hdr-r">'+callBtn('Rumbo')+voiceToggle()+'</span></div><p class="callst" id="cst" aria-live="polite"></p>'+
      '<div class="log" id="log" aria-live="polite"></div><div class="sug" id="sug"></div>'+
      '<form class="row" id="f"><input id="inp" placeholder="Escribe o dicta tu pregunta…" maxlength="300" aria-label="Tu pregunta">'+MIC+'<button class="btn" type="submit">Enviar</button></form>'+
      '<div class="note">Orientación general; no sustituye la consulta médica.</div></div>'+
@@ -255,8 +295,10 @@ V.rumbo=function(q){
    '</div></div></section>';
   var log=$('#log'),sug=$('#sug'),inp=$('#inp'),form=$('#f'),av=$('#chat .ava');
   bindVoiceToggle($('#chat'));
+  $('#chat .callbtn').onclick=function(){startCall({agente:'rumbo',nombre:'Rumbo',ava:av,btn:this,vars:{enfermedad:DIS[dis]},
+    status:function(t){$('#cst').textContent=t;},say:function(w,t){log.appendChild(h('div','bb '+w,esc(t)));log.scrollTop=1e6;},tools:voiceTools(log,{})});};
   function side(){
-    $('#w-dato').innerHTML='<span class="tk">Dato que importa</span><div class="big">8 <small>de cada 10</small></div><p>personas con una enfermedad poco frecuente viven con alguna discapacidad en Europa; solo la mitad tiene una valoración formal. En México todavía no se mide.</p><span class="src">'+EUROPA+'</span>';
+    $('#w-dato').innerHTML='<span class="tk">Dato que importa</span><div class="big">8 <small>de cada 10</small></div><p>personas con una enfermedad poco frecuente viven con alguna discapacidad, y apenas 57% ha tenido una valoración. En Europa ya se mide; en Latinoamérica todavía no.</p><span class="src">'+EUROPA+'</span>';
     var P=PD.atlas.pts.filter(function(p){return p.d.indexOf(D2K[dis])>=0;}),nh=P.filter(function(p){return p.l==='h';}).length,na=P.filter(function(p){return p.l==='a';}).length;
     var w=$('#w-cerca');w.href='#/atlas?d='+dis;w.innerHTML='<span class="tk">Dónde atienden</span><div class="big">'+nh+' <small>hospitales</small></div><p>'+na+' asociación'+(na===1?'':'es')+' de pacientes con experiencia en '+esc(DSHORT[dis].toLowerCase())+'.</p><span class="go">Ver en el mapa →</span>';
     var v=RM.w.filter(function(x){return x.t==='video'&&x.d===dis;})[0];
@@ -310,15 +352,21 @@ V.clara=function(){
   view.innerHTML='<section class="pg"><div class="wrap">'+
    '<div class="pg-h"><div><span class="tk c-m">Para el médico de primer contacto</span><h1>Clara</h1><p>Cuéntale el caso como se lo contarías a un colega. Clara te hace las preguntas que faltan y te orienta: qué sospechar, qué explorar y a dónde referir.</p></div></div>'+
    '<div class="bento">'+
-    '<div class="tile s3 r3 c-m" id="cons"><div class="who">'+ava()+'<div><h3>Clara</h3><p>Consulta guiada · no diagnostica, orienta</p></div><span style="margin-left:auto">'+voiceToggle()+'</span></div>'+
+    '<div class="tile s3 r3 c-m" id="cons"><div class="who">'+ava()+'<div><h3>Clara</h3><p>Consulta guiada · no diagnostica, orienta</p></div><span class="hdr-r">'+callBtn('Clara')+voiceToggle()+'</span></div><p class="callst" id="cst" aria-live="polite"></p>'+
      '<div class="log" id="clog" aria-live="polite"></div>'+
      '<div id="cin"></div></div>'+
-    '<div class="tile c-p"><span class="tk">El tiempo cuenta</span><div class="big">4.7 <small>años</small></div><p>tarda en promedio un diagnóstico en Europa; los adolescentes esperan 10.4.</p><span class="src">'+esc(WEBER)+'</span></div>'+
+    '<div class="tile c-p"><span class="tk">El tiempo cuenta</span><div class="big">4.7 <small>años</small></div><p>tarda en promedio un diagnóstico en Europa; los adolescentes esperan 10.4.</p><span class="src">'+srcA(SRC_DX)+'</span></div>'+
     '<div class="tile c-y"><span class="tk">Tamiz al nacer</span><p style="margin-bottom:2px">Sin tamiz ampliado, la mortalidad fue casi el doble:</p><div class="big">'+(T.mort.no||'')+'% <small>vs '+(T.mort.si||'')+'%</small></div><a class="src" href="'+esc(T.mort.url||'#')+'" target="_blank" rel="noopener">'+esc(T.mort.src||'')+' ↗</a></div>'+
     '<div class="tile c-v"><span class="tk">Casos de ejemplo</span><p>Cárgalo y Clara empieza a orientar.</p><div class="chips" id="ejs" style="gap:6px">'+EJ.map(function(e,i){return '<button type="button" data-i="'+i+'" style="font-size:12.5px;padding:6px 11px">'+esc(e[0])+'</button>';}).join('')+'</div></div>'+
     '<div class="tile s4 c-g"><span class="tk">¿Qué se buscó en este bebé al nacer?</span><p>El tamiz neonatal depende de dónde nació. Preguntarlo cambia la sospecha.</p><div class="tz">'+T.panel.map(function(p){return '<div class="'+(/Referencia/.test(p.n)?'ref':'')+'" title="'+esc(p.nota)+'"><span>'+esc(p.n)+'</span><span class="bar"><i style="width:'+Math.round(p.v/mx*100)+'%"></i></span><b>'+p.v+'</b></div>';}).join('')+'</div><a class="src" href="#/acervo?d=tamiz">Fuentes: IMSS, Rev Mex Pediatr, CNEGSR, HRSA · ver fichas del tamiz →</a></div>'+
    '</div></div></section>';
   var clog=$('#clog'),cin=$('#cin'),av=$('#cons .ava');bindVoiceToggle($('#cons'));
+  $('#cons .callbtn').onclick=function(){if(!CALL.o){voice.stop();cin.innerHTML='';}
+    startCall({agente:'clara',nombre:'Clara',ava:av,btn:this,vars:{},status:function(t){$('#cst').textContent=t;if(!CALL.o&&!cin.innerHTML)(t?inputCaso():endButtons());},
+      say:function(w,t){clog.appendChild(h('div','bb '+w,esc(t)));clog.scrollTop=1e6;},
+      tools:voiceTools(clog,{mostrar_orientacion:function(p){p=p||{};var d=String(p.enfermedad||'').toLowerCase(),lv=String(p.nivel||'').toLowerCase();
+        clog.appendChild(h('div','box','<b>'+esc(DSHORT[d]||p.enfermedad||'Orientación')+'</b>'+(lv?'<span class="lvl '+esc(lv)+'">Sospecha '+esc(lv)+'</span>':'')+(p.razon?'<p style="margin-top:6px">'+esc(p.razon)+'</p>':'')+(p.siguiente_paso?'<p style="margin-top:8px"><b>Siguiente paso</b></p><p>'+esc(p.siguiente_paso)+'</p>':'')+(p.referencia?'<p style="margin-top:8px"><b>Referir a</b></p><p>'+esc(p.referencia)+'</p>':'')+(DIS[d]?'<a class="go" href="#/atlas?d='+d+'" style="display:inline-block;margin-top:8px;text-decoration:none">Dónde referir en el Atlas →</a>':'')));
+        clog.scrollTop=1e6;return 'Orientación mostrada en pantalla.';}})});};
   function say(html,spoken){var b=h('div','bb a',html);clog.appendChild(b);clog.scrollTop=1e6;if(spoken)voice.speak(spoken,av);return b;}
   function me(t){clog.appendChild(h('div','bb u',esc(t)));clog.scrollTop=1e6;}
   function inputCaso(){cin.innerHTML='<form class="row" id="cf"><input id="ci" placeholder="Edad, sexo, qué ves, cuántos especialistas lo han visto…" maxlength="900" aria-label="Describe el caso">'+MIC+'<button class="btn" type="submit">Enviar</button></form>';
@@ -331,7 +379,7 @@ V.clara=function(){
   function bias(o){var a=[],e=+o.edad,esp=+o.especialistas;
     if(e>=10&&e<=19)a.push('Adolescente: es el grupo con mayor retraso diagnóstico, 10.4 años en promedio.');
     if(o.sexo==='F')a.push('Mujer: el retraso promedio es de 5.4 años, frente a 3.7 en hombres.');
-    if(esp>10)a.push('Más de 10 especialistas consultados multiplica por 2.6 el riesgo de retraso.');else if(esp>=3)a.push('Ya pasó por '+esp+' especialistas sin diagnóstico: la ruta se está alargando.');
+    if(esp>10)a.push('Haber consultado a más de 10 especialistas se asocia con 2.6 veces más probabilidad de retraso.');else if(esp>=3)a.push('Ya pasó por '+esp+' especialistas sin diagnóstico: la ruta se está alargando.');
     return a;}
   async function paso1(t){busy=true;caso=t;me(t);cin.innerHTML='';var w=say('<span class="wait">Leyendo el caso</span>');
     var fr=frAll(t,10);
@@ -340,7 +388,7 @@ V.clara=function(){
     if(!j||!j.preguntas||!j.preguntas.length){w.innerHTML='<span class="note">'+esc(errCopy({}))+'</span>';return analizar([],fr);}
     preguntas=j.preguntas.slice(0,3);var b=bias(j);
     w.innerHTML=(j.resumen?'<b>Entendí:</b> '+esc(j.resumen)+'<br><br>':'')+'Para orientarte mejor, ayúdame con '+(preguntas.length===1?'una pregunta':preguntas.length+' preguntas')+':';
-    if(b.length)clog.appendChild(h('div','box alert','<b>Alerta de sesgo</b> · '+b.map(esc).join(' ')+'<div class="note" style="margin-top:6px">Fuente: '+esc(WEBER)+'</div>'));
+    if(b.length)clog.appendChild(h('div','box alert','<b>Alerta de sesgo</b> · '+b.map(esc).join(' ')+'<div class="note" style="margin-top:6px">Fuentes: '+srcA(SRC_DX)+' · '+srcA(SRC_ESP)+'</div>'));
     voice.speak((j.resumen?'Entendí: '+j.resumen+'. ':'')+'Para orientarte mejor, ayúdame con estas preguntas.',av);
     var k=0;function next(){if(k>=preguntas.length){analizar(preguntas.map(function(p,i){return p.q+' → '+(resp[i]||'sin dato');}),fr);return;}
       var p=preguntas[k];say('<b>'+esc(p.q)+'</b>');
@@ -437,7 +485,7 @@ V.barometro=function(){
    '<div class="grid g2" style="margin-top:26px;align-items:start">'+
     '<div class="card"><h3>Cómo funciona en la sala</h3><ul style="margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px"><li>Cada asistente escanea el código y vota.</li><li>Dos preguntas de opción única y una de opción múltiple, con los mismos reactivos del barómetro español.</li><li>Después del foro se publica el informe con la pregunta de jerarquía: el primer barómetro mexicano.</li></ul>'+
     '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn" href="/#votar">Abrir la votación</a><a class="btn ghost" href="/">Ver la presentación</a></div></div>'+
-    '<div class="card"><h3>Liga para votar</h3><p class="note" style="margin-top:6px">Esta es la dirección que va en el código QR de la sala.</p><p style="margin-top:12px;word-break:break-all"><b>'+esc(url)+'</b></p><p class="note" style="margin-top:12px">Comparación: '+WEBER.replace(', p. 91','')+'.</p></div>'+
+    '<div class="card"><h3>Liga para votar</h3><p class="note" style="margin-top:6px">Esta es la dirección que va en el código QR de la sala.</p><p style="margin-top:12px;word-break:break-all"><b>'+esc(url)+'</b></p><p class="note" style="margin-top:12px">Comparación: '+srcA(SRC_DX)+'.</p></div>'+
    '</div></div></section>';
 };
 

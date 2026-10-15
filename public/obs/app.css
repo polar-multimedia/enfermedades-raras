@@ -378,3 +378,15 @@ body.light .tz span.bar{background:rgba(0,0,0,.06)}
 @media (min-width:901px) and (max-width:1180px){.cmx{display:none}.bt::after{content:"Capítulo México";display:block;font:800 9.5px Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#4ADE80;margin-top:3px}}
 @media (max-width:520px){.bt b.long{display:none}.bt b.short{display:block}}
 .home .bt b.long{text-shadow:0 1px 12px rgba(0,0,0,.45)}
+/* ---------- llamada de voz en vivo ---------- */
+.hdr-r{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.callbtn{display:inline-flex;align-items:center;gap:8px;font:800 13px Manrope,sans-serif;padding:9px 16px 9px 12px;border-radius:999px;border:0;cursor:pointer;color:#fff;background:linear-gradient(90deg,#FF4FD8,#8B5CF6 55%,#38BDF8);box-shadow:0 6px 20px rgba(139,92,246,.35)}
+.callbtn i{width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+.callbtn.on{background:#e11d48;box-shadow:0 6px 20px rgba(225,29,72,.35)}
+.callbtn.on i{animation:micp 1.2s ease-in-out infinite}
+.callbtn:disabled{opacity:.7;cursor:progress}
+.callst{min-height:1.2em;margin:6px 0 0;font-size:13px;font-weight:600;color:var(--dim)}
+.ava.live i{animation:none!important;transform:rotate(var(--r)) scaleY(calc(.66 + var(--lv,0)*.55))!important;transition:transform .09s linear}
+.ava.live b{box-shadow:0 0 0 2px var(--line2),0 0 calc(6px + var(--lv,0)*26px) rgba(255,79,216,.55)}
+.bb.a.src-only{background:none!important;padding:0!important;box-shadow:none!important}
+@media (max-width:520px){.hdr-r .vtog{display:none}}
