@@ -1,13 +1,17 @@
-# Polar · Enfermedades raras (versión web pública)
+# Observatorio Latinoamericano de Enfermedades Poco Frecuentes (versión web pública)
 
-Rumbo, Clara Sospecha, Atlas y Barómetro en Vivo, listos para publicarse en Vercel.
+Dos piezas, listas para publicarse en Vercel:
+
+- **`/observatorio`**: la plataforma del Observatorio y su Acervo (inicio, Acervo, Rumbo, Clara, Atlas, Asociaciones y Barómetro), pensada para recorrerse como si ya existiera.
+- **`/`**: la presentación con los demos y la votación del Barómetro en Vivo (`/#votar`).
 Funciona sin que el público tenga cuenta de Claude: la inteligencia artificial pasa por el servidor de Polar, que guarda la llave de Anthropic.
 
 ## Qué hay en la carpeta
 
 | Ruta | Qué es |
 |---|---|
-| `public/index.html` | La presentación completa con los cuatro demos |
+| `public/observatorio.html` y `public/obs/` | La plataforma del Observatorio: página, estilos, lógica y el Acervo (`acervo.json` + imágenes) |
+| `public/index.html` | La presentación completa con los cuatro demos y la votación |
 | `public/audio/clara-gaucher.mp3` | Voz de Clara para el caso de ejemplo de Gaucher |
 | `api/ask.js` | Habla con Claude (modelo Haiku) usando la llave del servidor |
 | `api/room.js` | Guarda y cuenta los votos del Barómetro |
@@ -51,7 +55,7 @@ El QR del Barómetro apunta solo a `https://TU-DIRECCION.vercel.app/#votar`. En 
 ## Cuidar el gasto
 
 - En console.anthropic.com → *Billing / Limits*, pon un límite mensual (por ejemplo 20 USD). Cada pregunta con Haiku cuesta centavos.
-- La función solo acepta temas de enfermedades raras, limita el tamaño de cada consulta y cuántas hace cada persona.
+- La función solo acepta temas de enfermedades poco frecuentes, limita el tamaño de cada consulta y cuántas hace cada persona.
 - La llave nunca llega al navegador: solo vive en Vercel.
 
 ## La voz de Clara
