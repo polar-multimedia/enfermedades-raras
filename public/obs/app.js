@@ -104,11 +104,12 @@ V.inicio=function(){
   var nFichas=C.length,nVid=RM.w.filter(function(w){return w.t==='video';}).length,nPts=PD.atlas.pts.length;
   view.innerHTML=
   '<section class="hero"><div class="bgimg" aria-hidden="true"></div><div class="wrap">'+
-   '<span class="kick">Capítulo México</span>'+
-   '<h1>El conocimiento sobre las enfermedades poco frecuentes existe. <em>Está disperso.</em> Aquí lo reunimos.</h1>'+
-   '<p class="lead">El Observatorio mide cómo se vive con una enfermedad poco frecuente en México y Latinoamérica. Su Acervo pone ese conocimiento al alcance de cada quien: familias, médicos, asociaciones de pacientes y quienes deciden la política pública.</p>'+
-   '<div class="acts"><a class="btn" href="#/acervo">Explorar el Acervo</a><a class="btn ghost" href="#/barometro">Barómetro en el Senado</a></div>'+
-  '</div></section>'+
+   '<h1 class="hero-t">Nadie debería navegar solo una enfermedad poco frecuente.</h1>'+
+   '<p class="hero-s">Entre 8 y 10 millones de personas en México viven con una. El Observatorio reúne lo que se sabe, mide lo que falta y alumbra el camino para familias, médicos y quienes deciden.</p>'+
+  '</div>'+
+  '<a class="hero-cta" href="#/acervo"><i aria-hidden="true"></i>Explorar el Acervo</a>'+
+  '<p class="hero-hint">Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
+  '</section>'+
 
   '<section class="blk"><div class="wrap">'+
    '<span class="kick m">Por qué un observatorio</span><h2>En Europa ya se mide cuánto tarda un diagnóstico. En México, todavía no.</h2>'+
@@ -134,7 +135,7 @@ V.inicio=function(){
   '<section class="blk"><div class="wrap">'+
    '<span class="kick y">Cómo está hecho</span><h2>Un observatorio que mide. Un acervo que acompaña.</h2>'+
    '<div class="arch"><div class="brandshot"><img src="/obs/img/brand/faro-3d.webp" alt="El faro del Observatorio: una torre con piel de cebra, el símbolo de las enfermedades poco frecuentes, coronada por un ojo con iris de colores y rodeada de rayos de luz en forma de manos" loading="lazy"></div>'+
-    '<div class="card"><span class="pill y">El Observatorio</span><h3 style="margin-top:10px">Mide y da la cara</h3><p>Publica el Barómetro y el Atlas, lleva los datos al Senado y firma los informes. Tiene consejo honorífico y presidencia médica.</p></div>'+
+    '<div class="card"><span class="pill y">El Observatorio</span><h3 style="margin-top:10px">Mide y da la cara</h3><p>Publica el Atlas y los informes, lleva los datos al Senado y firma los informes. Tiene consejo honorífico y presidencia médica.</p></div>'+
     '<div class="card"><span class="pill">El Acervo</span><h3 style="margin-top:10px">Reúne y responde</h3><p>Fichas, entrevistas, videos y asistentes que responden solo con información aprobada. Hoy contiene <b>'+nFichas+' fichas con fuente</b>, <b>'+nVid+' videos</b> y <b>'+nPts+' puntos de atención</b> sobre cuatro enfermedades.</p></div>'+
    '</div>'+
    '<p class="sub" style="margin-top:18px">Enfermedades en esta demostración: piel de mariposa (epidermólisis bullosa), Gaucher, Fabry y síndrome de Hunter (MPS II).</p>'+
@@ -392,6 +393,10 @@ var FX=(function(){
     var sw=document.getElementById('sweep');if(sw){sw.classList.remove('go');void sw.offsetWidth;sw.classList.add('go');}}};
 })();
 var firstRoute=true;
+var topEl=document.querySelector('.top');
+function solidHead(){if(topEl)topEl.classList.toggle('solid',scrollY>40||!document.body.classList.contains('home'));}
+addEventListener('scroll',solidHead,{passive:true});
+
 /* ---------- enrutador ---------- */
 function route(){
   var hs=location.hash.replace(/^#\/?/,''),parts=hs.split('?'),name=parts[0]||'inicio',q={};
@@ -400,6 +405,7 @@ function route(){
   voice.stop();
   $$('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.v===name);if(a.dataset.v===name)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   V[name](q);window.scrollTo(0,0);if(name!=='inicio')view.focus({preventScroll:true});
+  document.body.classList.toggle('home',name==='inicio');solidHead();
   FX.go(name);view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter');firstRoute=false;
   document.title=(name==='inicio'?'':({acervo:'Acervo',rumbo:'Rumbo',clara:'Clara',atlas:'Atlas',asociaciones:'Asociaciones',barometro:'Barómetro'})[name]+' · ')+'Observatorio · Enfermedades Poco Frecuentes';}
 
