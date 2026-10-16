@@ -752,3 +752,13 @@ body:not(.pres) .pres-only{display:none}
 .f-ini{display:flex;align-items:center;gap:9px;margin:2px 0 6px;font-size:12px;font-weight:600;color:var(--dim)}
 .hh-ini{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-bottom:6px;font-size:11.5px;font-weight:700;color:rgba(214,232,242,.75)}
 .foot .f-ini{display:flex!important;flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;text-align:left!important;gap:9px}
+
+/* con video, el fondo no se escala: el zoom lento sobre el video lo hacía temblar */
+.hero .bgimg.has-video{animation:none!important;transform:none!important}
+
+/* cinta arrastrable: la mueve JS */
+.ribbon .track.js{animation:none!important;will-change:transform}
+.ribbon{touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.ribbon.dragging{cursor:grabbing}.ribbon.dragging .labc{pointer-events:none}
+.ribbon .labc img{-webkit-user-drag:none;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.ribbon{overflow-x:hidden}}
