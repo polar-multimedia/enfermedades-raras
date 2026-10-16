@@ -929,3 +929,6 @@ body.pres .pub-only{display:none!important}
 .mxr{grid-template-columns:repeat(4,1fr);gap:4px}
 .mxr span{flex-direction:column;justify-content:center;gap:4px;padding:7px 2px;font-size:11px;text-align:center}
 .mxc p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.hh-ini{flex-direction:column;align-items:flex-end;gap:6px;margin-bottom:10px}
+.hh-ini img{width:92px;height:92px;display:block;filter:drop-shadow(0 0 1px rgba(255,255,255,.55)) drop-shadow(0 4px 14px rgba(0,0,0,.45))}
