@@ -932,3 +932,4 @@ body.pres .pub-only{display:none!important}
 
 .hh-ini{flex-direction:column;align-items:flex-end;gap:6px;margin-bottom:10px}
 .hh-ini img{width:92px;height:92px;display:block;filter:drop-shadow(0 0 1px rgba(255,255,255,.55)) drop-shadow(0 4px 14px rgba(0,0,0,.45))}
+#perfilBtn{display:none!important}
