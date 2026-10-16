@@ -746,3 +746,9 @@ body:not(.pres) .pres-only{display:none}
 .vlog{display:none;max-height:260px;margin-top:10px}
 .vlog.on{display:block}
 @media(max-width:640px){.vcall .who{flex-wrap:wrap}.vcall .hdr-r{width:100%;margin-left:0}.vcall .callbtn{width:100%;justify-content:center}}
+
+/* convocante: Twentyeight Women's Health (por debajo del Senado) */
+.rs-logo.xs{width:34px;height:34px;box-shadow:none}.rs-logo.xs img{width:28px;height:28px}
+.f-ini{display:flex;align-items:center;gap:9px;margin:2px 0 6px;font-size:12px;font-weight:600;color:var(--dim)}
+.hh-ini{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-bottom:6px;font-size:11.5px;font-weight:700;color:rgba(214,232,242,.75)}
+.foot .f-ini{display:flex!important;flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;text-align:left!important;gap:9px}

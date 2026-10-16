@@ -107,6 +107,11 @@ ol.rules{padding-left:20px;display:flex;flex-direction:column;gap:10px}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--line2);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60}
 .toast.on{opacity:1}
 @media print{.top,#gate,.toolbar,nav.tabs,.toast{display:none!important}section.pane{display:block!important;page-break-after:always}body{background:#fff;color:#111}.card,.kpi{background:#fff;border-color:#ddd}h1,h2,h3,b,.pk .price{color:#111}}
+.creds{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:16px}
+.cr{display:flex;align-items:center;gap:10px;color:var(--soft);font-weight:700}
+.cr i{display:grid;place-items:center;border-radius:50%;background:#fff;flex:none}
+.cr.sen{font-size:14px}.cr.sen i{width:46px;height:46px}.cr.sen img{width:40px;height:40px}
+.cr.ini{font-size:12px;font-weight:600;color:var(--dim)}.cr.ini i{width:32px;height:32px}.cr.ini img{width:26px;height:26px}
 </style>
 </head>
 <body>
@@ -137,6 +142,7 @@ ol.rules{padding-left:20px;display:flex;flex-direction:column;gap:10px}
     <span class="tk"><img src="/obs/img/brand/rayos-fan.svg" alt="">Propuesta de patrocinio 2027</span>
     <h1>Patrocinios y calculadora</h1>
     <p>Precios anuales en pesos, sin IVA. Puedes editar los paquetes y los supuestos: los cambios se guardan en este navegador. Para compartir una versión, descarga la configuración y envíala.</p>
+    <div class="creds"><span class="cr sen"><i><img src="/obs/img/brand/senado-lxvi.webp" alt=""></i>Con el respaldo del Senado de la República · LXVI Legislatura</span><span class="cr ini"><i><img src="/obs/img/brand/28wh.webp" alt=""></i>Una iniciativa de Twentyeight Women's Health</span></div>
   </div>
 
   <section class="pane on" id="p-paquetes">

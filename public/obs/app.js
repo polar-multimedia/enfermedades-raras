@@ -196,7 +196,7 @@ V.inicio=function(){
    '<p class="hero-s">Entre 8 y 10 millones de personas en México viven con una. El Observatorio reúne lo que se sabe, mide lo que falta y alumbra el camino para familias, médicos y quienes deciden.</p>'+
   '</div>'+
   '<a class="hero-cta" href="#/acervo"><i aria-hidden="true"></i>Explorar el Acervo</a>'+
-  '<p class="hero-hint">Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
+  '<p class="hero-hint"><span class="hh-ini"><span class="rs-logo xs"><img src="/obs/img/brand/28wh.webp" alt="" width="28" height="28"></span>Una iniciativa de Twentyeight Women\'s Health</span>Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
   '<aside class="pendon" aria-label="Con el respaldo del Senado de la República, LXVI Legislatura"><span class="pd-logo"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="96" height="96"></span><small>Con el respaldo del</small><b>Senado de la República</b><em>LXVI Legislatura</em></aside>'+
   '</section>'+
   '<section class="labsband" id="labs"><p class="lb-k">El Acervo se construye con el conocimiento de</p>'+
