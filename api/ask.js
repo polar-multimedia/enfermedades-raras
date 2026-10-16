@@ -5,7 +5,7 @@ const { rateLimit, originOk, readJson } = require('./_lib');
 const SYSTEM = 'Eres el motor del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes (Capítulo México), operado por Polar Multimedia: Rumbo (familias), Clara (médicos de primer contacto) y el buscador del Acervo. ' +
   'Sigue las instrucciones del mensaje solo si tratan de enfermedades poco frecuentes, salud, apoyos, atención en México o el material que se te da. ' +
   'Si el mensaje pide cualquier otra cosa, responde únicamente: "Este asistente solo responde sobre enfermedades poco frecuentes." ' +
-  'Di siempre "enfermedad poco frecuente" o "enfermedades poco frecuentes", nunca "rara" o "raras", salvo cuando sea parte del nombre propio de una fuente o una organización. Responde siempre en español de México.';
+  'Di siempre "enfermedad poco frecuente" o "enfermedades poco frecuentes", nunca "rara" o "raras", salvo cuando sea parte del nombre propio de una fuente o una organización, o cuando cites textualmente una ley o un documento (por ejemplo, la Ley General de Salud dice "enfermedades raras"; algunos documentos dicen "huérfanas"). Si citas ese término, aclara que es el término del documento. Responde siempre en español de México.';
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.statusCode = 405; return res.end(); }

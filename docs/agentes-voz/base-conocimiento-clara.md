@@ -58,7 +58,7 @@ Base de conocimiento del Acervo del Observatorio Latinoamericano de Enfermedades
 
 [g15] Evidencia comparativa de TRE. Una revisión Cochrane (2015) comparó imiglucerasa, velaglucerasa alfa y taliglucerasa alfa. Encontró que en el primer año son no inferiores entre sí en seguridad y eficacia para los marcadores de respuesta. Dosis de 30 a 45 U/kg cada 2 a 4 semanas fueron, en general, tan efectivas como 60 U/kg. Los autores señalan que la evidencia es limitada. (Fuente: Cochrane, https://www.cochrane.org/es/CD010324/CF_reemplazo-de-enzimas-y-tratamiento-de-reduccion-de-sustratos-para-la-enfermedad-de-gaucher)
 
-[g16] Gaucher en México: panorama del INP. Una serie del Instituto Nacional de Pediatría (2011) reportó esplenomegalia en cerca del 81% de los pacientes y anemia o trombocitopenia en cerca del 59%. Los genotipos más comunes fueron N370S y L444P. El artículo señala que en México el acceso a la TRE era limitado por falta de legislación sobre enfermedades raras y medicamentos huérfanos. (Fuente: Acta Pediátrica de México 2011 (INP), https://ojs.actapediatrica.org.mx/index.php/APM/article/view/505/504)
+[g16] Gaucher en México: panorama del INP. Una serie del Instituto Nacional de Pediatría (2011) reportó esplenomegalia en cerca del 81% de los pacientes y anemia o trombocitopenia en cerca del 59%. Los genotipos más comunes fueron N370S y L444P. El artículo señala que en México el acceso a la TRE era limitado por falta de legislación sobre enfermedades poco frecuentes y medicamentos huérfanos. (Fuente: Acta Pediátrica de México 2011 (INP), https://ojs.actapediatrica.org.mx/index.php/APM/article/view/505/504)
 
 [g17] Gaucher tipo 1 en niños del INP. En 7 niños con Gaucher tipo 1 atendidos en el INP entre 2013 y 2018, la mediana de edad al diagnóstico fue de 14 meses. Varios estaban por debajo del percentil 25 de peso y talla. Las manifestaciones neurológicas fueron inespecíficas y no hubo deterioro progresivo. Todos recibían terapia de reemplazo enzimático. (Fuente: Acta Pediátrica de México 2020 (INP), https://actapediatrica.org.mx/descarga/995)
 
@@ -102,7 +102,7 @@ Base de conocimiento del Acervo del Observatorio Latinoamericano de Enfermedades
 
 [m3] Herencia y estudio familiar. La GPC mexicana ubica el gen en Xq28. Si la madre es portadora, cada embarazo tiene 50% de probabilidad de un varón afectado y 50% de una hija portadora. Recomienda el análisis del gen IDS en el paciente y en la madre, y medir la actividad de I2S en los hermanos varones menores de 4 años cuando la madre sea portadora confirmada. (Fuente: GPC IMSS-476-11, https://www.facmed.unam.mx/sg/css/documentos_pdf/Cat%20Maestro%20539%20GPC%202012/IMSS-476-11-MUCOPOLISACARIDOSIS/IMSS-476-11-Mucopolisacaridosis%20II.pdf)
 
-[m6] Señales de sospecha (primer contacto). La GPC mexicana pide sospechar MPS II ante síntomas respiratorios repetitivos en los primeros meses de vida (obstrucción de vía aérea alta, rinorrea, respiración bucal, apneas), manchas mongólicas extensas, hernia inguinal o umbilical, lesiones papulares 'en empedrado' en la región escapular y los brazos, o antecedente familiar por vía materna. (Fuente: GPC IMSS-476-11, https://www.facmed.unam.mx/sg/css/documentos_pdf/Cat%20Maestro%20539%20GPC%202012/IMSS-476-11-MUCOPOLISACARIDOSIS/IMSS-476-11-Mucopolisacaridosis%20II.pdf)
+[m6] Señales de sospecha (primer contacto). La GPC mexicana indica sospechar MPS II ante síntomas respiratorios repetitivos en los primeros meses de vida (obstrucción de vía aérea alta, rinorrea, respiración bucal, apneas), manchas mongólicas extensas, hernia inguinal o umbilical, lesiones papulares 'en empedrado' en la región escapular y los brazos, o antecedente familiar por vía materna. (Fuente: GPC IMSS-476-11, https://www.facmed.unam.mx/sg/css/documentos_pdf/Cat%20Maestro%20539%20GPC%202012/IMSS-476-11-MUCOPOLISACARIDOSIS/IMSS-476-11-Mucopolisacaridosis%20II.pdf)
 
 [m7] Hallazgos más frecuentes. Los signos no son evidentes al nacer. Las formas tempranas suelen manifestarse entre los 18 meses y los 4 años. Lo más frecuente es la infiltración facial (98%), seguida de hígado y bazo grandes (88%), rigidez articular o disostosis (87%) y lengua grande (84%). (Fuente: Rev Mex Pediatr 2021 (IMSS SLP / CMN Occidente), https://www.scielo.org.mx/pdf/rmp/v88n6/0035-0052-rmp-88-06-233.pdf)
 
@@ -128,9 +128,9 @@ Base de conocimiento del Acervo del Observatorio Latinoamericano de Enfermedades
 
 ## Trámites y apoyos en México
 
-[x1] Definición legal de enfermedad rara. El artículo 224 Bis de la Ley General de Salud define los medicamentos huérfanos como los destinados a prevenir, diagnosticar o tratar enfermedades raras. Considera raras las que tienen una prevalencia de no más de 5 personas por cada 10,000 habitantes. El artículo se adicionó en el DOF el 30 de enero de 2012 y se reformó el 29 de mayo de 2023. (Fuente: Ley General de Salud, art. 224 Bis (mLey), https://mley.mx/LGS/articulo/224-bis/)
+[x1] Definición legal: «enfermedades raras» en la Ley General de Salud. El artículo 224 Bis de la Ley General de Salud define los medicamentos huérfanos como los destinados a prevenir, diagnosticar o tratar «enfermedades raras», y considera como tales las que tienen una prevalencia de no más de 5 personas por cada 10,000 habitantes. Es el término legal; el Observatorio prefiere llamarlas enfermedades poco frecuentes, y en otros documentos también aparecen como raras o huérfanas. El artículo se adicionó en el DOF el 30 de enero de 2012 y se reformó el 29 de mayo de 2023. (Fuente: Ley General de Salud, art. 224 Bis (mLey), https://mley.mx/LGS/articulo/224-bis/)
 
-[x2] Enfermedades raras en México: cifras. Se estima que en México viven entre 8 y 10 millones de personas con una enfermedad rara, aunque no hay censo nacional. El Consejo de Salubridad General reconoció cerca de 5,500 enfermedades raras en el DOF del 29 de junio de 2023, al adoptar la clasificación CIE-11 de la OMS. (Fuente: Excélsior (feb 2026), https://www.excelsior.com.mx/salud/son-enfermedades-raras-mexico)
+[x2] Enfermedades poco frecuentes en México: cifras. Se estima que en México viven entre 8 y 10 millones de personas con una enfermedad poco frecuente, aunque no hay censo nacional. El Consejo de Salubridad General reconoció cerca de 5,500 enfermedades poco frecuentes en el DOF del 29 de junio de 2023, al adoptar la clasificación CIE-11 de la OMS. (Fuente: Excélsior (feb 2026), https://www.excelsior.com.mx/salud/son-enfermedades-raras-mexico)
 
 ## Tamiz neonatal en México
 
@@ -476,7 +476,7 @@ Base de conocimiento del Acervo del Observatorio Latinoamericano de Enfermedades
 - Asociación de pacientes: Federación de Hemofilia de la República Mexicana A.C. — Ciudad de México, Ciudad de México — Hemofilia A y B.
 - Asociación de pacientes: Asociación Tabasqueña de Hemofilia A.C. — Villahermosa, Tabasco — Hemofilia A y B.
 - Asociación de pacientes: Fundación Atrofia Muscular Espinal México — Monterrey, Nuevo León — Atrofia muscular espinal.
-- Asociación de pacientes: Duchenne México Parent Project A.C. — Cancún, Quintana Roo (sede sin confirmar) — Distrofia muscular de Duchenne.
+- Asociación de pacientes: Duchenne México Parent Project A.C. — Cancún, Quintana Roo — Distrofia muscular de Duchenne.
 - Asociación de pacientes: Asociación Duchenne Tijuana A.C. — Tijuana, Baja California — Distrofia muscular de Duchenne.
 - Asociación de pacientes: Asociación MPS JAJAX — Guadalajara, Jalisco — Mucopolisacaridosis tipo I (Hurler, Hurler-Scheie, Scheie), Mucopolisacaridosis tipo VI (síndrome de Maroteaux-Lamy).
 - Asociación de pacientes: Asociación Mexicana de Fibrosis Quística A.C. (AMFQ) — Ciudad de México, Ciudad de México — Fibrosis quística.
