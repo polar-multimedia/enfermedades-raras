@@ -951,7 +951,7 @@ V.barometro=function(){
    '<div class="pagehero" style="--img:url(/obs/img/brand/faro-manos.webp)"><span class="kick y">Para foros y el Senado</span><h1>Barómetro en Vivo</h1><p class="lead">La primera medición mexicana de cómo se vive con una enfermedad poco frecuente. Los asistentes votan desde su celular, las barras se llenan al momento en la pantalla y cada resultado se compara con España.</p></div>'+
    '<div class="grid g2" style="margin-top:26px;align-items:start">'+
     '<div class="card"><h3>Cómo funciona en la sala</h3><ul style="margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px"><li>Cada asistente escanea el código y vota.</li><li>Dos preguntas de opción única y una de opción múltiple, con los mismos reactivos del barómetro español.</li><li>Después del foro se publica el informe con la pregunta de jerarquía: el primer barómetro mexicano.</li></ul>'+
-    '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn" href="/#votar">Abrir la votación</a><a class="btn ghost" href="/">Ver la presentación</a></div></div>'+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn" href="/propuesta#votar">Abrir la votación</a><a class="btn ghost" href="/propuesta">Ver la presentación</a></div></div>'+
     '<div class="card"><h3>Liga para votar</h3><p class="note" style="margin-top:6px">Esta es la dirección que va en el código QR de la sala.</p><p style="margin-top:12px;word-break:break-all"><b>'+esc(url)+'</b></p><p class="note" style="margin-top:12px">Comparación: '+srcA(SRC_DX)+'.</p></div>'+
    '</div></div></section>';
 };
@@ -1011,7 +1011,7 @@ fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
   PD=d;C=PD.corpus||[];C.forEach(function(x){CBY[x.id]=x;});initDis(PD.enfermedades);
   cSearch=Index(C,function(x){return x.tema+' '+x.tema+' '+x.texto;});
   RM=PD.rumbo||RM;RM.w.forEach(function(w){RW[w.id]=w;});
-  var LP=(location.pathname.match(/^\/(familias|medicos|presentacion)\/?$/)||[])[1];
+  var LP=location.pathname==='/'?(PERFIL?'':'familias'):(location.pathname.match(/^\/(familias|medicos|presentacion)\/?$/)||[])[1];
   if(LP==='familias')setPerfil('fam');else if(LP==='presentacion')setPerfil('pres');
   applyPerfil();window.addEventListener('hashchange',route);route();
   if(LP==='medicos'&&PERFIL!=='med'){entrada();var mb=document.querySelector('#entrada .en-o.med');if(mb)mb.click();}else if(!PERFIL)entrada();

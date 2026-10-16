@@ -54,6 +54,10 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/observatorio"
+    },
+    {
       "source": "/familias",
       "destination": "/observatorio"
     },
