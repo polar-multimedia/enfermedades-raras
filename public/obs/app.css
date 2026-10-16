@@ -736,3 +736,13 @@ body:not(.pres) .pres-only{display:none}
 .pendon b{font-size:14.5px}
 .pendon em{font-size:10px;margin-top:2px}
 @media (max-width:900px){.hero .pendon{width:96px;padding:10px 6px 26px;bottom:96px;right:12px}.pd-logo{width:56px;height:56px;margin:2px 0 6px}.pd-logo img{width:48px;height:48px}.pendon b{font-size:11.5px}.pendon small{font-size:7.5px}.pendon em{font-size:8.5px}}
+
+/* entrada por voz en Rumbo (antes de elegir enfermedad) */
+.vcall{margin-bottom:16px}
+.vcall .who{flex-wrap:nowrap;align-items:center}
+.vcall .who>div{flex:1}
+.vcall .callst:empty{display:none}
+.vcall h3{font-size:18px}
+.vlog{display:none;max-height:260px;margin-top:10px}
+.vlog.on{display:block}
+@media(max-width:640px){.vcall .who{flex-wrap:wrap}.vcall .hdr-r{width:100%;margin-left:0}.vcall .callbtn{width:100%;justify-content:center}}
