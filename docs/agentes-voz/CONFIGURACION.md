@@ -2,6 +2,16 @@
 
 Conversación por voz en tiempo real con agentes de ElevenLabs, igual que PULSO by Lacteol. La persona habla, el agente responde con voz, se le puede interrumpir, y mientras habla los rayos del avatar se mueven con su voz. Lo que dice queda escrito en el chat y puede mostrar fuentes, tarjetas y enlaces al Atlas en pantalla.
 
+## 0. Estado (15 oct 2026)
+
+Ya creados en la cuenta de Polar, públicos, voz Gabriela (mexicana, madura, cálida), LLM Claude Haiku 4.5, RAG multilingüe:
+
+- Rumbo · Observatorio EPF: agent_5201m518kr4gffq932p4a5neezae — base "Rumbo · base de conocimiento (familias)"
+- Clara · Observatorio EPF: agent_7301m519evfdfmatf3v1whwcxn96 — base "Clara · base de conocimiento (médicos)"
+- Herramientas cliente: mostrar_fuentes, mostrar_tarjeta, ir_al_atlas (ambos) y mostrar_orientacion (Clara)
+- Las bases se cargan por URL desde public/obs/kb/ del repositorio (rama observatorio). Si cambia el corpus: regenerar, push y "Refresh" del documento en ElevenLabs.
+- api/voz.js trae estos ids por defecto; las variables de Vercel los reemplazan si se definen.
+
 ## 1. Crear los dos agentes en ElevenLabs
 
 En la cuenta de ElevenLabs de Polar (la misma de PULSO): Agents › Create agent › Blank. Uno para Rumbo y otro para Clara.
@@ -42,7 +52,7 @@ Límites: no diagnosticas, no recomiendas ni ajustas tratamientos y no das dosis
 
 ## 3. Prompt de Clara
 
-Primer mensaje: "Hola, soy Clara. Cuéntame del paciente como se lo contarías a un colega: edad, sexo, qué te preocupa y cuántos especialistas lo han visto."
+Primer mensaje: "Hola, soy Clara. Cuénteme del paciente como se lo contaría a un colega: edad, sexo, qué le preocupa y cuántos especialistas lo han visto."
 
 Prompt del sistema:
 
