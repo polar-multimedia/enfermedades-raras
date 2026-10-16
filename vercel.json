@@ -51,5 +51,19 @@
       ]
     }
   ],
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/familias",
+      "destination": "/observatorio"
+    },
+    {
+      "source": "/medicos",
+      "destination": "/observatorio"
+    },
+    {
+      "source": "/presentacion",
+      "destination": "/observatorio"
+    }
+  ]
 }

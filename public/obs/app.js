@@ -1011,6 +1011,9 @@ fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
   PD=d;C=PD.corpus||[];C.forEach(function(x){CBY[x.id]=x;});initDis(PD.enfermedades);
   cSearch=Index(C,function(x){return x.tema+' '+x.tema+' '+x.texto;});
   RM=PD.rumbo||RM;RM.w.forEach(function(w){RW[w.id]=w;});
-  applyPerfil();window.addEventListener('hashchange',route);route();if(!PERFIL)entrada();
+  var LP=(location.pathname.match(/^\/(familias|medicos|presentacion)\/?$/)||[])[1];
+  if(LP==='familias')setPerfil('fam');else if(LP==='presentacion')setPerfil('pres');
+  applyPerfil();window.addEventListener('hashchange',route);route();
+  if(LP==='medicos'&&PERFIL!=='med'){entrada();var mb=document.querySelector('#entrada .en-o.med');if(mb)mb.click();}else if(!PERFIL)entrada();
 }).catch(function(){view.innerHTML='<section class="blk"><div class="wrap"><h2>No se pudo cargar el Acervo</h2><p class="lead">Recarga la página.</p></div></section>';});
 })();
