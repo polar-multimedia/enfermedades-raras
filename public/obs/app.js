@@ -45,9 +45,9 @@ function bindSeg(root,fn){$$('.seg button',root).forEach(function(b){b.onclick=f
 
 /* ---------- perfil de entrada: familia o médico ---------- */
 var PERFIL=null;try{PERFIL=localStorage.getItem('obs-perfil');}catch(e){}
-function applyPerfil(){var b=document.body;b.classList.toggle('fam',PERFIL==='fam');b.classList.toggle('med',PERFIL==='med');
-  if(PERFIL==='med'){MED=true;try{sessionStorage.setItem('obs-medico','1');}catch(e){}}else if(PERFIL==='fam'){MED=false;try{sessionStorage.removeItem('obs-medico');}catch(e){}}
-  var pb=document.getElementById('perfilBtn');if(pb){pb.onclick=entrada;pb.setAttribute('aria-label','Perfil: '+(PERFIL==='med'?'médico':PERFIL==='fam'?'familia':'sin elegir')+'. Cambiar');}if(pb)pb.innerHTML='<img src="/obs/img/brand/rayos.svg" alt="" aria-hidden="true">'+(PERFIL==='med'?'Médico':PERFIL==='fam'?'Familia':'Elegir perfil');}
+function applyPerfil(){var b=document.body;b.classList.toggle('fam',PERFIL==='fam');b.classList.toggle('med',PERFIL==='med');b.classList.toggle('pres',PERFIL==='pres');
+  if(PERFIL==='med'||PERFIL==='pres'){MED=true;try{sessionStorage.setItem('obs-medico','1');}catch(e){}}else if(PERFIL==='fam'){MED=false;try{sessionStorage.removeItem('obs-medico');}catch(e){}}
+  var pb=document.getElementById('perfilBtn');if(pb){pb.onclick=entrada;pb.setAttribute('aria-label','Perfil: '+(PERFIL==='med'?'médico':PERFIL==='fam'?'familia':'sin elegir')+'. Cambiar');}if(pb)pb.innerHTML='<img src="/obs/img/brand/rayos.svg" alt="" aria-hidden="true">'+(PERFIL==='med'?'Médico':PERFIL==='fam'?'Familia':PERFIL==='pres'?'Presentación':'Elegir perfil');}
 function setPerfil(p){PERFIL=p;try{localStorage.setItem('obs-perfil',p);}catch(e){}applyPerfil();}
 function entrada(){var old=document.getElementById('entrada');if(old)old.remove();
   var d=h('div','',null);d.id='entrada';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','en-t');
@@ -58,11 +58,12 @@ function entrada(){var old=document.getElementById('entrada');if(old)old.remove(
     '<div class="en-opts" id="eno">'+
      '<button type="button" class="en-o fam" data-p="fam"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><small>Soy paciente o familiar</small><b>Entrar</b><span>Rumbo, el Acervo, el Atlas y las asociaciones, con palabras sencillas.</span></button>'+
      '<button type="button" class="en-o med" data-p="med"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><small>Soy médico o profesional de la salud</small><b>Entrar</b><span>Todo lo anterior y Clara, la herramienta de orientación clínica.</span></button>'+
-    '</div><p class="en-n">Puedes cambiarlo cuando quieras desde el menú.</p></div>';
+    '</div><p class="en-n">Puedes cambiarlo cuando quieras desde el menú.</p><button type="button" class="en-pres" id="enp">Modo presentación</button></div>';
   document.body.appendChild(d);document.body.classList.add('en-open');
   function close(p){setPerfil(p);d.classList.add('out');document.body.classList.remove('en-open');setTimeout(function(){d.remove();},500);
     if(!/^#\/(clara|rumbo|atlas|acervo|asociaciones)/.test(location.hash)||(p==='fam'&&/clara/.test(location.hash)))location.hash='#/';else route();}
   $('.en-o.fam',d).onclick=function(){close('fam');};
+  $('#enp',d).onclick=function(){close('pres');};
   $('.en-o.med',d).onclick=function(){$('#eno',d).innerHTML='<form class="en-conf" id="enc"><b>Clara es exclusiva para profesionales de la salud.</b><label class="ckl"><input type="checkbox" id="enck" required> Confirmo que soy médico o profesional de la salud.</label>'+
     '<div class="field"><label for="encd">Cédula profesional <span class="note">(opcional en esta demostración)</span></label><input id="encd" inputmode="numeric" maxlength="10"></div>'+
     '<div class="factions"><button class="btn" type="submit">Entrar</button><button class="btn ghost" type="button" id="enb">Volver</button></div></form>';
@@ -192,13 +193,15 @@ V.inicio=function(){
   '<section class="hero"><div class="bgimg" aria-hidden="true"></div><div class="wrap">'+
    '<h1 class="hero-t">Nadie debería navegar solo una enfermedad poco frecuente.</h1>'+
    '<p class="hero-s">Entre 8 y 10 millones de personas en México viven con una. El Observatorio reúne lo que se sabe, mide lo que falta y alumbra el camino para familias, médicos y quienes deciden.</p>'+
-   '<div class="hero-doors"><a class="hd fam" href="#/rumbo"><small>Soy familia o paciente</small><b>Rumbo</b><span>Qué sigue y a dónde acudir, en tus palabras</span><i aria-hidden="true">→</i></a>'+
-   '<a class="hd med med-only" href="#/clara"><small>Para médicos</small><b>Clara</b><span>Orientación clínica y referencia del caso</span><i aria-hidden="true">→</i></a>'+
-   '<a class="hd atl fam-only" href="#/atlas?ruta=1"><small>Busco atención</small><b>Atlas</b><span>A dónde ir y qué llevar, según dónde vives</span><i aria-hidden="true">→</i></a></div>'+
   '</div>'+
   '<a class="hero-cta" href="#/acervo"><i aria-hidden="true"></i>Explorar el Acervo</a>'+
   '<p class="hero-hint">Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
   '</section>'+
+  '<section class="respaldo"><div class="wrap"><span class="rs-logo"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="72" height="72"></span><span class="rs-t"><small>Con el respaldo del</small><b>Senado de la República</b><em>LXVI Legislatura</em></span></div></section>'+
+  '<section class="labsband" id="labs"><p class="lb-k">El Acervo se construye con el conocimiento de</p>'+
+   '<div class="ribbon" id="lg" aria-label="Laboratorios con tratamientos en México. Toca un logo para ver sus medicamentos.">'+labRibbon()+'</div>'+
+   '<div class="wrap"><div class="labp" id="lp" aria-live="polite"></div><p class="note lb-n">Toca un logo para ver sus medicamentos y las enfermedades que tratan. Aparecer aquí no implica patrocinio ni recomendación.</p></div></section>'+
+  '<div class="pres-only">'+
 
   '<section class="blk"><div class="wrap">'+
    '<span class="kick m">Por qué un observatorio</span><h2>En Europa ya se mide cuánto tarda un diagnóstico. En Latinoamérica, todavía no.</h2>'+
@@ -230,17 +233,32 @@ V.inicio=function(){
    '<p class="sub" style="margin-top:18px">Enfermedades en esta demostración: '+esc(ENF.map(function(e){return e.nombre.replace(/^Enfermedad de /,'');}).join(', '))+'.</p>'+
   '</div></section>'+
 
-  '<section class="blk" id="labs"><div class="wrap">'+
+  '<section class="blk"><div class="wrap">'+
    '<span class="kick">El corpus del Acervo</span><h2>El conocimiento de los laboratorios, convertido en respuestas con fuente</h2>'+
    '<p class="sub">Los laboratorios que investigan y tratan estas enfermedades en México guardan años de conocimiento: estudios, guías, materiales para pacientes. El Observatorio lo convierte en el corpus del Acervo, para que Rumbo, Clara y el Atlas respondan solo con información revisada.</p>'+
    '<div class="flow3"><div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Aportan</b><span>Cada laboratorio comparte el conocimiento científico de su área terapéutica.</span></div>'+
     '<div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Se valida</b><span>Un comité médico y las asociaciones de pacientes revisan cada ficha antes de publicarla.</span></div>'+
     '<div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Responde con fuente</b><span>Los asistentes solo usan ese corpus y citan de dónde sale cada dato. Conocimiento, no producto.</span></div></div>'+
-  '</div>'+
-  '<div class="ribbon" id="lg" aria-label="Laboratorios con tratamientos en México. Toca un logo para ver sus medicamentos.">'+labRibbon()+'</div>'+
-  '<div class="wrap"><div class="labp" id="lp" aria-live="polite"></div>'+
-   '<p class="note" style="margin-top:14px">Laboratorios con medicamentos en México para enfermedades del Acervo (Cuadro Básico del IMSS, julio de 2026, y autorizaciones de Cofepris). Toca un logo para ver sus medicamentos. Aparecer aquí no implica patrocinio ni recomendación.</p>'+
-  '</div></section>';
+   '<p class="note" style="margin-top:14px">Los laboratorios de la cinta tienen medicamentos en México para enfermedades del Acervo (Cuadro Básico del IMSS, julio de 2026, y autorizaciones de Cofepris).</p>'+
+  '</div></section>'+
+  '<section class="blk senado"><div class="wrap">'+
+   '<span class="kick m">Desde el Senado</span><h2>Legislar con datos: el Registro Nacional y el Observatorio</h2>'+
+   '<div class="sn-g">'+
+    '<div class="sn-who"><span class="rs-logo big"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="120" height="120"></span>'+
+     '<b>Sen. Emmanuel Reyes Carmona</b><span>Presidente de la Comisión de Economía · Integrante de la Comisión de Salud</span>'+
+     '<p>Principal promotor del Registro Nacional de pacientes con enfermedades poco frecuentes. Convocó el Primer Foro Bicameral en el Senado.</p></div>'+
+    '<figure class="sn-q"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><blockquote>En México hay familias que tardan años en ponerle nombre a lo que vive su hija o su hijo. Con el Registro Nacional queremos que el Estado sepa cuántas personas viven con una enfermedad poco frecuente y dónde están. El Observatorio nos da algo igual de urgente: un mapa claro de dónde hay atención y dónde no, y un lugar donde las familias y los médicos encuentran información confiable. Desde el Senado respaldamos este esfuerzo, porque legislar con datos es legislar con justicia.</blockquote>'+
+     '<figcaption><b>Sen. Emmanuel Reyes Carmona</b><i>Propuesta de mensaje · por validar con su equipo</i></figcaption></figure>'+
+   '</div>'+
+   '<div class="sn-t">'+[['25 y 26 feb 2026','Primer Foro Bicameral sobre enfermedades poco frecuentes, en el Senado'],['15 abr 2026','La Cámara de Diputados aprueba el Registro Nacional con 440 votos y lo envía al Senado'],['30 sep 2026','Encuentro Iberoamericano en el Senado: se pide aprobar la minuta'],['28 oct 2026','Conversatorio: la financiación de los tratamientos y las experiencias europeas']].map(function(t,i){return '<div class="'+(i===3?'now':'')+'"><b>'+t[0]+'</b><span>'+t[1]+'</span></div>';}).join('')+'</div>'+
+   '<h3 style="margin-top:26px">Lo que el Observatorio aporta al Registro</h3>'+
+   '<div class="flow3 four"><div><b>Dónde hay atención</b><span>El Atlas ubica '+PD.atlas.pts.filter(function(p){return p.l==='h';}).length+' hospitales con experiencia y muestra los estados sin un solo punto.</span></div>'+
+    '<div><b>Qué se busca al nacer</b><span>El tamiz por institución y por estado: '+((PD.tamiz.estados||[]).filter(function(e){return e.cat==='sin_dato';}).length)+' de 32 estados sin dato público.</span></div>'+
+    '<div><b>Cuántos faltan por diagnosticar</b><span>La brecha entre personas estimadas y diagnosticadas, enfermedad por enfermedad.</span></div>'+
+    '<div><b>Sin costo para el Estado</b><span>Familias y médicos informados con un corpus sostenido por los laboratorios y validado por especialistas.</span></div></div>'+
+   '<p class="note" style="margin-top:14px">Fuentes de la cronología: N+ (16 abr 2026), LaSalud.mx (1 mar 2026), Argonmexico (1 oct 2026).</p>'+
+  '</div></section>'+
+  '</div>';
   heroVideo();bindLabs();
 };
 
@@ -508,7 +526,7 @@ async function aiJsonF(input,files){
   var o=await r.json();if(o.json==null)throw new Error('json');return o.json;}
 
 V.clara=function(){
-  if(PERFIL==='med')MED=true;
+  if(PERFIL==='med'||PERFIL==='pres')MED=true;
   if(!MED)return claraGate();
   var busy=false,caso='',preguntas=[],resp={},tzFile=null,tzRead=null;
   var EJ=[['Adolescente con bazo grande','Mujer de 15 años. Fatiga desde hace dos años, dolor de huesos en las piernas, moretones fáciles. A la exploración, bazo aumentado. Biometría con plaquetas bajas y anemia leve. Ha visto a 4 especialistas.'],
@@ -668,6 +686,10 @@ V.atlas=function(q){
     '<div class="tile s2 c-y"><span class="tk">Tamiz público por estado</span><div class="seg2 sm" id="tzss"><button type="button" class="on" data-v="0">Sin seguridad social</button><button type="button" data-v="1">Con seguridad social</button></div><div id="tzm"></div><p class="note" id="tzn">Toca un estado para ver el detalle.</p></div>'+
     '<div class="tile s2 c-m"><span class="tk">Lo que cuesta no tamizar</span><div class="big">'+(T.mort.no||'')+'% <small>vs '+(T.mort.si||'')+'%</small></div><p>mortalidad en niños con errores innatos del metabolismo sin y con tamiz ampliado.</p><a class="src" href="'+esc(T.mort.url||'#')+'" target="_blank" rel="noopener">'+esc(T.mort.src||'')+' ↗</a></div>'+
     '<div class="tile s2 ink"><span class="tk" style="color:#F2D14B">Sin transparencia</span><div class="big">'+TE.filter(function(e){return e.cat==='sin_dato';}).length+' <small>de 32</small></div><p style="color:#cfd8e3">estados sin un documento público que diga qué enfermedades busca su tamiz para bebés sin seguridad social.</p></div>'+
+    '<div class="tile s4 c-v leg"><span class="tk">Agenda legislativa</span><div class="legg">'+
+     '<div><i class="st tr">Pendiente en el Senado</i><b>Registro Nacional de pacientes</b><span>Aprobado por la Cámara de Diputados con 440 votos el 15 de abril de 2026. Lo impulsa en el Senado el Sen. Emmanuel Reyes Carmona.</span><small>Fuentes: N+ (16 abr 2026), Argonmexico (1 oct 2026)</small></div>'+
+     '<div><i class="st tr">Pendiente en Diputados</i><b>Tamiz neonatal ampliado obligatorio</b><span>Reforma al artículo 61 de la Ley General de Salud aprobada por el Senado el 13 de abril de 2023. La ley vigente sigue sin definir cuántas enfermedades debe incluir.</span><small>Fuente: investigación del Observatorio sobre tamiz neonatal (oct 2026)</small></div>'+
+    '</div></div>'+
    '</div><div class="demo-flag">Solo datos públicos y agregados por institución. El Atlas nunca muestra información de pacientes individuales. Las distancias son aproximadas. Corte: '+esc(new Date(A.corte+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'}))+'.</div>'+
   '</div></section>';
   /* ruta para familias */
@@ -745,6 +767,9 @@ V.asociaciones=function(){
    '</div></div></section>';
   $('#join').onsubmit=function(e){e.preventDefault();$('#jmsg').textContent='Listo. En la versión final, esta solicitud llega al equipo del Observatorio. En esta demostración no se guardó nada.';};
 };
+
+/* ---------- liga directa al modo presentación ---------- */
+V.presentacion=function(){setPerfil('pres');var e=document.getElementById('entrada');if(e){e.remove();document.body.classList.remove('en-open');}location.replace('#/');};
 
 /* ---------- Barómetro ---------- */
 V.barometro=function(){
