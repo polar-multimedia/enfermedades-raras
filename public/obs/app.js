@@ -196,8 +196,8 @@ V.inicio=function(){
   '</div>'+
   '<a class="hero-cta" href="#/acervo"><i aria-hidden="true"></i>Explorar el Acervo</a>'+
   '<p class="hero-hint">Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
+  '<aside class="pendon" aria-label="Con el respaldo del Senado de la República, LXVI Legislatura"><span class="pd-logo"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="96" height="96"></span><small>Con el respaldo del</small><b>Senado de la República</b><em>LXVI Legislatura</em></aside>'+
   '</section>'+
-  '<section class="respaldo"><div class="wrap"><span class="rs-logo"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="72" height="72"></span><span class="rs-t"><small>Con el respaldo del</small><b>Senado de la República</b><em>LXVI Legislatura</em></span></div></section>'+
   '<section class="labsband" id="labs"><p class="lb-k">El Acervo se construye con el conocimiento de</p>'+
    '<div class="ribbon" id="lg" aria-label="Laboratorios con tratamientos en México. Toca un logo para ver sus medicamentos.">'+labRibbon()+'</div>'+
    '<div class="wrap"><div class="labp" id="lp" aria-live="polite"></div><p class="note lb-n">Toca un logo para ver sus medicamentos y las enfermedades que tratan. Aparecer aquí no implica patrocinio ni recomendación.</p></div></section>'+
@@ -678,7 +678,7 @@ V.atlas=function(q){
      '<button class="btn" type="submit">Ver a dónde ir</button></form><div id="rout" aria-live="polite"></div></div>'+
     '<div class="tile s4 af"><label for="az" class="tk">Ver el mapa de</label><select id="az">'+disOptions(dis,true)+'</select></div>'+
     '<div class="tile c-b" id="k-h"></div><div class="tile c-m" id="k-a"></div><div class="tile c-y" id="k-t"></div><div class="tile c-g" id="k-e"></div>'+
-    '<div class="tile s3 r3" style="padding:10px"><div class="map" id="map" style="border:0;background:transparent;padding:0"></div><div class="legend" id="leg" style="padding:0 8px 6px"></div></div>'+
+    '<div class="tile s3 r3 mapt"><div id="lmap" class="lmap" role="region" aria-label="Mapa de atención en México"></div><div class="lyr" id="lyr"></div><p class="mhint">Toca el mapa para hacer zoom con la rueda del ratón.</p></div>'+
     '<div class="tile r3 plt"><div class="plist" id="pl" aria-live="polite"></div></div>'+
     '<div class="tile s4 c-p" id="tzsec"><span class="tk">Tamiz neonatal</span><h2 style="margin:4px 0 6px">Lo que se busca en un bebé depende de dónde nace</h2>'+
      '<div class="tzt"><table><thead><tr><th>Institución</th><th>Cuántas</th><th>Qué incluye</th></tr></thead><tbody>'+TI.map(function(t){return '<tr'+(/Referencia/.test(t.inst)?' class="ref"':'')+'><td><b>'+esc(t.inst)+'</b>'+(t.desde?'<small>'+esc(t.desde)+'</small>':'')+'</td><td class="n">'+esc(t.n)+'</td><td>'+esc(t.cuales||'')+(t.url?' <a href="'+esc(t.url)+'" target="_blank" rel="noopener">Fuente ↗</a>':'')+'</td></tr>';}).join('')+'</tbody></table></div></div>'+
@@ -701,7 +701,7 @@ V.atlas=function(q){
     H.forEach(function(p){p._km=p.s===si?0:km(p);});
     var red=H.filter(mine).sort(function(a,b){return a._km-b._km;}).slice(0,3),near=H.slice().sort(function(a,b){return a._km-b._km;}).filter(function(p){return red.indexOf(p)<0;}).slice(0,2);
     var aso=A.pts.filter(function(p){return p.l==='a'&&(d==='sin'||p.d.indexOf(d)>=0);}).slice(0,3);
-    var card=function(p){return '<div class="rcard"><b>'+esc(p.n)+'</b><span>'+esc(p.c)+' · '+(p._km===0?'en tu estado':'a unos '+p._km+' km')+'</span>'+'<p>Experiencia documentada en: '+esc(p.d.slice().sort(function(x,y){return (y===d)-(x===d);}).map(function(k){return DSHORT[k]||k;}).join(', '))+'</p><a href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></div>';};
+    var card=function(p){return '<div class="rcard"><b>'+esc(p.n)+'</b><span>'+esc(p.c)+' · '+(p._km===0?'en tu estado':'a unos '+p._km+' km')+'</span>'+'<p>Experiencia documentada en: '+esc(p.d.slice().sort(function(x,y){return (y===d)-(x===d);}).map(function(k){return DSHORT[k]||k;}).join(', '))+'</p>'+gmaps(p)+'<a href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></div>';};
     out.innerHTML='<div class="rres">'+
       (E&&E.grupo==='tamiz'?'<div class="box alert"><b>Si el tamiz salió alterado, no esperes.</b> La confirmación es urgente: llama hoy a la unidad donde tomaron la muestra o acude a urgencias pediátricas si el bebé está decaído, vomita o no come.</div>':'')+
       '<div class="rcol"><h3>'+(red.length?'En tu red de atención':'Hospitales con experiencia')+'</h3>'+(red.length?red.map(card).join(''):'<p class="note">No encontramos un hospital de tu red con experiencia documentada en '+esc(E?E.corto:'enfermedades poco frecuentes')+'. Te mostramos los más cercanos de cualquier institución.</p>')+(near.length?'<h4>También cerca</h4>'+near.map(card).join(''):'')+'</div>'+
@@ -712,30 +712,64 @@ V.atlas=function(q){
       '</div><p class="note">'+esc(stn)+': distancias aproximadas en línea recta desde el centro del estado.</p>';
     out.scrollIntoView({block:'nearest',behavior:'smooth'});};
   if(dis!=='all')$('#rd').value=dis;
-  /* mapa de atención */
-  function pts(){return A.pts.filter(function(p){return on[p.l]&&(dis==='all'||p.d.indexOf(dis)>=0);});}
-  function clusters(P){var g={};P.filter(function(p){return p.px!=null;}).forEach(function(p){var k=Math.round(p.px/24)+'_'+Math.round(p.py/24);(g[k]=g[k]||[]).push(p);});
-    return Object.keys(g).map(function(k){var a=g[k],x=0,y=0,cnt={};a.forEach(function(p){x+=p.px;y+=p.py;cnt[p.l]=(cnt[p.l]||0)+1;});
-      var top=Object.keys(cnt).sort(function(m,n){return cnt[n]-cnt[m];})[0];return {k:k,pts:a,x:x/a.length,y:y/a.length,l:top,mixed:Object.keys(cnt).length>1};});}
+  /* mapa de atención: Leaflet con capas y enlaces a Google Maps */
+  var M=null,LG={},stLayer=null,tzLayer=null,me=null,meLL=null,lyr={h:1,a:1,t:1,tz:0,sin:0},lyrOpen=innerWidth>720;
+  var inv=function(x,y){var b=A.mx.b;return [b[3]-y/A.mx.h*(b[3]-b[2]), x/A.mx.w*(b[1]-b[0])+b[0]];};
+  function ll(p){return p.lat!=null?[p.lat,p.lon]:p.px!=null?inv(p.px,p.py):null;}
+  function rings(i){return A.mx.p[i].d.split('M').filter(Boolean).map(function(r){return r.replace(/Z/gi,'').split('L').map(function(s){var a=s.split(',');return inv(+a[0],+a[1]);});});}
+  function gq(p){return encodeURIComponent(p.n.replace(/\s*[–(].*$/,'')+', '+p.c.replace(/\s*\(.*?\)/g,''));}
+  function gmaps(p){return '<div class="gm"><a class="gmb" href="https://www.google.com/maps/dir/?api=1&destination='+gq(p)+'" target="_blank" rel="noopener">Cómo llegar</a><a href="https://www.google.com/maps/search/?api=1&query='+gq(p)+'" target="_blank" rel="noopener">Ver en Google Maps ↗</a></div>';}
+  var LBL={h:'Hospital con experiencia',a:'Asociación de pacientes',t:'Ensayo clínico'};
+  function card(p,km){return '<b>'+esc(p.n)+'</b><span class="c">'+LBL[p.l]+' · '+esc(p.c)+(km!=null?' · a '+km+' km':'')+'</span><span class="dz">'+p.d.map(function(k){return DSHORT[k]||k;}).join(', ')+'</span>'+(p.x?'<p>'+esc(p.x)+'</p>':'')+(p.l!=='t'?gmaps(p):'')+'<a class="src" href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a>';}
+  function hav(a,b){var R=6371,r=Math.PI/180,dl=(b[0]-a[0])*r,dn=(b[1]-a[1])*r,x=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dn/2)*Math.sin(dn/2);return Math.round(2*R*Math.asin(Math.sqrt(x))/5)*5;}
+  function pts(){return A.pts.filter(function(p){return dis==='all'||p.d.indexOf(dis)>=0;});}
+  function loadL(){if(window.L&&L.markerClusterGroup)return Promise.resolve();
+    var add=function(t,a){return new Promise(function(ok,ko){var e=document.createElement(t);if(t==='link'){e.rel='stylesheet';e.href=a;e.onload=ok;}else{e.src=a;e.onload=ok;}e.onerror=ko;document.head.appendChild(e);});};
+    return add('link','/obs/vendor/leaflet/leaflet.min.css').then(function(){return add('link','/obs/vendor/leaflet/MarkerCluster.css');}).then(function(){return add('script','/obs/vendor/leaflet/leaflet.min.js');}).then(function(){return add('script','/obs/vendor/leaflet/leaflet.markercluster.js');});}
+  function initMap(){M=L.map('lmap',{zoomControl:true,scrollWheelZoom:false,minZoom:4,maxBounds:[[8,-125],[38,-80]]}).setView([23.6,-102],5);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Mapa base © Esri, HERE, Garmin, © OpenStreetMap',maxZoom:16}).addTo(M);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,pane:'shadowPane'}).addTo(M);
+    M.on('click',function(){M.scrollWheelZoom.enable();});
+    ['h','a','t'].forEach(function(l){LG[l]=L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:42,iconCreateFunction:function(c){var n=c.getChildCount();return L.divIcon({html:'<span style="background:'+LAY[l].c+'">'+n+'</span>',className:'lcl',iconSize:[38,38]});}});});
+    draw();}
+  function stateStyle(cnt){return function(i){return {color:'#06121c',weight:1,fillColor:cnt[i]?'#00C8D6':'#FF4FD8',fillOpacity:cnt[i]?0:.32};};}
   function draw(){var P=pts(),states={};P.forEach(function(p){if(p.s!=null)states[p.s]=1;});
-    var cnt=function(l){return A.pts.filter(function(p){return p.l===l&&(dis==='all'||p.d.indexOf(dis)>=0);}).length;};
+    var cnt=function(l){return P.filter(function(p){return p.l===l;}).length;};
     $('#k-h').innerHTML='<span class="tk">Hospitales</span><div class="big">'+cnt('h')+'</div><p>con experiencia documentada</p>';
     $('#k-a').innerHTML='<span class="tk">Asociaciones</span><div class="big">'+cnt('a')+'</div><p>de pacientes identificadas</p>';
     $('#k-t').innerHTML='<span class="tk">Ensayos clínicos</span><div class="big">'+cnt('t')+'</div><p>con sede en México</p>';
-    var covered=Object.keys(states).length,CL=clusters(P);
-    $('#k-e').innerHTML='<span class="tk">Sin atención</span><div class="big">'+(32-covered)+' <small>de 32</small></div><p>entidades sin un punto identificado en esta vista</p>';
-    if(area&&!CL.some(function(c){return c.k===area;}))area=null;
-    $('#map').innerHTML='<svg viewBox="60 0 940 640" role="img" aria-label="Mapa de México con '+P.length+' puntos de atención">'+A.mx.p.map(function(p,i){return '<path d="'+p.d+'" class="'+(states[i]?'has':'')+'"><title>'+esc(p.n)+'</title></path>';}).join('')+
-      CL.map(function(c){var n=c.pts.length,r=n>1?13+Math.sqrt(n)*4:10;return '<g class="cl" data-k="'+c.k+'" tabindex="0" role="button" aria-label="'+n+' puntos en '+esc(c.pts[0].c)+'" style="cursor:pointer"><circle cx="'+c.x+'" cy="'+c.y+'" r="'+r+'" fill="'+LAY[c.l].c+'" class="'+(area===c.k?'sel':'')+'"'+(c.mixed?' stroke-dasharray="4 3"':'')+'/>'+(n>1?'<text x="'+c.x+'" y="'+(c.y+5)+'" text-anchor="middle" style="font:800 15px Manrope,sans-serif;fill:#06121c;pointer-events:none">'+n+'</text>':'')+'</g>';}).join('')+'</svg>';
-    $$('#map .cl').forEach(function(g){var pick=function(){area=area===g.dataset.k?null:g.dataset.k;sel=null;draw();};g.onclick=pick;g.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};});
-    $('#leg').innerHTML=['h','a','t'].map(function(l){return '<button type="button" data-l="'+l+'" class="'+(on[l]?'':'off')+'" aria-pressed="'+(!!on[l])+'"><i style="background:'+LAY[l].c+'"></i>'+LAY[l].n+'</button>';}).join('');
-    $$('#leg button').forEach(function(b){b.onclick=function(){on[b.dataset.l]=on[b.dataset.l]?0:1;draw();};});
-    var ac=area&&CL.filter(function(c){return c.k===area;})[0],L=(ac?ac.pts:P).slice().sort(function(a,b){return a.l.localeCompare(b.l);});
-    $('#pl').innerHTML=(ac?'<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>'+ac.pts.length+' en '+esc(ac.pts[0].c.replace(/\s*\(.*$/,''))+'</b><button type="button" class="wb" id="all">Ver todos</button></div>':'<span class="tk">Toca un círculo del mapa</span>')+
-      L.map(function(p){var i=A.pts.indexOf(p);return '<div class="pt'+(p===sel?' sel':'')+'" data-i="'+i+'" tabindex="0" style="border-left:3px solid '+LAY[p.l].c+'"><b>'+esc(p.n)+'</b><span class="c">'+esc(p.c)+' · '+p.d.map(function(k){return DSHORT[k]||k;}).join(', ')+'</span>'+(p===sel?'<p>'+esc(p.x)+'</p>'+(p.more||[]).map(function(m){return '<p>'+esc(m.x)+'</p>';}).join(''):'')+'<a href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></div>';}).join('')||'<p class="note">Sin puntos para este filtro.</p>';
-    var all=$('#all');if(all)all.onclick=function(){area=null;draw();};
-    $$('#pl .pt').forEach(function(el){var t=function(e){if(e.target.tagName==='A')return;var p=A.pts[+el.dataset.i];sel=sel===p?null:p;draw();};el.onclick=t;el.onkeydown=function(e){if(e.key==='Enter')t(e);};});}
-  $('#az').onchange=function(){dis=this.value;sel=null;area=null;draw();};
+    var covered=Object.keys(states).length;
+    $('#k-e').innerHTML='<span class="tk">Sin atención</span><div class="big">'+(32-covered)+' <small>de 32</small></div><p>entidades sin un punto identificado'+(dis==='all'?'':' para '+esc(DSHORT[dis]))+'</p>';
+    $('#lyr').innerHTML='<button type="button" class="lyr-t" aria-expanded="'+(lyrOpen?'true':'false')+'">Capas del mapa</button><div class="lyr-b">'+['h','a','t'].map(function(l){return '<label><input type="checkbox" data-l="'+l+'"'+(lyr[l]?' checked':'')+'><i style="background:'+LAY[l].c+'"></i>'+LAY[l].n+' <em>'+cnt(l)+'</em></label>';}).join('')+
+      '<label><input type="checkbox" data-l="sin"'+(lyr.sin?' checked':'')+'><i class="sq" style="background:#FF4FD8"></i>Estados sin atención <em>'+(32-covered)+'</em></label>'+
+      '<label><input type="checkbox" data-l="tz"'+(lyr.tz?' checked':'')+'><i class="sq" style="background:#F2D14B"></i>Tamiz público por estado</label>'+
+      '<button type="button" class="btn ghost sm" id="meb">'+(meLL?'Actualizar mi ubicación':'Usar mi ubicación')+'</button></div>';
+    $('#lyr').classList.toggle('open',lyrOpen);$('#lyr .lyr-t').onclick=function(){lyrOpen=!lyrOpen;$('#lyr').classList.toggle('open',lyrOpen);this.setAttribute('aria-expanded',lyrOpen);};
+    $$('#lyr input').forEach(function(c){c.onchange=function(){lyr[c.dataset.l]=c.checked?1:0;draw();};});
+    $('#meb').onclick=locate;
+    if(M){['h','a','t'].forEach(function(l){var g=LG[l];g.clearLayers();if(!lyr[l]){M.removeLayer(g);return;}
+        P.filter(function(p){return p.l===l;}).forEach(function(p){var c=ll(p);if(!c)return;
+          var m=L.circleMarker(c,{radius:9,color:'#06121c',weight:2,fillColor:LAY[l].c,fillOpacity:.95});m.bindPopup('<div class="lpop">'+card(p,meLL?hav(meLL,c):null)+'</div>',{maxWidth:300});g.addLayer(m);});
+        M.addLayer(g);});
+      if(stLayer){M.removeLayer(stLayer);stLayer=null;}
+      if(lyr.sin){stLayer=L.layerGroup(A.mx.p.map(function(sp,i){return L.polygon(rings(i),stateStyle(states)(i)).bindTooltip(sp.n+(states[i]?'':' · sin punto identificado'),{sticky:true});})).addTo(M);}
+      if(tzLayer){M.removeLayer(tzLayer);tzLayer=null;}
+      if(lyr.tz){var by={};TE.forEach(function(e){by[e.estado]=e;});var TCL={basico:'#F2D14B',ampliado_hist:'#4ADE80',anuncio:'#A78BFA',sin_dato:'#3b4b5a'};
+        tzLayer=L.layerGroup(A.mx.p.map(function(sp,i){var e=by[sp.n]||{cat:'sin_dato',nota:''};return L.polygon(rings(i),{color:'#06121c',weight:1,fillColor:TCL[e.cat],fillOpacity:.45}).bindPopup('<div class="lpop"><b>'+esc(sp.n)+'</b><p>'+esc(e.nota||'Sin dato público.')+'</p></div>');})).addTo(M);
+        if(stLayer)stLayer.bringToFront();}}
+    var L2=P.filter(function(p){return lyr[p.l];}).map(function(p){var c=ll(p);return {p:p,c:c,km:meLL&&c?hav(meLL,c):null};});
+    if(meLL)L2.sort(function(a,b){return (a.km==null?1e9:a.km)-(b.km==null?1e9:b.km);});else L2.sort(function(a,b){return a.p.l.localeCompare(b.p.l);});
+    $('#pl').innerHTML='<span class="tk">'+(meLL?'Lo más cercano a ti':'Toca un punto del mapa o de la lista')+'</span>'+L2.slice(0,60).map(function(o,i){return '<div class="pt" data-i="'+A.pts.indexOf(o.p)+'" tabindex="0" style="border-left:3px solid '+LAY[o.p.l].c+'">'+card(o.p,o.km)+'</div>';}).join('')||'<p class="note">Sin puntos para este filtro.</p>';
+    $$('#pl .pt').forEach(function(el){el.onclick=function(e){if(e.target.closest('a'))return;var p=A.pts[+el.dataset.i],c=ll(p);if(!M||!c)return;M.flyTo(c,11,{duration:.8});
+      var g=LG[p.l];g.eachLayer(function(m){var q=m.getLatLng();if(Math.abs(q.lat-c[0])<1e-6&&Math.abs(q.lng-c[1])<1e-6)g.zoomToShowLayer(m,function(){m.openPopup();});});
+      $('#lmap').scrollIntoView({block:'nearest',behavior:'smooth'});};});}
+  function locate(){if(!navigator.geolocation){alertMsg('Tu navegador no comparte ubicación.');return;}
+    $('#meb').textContent='Buscando…';navigator.geolocation.getCurrentPosition(function(pos){meLL=[pos.coords.latitude,pos.coords.longitude];
+      if(M){if(me)M.removeLayer(me);me=L.circleMarker(meLL,{radius:8,color:'#fff',weight:3,fillColor:'#38BDF8',fillOpacity:1}).addTo(M).bindTooltip('Tú',{permanent:true,direction:'top'});M.flyTo(meLL,7);}draw();},
+      function(){$('#meb').textContent='No pude obtener tu ubicación';},{timeout:9000});}
+  function alertMsg(t){$('#pl').insertAdjacentHTML('afterbegin','<p class="note">'+esc(t)+'</p>');}
+  $('#az').onchange=function(){dis=this.value;draw();};
+  loadL().then(initMap).catch(function(){$('#lmap').innerHTML='<p class="note" style="padding:20px">No se pudo cargar el mapa. Revisa tu conexión.</p>';draw();});
   /* mapa del tamiz por estado */
   var TC={basico:['#F2D14B','Básico documentado (5 o 6)'],ampliado_hist:['#4ADE80','Ampliado, solo histórico'],anuncio:['#A78BFA','Anunciado o piloto'],sin_dato:['#3b4b5a','Sin dato público']};
   function tzDraw(){var by={};TE.forEach(function(e){by[e.estado]=e;});
@@ -743,7 +777,7 @@ V.atlas=function(q){
       '<div class="tzleg">'+(conSS?'<span><i style="background:#00C8D6"></i>IMSS: 47 padecimientos · Pemex: 76 · en todo el país</span>':Object.keys(TC).map(function(k){return '<span><i style="background:'+TC[k][0]+'"></i>'+TC[k][1]+'</span>';}).join('')+'<span><i style="background:transparent;box-shadow:inset 0 0 0 2px #FF4FD8"></i>Su ley menciona tamiz ampliado</span>')+'</div>';
     $$('#tzm path').forEach(function(pa){pa.onclick=function(){var n=A.mx.p[+pa.dataset.i].n,e=by[n];$('#tzn').innerHTML=conSS?'<b>'+esc(n)+'</b>: con IMSS el bebé recibe el tamiz de 47 padecimientos; con Pemex, 76.':'<b>'+esc(n)+'</b>: '+esc(e?e.nota:'Sin dato.')+(e&&e.url?' <a href="'+esc(e.url)+'" target="_blank" rel="noopener">Fuente ↗</a>':'');};});}
   $$('#tzss button').forEach(function(b){b.onclick=function(){conSS=b.dataset.v==='1';$$('#tzss button').forEach(function(x){x.classList.toggle('on',x===b);});tzDraw();$('#tzn').textContent=conSS?'Con seguridad social el panel no depende del estado.':'Toca un estado para ver el detalle.';};});
-  draw();tzDraw();
+  tzDraw();
   if(q.ruta)setTimeout(function(){$('#ruta').scrollIntoView({block:'start'});$('#re').focus({preventScroll:true});},60);
   if(q.vista==='tamiz')setTimeout(function(){$('#tzsec').scrollIntoView({block:'start'});},60);
 };
