@@ -224,9 +224,7 @@ V.inicio=function(){
   '<section class="labsband" id="labs"><p class="lb-k">El Acervo se construye con el conocimiento de</p>'+
    '<div class="ribbon" id="lg" aria-label="Laboratorios con tratamientos en México. Toca un logo para ver sus medicamentos.">'+labRibbon()+'</div>'+
    '<div class="wrap"><div class="labp" id="lp" aria-live="polite"></div><p class="note lb-n">'+tx('Toca un logo para ver sus medicamentos y las enfermedades que tratan.','Seleccione un logo para ver sus medicamentos y las enfermedades que tratan.')+' Aparecer aquí no implica patrocinio ni recomendación.</p></div></section>'+
-  '<section class="srcband" aria-label="Fuentes de información del Acervo"><div class="wrap"><p class="lb-k">El Acervo se nutre de fuentes públicas como</p><div class="srcrow"><img src="/obs/img/fuentes/imss.svg" alt="Instituto Mexicano del Seguro Social" title="Instituto Mexicano del Seguro Social" loading="lazy"><img src="/obs/img/fuentes/unam.webp" alt="Universidad Nacional Autónoma de México" title="Universidad Nacional Autónoma de México" loading="lazy"><img src="/obs/img/fuentes/acta-pediatrica.webp" alt="Acta Pediátrica de México" title="Acta Pediátrica de México" loading="lazy"><img src="/obs/img/fuentes/nlm.svg" alt="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" title="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" loading="lazy"><img src="/obs/img/fuentes/medlineplus.webp" alt="MedlinePlus" title="MedlinePlus" loading="lazy"><img src="/obs/img/fuentes/orphanet.webp" alt="Orphanet" title="Orphanet" loading="lazy"><img src="/obs/img/fuentes/nord.webp" alt="National Organization for Rare Disorders" title="National Organization for Rare Disorders" loading="lazy"><img src="/obs/img/fuentes/wfh.svg" alt="World Federation of Hemophilia" title="World Federation of Hemophilia" loading="lazy"></div><p class="note">Cada ficha enlaza a su fuente original. Citar una fuente no implica su aval.</p></div></section>'+
-  '<div class="pres-only">'+
-
+  '<div class="ctx">'+
   '<section class="blk"><div class="wrap">'+
    '<span class="kick m">Por qué un observatorio</span><h2>En Europa ya se mide cuánto tarda un diagnóstico. En Latinoamérica, todavía no.</h2>'+
    '<div class="stats">'+
@@ -239,7 +237,7 @@ V.inicio=function(){
   '</div></section>'+
 
   '<section class="blk"><div class="wrap">'+
-   '<span class="kick">El Acervo</span><h2>¿Por dónde entras?</h2><p class="sub">Una sola base de conocimiento, cuatro puertas. Cada quien recibe la información a su medida y con la fuente a la vista.</p>'+
+   '<span class="kick">El Acervo</span><h2>¿Por dónde entras?</h2><p class="sub">Una sola base de conocimiento y una puerta para cada quien. Cada persona recibe la información a su medida y con la fuente a la vista.</p>'+
    '<div class="grid g4" style="margin-top:22px">'+
     '<a class="door" href="#/rumbo"><span class="who">Soy familia o paciente</span><h3>Rumbo</h3><p>Qué sigue después del diagnóstico: cuidados en casa, trámites, apoyos y a dónde acudir.</p><span class="go">Preguntar a Rumbo →</span></a>'+
     '<a class="door m med-only" href="#/clara"><span class="who">Solo para médicos</span><h3>Clara</h3><p>Para el pediatra y el médico de primer contacto: pensar a tiempo en una enfermedad poco frecuente y saber a dónde referir.</p><span class="go">Analizar un caso →</span></a>'+
@@ -248,6 +246,26 @@ V.inicio=function(){
    '</div>'+
   '</div></section>'+
 
+  '<section class="blk senado"><div class="wrap">'+
+   '<span class="kick m">Desde el Senado</span><h2>Legislar con datos: el Registro Nacional y el Observatorio</h2>'+
+   '<div class="sn-g">'+
+    '<div class="sn-who"><span class="rs-logo big"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="120" height="120"></span>'+
+     '<b>Sen. Emmanuel Reyes Carmona</b><span>Presidente de la Comisión de Economía · Integrante de la Comisión de Salud</span>'+
+     '<p>Principal promotor del Registro Nacional de pacientes con enfermedades poco frecuentes. Convocó el Primer Foro Bicameral en el Senado.</p></div>'+
+    '<div class="sn-q sn-pub pub-only"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><p class="sn-lead">El Registro Nacional de pacientes con enfermedades poco frecuentes, aprobado por la Cámara de Diputados en abril de 2026, fue turnado al Senado.</p><p>El Observatorio pone a disposición de legisladores, médicos y familias los datos públicos que un registro necesita para arrancar: dónde hay atención, qué se busca al nacer en cada institución y en qué estados no hay información.</p><a class="go" href="#/atlas">Ver el Atlas →</a></div>'+
+    '<figure class="sn-q pres-only"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><blockquote>En México hay familias que tardan años en ponerle nombre a lo que vive su hija o su hijo. Con el Registro Nacional queremos que el Estado sepa cuántas personas viven con una enfermedad poco frecuente y dónde están. El Observatorio nos da algo igual de urgente: un mapa claro de dónde hay atención y dónde no, y un lugar donde las familias y los médicos encuentran información confiable. Desde el Senado respaldamos este esfuerzo, porque legislar con datos es legislar con justicia.</blockquote>'+
+     '<figcaption><b>Sen. Emmanuel Reyes Carmona</b><i>Propuesta de mensaje · por validar con su equipo</i></figcaption></figure>'+
+   '</div>'+
+   '<div class="sn-t">'+[['25 y 26 feb 2026','Primer Foro Bicameral sobre enfermedades poco frecuentes, en el Senado'],['15 abr 2026','La Cámara de Diputados aprueba el Registro Nacional con 440 votos y lo envía al Senado'],['30 sep 2026','Encuentro Iberoamericano en el Senado: se pide aprobar la minuta'],['28 oct 2026','Conversatorio: la financiación de los tratamientos y las experiencias europeas']].map(function(t,i){return '<div class="'+(i===3?'now':'')+'"><b>'+t[0]+'</b><span>'+t[1]+'</span></div>';}).join('')+'</div>'+
+   '<h3 style="margin-top:26px">Lo que el Observatorio aporta al Registro</h3>'+
+   '<div class="flow3 two"><div><b>Dónde hay atención</b><span>El Atlas ubica '+PD.atlas.pts.filter(function(p){return p.l==='h';}).length+' hospitales con experiencia y muestra los estados sin un solo punto.</span></div>'+
+    '<div><b>Qué se busca al nacer</b><span>El tamiz por institución y por estado: '+((PD.tamiz.estados||[]).filter(function(e){return e.cat==='sin_dato';}).length)+' de 32 estados sin dato público.</span></div>'+
+    '</div>'+
+   '<p class="note" style="margin-top:14px">Fuentes de la cronología: N+ (16 abr 2026), LaSalud.mx (1 mar 2026), Argonmexico (1 oct 2026).</p>'+
+  '</div></section>'+
+  '</div>'+
+  '<section class="srcband" aria-label="Fuentes de información del Acervo"><div class="wrap"><p class="lb-k">El Acervo se nutre de fuentes públicas como</p><div class="srcrow"><img src="/obs/img/fuentes/imss.svg" alt="Instituto Mexicano del Seguro Social" title="Instituto Mexicano del Seguro Social" loading="lazy"><img src="/obs/img/fuentes/unam.webp" alt="Universidad Nacional Autónoma de México" title="Universidad Nacional Autónoma de México" loading="lazy"><img src="/obs/img/fuentes/acta-pediatrica.webp" alt="Acta Pediátrica de México" title="Acta Pediátrica de México" loading="lazy"><img src="/obs/img/fuentes/nlm.svg" alt="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" title="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" loading="lazy"><img src="/obs/img/fuentes/medlineplus.webp" alt="MedlinePlus" title="MedlinePlus" loading="lazy"><img src="/obs/img/fuentes/orphanet.webp" alt="Orphanet" title="Orphanet" loading="lazy"><img src="/obs/img/fuentes/nord.webp" alt="National Organization for Rare Disorders" title="National Organization for Rare Disorders" loading="lazy"><img src="/obs/img/fuentes/wfh.svg" alt="World Federation of Hemophilia" title="World Federation of Hemophilia" loading="lazy"></div><p class="note">Cada ficha enlaza a su fuente original. Citar una fuente no implica su aval.</p></div></section>'+
+  '<div class="pres-only">'+
   '<section class="blk"><div class="wrap">'+
    '<span class="kick y">Cómo está hecho</span><h2>Un observatorio que mide. Un acervo que acompaña.</h2>'+
    '<div class="arch"><div class="brandshot"><img src="/obs/img/brand/faro-3d.webp" alt="El faro del Observatorio: una torre con piel de cebra, el símbolo de las enfermedades poco frecuentes, coronada por un ojo con iris de colores y rodeada de rayos de luz en forma de manos" loading="lazy"></div>'+
@@ -264,23 +282,6 @@ V.inicio=function(){
     '<div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Se valida</b><span>Un comité médico y las asociaciones de pacientes revisan cada ficha antes de publicarla.</span></div>'+
     '<div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Responde con fuente</b><span>Los asistentes solo usan ese corpus y citan de dónde sale cada dato. Conocimiento, no producto.</span></div></div>'+
    '<p class="note" style="margin-top:14px">Los laboratorios de la cinta tienen medicamentos en México para enfermedades del Acervo (Cuadro Básico del IMSS, julio de 2026, y autorizaciones de Cofepris).</p>'+
-  '</div></section>'+
-  '<section class="blk senado"><div class="wrap">'+
-   '<span class="kick m">Desde el Senado</span><h2>Legislar con datos: el Registro Nacional y el Observatorio</h2>'+
-   '<div class="sn-g">'+
-    '<div class="sn-who"><span class="rs-logo big"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="120" height="120"></span>'+
-     '<b>Sen. Emmanuel Reyes Carmona</b><span>Presidente de la Comisión de Economía · Integrante de la Comisión de Salud</span>'+
-     '<p>Principal promotor del Registro Nacional de pacientes con enfermedades poco frecuentes. Convocó el Primer Foro Bicameral en el Senado.</p></div>'+
-    '<figure class="sn-q"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><blockquote>En México hay familias que tardan años en ponerle nombre a lo que vive su hija o su hijo. Con el Registro Nacional queremos que el Estado sepa cuántas personas viven con una enfermedad poco frecuente y dónde están. El Observatorio nos da algo igual de urgente: un mapa claro de dónde hay atención y dónde no, y un lugar donde las familias y los médicos encuentran información confiable. Desde el Senado respaldamos este esfuerzo, porque legislar con datos es legislar con justicia.</blockquote>'+
-     '<figcaption><b>Sen. Emmanuel Reyes Carmona</b><i>Propuesta de mensaje · por validar con su equipo</i></figcaption></figure>'+
-   '</div>'+
-   '<div class="sn-t">'+[['25 y 26 feb 2026','Primer Foro Bicameral sobre enfermedades poco frecuentes, en el Senado'],['15 abr 2026','La Cámara de Diputados aprueba el Registro Nacional con 440 votos y lo envía al Senado'],['30 sep 2026','Encuentro Iberoamericano en el Senado: se pide aprobar la minuta'],['28 oct 2026','Conversatorio: la financiación de los tratamientos y las experiencias europeas']].map(function(t,i){return '<div class="'+(i===3?'now':'')+'"><b>'+t[0]+'</b><span>'+t[1]+'</span></div>';}).join('')+'</div>'+
-   '<h3 style="margin-top:26px">Lo que el Observatorio aporta al Registro</h3>'+
-   '<div class="flow3 four"><div><b>Dónde hay atención</b><span>El Atlas ubica '+PD.atlas.pts.filter(function(p){return p.l==='h';}).length+' hospitales con experiencia y muestra los estados sin un solo punto.</span></div>'+
-    '<div><b>Qué se busca al nacer</b><span>El tamiz por institución y por estado: '+((PD.tamiz.estados||[]).filter(function(e){return e.cat==='sin_dato';}).length)+' de 32 estados sin dato público.</span></div>'+
-    '<div><b>Cuántos faltan por diagnosticar</b><span>La brecha entre personas estimadas y diagnosticadas, enfermedad por enfermedad.</span></div>'+
-    '<div><b>Sin costo para el Estado</b><span>Familias y médicos informados con un corpus sostenido por los laboratorios y validado por especialistas.</span></div></div>'+
-   '<p class="note" style="margin-top:14px">Fuentes de la cronología: N+ (16 abr 2026), LaSalud.mx (1 mar 2026), Argonmexico (1 oct 2026).</p>'+
   '</div></section>'+
   '</div>';
   heroVideo();bindLabs();

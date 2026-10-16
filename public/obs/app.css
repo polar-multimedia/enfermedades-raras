@@ -774,3 +774,12 @@ body:not(.pres) .pres-only{display:none}
 body.light .srcrow img{filter:brightness(0);opacity:.6}
 @media (max-width:700px){.srcrow{gap:20px 28px}.srcrow img{height:26px;max-width:130px}.srcrow img[src*="unam"]{height:36px}.srcrow img[src*="imss"]{height:32px}}
 @media (min-width:1100px){.srcband .wrap{max-width:1320px}}
+
+/* contexto visible en el inicio (fuera del modo presentación) */
+body.pres .pub-only{display:none!important}
+.ctx .flow3.two{grid-template-columns:repeat(2,1fr)}
+@media (max-width:820px){.ctx .flow3.two{grid-template-columns:1fr}}
+.sn-pub{display:flex;flex-direction:column;gap:10px;justify-content:center}
+.sn-pub .sn-lead{font:600 clamp(19px,2vw,24px)/1.35 'Fraunces',Georgia,serif;color:var(--ink);margin:0}
+.sn-pub p{margin:0}
+.sn-pub .go{font-weight:800;color:var(--cyan);text-decoration:none;margin-top:4px}
