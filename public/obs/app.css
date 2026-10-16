@@ -727,3 +727,12 @@ body:not(.pres) .pres-only{display:none}
 .lyr-b{display:flex;flex-direction:column;gap:6px}
 .lyr:not(.open) .lyr-b{display:none}
 @media (max-width:720px){.lyr{top:10px;bottom:auto;left:auto;right:10px;max-width:calc(100% - 20px)}.lyr-b{flex-direction:column}.mapt{min-height:560px}}
+/* pendón más pequeño */
+.hero .pendon{width:132px;padding:14px 10px 34px;top:84px;right:40px;clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 20px),0 100%)}
+.hero .pendon::before{height:3px}
+.pd-logo{width:78px;height:78px;margin:4px 0 9px;box-shadow:0 0 0 3px rgba(255,255,255,.12)}
+.pd-logo img{width:68px;height:68px}
+.pendon small{font-size:8.5px;letter-spacing:.14em}
+.pendon b{font-size:14.5px}
+.pendon em{font-size:10px;margin-top:2px}
+@media (max-width:900px){.hero .pendon{width:96px;padding:10px 6px 26px;bottom:96px;right:12px}.pd-logo{width:56px;height:56px;margin:2px 0 6px}.pd-logo img{width:48px;height:48px}.pendon b{font-size:11.5px}.pendon small{font-size:7.5px}.pendon em{font-size:8.5px}}
