@@ -1,4 +1,5 @@
-/* Observatorio Latinoamericano de Enfermedades Poco Frecuentes · El Acervo (demo) */
+/* Observatorio Latinoamericano de Enfermedades Poco Frecuentes · El Acervo */
+var CONTACTO='carpinteyro@polarmultimedia.com';
 (function(){
 'use strict';
 var PD=null;
@@ -66,7 +67,7 @@ function entrada(){var old=document.getElementById('entrada');if(old)old.remove(
   $('.en-o.fam',d).onclick=function(){close('fam');};
   $('#enp',d).onclick=function(){close('pres');};
   $('.en-o.med',d).onclick=function(){$('#eno',d).innerHTML='<form class="en-conf" id="enc"><b>Clara es exclusiva para profesionales de la salud.</b><label class="ckl"><input type="checkbox" id="enck" required> Confirmo que soy médico o profesional de la salud.</label>'+
-    '<div class="field"><label for="encd">Cédula profesional <span class="note">(opcional en esta demostración)</span></label><input id="encd" inputmode="numeric" maxlength="10"></div>'+
+    '<div class="field"><label for="encd">Cédula profesional <span class="note">(opcional)</span></label><input id="encd" inputmode="numeric" maxlength="10"></div>'+
     '<div class="factions"><button class="btn" type="submit">Entrar</button><button class="btn ghost" type="button" id="enb">Volver</button></div></form>';
     $('#enck').focus();$('#enb').onclick=function(){entrada();};$('#enc').onsubmit=function(e){e.preventDefault();if($('#enck').checked)close('med');};};
   setTimeout(function(){var b=$('.en-o.fam',d);if(b)b.focus();},50);}
@@ -217,12 +218,13 @@ V.inicio=function(){
    '<p class="hero-s">Entre 8 y 10 millones de personas en México viven con una. El Observatorio reúne lo que se sabe, mide lo que falta y alumbra el camino para familias, médicos y quienes deciden.</p>'+
   '</div>'+
   '<a class="hero-cta" href="#/acervo"><i aria-hidden="true"></i>Explorar el Acervo</a>'+
-  '<p class="hero-hint"><span class="hh-ini"><span class="rs-logo xs"><img src="/obs/img/brand/28wh.webp" alt="" width="28" height="28"></span>Una iniciativa de Twentyeight Women\'s Health</span>Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
+  '<p class="hero-hint"><span class="hh-ini"><span class="rs-logo xs"><img src="/obs/img/brand/28wh.svg" alt="" width="28" height="28"></span>Una iniciativa de Twentyeight Women\'s Health</span>Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
   '<aside class="pendon" aria-label="Con el respaldo del Senado de la República, LXVI Legislatura"><span class="pd-logo"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="96" height="96"></span><small>Con el respaldo del</small><b>Senado de la República</b><em>LXVI Legislatura</em></aside>'+
   '</section>'+
   '<section class="labsband" id="labs"><p class="lb-k">El Acervo se construye con el conocimiento de</p>'+
    '<div class="ribbon" id="lg" aria-label="Laboratorios con tratamientos en México. Toca un logo para ver sus medicamentos.">'+labRibbon()+'</div>'+
    '<div class="wrap"><div class="labp" id="lp" aria-live="polite"></div><p class="note lb-n">'+tx('Toca un logo para ver sus medicamentos y las enfermedades que tratan.','Seleccione un logo para ver sus medicamentos y las enfermedades que tratan.')+' Aparecer aquí no implica patrocinio ni recomendación.</p></div></section>'+
+  '<section class="srcband" aria-label="Fuentes de información del Acervo"><div class="wrap"><p class="lb-k">El Acervo se nutre de fuentes públicas como</p><div class="srcrow"><img src="/obs/img/fuentes/imss.svg" alt="Instituto Mexicano del Seguro Social" title="Instituto Mexicano del Seguro Social" loading="lazy"><img src="/obs/img/fuentes/unam.webp" alt="Universidad Nacional Autónoma de México" title="Universidad Nacional Autónoma de México" loading="lazy"><img src="/obs/img/fuentes/acta-pediatrica.webp" alt="Acta Pediátrica de México" title="Acta Pediátrica de México" loading="lazy"><img src="/obs/img/fuentes/nlm.svg" alt="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" title="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" loading="lazy"><img src="/obs/img/fuentes/medlineplus.webp" alt="MedlinePlus" title="MedlinePlus" loading="lazy"><img src="/obs/img/fuentes/orphanet.webp" alt="Orphanet" title="Orphanet" loading="lazy"><img src="/obs/img/fuentes/nord.webp" alt="National Organization for Rare Disorders" title="National Organization for Rare Disorders" loading="lazy"><img src="/obs/img/fuentes/wfh.svg" alt="World Federation of Hemophilia" title="World Federation of Hemophilia" loading="lazy"></div><p class="note">Cada ficha enlaza a su fuente original. Citar una fuente no implica su aval.</p></div></section>'+
   '<div class="pres-only">'+
 
   '<section class="blk"><div class="wrap">'+
@@ -252,7 +254,7 @@ V.inicio=function(){
     '<div class="card"><span class="pill y">El Observatorio</span><h3 style="margin-top:10px">Mide y da la cara</h3><p>Publica el Atlas y los informes, lleva los datos al Senado y firma los informes. Tiene consejo honorífico y presidencia médica.</p></div>'+
     '<div class="card"><span class="pill">El Acervo</span><h3 style="margin-top:10px">Reúne y responde</h3><p>Fichas, entrevistas, videos y asistentes que responden solo con información aprobada. Hoy contiene <b>'+nFichas+' fichas con fuente</b>, <b>'+nVid+' videos</b> y <b>'+nPts+' puntos de atención</b> sobre '+ENF.length+' enfermedades.</p></div>'+
    '</div>'+
-   '<p class="sub" style="margin-top:18px">Enfermedades en esta demostración: '+esc(ENF.map(function(e){return e.nombre.replace(/^Enfermedad de /,'');}).join(', '))+'.</p>'+
+   '<p class="sub" style="margin-top:18px">Enfermedades que hoy cubre el Acervo: '+esc(ENF.map(function(e){return e.nombre.replace(/^Enfermedad de /,'');}).join(', '))+'.</p>'+
   '</div></section>'+
 
   '<section class="blk"><div class="wrap">'+
@@ -528,7 +530,7 @@ function claraGate(){
    '<div class="gate tile c-m"><div class="who">'+ava()+'<div><span class="tk c-m">Acceso para profesionales de la salud</span><h1 style="margin:2px 0 0">Clara</h1></div></div>'+
    '<p class="lead">Clara es una herramienta de apoyo clínico <b>exclusiva para médicos y profesionales de la salud</b>. Orienta la sospecha de enfermedades poco frecuentes y la referencia; no diagnostica.</p>'+
    '<form id="gf" class="gate-f"><label class="ckl"><input type="checkbox" id="g1" required> Confirmo que soy médico o profesional de la salud.</label>'+
-   '<div class="field"><label for="gc">Cédula profesional <span class="note">(opcional en esta demostración)</span></label><input id="gc" inputmode="numeric" maxlength="10" placeholder="Ej. 12345678"></div>'+
+   '<div class="field"><label for="gc">Cédula profesional <span class="note">(opcional)</span></label><input id="gc" inputmode="numeric" maxlength="10" placeholder="Ej. 12345678"></div>'+
    '<button class="btn" type="submit">Entrar a Clara</button></form>'+
    '<div class="gate-alt"><b>¿Eres familiar o paciente?</b><p>Rumbo está hecho para ti: te explica con tus palabras y te dice a dónde acudir.</p><a class="btn ghost" href="#/rumbo">Ir a Rumbo →</a></div>'+
    '</div></div></section>';
@@ -857,9 +859,11 @@ function asocPres(){
      '<div class="field"><label for="jn">Nombre de la asociación</label><input id="jn" required></div>'+
      '<div class="field"><label for="je">Enfermedad o grupo de enfermedades</label><input id="je" required></div>'+
      '<div class="field"><label for="jc">Ciudad o estado</label><input id="jc"></div>'+
-     '<button class="btn" type="submit" style="align-self:flex-start">Enviar solicitud</button><p class="note" id="jmsg">Demostración: este formulario no envía ni guarda datos.</p></form>'+
+     '<button class="btn" type="submit" style="align-self:flex-start">Enviar solicitud</button><p class="note" id="jmsg">Al enviar se abre un correo dirigido al equipo del Observatorio.</p></form>'+
    '</div></div></section>';
-  $('#join').onsubmit=function(e){e.preventDefault();$('#jmsg').textContent='Listo. En la versión final, esta solicitud llega al equipo del Observatorio. En esta demostración no se guardó nada.';};
+  $('#join').onsubmit=function(e){e.preventDefault();var b='Asociación: '+$('#jn').value+'\nEnfermedad o grupo: '+$('#je').value+'\nCiudad o estado: '+$('#jc').value;
+    location.href='mailto:'+CONTACTO+'?subject='+encodeURIComponent('Solicitud para formar parte del Observatorio: '+$('#jn').value)+'&body='+encodeURIComponent(b);
+    $('#jmsg').textContent='Se abrió tu correo con la solicitud. Envíalo y el equipo del Observatorio te responderá.';};
 };
 
 /* ---------- liga directa al modo presentación ---------- */
