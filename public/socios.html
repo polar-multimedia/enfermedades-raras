@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Observatorio · Socios</title>
+<meta name="theme-color" content="#06121c">
+<link rel="icon" type="image/png" href="/obs/img/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..700,50&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06121c;--bg2:#0a1c2a;--card:#0e2333;--card2:#123047;--line:rgba(207,230,242,.13);--line2:rgba(207,230,242,.24);--ink:#fff;--soft:#d6e8f2;--dim:#a3bccb;
+  --m:#FF4FD8;--v:#8B5CF6;--b:#38BDF8;--g:#4ADE80;--p:#FF8FB1;--y:#FBBF24;--ok:#4ADE80;--bad:#FB7185;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+@media(max-width:700px){.top{position:static}}
+body{background:var(--bg);color:var(--soft);font-family:'Manrope',system-ui,sans-serif;font-weight:500;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.15}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-variation-settings:'SOFT' 50,'opsz' 96;font-size:clamp(30px,4vw,46px)}
+h2{font-size:20px;margin-bottom:6px}
+h3{font-size:16px}
+b{color:var(--ink)}
+a{color:var(--b)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.top{position:sticky;top:0;z-index:20;background:rgba(6,18,28,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:64px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;font-size:14px;line-height:1.2}
+.brand img{width:38px;height:38px;border-radius:50%}
+.tag{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#bbf7d0;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);padding:4px 10px;border-radius:999px}
+.tag.temp{color:#fde68a;background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.35)}
+nav.tabs{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+nav.tabs button{background:none;border:0;color:var(--dim);font:800 12px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;border-radius:999px;cursor:pointer}
+nav.tabs button.on{background:var(--card2);color:var(--ink)}
+.hero{padding:44px 0 18px}
+.hero p{max-width:760px;margin-top:10px;color:var(--soft)}
+.tk{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--b);margin-bottom:8px}
+.tk img{width:18px}
+section.pane{display:none;padding:10px 0 60px}
+section.pane.on{display:block}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;position:relative}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi small{display:block;color:var(--dim);font-size:12px;font-weight:700}
+.kpi b{font-size:22px;font-weight:800;display:block;margin-top:2px}
+.kpi.good b{color:var(--ok)}.kpi.bad b{color:var(--bad)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.btn{display:inline-flex;align-items:center;gap:8px;font:800 13px Manrope,sans-serif;padding:10px 16px;border-radius:999px;border:0;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--m),var(--v) 55%,var(--b))}
+.btn.ghost{background:transparent;border:1px solid var(--line2);color:var(--ink)}
+.btn.sm{padding:7px 12px;font-size:12px}
+.btn.danger{background:transparent;border:1px solid rgba(251,113,133,.5);color:#fecdd3}
+.note{font-size:12.5px;color:var(--dim)}
+/* paquetes */
+.pk{display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--c,var(--v))}
+.pk .kind{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--c,var(--v))}
+.pk .price{font-size:28px;font-weight:800;color:var(--ink);line-height:1}
+.pk .price small{font-size:13px;color:var(--dim);font-weight:700}
+.pk ul{padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.pk .meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--dim)}
+.pk .meta span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.pk .ed{display:none;flex-direction:column;gap:8px}
+body.edit .pk .ed{display:flex}
+body.edit .pk .vw{display:none}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:700;color:var(--dim)}
+input,textarea,select{font:600 14px Manrope,sans-serif;color:var(--ink);background:var(--bg2);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;width:100%}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--v);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+/* tablas */
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl thead th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:800}
+.tbl tr.tot td{font-weight:800;color:var(--ink);background:rgba(139,92,246,.1)}
+.tbl input{max-width:120px;text-align:right;padding:6px 8px}
+.tbl td.lab{color:var(--soft)}
+.scroll{overflow-x:auto}
+.pill{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px}
+.pill.ok{background:rgba(74,222,128,.14);color:#bbf7d0}.pill.bad{background:rgba(251,113,133,.15);color:#fecdd3}
+details.sup{margin-top:14px}
+details.sup summary{cursor:pointer;font-weight:800;color:var(--ink);list-style:none;display:flex;align-items:center;gap:8px}
+details.sup summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--card2)}
+details.sup[open] summary::before{content:"–"}
+/* barras */
+.bars{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.bar{display:grid;grid-template-columns:minmax(150px,300px) 1fr;gap:12px;align-items:center;font-size:13.5px}
+.bar .l{text-align:right;color:var(--dim)}
+.bar.obs .l{color:var(--ink);font-weight:800}
+.bar .t{display:flex;align-items:center;gap:8px}
+.bar .t i{display:block;height:20px;border-radius:4px;background:#5b6b78;min-width:3px}
+.bar.obs .t i{background:var(--b)}
+.bar .t span{white-space:nowrap;color:var(--ink);font-weight:700}
+@media(max-width:640px){.bar{grid-template-columns:1fr}.bar .l{text-align:left}}
+ol.rules{padding-left:20px;display:flex;flex-direction:column;gap:10px}
+/* acceso */
+#gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;place-items:center;padding:20px}
+#gate .card{max-width:420px;width:100%;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center}
+#gate img{width:64px;border-radius:50%}
+#gate.hide{display:none}
+.err{color:#fecdd3;font-size:13px;min-height:18px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--line2);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60}
+.toast.on{opacity:1}
+@media print{.top,#gate,.toolbar,nav.tabs,.toast{display:none!important}section.pane{display:block!important;page-break-after:always}body{background:#fff;color:#111}.card,.kpi{background:#fff;border-color:#ddd}h1,h2,h3,b,.pk .price{color:#111}}
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="card">
+    <img src="/obs/img/brand/icono.webp" alt="">
+    <span class="tag temp">Acceso para socios</span>
+    <h2>Observatorio · Socios</h2>
+    <p class="note">Sección temporal y confidencial con la propuesta de patrocinio 2027. Escribe el código de acceso que te compartió Polar.</p>
+    <form id="gf" style="width:100%;display:flex;gap:8px"><input id="gc" type="password" placeholder="Código de acceso" autocomplete="off" aria-label="Código de acceso"><button class="btn" type="submit">Entrar</button></form>
+    <p class="err" id="ge" aria-live="polite"></p>
+  </div>
+</div>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="/observatorio"><img src="/obs/img/brand/icono.webp" alt=""><span>Observatorio Latinoamericano de<br>Enfermedades Poco Frecuentes</span></a>
+  <span class="tag">Capítulo México</span><span class="tag temp">Socios · temporal</span>
+  <nav class="tabs" id="tabs">
+    <button data-p="paquetes" class="on">Paquetes</button>
+    <button data-p="calc">Calculadora</button>
+    <button data-p="mundo">Comparativo</button>
+    <button data-p="reglas">Reglas</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="tk"><img src="/obs/img/brand/rayos-fan.svg" alt="">Propuesta de patrocinio 2027</span>
+    <h1>Patrocinios y calculadora</h1>
+    <p>Precios anuales en pesos, sin IVA. Puedes editar los paquetes y los supuestos: los cambios se guardan en este navegador. Para compartir una versión, descarga la configuración y envíala.</p>
+  </div>
+
+  <section class="pane on" id="p-paquetes">
+    <div class="toolbar">
+      <button class="btn ghost sm" id="bEdit" type="button">Editar paquetes</button>
+      <button class="btn ghost sm" id="bAdd" type="button" hidden>+ Agregar paquete</button>
+      <span style="flex:1"></span>
+      <button class="btn ghost sm" id="bExp" type="button">Descargar configuración</button>
+      <label class="btn ghost sm" style="cursor:pointer">Cargar configuración<input id="bImp" type="file" accept="application/json" hidden></label>
+      <button class="btn ghost sm" id="bPrint" type="button">Imprimir o PDF</button>
+      <button class="btn danger sm" id="bReset" type="button">Restablecer</button>
+    </div>
+    <h2>Niveles generales</h2>
+    <p class="note">Un laboratorio puede tomar un nivel general y un módulo, nunca más del tope por laboratorio.</p>
+    <div class="grid g3" id="lvl" style="margin-top:12px"></div>
+    <h2 style="margin-top:30px">Módulos por enfermedad y copatrocinios</h2>
+    <p class="note">Becas educativas independientes: el laboratorio financia el tema, no el contenido. Hasta dos laboratorios por módulo, sin exclusividad.</p>
+    <div class="grid g3" id="mod" style="margin-top:12px"></div>
+  </section>
+
+  <section class="pane" id="p-calc">
+    <h2>¿Alcanzan los patrocinios para operar?</h2>
+    <p class="note">Elige el escenario y ajusta cuántos paquetes se venden. Todo se recalcula al momento.</p>
+    <div class="toolbar" id="scSel"></div>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid g2">
+      <div class="card"><h3>Ventas del año</h3><p class="note">Cantidad vendida por paquete en este escenario.</p><div class="scroll"><table class="tbl" id="tSales"></table></div></div>
+      <div class="card"><h3>Costo de operación</h3><p class="note">Mensual y anual, en pesos.</p><div class="scroll"><table class="tbl" id="tCost"></table></div></div>
+    </div>
+    <details class="sup card" style="margin-top:16px"><summary>Supuestos editables</summary>
+      <div class="grid g2" style="margin-top:14px">
+        <div><h3>Uso por escenario</h3><div class="scroll"><table class="tbl" id="tUse"></table></div></div>
+        <div><h3>Tarifas y reglas</h3><div class="scroll"><table class="tbl" id="tRate"></table></div></div>
+        <div><h3>Operación (MXN al mes)</h3><div class="scroll"><table class="tbl" id="tOps"></table></div></div>
+        <div><h3>Notas</h3><p class="note">Tarifas de ElevenLabs y Anthropic consultadas el 15 de octubre de 2026. El costo por minuto del modelo de voz es una estimación de Polar (Claude Haiku 4.5); con Haiku 5.5 sería unas diez veces menor. El plan de ElevenLabs se elige solo: el más barato para los minutos del escenario.</p></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="pane" id="p-mundo">
+    <h2 id="mT">Cómo se comparan los precios</h2>
+    <p class="note">Aportación anual por empresa, en dólares. En azul, los niveles del Observatorio (se actualizan si editas los precios).</p>
+    <div class="card" style="margin-top:14px"><div class="bars" id="bars"></div>
+      <p class="note" style="margin-top:14px">Fuentes: <a href="https://www.eurordis.org/who-we-are/our-funding" target="_blank" rel="noopener">EURORDIS, Our funding 2025</a> · <a href="https://rarediseases.org/wp-content/uploads/2025/01/NORD-Rare-Disease-Day-Prospectus-2025.pdf" target="_blank" rel="noopener">NORD, Rare Disease Day 2025</a> · <a href="https://geneticalliance.org.uk/get-involved/our-life-science-industry-partners/" target="_blank" rel="noopener">Genetic Alliance UK</a> · <a href="https://assets-dam.takeda.com/image/upload/v1783346090/Global/Patient_Group_Disclosures/Mexico/Mexico_PO_disclosure_template_2025.pdf" target="_blank" rel="noopener">Takeda México 2025</a>. €1 ≈ US$1.15, £1 ≈ US$1.33.</p></div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Frente a la educación médica</h3><p>Una beca CME en Medscape costó a Janssen entre US$199,000 y US$398,000 por programa (<a href="https://innovativemedicine.jnj.com/us/file/6171" target="_blank" rel="noopener">reporte</a>).</p></div>
+      <div class="card"><h3>Frente a lo que ya se aprueba en México</h3><p>Takeda reportó MXN 2.54 millones en 15 apoyos a organizaciones en 2025; el mayor fue de MXN 380,000. Sanofi reportó de MXN 77,000 a 1.7 millones por proyecto.</p></div>
+      <div class="card"><h3>Frente al costo de encontrar un paciente</h3><p>Behind the Seizure (BioMarin) hizo 14,589 pruebas genéticas para 24 diagnósticos de CLN2: unas 608 pruebas por caso (<a href="https://aesnet.org/abstractslisting/clinical-utility-of-a-sponsored-gene-panel-testing-program-for-pediatric-epilepsy-and-cln2-disease-diagnosis--results-from-14-589-tests" target="_blank" rel="noopener">AES 2021</a>).</p></div>
+    </div>
+  </section>
+
+  <section class="pane" id="p-reglas">
+    <h2>Reglas de independencia</h2>
+    <p class="note">Basadas en el Código de la IFPMA (artículo 11) y en la práctica de los laboratorios adheridos a CETIFARMA. EURORDIS usa un tope de 5% por empresa.</p>
+    <div class="card" style="margin-top:14px"><ol class="rules" id="rules"></ol></div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+var KEY='obs-socios-v1',GKEY='obs-socios-ok',CODE='OBS2027';
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove('on');},1800);}
+
+/* acceso: barrera simple, no es seguridad real */
+var ok=false;try{ok=sessionStorage.getItem(GKEY)==='1';}catch(e){}
+if(ok)$('#gate').classList.add('hide');
+$('#gf').onsubmit=function(e){e.preventDefault();if($('#gc').value.trim().toUpperCase()===CODE){try{sessionStorage.setItem(GKEY,'1');}catch(e){}$('#gate').classList.add('hide');}else $('#ge').textContent='Código incorrecto.';};
+
+var DEF={
+ tc:17.5,fee:0.15,tope:0.25,
+ rates:{proFee:99,proMin:1238,scaleFee:299,scaleMin:3738,bizFee:990,bizMin:12375,over:0.12,llmMin:0.026,q:0.0006,vercel:20,vercelMult:4},
+ sc:[{k:'c',nom:'Arranque',vta:'Conservador',visit:2000,voz:0.15,min:4,preg:3,vm:1},
+     {k:'r',nom:'Éxito',vta:'Realista',visit:20000,voz:0.15,min:5,preg:3,vm:1},
+     {k:'o',nom:'Escala nacional',vta:'Optimista',visit:100000,voz:0.15,min:5,preg:3,vm:4}],
+ ops:[{nom:'Dirección del proyecto y relación con laboratorios, asociaciones y Senado',mxn:60000},
+      {nom:'Curaduría médica independiente',mxn:45000},
+      {nom:'Desarrollo y mantenimiento',mxn:50000},
+      {nom:'Difusión a familias y médicos',mxn:40000},
+      {nom:'Medición de impacto e informe (prorrateado)',mxn:12500},
+      {nom:'Cumplimiento, legal y auditoría (prorrateado)',mxn:10000}],
+ pk:[
+  {id:'fund',tipo:'nivel',nom:'Aliado Fundador',precio:750000,cupo:4,c:'var(--m)',ben:['Logo en el primer nivel del sitio y del informe anual','Lugar en el Consejo Consultivo, sin voto editorial','Presencia en el lanzamiento con el Senado','Informe trimestral de impacto','Tarifa preferente en módulos (10% menos)'],v:{c:1,r:2,o:4}},
+  {id:'ali',tipo:'nivel',nom:'Aliado',precio:400000,cupo:6,c:'var(--v)',ben:['Logo en segundo nivel','Informe semestral de impacto','Mención en el informe anual','Invitación a las mesas de trabajo con asociaciones y médicos'],v:{c:1,r:3,o:4}},
+  {id:'col',tipo:'nivel',nom:'Colaborador',precio:180000,cupo:10,c:'var(--b)',ben:['Logo en la sección de aliados','Informe anual de impacto'],v:{c:3,r:3,o:5}},
+  {id:'mclara',tipo:'modulo',nom:'Clara por enfermedad',precio:250000,cupo:18,c:'var(--p)',ben:['Incorpora o mantiene una enfermedad en Clara y en el Acervo médico','Revisión de un especialista independiente','Reporte de uso por enfermedad'],v:{c:1,r:3,o:6}},
+  {id:'mrumbo',tipo:'modulo',nom:'Rumbo y Atlas por enfermedad',precio:200000,cupo:18,c:'var(--g)',ben:['Guía para familias: fichas, ruta de atención y asociaciones','Reporte de uso'],v:{c:1,r:2,o:4}},
+  {id:'inf',tipo:'modulo',nom:'Informe anual del Observatorio',precio:300000,cupo:2,c:'var(--y)',ben:['Copatrocinio del informe de brechas diagnósticas y tamiz','Presentación en el Senado','Máximo dos copatrocinadores'],v:{c:0,r:1,o:2}}],
+ rules:['Ningún laboratorio aporta más del tope por laboratorio del ingreso anual, ni compra más de un nivel general y un módulo.',
+  'El Acervo lo escribe y aprueba un comité editorial con médicos independientes y representantes de asociaciones de pacientes. Los patrocinadores no lo revisan antes de publicarse.',
+  'Rumbo y Clara solo responden con fichas del Acervo; nunca recomiendan un medicamento por su nombre comercial ni muestran logos.',
+  'Un laboratorio puede proponer material sin marca y con referencias científicas; entra solo si el comité lo aprueba, y la ficha indica quién lo propuso.',
+  'Los informes a patrocinadores son agregados y anónimos: sin datos de personas, conversaciones o médicos identificables.',
+  'El sitio publica cada año la lista de patrocinadores con su monto.',
+  'Ningún acuerdo da exclusividad por enfermedad, grupo terapéutico o categoría.',
+  'El respaldo del Senado no se vende ni forma parte de ningún paquete; los patrocinadores no usan su logo.']
+};
+var BENCH=[{o:'EURORDIS · aporte anual de Sanofi',u:201000},{o:'EURORDIS · aporte anual de Takeda',u:173000},{o:'NORD · Rare Disease Day, nivel Gold',u:50000},{o:'Genetic Alliance UK · cuota anual',u:20000},{o:'Takeda México · apoyo a Grupo Fabry',u:14300},{o:'EURORDIS · aporte mínimo frecuente',u:6900}];
+
+var S;function load(){try{var x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&x.pk&&x.sc)return x;}catch(e){}return JSON.parse(JSON.stringify(DEF));}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+S=load();var cur='r',edit=false;
+
+var MXN=function(n){return '$'+Math.round(n).toLocaleString('es-MX');},USD=function(n){return 'US$'+Math.round(n).toLocaleString('en-US');},PCT=function(n){return (n*100).toFixed(0)+'%';};
+
+/* ---------- paquetes ---------- */
+function pkCard(p,i){
+  return '<div class="card pk" style="--c:'+esc(p.c||'var(--v)')+'" data-i="'+i+'">'+
+   '<div class="vw"><span class="kind">'+(p.tipo==='nivel'?'Nivel general':'Módulo')+'</span><h3 style="margin:6px 0 10px">'+esc(p.nom)+'</h3>'+
+   '<div class="price">'+MXN(p.precio)+' <small>al año · '+USD(p.precio/S.tc)+'</small></div>'+
+   '<div class="meta" style="margin:10px 0"><span>Cupo: '+p.cupo+'</span></div>'+
+   '<ul>'+p.ben.map(function(b){return '<li>'+esc(b)+'</li>';}).join('')+'</ul></div>'+
+   '<div class="ed"><label class="f">Nombre<input data-f="nom" value="'+esc(p.nom)+'"></label>'+
+   '<div class="row2"><label class="f">Precio anual (MXN)<input data-f="precio" type="number" min="0" step="10000" value="'+p.precio+'"></label><label class="f">Cupo<input data-f="cupo" type="number" min="0" value="'+p.cupo+'"></label></div>'+
+   '<label class="f">Tipo<select data-f="tipo"><option value="nivel"'+(p.tipo==='nivel'?' selected':'')+'>Nivel general</option><option value="modulo"'+(p.tipo==='modulo'?' selected':'')+'>Módulo</option></select></label>'+
+   '<label class="f">Qué incluye (una línea por beneficio)<textarea data-f="ben">'+esc(p.ben.join('\n'))+'</textarea></label>'+
+   '<button class="btn danger sm" data-del="'+i+'" type="button">Quitar paquete</button></div></div>';}
+function renderPk(){
+  $('#lvl').innerHTML=S.pk.map(function(p,i){return p.tipo==='nivel'?pkCard(p,i):'';}).join('');
+  $('#mod').innerHTML=S.pk.map(function(p,i){return p.tipo!=='nivel'?pkCard(p,i):'';}).join('');
+  $$('.pk .ed [data-f]').forEach(function(el){el.onchange=function(){var i=+el.closest('.pk').dataset.i,f=el.dataset.f,p=S.pk[i];
+    if(f==='precio'||f==='cupo')p[f]=Math.max(0,+el.value||0);else if(f==='ben')p.ben=el.value.split('\n').map(function(s){return s.trim();}).filter(Boolean);else p[f]=el.value;
+    save();renderPk();renderAll();toast('Guardado');};});
+  $$('[data-del]').forEach(function(b){b.onclick=function(){S.pk.splice(+b.dataset.del,1);save();renderPk();renderAll();toast('Paquete quitado');};});}
+$('#bEdit').onclick=function(){edit=!edit;document.body.classList.toggle('edit',edit);this.textContent=edit?'Terminar edición':'Editar paquetes';$('#bAdd').hidden=!edit;};
+$('#bAdd').onclick=function(){S.pk.push({id:'p'+Date.now(),tipo:'modulo',nom:'Nuevo paquete',precio:100000,cupo:5,c:'var(--b)',ben:['Describe aquí qué incluye'],v:{c:0,r:0,o:0}});save();renderPk();renderAll();};
+$('#bReset').onclick=function(){if(!confirmReset())return;S=JSON.parse(JSON.stringify(DEF));save();renderPk();renderAll();toast('Valores originales restablecidos');};
+function confirmReset(){var b=$('#bReset');if(b.dataset.arm){delete b.dataset.arm;b.textContent='Restablecer';return true;}b.dataset.arm='1';b.textContent='¿Seguro? Toca otra vez';setTimeout(function(){delete b.dataset.arm;b.textContent='Restablecer';},3000);return false;}
+$('#bExp').onclick=function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));a.download='observatorio-patrocinios.json';a.click();};
+$('#bImp').onchange=function(){var f=this.files[0];if(!f)return;f.text().then(function(t){var x=JSON.parse(t);if(!x.pk||!x.sc)throw 0;S=x;save();renderPk();renderAll();toast('Configuración cargada');}).catch(function(){toast('Ese archivo no es una configuración válida');});};
+$('#bPrint').onclick=function(){window.print();};
+
+/* ---------- cálculo ---------- */
+function calc(k){var s=S.sc.filter(function(x){return x.k===k;})[0],R=S.rates;
+  var min=s.visit*s.voz*s.min,preg=s.visit*s.preg;
+  var plan=function(fee,inc){return fee+Math.max(0,min-inc)*R.over;};
+  var el=Math.min(plan(R.proFee,R.proMin),plan(R.scaleFee,R.scaleMin),plan(R.bizFee,R.bizMin));
+  var llm=min*R.llmMin,q=preg*R.q,ver=R.vercel*(s.vm||1),techUsd=el+llm+q+ver,tech=techUsd*S.tc;
+  var ops=S.ops.reduce(function(a,o){return a+(+o.mxn||0);},0),fee=(tech+ops)*S.fee,mes=tech+ops+fee,anual=mes*12;
+  var ing=S.pk.reduce(function(a,p){return a+p.precio*((p.v&&p.v[k])||0);},0);
+  var conv=s.min?min*12/s.min:0;
+  var maxLab=Math.max.apply(null,[0].concat(S.pk.filter(function(p){return p.tipo==='nivel';}).map(function(p){return p.precio;})))+Math.max.apply(null,[0].concat(S.pk.filter(function(p){return p.tipo!=='nivel';}).map(function(p){return p.precio;})));
+  return {s:s,min:min,preg:preg,el:el,llm:llm,q:q,ver:ver,techUsd:techUsd,tech:tech,ops:ops,fee:fee,mes:mes,anual:anual,ing:ing,res:ing-anual,cob:anual?ing/anual:0,conv:conv,maxLab:maxLab,share:ing?maxLab/ing:0,n:S.pk.reduce(function(a,p){return a+((p.v&&p.v[k])||0);},0),cupoOk:S.pk.every(function(p){return ((p.v&&p.v[k])||0)<=p.cupo;})};}
+
+function numIn(path,val,step){return '<input type="number" step="'+(step||'any')+'" data-path="'+path+'" value="'+val+'">';}
+function renderAll(){
+  $('#scSel').innerHTML=S.sc.map(function(s){return '<button type="button" class="btn '+(s.k===cur?'':'ghost')+' sm" data-k="'+s.k+'">'+esc(s.nom)+' · ventas '+esc(s.vta.toLowerCase())+'</button>';}).join('');
+  $$('#scSel button').forEach(function(b){b.onclick=function(){cur=b.dataset.k;renderAll();};});
+  var c=calc(cur);
+  $('#kpis').innerHTML=[
+    ['Ingreso por patrocinios',MXN(c.ing),USD(c.ing/S.tc)+' · '+c.n+' paquetes',''],
+    ['Costo anual de operación',MXN(c.anual),USD(c.anual/S.tc),''],
+    ['Resultado del año',MXN(c.res),USD(c.res/S.tc),c.res>=0?'good':'bad'],
+    ['Cobertura del costo',PCT(c.cob),c.cob>=1?'Se sostiene':'No alcanza',c.cob>=1?'good':'bad']
+  ].map(function(k){return '<div class="kpi '+k[3]+'"><small>'+k[0]+'</small><b>'+k[1]+'</b><small>'+k[2]+'</small></div>';}).join('');
+  $('#tSales').innerHTML='<thead><tr><th>Paquete</th><th>Precio</th><th>Cupo</th><th>Vendidos</th><th>Ingreso</th></tr></thead><tbody>'+
+    S.pk.map(function(p,i){var n=(p.v&&p.v[cur])||0;return '<tr><td class="lab">'+esc(p.nom)+'</td><td>'+MXN(p.precio)+'</td><td>'+p.cupo+'</td><td>'+numIn('pk.'+i+'.v.'+cur,n,1)+'</td><td>'+MXN(p.precio*n)+'</td></tr>';}).join('')+
+    '<tr class="tot"><td>Total</td><td></td><td></td><td>'+c.n+'</td><td>'+MXN(c.ing)+'</td></tr></tbody>'+
+    '<tfoot><tr><td colspan="5" style="text-align:left;padding-top:12px">'+
+      '<span class="pill '+(c.cupoOk?'ok':'bad')+'">'+(c.cupoOk?'Cupos respetados':'Algún paquete excede su cupo')+'</span> '+
+      '<span class="pill '+(c.share<=S.tope?'ok':'bad')+'">Mayor aportación posible de un laboratorio: '+MXN(c.maxLab)+' = '+PCT(c.share)+' del ingreso (tope '+PCT(S.tope)+')</span></td></tr></tfoot>';
+  var rows=[['Minutos de voz al mes',c.min.toLocaleString('es-MX'),''],['Preguntas escritas al mes',c.preg.toLocaleString('es-MX'),''],
+    ['ElevenLabs (plan más barato)',MXN(c.el*S.tc),MXN(c.el*S.tc*12)],['Modelo que contesta la voz',MXN(c.llm*S.tc),MXN(c.llm*S.tc*12)],['Preguntas escritas',MXN(c.q*S.tc),MXN(c.q*S.tc*12)],['Vercel',MXN(c.ver*S.tc),MXN(c.ver*S.tc*12)],
+    ['Tecnología',MXN(c.tech),MXN(c.tech*12),1],['Operación del Observatorio',MXN(c.ops),MXN(c.ops*12)],['Fee de gestión Polar ('+PCT(S.fee)+')',MXN(c.fee),MXN(c.fee*12)],['Costo total',MXN(c.mes),MXN(c.anual),1],
+    ['Costo por conversación de voz',c.conv?'$'+(c.tech*12/c.conv).toFixed(2):'-','']];
+  $('#tCost').innerHTML='<thead><tr><th>Concepto</th><th>Al mes</th><th>Al año</th></tr></thead><tbody>'+rows.map(function(r){return '<tr'+(r[3]?' class="tot"':'')+'><td class="lab">'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';}).join('')+'</tbody>';
+  $('#tUse').innerHTML='<thead><tr><th></th>'+S.sc.map(function(s){return '<th>'+esc(s.nom)+'</th>';}).join('')+'</tr></thead><tbody>'+
+    [['Visitantes al mes','visit',100],['% que usa la voz','voz',0.01],['Minutos por conversación','min',0.5],['Preguntas escritas por visitante','preg',0.5]].map(function(r){return '<tr><td class="lab">'+r[0]+'</td>'+S.sc.map(function(s,i){return '<td>'+numIn('sc.'+i+'.'+r[1],s[r[1]],r[2])+'</td>';}).join('')+'</tr>';}).join('')+'</tbody>';
+  var RL=[['Tipo de cambio (MXN por US$)','tc',S.tc,0.1],['Fee de gestión Polar (fracción)','fee',S.fee,0.01],['Tope por laboratorio (fracción)','tope',S.tope,0.01],
+    ['Pro: cuota US$','rates.proFee',S.rates.proFee],['Pro: minutos incluidos','rates.proMin',S.rates.proMin],['Scale: cuota US$','rates.scaleFee',S.rates.scaleFee],['Scale: minutos incluidos','rates.scaleMin',S.rates.scaleMin],
+    ['Business: cuota US$','rates.bizFee',S.rates.bizFee],['Business: minutos incluidos','rates.bizMin',S.rates.bizMin],['Minuto excedente US$','rates.over',S.rates.over,0.01],
+    ['Modelo de voz US$ por minuto','rates.llmMin',S.rates.llmMin,0.001],['Pregunta escrita US$','rates.q',S.rates.q,0.0001],['Vercel US$ al mes','rates.vercel',S.rates.vercel]];
+  $('#tRate').innerHTML='<tbody>'+RL.map(function(r){return '<tr><td class="lab">'+r[0]+'</td><td>'+numIn(r[1],r[2],r[3])+'</td></tr>';}).join('')+'</tbody>';
+  $('#tOps').innerHTML='<tbody>'+S.ops.map(function(o,i){return '<tr><td class="lab">'+esc(o.nom)+'</td><td>'+numIn('ops.'+i+'.mxn',o.mxn,1000)+'</td></tr>';}).join('')+'<tr class="tot"><td>Total</td><td>'+MXN(c.ops)+'</td></tr></tbody>';
+  $$('input[data-path]').forEach(function(el){el.onchange=function(){setPath(el.dataset.path,+el.value||0);save();renderAll();if(el.dataset.path.indexOf('pk.')===0)renderPk();};});
+  /* comparativo */
+  var L=BENCH.map(function(b){return {o:b.o,u:b.u,obs:0};}).concat(S.pk.filter(function(p){return p.tipo==='nivel';}).map(function(p){return {o:'Observatorio · '+p.nom,u:p.precio/S.tc,obs:1};})).sort(function(a,b){return b.u-a.u;});
+  var mx=Math.max.apply(null,L.map(function(x){return x.u;}));
+  $('#bars').innerHTML=L.map(function(x){return '<div class="bar'+(x.obs?' obs':'')+'"><div class="l">'+esc(x.o)+'</div><div class="t"><i style="width:'+(x.u/mx*78).toFixed(1)+'%"></i><span>'+USD(x.u)+'</span></div></div>';}).join('');
+  var top=S.pk.filter(function(p){return p.tipo==='nivel';}).sort(function(a,b){return b.precio-a.precio;})[0];
+  $('#mT').textContent=top?('El nivel más alto del Observatorio equivale a '+Math.round(top.precio/S.tc/201000*100)+'% de lo que Sanofi aporta a EURORDIS'):'Cómo se comparan los precios';
+  $('#rules').innerHTML=S.rules.map(function(r){return '<li>'+esc(r)+'</li>';}).join('');
+}
+function setPath(p,v){var a=p.split('.'),o=S;for(var i=0;i<a.length-1;i++){var k=isNaN(a[i])?a[i]:+a[i];if(o[k]==null)o[k]={};o=o[k];}o[a[a.length-1]]=v;}
+
+$$('#tabs button').forEach(function(b){b.onclick=function(){$$('#tabs button').forEach(function(x){x.classList.toggle('on',x===b);});$$('section.pane').forEach(function(s){s.classList.toggle('on',s.id==='p-'+b.dataset.p);});window.scrollTo(0,0);};});
+renderPk();renderAll();
+})();
+</script>
+</body>
+</html>

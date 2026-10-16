@@ -40,6 +40,15 @@
           "value": "text/markdown; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/socios(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "cleanUrls": true
