@@ -51,26 +51,81 @@ function applyPerfil(){var b=document.body;b.classList.toggle('fam',PERFIL==='fa
   if(PERFIL==='med'||PERFIL==='pres'){MED=true;try{sessionStorage.setItem('obs-medico','1');}catch(e){}}else if(PERFIL==='fam'){MED=false;try{sessionStorage.removeItem('obs-medico');}catch(e){}}
   var pb=document.getElementById('perfilBtn');if(pb){pb.onclick=entrada;pb.setAttribute('aria-label','Perfil: '+(PERFIL==='med'?'médico':PERFIL==='fam'?'familia':'sin elegir')+'. Cambiar');}if(pb)pb.innerHTML='<img src="/obs/img/brand/rayos.svg" alt="" aria-hidden="true">'+(PERFIL==='med'?'Médico':PERFIL==='fam'?'Familia':PERFIL==='pres'?'Presentación':'Elegir perfil');}
 function setPerfil(p){PERFIL=p;try{localStorage.setItem('obs-perfil',p);}catch(e){}applyPerfil();}
-function entrada(){var old=document.getElementById('entrada');if(old)old.remove();
+var INSTL={ssa:'Secretaría de Salud',imssb:'IMSS-Bienestar',imss:'IMSS',issste:'ISSSTE',pemex:'Pemex',mil:'Sedena o Semar',priv:'Médico privado',ninguna:'Todavía no se atiende'};
+function censoHecho(){try{return localStorage.getItem('obs-censo')==='1';}catch(e){return false;}}
+function censoForm(host,done){
+  var edos=((PD&&PD.tamiz&&PD.tamiz.estados)||[]).map(function(e){return e.estado;});
+  var opt=function(o){return Object.keys(o).map(function(k){return '<option value="'+k+'">'+esc(o[k])+'</option>';}).join('');};
+  host.innerHTML='<form class="en-conf en-censo" id="cnf" novalidate><b>Censo del Observatorio</b>'+
+   '<p class="en-cp">No pedimos tu nombre. Con estos datos contamos cuántas personas viven con cada enfermedad poco frecuente en México, dónde viven y dónde se atienden. Es la información que hoy no existe.</p>'+
+   '<div class="cn-g">'+
+    '<div class="field cn-w"><label>¿Quién llena el registro?</label><div class="cn-r"><label><input type="radio" name="quien" value="paciente" required> Soy el paciente</label><label><input type="radio" name="quien" value="familiar"> Soy familiar o cuidador</label></div></div>'+
+    '<div class="field cn-w"><label for="cn-enf">Enfermedad confirmada</label><select id="cn-enf" required><option value="">Elige la enfermedad</option>'+disOptions('')+'<option value="otra">Otra enfermedad poco frecuente</option></select></div>'+
+    '<div class="field cn-w" id="cn-ow" hidden><label for="cn-otra">¿Cuál?</label><input id="cn-otra" maxlength="120" placeholder="Escribe el nombre que te dio el médico"></div>'+
+    '<div class="field cn-w"><label for="cn-como">¿Cómo se confirmó?</label><select id="cn-como" required><option value="">Elige una opción</option><option value="genetico">Con un estudio genético</option><option value="bioquimico">Con un estudio de enzimas o de sangre especializado</option><option value="especialista">Lo confirmó un especialista (genetista u otro)</option></select></div>'+
+    '<div class="field"><label for="cn-anio">Año del diagnóstico</label><input id="cn-anio" inputmode="numeric" maxlength="4" placeholder="2024"></div>'+
+    '<div class="field"><label for="cn-edad">Edad del paciente hoy</label><input id="cn-edad" inputmode="numeric" maxlength="3" required placeholder="Años"></div>'+
+    '<div class="field"><label for="cn-sexo">Sexo del paciente</label><select id="cn-sexo"><option value="">Elige</option><option value="mujer">Mujer</option><option value="hombre">Hombre</option><option value="nd">Prefiero no decir</option></select></div>'+
+    '<div class="field"><label for="cn-edo">Estado donde vive</label><select id="cn-edo" required><option value="">Elige el estado</option>'+edos.map(function(e){return '<option>'+esc(e)+'</option>';}).join('')+'</select></div>'+
+    '<div class="field cn-w"><label for="cn-inst">¿Dónde se atiende?</label><select id="cn-inst"><option value="">Elige una opción</option>'+opt(INSTL)+'</select></div>'+
+   '</div>'+
+   '<label class="ckl"><input type="checkbox" id="cn-okc"> Quiero que el Observatorio me contacte con información y apoyos para esta enfermedad.</label>'+
+   '<div class="field" id="cn-cw" hidden><label for="cn-cto">Correo o teléfono</label><input id="cn-cto" maxlength="120"></div>'+
+   '<label class="ckl"><input type="checkbox" id="cn-okd" required> Acepto que estos datos se usen sin mi nombre para el censo del Observatorio. <a href="#" id="cn-av">Aviso de privacidad</a></label>'+
+   '<p class="en-av" id="cn-avt" hidden>Polar Multimedia, que opera el Observatorio, usa estos datos solo para contar y ubicar a las personas con enfermedades poco frecuentes en México y publicar cifras agregadas, sin datos que identifiquen a nadie. El contacto, si lo das, solo se usa para enviarte información y apoyos. Puedes pedir que se borre tu registro escribiendo a '+esc(CONTACTO)+'.</p>'+
+   '<p class="en-err" id="cn-err" aria-live="polite"></p>'+
+   '<div class="factions"><button class="btn" type="submit">Registrar y entrar</button><button class="btn ghost" type="button" id="cn-later">Registrarme después</button></div></form>';
+  var f=$('#cnf',host);
+  $('#cn-enf',f).onchange=function(){$('#cn-ow',f).hidden=this.value!=='otra';};
+  $('#cn-okc',f).onchange=function(){$('#cn-cw',f).hidden=!this.checked;};
+  $('#cn-av',f).onclick=function(e){e.preventDefault();var t=$('#cn-avt',f);t.hidden=!t.hidden;};
+  $('#cn-later',f).onclick=function(){done(false);};
+  f.onsubmit=function(e){e.preventDefault();var q=f.querySelector('input[name=quien]:checked'),err=$('#cn-err',f),v=function(id){return $(id,f).value.trim();};
+    var d={quien:q?q.value:'',enf:v('#cn-enf'),enf_otra:v('#cn-otra'),como:v('#cn-como'),anio:v('#cn-anio'),edad:v('#cn-edad'),sexo:v('#cn-sexo'),estado:v('#cn-edo'),inst:v('#cn-inst'),ok_contacto:$('#cn-okc',f).checked,contacto:v('#cn-cto'),ok_datos:$('#cn-okd',f).checked};
+    var falta=!d.quien?'quién llena el registro':!d.enf?'la enfermedad':(d.enf==='otra'&&!d.enf_otra)?'el nombre de la enfermedad':!d.como?'cómo se confirmó':!/^\d{1,3}$/.test(d.edad)?'la edad del paciente':!d.estado?'el estado donde vive':!d.ok_datos?'tu aceptación del uso de los datos':'';
+    if(falta){err.textContent='Falta '+falta+'.';return;}
+    var bt=f.querySelector('button[type=submit]');bt.disabled=true;bt.textContent='Registrando…';err.textContent='';
+    fetch('/api/registro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw new Error(r.status);
+      try{localStorage.setItem('obs-censo','1');}catch(x){}
+      host.innerHTML='<div class="en-conf en-ok"><b>Gracias. Ya eres parte del censo.</b><p class="en-cp">Cada registro ayuda a que '+esc(d.enf==='otra'?d.enf_otra:(DSHORT[d.enf]||'esta enfermedad'))+' se cuente en México y a que se planee mejor dónde atenderla.</p><div class="factions"><button class="btn" type="button" id="cn-go">Entrar</button></div></div>';
+      $('#cn-go',host).onclick=function(){done(true);};$('#cn-go',host).focus();
+    }).catch(function(){bt.disabled=false;bt.textContent='Registrar y entrar';err.textContent='No pudimos guardar el registro en este momento. Inténtalo de nuevo en unos minutos.';});};
+  var r1=f.querySelector('input[name=quien]');if(r1)r1.focus();}
+function entrada(o){o=o||{};var old=document.getElementById('entrada');if(old)old.remove();
   var d=h('div','',null);d.id='entrada';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','en-t');
   d.innerHTML='<div class="en-bg" aria-hidden="true"></div><div class="en-in">'+
     '<div class="en-logo"><img class="en-rays" src="/obs/img/brand/rayos.svg" alt="" aria-hidden="true"><img class="en-ico" src="/obs/img/brand/icono.webp" alt=""></div>'+
     '<p class="en-k"><i aria-hidden="true"></i>Capítulo México</p><h1 id="en-t">Observatorio Latinoamericano de Enfermedades Poco Frecuentes</h1>'+
-    '<p class="en-s">Para mostrarte lo que te sirve, cuéntanos quién eres.</p>'+
+    '<p class="en-s" id="ens">Para mostrarte lo que te sirve, cuéntanos quién eres.</p>'+
     '<div class="en-opts" id="eno">'+
      '<button type="button" class="en-o fam" data-p="fam"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><small>Soy paciente o familiar</small><b>Entrar</b><span>Rumbo, el Acervo, el Atlas y las asociaciones, con palabras sencillas.</span></button>'+
      '<button type="button" class="en-o med" data-p="med"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><small>Soy médico o profesional de la salud</small><b>Entrar</b><span>Todo lo anterior y Clara, la herramienta de orientación clínica.</span></button>'+
-    '</div><p class="en-n">Puedes cambiarlo cuando quieras desde el menú.</p><button type="button" class="en-pres" id="enp">Modo presentación</button></div>';
+    '</div><p class="en-n" id="enn">Puedes cambiarlo cuando quieras desde el menú.</p><button type="button" class="en-pres" id="enp">Modo presentación</button></div>';
   document.body.appendChild(d);document.body.classList.add('en-open');
-  function close(p){setPerfil(p);d.classList.add('out');document.body.classList.remove('en-open');setTimeout(function(){d.remove();},500);
+  var box=$('#eno',d),sub=$('#ens',d);
+  function hideFoot(){$('#enn',d).hidden=true;$('#enp',d).hidden=true;}
+  function shut(){d.classList.add('out');document.body.classList.remove('en-open');setTimeout(function(){d.remove();},500);}
+  function close(p){setPerfil(p);shut();
     if(!/^#\/(clara|rumbo|atlas|acervo|asociaciones)/.test(location.hash)||(p==='fam'&&/clara/.test(location.hash)))location.hash='#/';else route();}
-  $('.en-o.fam',d).onclick=function(){close('fam');};
+  if(o.censo){hideFoot();sub.textContent='Súmate al censo de personas con una enfermedad poco frecuente en México.';censoForm(box,function(){shut();route();});return;}
+  $('.en-o.fam',d).onclick=function(){hideFoot();sub.textContent='Te acompañamos desde la primera duda.';
+    box.innerHTML='<div class="en-conf en-q"><b>¿Ya tienen un diagnóstico confirmado?</b><p class="en-cp">Si un estudio o un especialista ya confirmó la enfermedad, te pedimos un registro breve y sin tu nombre. Así el Observatorio cuenta cuántas personas viven con cada enfermedad en México.</p>'+
+     '<div class="en-qo"><button class="btn" type="button" id="enq1">Sí, ya está confirmado</button><button class="btn ghost" type="button" id="enq2">Todavía no, estamos buscando</button></div><button class="en-back" type="button" id="enb">← Volver</button></div>';
+    $('#enq1').onclick=function(){sub.textContent='Un registro breve y entras.';censoForm(box,function(){close('fam');});};
+    $('#enq2').onclick=function(){close('fam');};$('#enb').onclick=function(){entrada();};$('#enq1').focus();};
   $('#enp',d).onclick=function(){close('pres');};
-  $('.en-o.med',d).onclick=function(){$('#eno',d).innerHTML='<form class="en-conf" id="enc"><b>Clara es exclusiva para profesionales de la salud.</b><label class="ckl"><input type="checkbox" id="enck" required> Confirmo que soy médico o profesional de la salud.</label>'+
-    '<div class="field"><label for="encd">Cédula profesional <span class="note">(opcional)</span></label><input id="encd" inputmode="numeric" maxlength="10"></div>'+
+  $('.en-o.med',d).onclick=function(){hideFoot();var ced='';try{ced=localStorage.getItem('obs-cedula')||'';}catch(e){}
+    box.innerHTML='<form class="en-conf" id="enc"><b>Clara es exclusiva para profesionales de la salud.</b>'+
+    '<div class="field"><label for="encd">Cédula profesional</label><input id="encd" inputmode="numeric" maxlength="8" autocomplete="off" required value="'+esc(ced)+'" placeholder="7 u 8 dígitos"></div>'+
+    '<label class="ckl"><input type="checkbox" id="enck" required> Confirmo que soy médico o profesional de la salud.</label><p class="en-err" id="ence" aria-live="polite"></p>'+
     '<div class="factions"><button class="btn" type="submit">Entrar</button><button class="btn ghost" type="button" id="enb">Volver</button></div></form>';
-    $('#enck').focus();$('#enb').onclick=function(){entrada();};$('#enc').onsubmit=function(e){e.preventDefault();if($('#enck').checked)close('med');};};
+    $('#encd').focus();$('#encd').oninput=function(){this.value=this.value.replace(/\D/g,'');};$('#enb').onclick=function(){entrada();};
+    $('#enc').onsubmit=function(e){e.preventDefault();var c=$('#encd').value.trim(),er=$('#ence');
+      if(!/^\d{7,8}$/.test(c)){er.textContent='Escribe tu cédula profesional: 7 u 8 dígitos.';$('#encd').focus();return;}
+      if(!$('#enck').checked){er.textContent='Confirma que eres profesional de la salud.';return;}
+      try{localStorage.setItem('obs-cedula',c);}catch(x){}close('med');};};
   setTimeout(function(){var b=$('.en-o.fam',d);if(b)b.focus();},50);}
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-censo]');if(t){e.preventDefault();entrada({censo:true});}});
 
 /* ---------- inteligencia artificial (pasa por el servidor; la llave no llega al navegador) ---------- */
 function errCopy(e){return e&&e.code===429?'Demasiadas consultas seguidas. Espera unos segundos.':'No pude consultar al asistente en este momento. Te muestro lo que dicen las fuentes.';}
@@ -234,6 +289,7 @@ V.inicio=function(){
     '<div class="stat"><b>× 2.1</b><span>si hay que salir de la propia región para ver a un especialista</span></div>'+
    '</div>'+
    '<p class="note" style="margin-top:16px">Fuentes: '+srcA(SRC_DX)+' · '+srcA(SRC_ESP)+'. Para México se estiman entre 8 y 10 millones de personas con una enfermedad poco frecuente, sin censo nacional (<a href="'+esc(CBY.x2?CBY.x2.url:'#')+'" target="_blank" rel="noopener">Excélsior, feb. 2026</a>). Medir la cifra latinoamericana, empezando por México, es la primera tarea del Observatorio.</p>'+
+   (censoHecho()?'':'<div class="cnso"><div><b>¿Ya tienen un diagnóstico confirmado?</b><span>Súmate al censo del Observatorio. Es breve y no pedimos tu nombre.</span></div><button type="button" class="btn" data-censo>Registrarme</button></div>')+
   '</div></section>'+
 
   '<section class="blk"><div class="wrap">'+
@@ -434,7 +490,7 @@ V.rumbo=function(q){
     view.innerHTML='<section class="pg"><div class="wrap narrow">'+
      '<div class="pg-h"><div><span class="tk c-b">Para familias y pacientes</span><h1>Rumbo</h1><p>No necesitas saber términos médicos. Cuéntanos qué te dijeron o qué notas, y te acompañamos con información aprobada, con la fuente a la vista.</p></div></div>'+
      '<div class="tile c-b vcall" id="vc"><div class="who">'+ava()+'<div><h3>¿Prefieres platicarlo?</h3><p>Cuéntale a Rumbo con tu voz lo que están viviendo. Te responde solo con información aprobada.</p></div><span class="hdr-r">'+callBtn('Rumbo')+'</span></div><p class="callst" id="cst" aria-live="polite"></p><div class="log vlog" id="vlog" aria-live="polite"></div></div>'+
-     '<div class="tile pk-tile" id="pkw"></div></div></section>';
+     '<div class="tile pk-tile" id="pkw"></div>'+(censoHecho()?'':'<div class="cnso"><div><b>¿Ya tienen un diagnóstico confirmado?</b><span>Súmate al censo del Observatorio. Es breve y no pedimos tu nombre.</span></div><button type="button" class="btn" data-censo>Registrarme</button></div>')+'</div></section>';
     picker($('#pkw'),function(k){location.hash='#/rumbo?d='+k;});
     var vlog=$('#vlog');$('#vc .callbtn').onclick=function(){startCall({agente:'rumbo',nombre:'Rumbo',ava:$('#vc .ava'),btn:this,vars:{enfermedad:'lo que están viviendo, aunque todavía no sepan el nombre de la enfermedad'},
       status:function(t){$('#cst').textContent=t;},say:function(w,t){vlog.classList.add('on');vlog.appendChild(h('div','bb '+w,esc(t)));vlog.scrollTop=1e6;},tools:voiceTools(vlog,{})});};
@@ -1011,9 +1067,9 @@ fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
   PD=d;C=PD.corpus||[];C.forEach(function(x){CBY[x.id]=x;});initDis(PD.enfermedades);
   cSearch=Index(C,function(x){return x.tema+' '+x.tema+' '+x.texto;});
   RM=PD.rumbo||RM;RM.w.forEach(function(w){RW[w.id]=w;});
-  var LP=location.pathname==='/'?(PERFIL?'':'familias'):(location.pathname.match(/^\/(familias|medicos|presentacion)\/?$/)||[])[1];
+  var LP=location.pathname==='/'?'':(location.pathname.match(/^\/(familias|medicos|presentacion)\/?$/)||[])[1];
   if(LP==='familias')setPerfil('fam');else if(LP==='presentacion')setPerfil('pres');
   applyPerfil();window.addEventListener('hashchange',route);route();
-  if(LP==='medicos'&&PERFIL!=='med'){entrada();var mb=document.querySelector('#entrada .en-o.med');if(mb)mb.click();}else if(!PERFIL)entrada();
+  if(LP==='medicos'&&PERFIL!=='med'){entrada();var mb=document.querySelector('#entrada .en-o.med');if(mb)mb.click();}else if(!PERFIL||(location.pathname==='/'&&!/^#\/./.test(location.hash)))entrada();
 }).catch(function(){view.innerHTML='<section class="blk"><div class="wrap"><h2>No se pudo cargar el Acervo</h2><p class="lead">Recarga la página.</p></div></section>';});
 })();
