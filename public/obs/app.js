@@ -947,8 +947,8 @@ V.atlas=function(q){
 
 /* ---------- Asociaciones (luz clara) ---------- */
 V.asociaciones=function(q){q=q||{};
-  if(q.v==='1'||q.v==='2'||q.v==='3')return asocV(q);
-  return asocDir(q);};
+  if(q.v==='1'||q.v==='3')return asocV(q);
+  q.v='2';return asocV(q);};
 /* ---------- Asociaciones: tres propuestas de diseño (?v=1, 2, 3) ---------- */
 var GCLR={tamiz:'#E0A800',musculo:'#8B5CF6',sangre:'#E5484D',piel:'#FF4FD8',lisosomal:'#00A6B8',dolor:'#F97316'};
 function asocData(){return PD.atlas.pts.filter(function(p){return p.l==='a';}).map(function(p,i){var e=ENFBY[p.d[0]]||{},nat=/No confirmada/i.test(p.c||'');
@@ -990,11 +990,11 @@ function asocV(q){var v=q.v,fam=PERFIL!=='med',A=asocData(),grp='all',dis='all';
       list();};
   }else if(v==='2'){
     var feds=A.filter(function(a){return a.fed;}),rest=A.filter(function(a){return !a.fed;});
-    html='<section class="av av2">'+asocSw(v)+'<div class="wrap">'+
-     '<div class="av2-h"><div><span class="kick m">'+tx('Para familias y pacientes','Para el médico')+'</span><h1>'+h1+'</h1><p>'+lead+'</p></div>'+
-      '<figure class="av2-ph"><img src="/obs/img/brand/faro-manos.webp" alt="" loading="lazy"><figcaption><b>'+A.length+'</b> asociaciones<br>'+groups.length+' grupos de enfermedades</figcaption></figure></div>'+
-     '<h2 class="av2-t">'+tx('Para empezar: federaciones que reúnen a muchas','Federaciones y redes amplias')+'</h2>'+
-     '<div class="av2-f">'+feds.map(function(a){return '<article style="--gc:'+a.c+'"><span class="av2-tag">'+esc(a.dz.join(' · '))+'</span><h3>'+esc(a.n)+'</h3><p>'+esc(a.x)+'</p>'+acts(a,'avact lt')+'</article>';}).join('')+'</div>'+
+    html='<section class="av av2">'+(q.sw?asocSw(v):'')+'<div class="wrap">'+
+     '<div class="av2-h"><span class="kick m">'+tx('Para familias y pacientes','Para el médico')+'</span><h1>'+h1+'</h1><p>'+lead+'</p>'+
+      '<div class="av2-k"><span><b>'+A.length+'</b> asociaciones</span><span><b>'+groups.length+'</b> grupos de enfermedades</span><span><b>'+Object.keys(nEst).length+'</b> estados</span></div></div>'+
+     '<h2 class="av2-t">'+tx('Redes que reúnen a varias asociaciones','Federaciones y redes nacionales')+'</h2><p class="av2-st">'+tx('Si no encuentras la de tu enfermedad, empieza por aquí: te orientan y te conectan con la asociación indicada.','Útiles cuando la enfermedad no tiene asociación propia: orientan y vinculan con la asociación indicada.')+'</p>'+
+     '<div class="av2-f">'+feds.map(function(a){return '<details style="--gc:'+a.c+'"><summary><span class="av2-m sm">'+esc(a.ini)+'</span><span class="av2-fs"><b>'+esc(a.n)+'</b><small>'+esc(a.dz.join(' · '))+'</small></span><i aria-hidden="true"></i></summary><div class="av2-fb"><p>'+esc(a.x)+'</p>'+acts(a)+'</div></details>';}).join('')+'</div>'+
      '<div class="av2-bar"><h2 class="av2-t">'+tx('Por enfermedad','Por enfermedad')+'</h2>'+chips()+'</div><div id="avl" class="av2-l"></div>'+
      asocHelp(fam)+'</div></section>';
     bind=function(){var list=function(){$('#avl').innerHTML=rest.filter(function(a){return inG(a,grp);}).map(function(a){return '<article class="av2-r" style="--gc:'+a.c+'"><span class="av2-m">'+esc(a.ini)+'</span><div class="av2-b"><h3>'+esc(a.n)+'</h3><p class="av2-c"><span>'+esc(a.city)+'</span>'+a.dz.map(function(d){return '<em>'+esc(d)+'</em>';}).join('')+'</p><p>'+esc(a.x)+'</p></div>'+acts(a,'avact col')+'</article>';}).join('')||'<p class="note">Sin asociaciones en este grupo; mira las federaciones de arriba.</p>';};
