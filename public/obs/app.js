@@ -135,7 +135,7 @@ function medBtnSync(){var mb=document.getElementById('medBtn');if(!mb)return;var
 document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-censo]');if(t){e.preventDefault();entrada({censo:true});}});
 
 /* ---------- inteligencia artificial (pasa por el servidor; la llave no llega al navegador) ---------- */
-function errCopy(e){return e&&e.code===429?'Demasiadas consultas seguidas. Espera unos segundos.':'No pude consultar al asistente en este momento. Te muestro lo que dicen las fuentes.';}
+function errCopy(e){return e&&e.code===429?tx('Demasiadas consultas seguidas. Espera unos segundos.','Demasiadas consultas seguidas. Espere unos segundos.'):tx('No pude consultar al asistente en este momento. Te muestro lo que dicen las fuentes.','No fue posible consultar al asistente en este momento. Le muestro lo que dicen las fuentes.');}
 async function aiStream(input,onText,signal){
   var r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},signal:signal,body:JSON.stringify({input:input})});
   if(!r.ok){var e=new Error('HTTP '+r.status);e.code=r.status;throw e;}

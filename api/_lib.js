@@ -11,6 +11,7 @@ function rateLimit(req, max, windowMs) {
 function originOk(req) {
   const allow = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
   if (!allow.length) return true;
+  allow.push('https://www.pocofrecuentes.com', 'https://pocofrecuentes.com');
   const o = req.headers.origin || req.headers.referer || '';
   return allow.some(a => o.startsWith(a));
 }
