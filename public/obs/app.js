@@ -107,6 +107,7 @@ function entrada(o){o=o||{};var old=document.getElementById('entrada');if(old)ol
   function shut(){d.classList.add('out');document.body.classList.remove('en-open');setTimeout(function(){d.remove();},500);}
   function close(p){setPerfil(p);shut();
     if(!/^#\/(clara|rumbo|atlas|acervo|asociaciones)/.test(location.hash)||(p==='fam'&&/clara/.test(location.hash)))location.hash='#/';else route();}
+  if(o.med){var mb=$('.en-o.med',d);if(mb)setTimeout(function(){mb.click();},0);}
   if(o.censo){hideFoot();sub.textContent='Súmate al censo de personas con una enfermedad poco frecuente en México.';censoForm(box,function(){shut();route();});return;}
   $('.en-o.fam',d).onclick=function(){hideFoot();sub.textContent='Te acompañamos desde la primera duda.';
     box.innerHTML='<div class="en-conf en-q"><b>¿Ya tienen un diagnóstico confirmado?</b><p class="en-cp">Si un estudio o un especialista ya confirmó la enfermedad, te pedimos un registro breve y sin tu nombre. Así el Observatorio cuenta cuántas personas viven con cada enfermedad en México.</p>'+
@@ -125,6 +126,7 @@ function entrada(o){o=o||{};var old=document.getElementById('entrada');if(old)ol
       if(!$('#enck').checked){er.textContent='Confirma que eres profesional de la salud.';return;}
       try{localStorage.setItem('obs-cedula',c);}catch(x){}close('med');};};
   setTimeout(function(){var b=$('.en-o.fam',d);if(b)b.focus();},50);}
+(function(){var mb=document.getElementById('medBtn');if(mb)mb.onclick=function(){entrada({med:true});};})();
 document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-censo]');if(t){e.preventDefault();entrada({censo:true});}});
 
 /* ---------- inteligencia artificial (pasa por el servidor; la llave no llega al navegador) ---------- */
