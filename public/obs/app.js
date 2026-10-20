@@ -946,8 +946,71 @@ V.atlas=function(q){
 };
 
 /* ---------- Asociaciones (luz clara) ---------- */
-V.asociaciones=function(q){
-  return asocDir(q||{});};
+V.asociaciones=function(q){q=q||{};
+  if(q.v==='1'||q.v==='2'||q.v==='3')return asocV(q);
+  return asocDir(q);};
+/* ---------- Asociaciones: tres propuestas de diseño (?v=1, 2, 3) ---------- */
+var GCLR={tamiz:'#E0A800',musculo:'#8B5CF6',sangre:'#E5484D',piel:'#FF4FD8',lisosomal:'#00A6B8',dolor:'#F97316'};
+function asocData(){return PD.atlas.pts.filter(function(p){return p.l==='a';}).map(function(p,i){var e=ENFBY[p.d[0]]||{},nat=/No confirmada/i.test(p.c||'');
+  return {i:i,p:p,n:p.n.replace(/\s*\((Proyecto[^)]*)\)/,''),city:nat?'Alcance nacional':p.c.replace(/,\s*Ciudad de México$/,''),nat:nat,g:e.grupo||'lisosomal',c:GCLR[e.grupo]||'#00A6B8',
+    dz:p.d.map(function(k){return DSHORT[k]||k;}),x:p.x||'',u:p.u,fed:/federaci|femexer/i.test(p.n)||p.d.length>=3,
+    ini:p.n.replace(/\(.*?\)/g,'').replace(/\b(A\.?C\.?|I\.?A\.?P\.?|de|del|la|las|los|y|en|México|Mexicana|Asociación|Fundación)\b\.?/gi,' ').trim().split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase()||'A'};});}
+function asocMaps(a){return a.nat?'':'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a.p.n.replace(/\s*\(.*?\)/g,'')+', '+a.p.c);}
+function asocSw(v){return '<div class="avsw"><span>Propuesta de diseño</span>'+[['1','A · Mapa'],['2','B · Editorial'],['3','C · Por enfermedad']].map(function(o){return '<a href="#/asociaciones?v='+o[0]+'" class="'+(o[0]===v?'on':'')+'">'+o[1]+'</a>';}).join('')+'<a href="#/asociaciones">Actual</a></div>';}
+function asocHelp(fam){return '<div class="avhelp"><div><b>'+tx('Cómo te pueden ayudar','Qué ofrecen a sus pacientes')+'</b><ul>'+(fam?'<li>Hablar con alguien que entiende lo que vives</li><li>Orientación en trámites, apoyos y derechos</li><li>Consejos de cuidado en casa</li><li>Médicos y hospitales que conocen la enfermedad</li>':'<li>Apoyo entre pares para la familia</li><li>Orientación en trámites, apoyos y derechos</li><li>Materiales de cuidado en casa</li><li>Vinculación con centros de referencia</li>')+'</ul></div>'+
+  '<div><b>'+tx('Antes de escribirles','Al referir')+'</b><ul>'+(fam?'<li>Ten a la mano el diagnóstico</li><li>Pregunta por grupos o reuniones de familias</li><li>Pregunta por especialistas cerca de ti</li>':'<li>Entregue el nombre y contacto de la asociación</li><li>Sugiera llevar el diagnóstico y el resumen clínico</li><li>Si no hay asociación de la enfermedad, oriente a una federación</li>')+'</ul></div>'+
+  '<div class="avhelp-x"><b>'+tx('¿No encuentras la de tu enfermedad?','¿Sin asociación para la enfermedad?')+'</b><p>'+tx('Rumbo te ayuda a buscar apoyo, y el Atlas te muestra los hospitales con experiencia más cercanos.','Las federaciones agrupan a varias enfermedades. En el Atlas encontrará los centros con experiencia.')+'</p><div class="dlinks">'+(fam?'<a class="btn" href="#/rumbo">Consultar Rumbo</a>':'')+'<a class="btn ghost" href="#/atlas?ruta=1">'+tx('Atención cerca de mí','Ruta de referencia')+'</a></div></div></div>'+
+  '<p class="avjoin">'+tx('¿Eres una asociación de pacientes y no apareces?','¿Conoce una asociación que no aparece?')+' <a href="mailto:'+CONTACTO+'?subject='+encodeURIComponent('Asociación para el directorio del Observatorio')+'">'+tx('Escríbenos','Escríbanos')+'</a></p>';}
+function asocV(q){var v=q.v,fam=PERFIL!=='med',A=asocData(),grp='all',dis='all';
+  var groups=GRUPOS.filter(function(g){return A.some(function(a){return a.p.d.some(function(k){return (ENFBY[k]||{}).grupo===g.k;});});});
+  var inG=function(a,g){return g==='all'||a.p.d.some(function(k){return (ENFBY[k]||{}).grupo===g;});};
+  var states=(PD.tamiz.estados||[]).map(function(e){return e.estado;});
+  var nEst={};A.forEach(function(a){if(!a.nat)nEst[a.p.s]=1;});
+  var lead=tx('Las forman familias que ya pasaron por lo mismo que tú. Te escuchan, te orientan en trámites y te ayudan a encontrar médicos que conocen la enfermedad.','Además del manejo clínico, las familias necesitan acompañamiento. Estas asociaciones las orientan en trámites, cuidados y apoyo entre pares; puede recomendarlas desde la primera consulta.');
+  var h1=tx('No tienes que vivirlo sola, ni solo','Asociaciones de pacientes para referir a las familias');
+  var chips=function(){return '<div class="avchips" role="group" aria-label="Filtrar por grupo"><button type="button" data-g="all" class="'+(grp==='all'?'on':'')+'">Todas <i>'+A.length+'</i></button>'+groups.map(function(g){var n=A.filter(function(a){return inG(a,g.k);}).length;return '<button type="button" data-g="'+g.k+'" style="--gc:'+GCLR[g.k]+'" class="'+(grp===g.k?'on':'')+'"><span class="dot"></span>'+esc(GCORTO[g.k]||gT(g))+' <i>'+n+'</i></button>';}).join('')+'</div>';};
+  var acts=function(a,cls){var m=asocMaps(a);return '<div class="'+(cls||'avact')+'">'+(m?'<a href="'+m+'" target="_blank" rel="noopener">'+tx('Cómo llegar','Ubicación')+'</a>':'')+'<a href="'+esc(a.u)+'" target="_blank" rel="noopener">'+tx('Conocerla','Más información')+' ↗</a></div>';};
+  var html='',bind;
+  if(v==='1'){
+    var mx=PD.atlas.mx;
+    html='<section class="av av1">'+asocSw(v)+'<div class="wrap">'+
+     '<div class="av1-h"><span class="kick m">'+tx('Asociaciones de pacientes','Asociaciones de pacientes')+'</span><h1>'+h1+'</h1><p>'+lead+'</p>'+
+      '<div class="av1-k"><div><b>'+A.length+'</b><span>asociaciones</span></div><div><b>'+Object.keys(nEst).length+'</b><span>estados</span></div><div><b>'+A.filter(function(a){return a.nat;}).length+'</b><span>de alcance nacional</span></div></div></div>'+
+     '<div class="av1-g"><div class="av1-map"><svg viewBox="60 0 940 640" aria-hidden="true">'+mx.p.map(function(p,i){return '<path d="'+p.d+'" class="'+(nEst[i]?'has':'')+'"/>';}).join('')+
+       A.filter(function(a){return !a.nat&&a.p.px!=null;}).map(function(a){return '<g class="pin" data-i="'+a.i+'" style="--gc:'+a.c+'"><circle class="halo" cx="'+a.p.px+'" cy="'+a.p.py+'" r="22"/><circle cx="'+a.p.px+'" cy="'+a.p.py+'" r="9"/></g>';}).join('')+'</svg>'+
+       '<p class="av1-nat"><span></span>'+A.filter(function(a){return a.nat;}).length+' con alcance nacional, sin sede confirmada en el mapa</p></div>'+
+      '<div class="av1-l">'+chips()+'<div id="avl"></div></div></div>'+
+     asocHelp(fam)+'</div></section>';
+    bind=function(){var list=function(){$('#avl').innerHTML=A.filter(function(a){return inG(a,grp);}).map(function(a){return '<article class="av1-i" data-i="'+a.i+'" style="--gc:'+a.c+'"><span class="av1-m">'+esc(a.ini)+'</span><div><h3>'+esc(a.n)+'</h3><p class="av1-c">'+esc(a.city)+' · '+esc(a.dz.join(', '))+'</p><p>'+esc(a.x)+'</p>'+acts(a)+'</div></article>';}).join('');
+        $$('.av1-i').forEach(function(el){el.onmouseenter=function(){hl(el.dataset.i);};el.onmouseleave=function(){hl(null);};});
+        $$('.av1 .pin').forEach(function(pn){var a=A[pn.dataset.i];pn.classList.toggle('off',!inG(a,grp));});};
+      function hl(i){$$('.av1 .pin').forEach(function(pn){pn.classList.toggle('hot',pn.dataset.i===i);});$$('.av1-i').forEach(function(el){el.classList.toggle('hot',el.dataset.i===i);});}
+      $$('.av1 .pin').forEach(function(pn){pn.onmouseenter=function(){hl(pn.dataset.i);};pn.onmouseleave=function(){hl(null);};pn.onclick=function(){var el=document.querySelector('.av1-i[data-i="'+pn.dataset.i+'"]');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});hl(pn.dataset.i);}};});
+      $('.av1 .avchips').onclick=function(e){var b=e.target.closest('button');if(!b)return;grp=b.dataset.g;$$('.av1 .avchips button').forEach(function(x){x.classList.toggle('on',x===b);});list();};
+      list();};
+  }else if(v==='2'){
+    var feds=A.filter(function(a){return a.fed;}),rest=A.filter(function(a){return !a.fed;});
+    html='<section class="av av2">'+asocSw(v)+'<div class="wrap">'+
+     '<div class="av2-h"><div><span class="kick m">'+tx('Para familias y pacientes','Para el médico')+'</span><h1>'+h1+'</h1><p>'+lead+'</p></div>'+
+      '<figure class="av2-ph"><img src="/obs/img/brand/faro-manos.webp" alt="" loading="lazy"><figcaption><b>'+A.length+'</b> asociaciones<br>'+groups.length+' grupos de enfermedades</figcaption></figure></div>'+
+     '<h2 class="av2-t">'+tx('Para empezar: federaciones que reúnen a muchas','Federaciones y redes amplias')+'</h2>'+
+     '<div class="av2-f">'+feds.map(function(a){return '<article style="--gc:'+a.c+'"><span class="av2-tag">'+esc(a.dz.join(' · '))+'</span><h3>'+esc(a.n)+'</h3><p>'+esc(a.x)+'</p>'+acts(a,'avact lt')+'</article>';}).join('')+'</div>'+
+     '<div class="av2-bar"><h2 class="av2-t">'+tx('Por enfermedad','Por enfermedad')+'</h2>'+chips()+'</div><div id="avl" class="av2-l"></div>'+
+     asocHelp(fam)+'</div></section>';
+    bind=function(){var list=function(){$('#avl').innerHTML=rest.filter(function(a){return inG(a,grp);}).map(function(a){return '<article class="av2-r" style="--gc:'+a.c+'"><span class="av2-m">'+esc(a.ini)+'</span><div class="av2-b"><h3>'+esc(a.n)+'</h3><p class="av2-c"><span>'+esc(a.city)+'</span>'+a.dz.map(function(d){return '<em>'+esc(d)+'</em>';}).join('')+'</p><p>'+esc(a.x)+'</p></div>'+acts(a,'avact col')+'</article>';}).join('')||'<p class="note">Sin asociaciones en este grupo; mira las federaciones de arriba.</p>';};
+      $('.av2 .avchips').onclick=function(e){var b=e.target.closest('button');if(!b)return;grp=b.dataset.g;$$('.av2 .avchips button').forEach(function(x){x.classList.toggle('on',x===b);});list();};list();};
+  }else{
+    var dlist=ENF.filter(function(e){return A.some(function(a){return a.p.d.indexOf(e.key)>=0;});});
+    html='<section class="av av3">'+asocSw(v)+'<div class="wrap">'+
+     '<div class="av3-h"><span class="kick m">'+tx('Asociaciones de pacientes','Asociaciones de pacientes')+'</span><h1>'+h1+'</h1><p>'+lead+'</p></div>'+
+     '<div class="av3-pick"><span>'+tx('¿Qué enfermedad?','Enfermedad')+'</span><div class="av3-d"><button type="button" data-d="all" class="on">Todas</button>'+dlist.map(function(e){var n=A.filter(function(a){return a.p.d.indexOf(e.key)>=0;}).length;return '<button type="button" data-d="'+e.key+'" style="--gc:'+GCLR[e.grupo]+'">'+esc(e.corto)+' <i>'+n+'</i></button>';}).join('')+'</div></div>'+
+     '<div class="av3-g"><div id="avl"></div><aside class="av3-side">'+asocHelp(fam)+'</aside></div></div></section>';
+    bind=function(){var list=function(){var out='';groups.forEach(function(g){var L=A.filter(function(a){return a.p.d.some(function(k){return (ENFBY[k]||{}).grupo===g.k&&(dis==='all'||k===dis);});});if(!L.length)return;
+        out+='<div class="av3-sec" style="--gc:'+GCLR[g.k]+'"><div class="av3-sh"><b>'+esc(GCORTO[g.k]||gT(g))+'</b><span>'+L.length+(L.length===1?' asociación':' asociaciones')+'</span></div><div class="av3-cards">'+L.map(function(a){return '<article><h3>'+esc(a.n)+'</h3><p class="av3-c">'+esc(a.city)+'</p><p>'+esc(a.x)+'</p>'+acts(a)+'</article>';}).join('')+'</div></div>';});
+        $('#avl').innerHTML=out;};
+      $('.av3-d').onclick=function(e){var b=e.target.closest('button');if(!b)return;dis=b.dataset.d;$$('.av3-d button').forEach(function(x){x.classList.toggle('on',x===b);});list();};list();};
+  }
+  view.innerHTML=html;bind();}
 function asocDir(q){
   var fam=PERFIL==='fam',dis=DIS[q.d]?q.d:'all',col=['c-m','c-b','c-v','c-g','c-p'];
   view.innerHTML='<section class="pg"><div class="wrap">'+
@@ -1037,7 +1100,7 @@ function route(){
   voice.stop();
   $$('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.v===name);if(a.dataset.v===name)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   V[name](q);window.scrollTo(0,0);if(name!=='inicio')view.focus({preventScroll:true});
-  document.body.classList.toggle('home',name==='inicio');document.body.classList.toggle('light',name==='rumbo'||name==='asociaciones');solidHead();
+  document.body.classList.toggle('home',name==='inicio');document.body.classList.toggle('light',name==='rumbo'||(name==='asociaciones'&&q.v!=='1'));solidHead();
   FX.go(name);view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter');firstRoute=false;
   document.title=(name==='inicio'?'':({acervo:'Acervo',rumbo:'Rumbo',clara:'Clara',atlas:'Atlas',asociaciones:'Asociaciones',barometro:'Barómetro'})[name]+' · ')+'Observatorio · Enfermedades Poco Frecuentes';}
 
