@@ -953,7 +953,7 @@ V.asociaciones=function(q){q=q||{};
 var GCLR={tamiz:'#E0A800',musculo:'#8B5CF6',sangre:'#E5484D',piel:'#FF4FD8',lisosomal:'#00A6B8',dolor:'#F97316'};
 function asocData(){return PD.atlas.pts.filter(function(p){return p.l==='a';}).map(function(p,i){var e=ENFBY[p.d[0]]||{},nat=/No confirmada/i.test(p.c||'');
   return {i:i,p:p,n:p.n.replace(/\s*\((Proyecto[^)]*)\)/,''),city:nat?'Alcance nacional':p.c.replace(/,\s*Ciudad de México$/,''),nat:nat,g:e.grupo||'lisosomal',c:GCLR[e.grupo]||'#00A6B8',
-    dz:p.d.map(function(k){return DSHORT[k]||k;}),x:p.x||'',u:p.u,fed:/federaci|femexer/i.test(p.n)||p.d.length>=3,
+    dz:p.d.map(function(k){return DSHORT[k]||k;}),x:p.x||'',u:p.u,web:p.web||'',ct:p.ct||[],x2:p.x2||'',fed:/federaci|femexer/i.test(p.n)||p.d.length>=3,
     ini:p.n.replace(/\(.*?\)/g,'').replace(/\b(A\.?C\.?|I\.?A\.?P\.?|de|del|la|las|los|y|en|México|Mexicana|Asociación|Fundación)\b\.?/gi,' ').trim().split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase()||'A'};});}
 function asocMaps(a){return a.nat?'':'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a.p.n.replace(/\s*\(.*?\)/g,'')+', '+a.p.c);}
 function asocSw(v){return '<div class="avsw"><span>Propuesta de diseño</span>'+[['1','A · Mapa'],['2','B · Editorial'],['3','C · Por enfermedad']].map(function(o){return '<a href="#/asociaciones?v='+o[0]+'" class="'+(o[0]===v?'on':'')+'">'+o[1]+'</a>';}).join('')+'<a href="#/asociaciones">Actual</a></div>';}
@@ -970,6 +970,14 @@ function asocV(q){var v=q.v,fam=PERFIL!=='med',A=asocData(),grp='all',dis='all';
   var h1=tx('No tienes que vivirlo sola, ni solo','Asociaciones de pacientes para referir a las familias');
   var chips=function(){return '<div class="avchips" role="group" aria-label="Filtrar por grupo"><button type="button" data-g="all" class="'+(grp==='all'?'on':'')+'">Todas <i>'+A.length+'</i></button>'+groups.map(function(g){var n=A.filter(function(a){return inG(a,g.k);}).length;return '<button type="button" data-g="'+g.k+'" style="--gc:'+GCLR[g.k]+'" class="'+(grp===g.k?'on':'')+'"><span class="dot"></span>'+esc(GCORTO[g.k]||gT(g))+' <i>'+n+'</i></button>';}).join('')+'</div>';};
   var acts=function(a,cls){var m=asocMaps(a);return '<div class="'+(cls||'avact')+'">'+(m?'<a href="'+m+'" target="_blank" rel="noopener">'+tx('Ubicación','Ubicación')+'</a>':'')+'<a href="'+esc(a.u)+'" target="_blank" rel="noopener">'+tx('Conocerla','Más información')+' ↗</a></div>';};
+  var CTN={email:'Correo',tel:'Teléfono',wa:'WhatsApp',fb:'Facebook',ig:'Instagram',x:'X',yt:'YouTube',web:'Formulario'};
+  var ctHref=function(c){return c.t==='email'?'mailto:'+c.v:c.t==='tel'?'tel:'+c.v.replace(/[^\d+]/g,''):c.t==='wa'?'https://wa.me/'+c.v.replace(/\D/g,''):c.v;};
+  var body=function(a){var m=asocMaps(a);
+    return '<div class="avx">'+(a.x?'<p>'+esc(a.x)+'</p>':'')+(a.x2?'<p>'+esc(a.x2)+'</p>':'')+
+     '<div class="avx-l">'+(m?'<a class="avb" href="'+m+'" target="_blank" rel="noopener"><span class="ic ic-pin"></span>Ubicación · '+esc(a.city)+'</a>':'<span class="avb off"><span class="ic ic-pin"></span>Alcance nacional</span>')+
+      (a.web?'<a class="avb" href="'+esc(a.web)+'" target="_blank" rel="noopener"><span class="ic ic-web"></span>Sitio web ↗</a>':'<a class="avb" href="'+esc(a.u)+'" target="_blank" rel="noopener"><span class="ic ic-src"></span>Fuente ↗</a>')+'</div>'+
+     (a.ct.length?'<div class="avx-c"><b>'+tx('Contactar','Contacto')+'</b><div>'+a.ct.map(function(c){return '<a class="avb ct" href="'+esc(ctHref(c))+'" target="_blank" rel="noopener"><span class="ic ic-'+c.t+'"></span>'+esc(CTN[c.t]||c.t)+(c.t==='email'||c.t==='tel'||c.t==='wa'?'<small>'+esc(c.v)+'</small>':'')+'</a>';}).join('')+'</div></div>':'')+
+     '</div>';};
   var html='',bind;
   if(v==='1'){
     var mx=PD.atlas.mx;
@@ -994,10 +1002,10 @@ function asocV(q){var v=q.v,fam=PERFIL!=='med',A=asocData(),grp='all',dis='all';
      '<div class="av2-h"><span class="kick m">'+tx('Para familias y pacientes','Para el médico')+'</span><h1>'+h1+'</h1><p>'+lead+'</p>'+
       '<div class="av2-k"><span><b>'+A.length+'</b> asociaciones</span><span><b>'+groups.length+'</b> grupos de enfermedades</span><span><b>'+Object.keys(nEst).length+'</b> estados</span></div></div>'+
      '<h2 class="av2-t">'+tx('Redes que reúnen a varias asociaciones','Federaciones y redes nacionales')+'</h2><p class="av2-st">'+tx('Si no encuentras la de tu enfermedad, empieza por aquí: te orientan y te conectan con la asociación indicada.','Útiles cuando la enfermedad no tiene asociación propia: orientan y vinculan con la asociación indicada.')+'</p>'+
-     '<div class="av2-f">'+feds.map(function(a){return '<details style="--gc:'+a.c+'"><summary><span class="av2-m sm">'+esc(a.ini)+'</span><span class="av2-fs"><b>'+esc(a.n)+'</b><small>'+esc(a.dz.join(' · '))+'</small></span><i aria-hidden="true"></i></summary><div class="av2-fb"><p>'+esc(a.x)+'</p>'+acts(a)+'</div></details>';}).join('')+'</div>'+
+     '<div class="av2-f">'+feds.map(function(a){return '<details style="--gc:'+a.c+'"><summary><span class="av2-m sm">'+esc(a.ini)+'</span><span class="av2-fs"><b>'+esc(a.n)+'</b><small>'+esc(a.dz.join(' · '))+'</small></span><i aria-hidden="true"></i></summary><div class="av2-fb">'+body(a)+'</div></details>';}).join('')+'</div>'+
      '<div class="av2-bar"><h2 class="av2-t">'+tx('Por enfermedad','Por enfermedad')+'</h2>'+chips()+'</div><div id="avl" class="av2-l"></div>'+
      asocHelp(fam)+'</div></section>';
-    bind=function(){var list=function(){$('#avl').innerHTML=rest.filter(function(a){return inG(a,grp);}).map(function(a){return '<article class="av2-r" style="--gc:'+a.c+'"><span class="av2-m">'+esc(a.ini)+'</span><div class="av2-b"><h3>'+esc(a.n)+'</h3><p class="av2-c"><span>'+esc(a.city)+'</span>'+a.dz.map(function(d){return '<em>'+esc(d)+'</em>';}).join('')+'</p><p>'+esc(a.x)+'</p></div>'+acts(a,'avact col')+'</article>';}).join('')||'<p class="note">Sin asociaciones en este grupo; mira las federaciones de arriba.</p>';};
+    bind=function(){var list=function(){$('#avl').innerHTML=rest.filter(function(a){return inG(a,grp);}).map(function(a){return '<details class="av2-r" style="--gc:'+a.c+'"><summary><span class="av2-m">'+esc(a.ini)+'</span><div class="av2-b"><h3>'+esc(a.n)+'</h3><p class="av2-c"><span>'+esc(a.city)+'</span>'+a.dz.map(function(d){return '<em>'+esc(d)+'</em>';}).join('')+'</p></div><i aria-hidden="true"></i></summary><div class="av2-rb">'+body(a)+'</div></details>';}).join('')||'<p class="note">Sin asociaciones en este grupo; mira las federaciones de arriba.</p>';};
       $('.av2 .avchips').onclick=function(e){var b=e.target.closest('button');if(!b)return;grp=b.dataset.g;$$('.av2 .avchips button').forEach(function(x){x.classList.toggle('on',x===b);});list();};list();};
   }else{
     var dlist=ENF.filter(function(e){return A.some(function(a){return a.p.d.indexOf(e.key)>=0;});});
