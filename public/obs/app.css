@@ -1336,3 +1336,16 @@ body.light .vr a.is-mx .vt2{box-shadow:0 0 0 2px #fbf7f1,0 0 0 4px #006847}
 .cl3-log{display:flex;flex-direction:column;gap:10px}
 .cl3-more{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
 @media (max-width:900px){.cl3-steps li{font-size:12px;padding:10px}.cl3-more{grid-template-columns:1fr}}
+/* hallazgos por grupo */
+.hall2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hg{border-radius:16px;padding:12px 12px 13px;background:color-mix(in srgb,var(--hc) 8%,#0b1d2b);border:1px solid color-mix(in srgb,var(--hc) 30%,transparent);border-left:4px solid var(--hc);transition:background .2s,border-color .2s}
+.hg.has{background:color-mix(in srgb,var(--hc) 16%,#0b1d2b);border-color:color-mix(in srgb,var(--hc) 60%,transparent)}
+.hg-h{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.hg-h i{display:grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--hc);color:#fff;font:800 12px Manrope,sans-serif;font-style:normal;flex:none}
+.hg-h b{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.hg-n{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--hc);white-space:nowrap}
+.hg .mchips button{background:rgba(255,255,255,.04);border-color:color-mix(in srgb,var(--hc) 35%,transparent);color:#dbe7ef;font-size:12.5px;padding:6px 10px}
+.hg .mchips button:hover{border-color:var(--hc)}
+.hg .mchips button.on{background:var(--hc);border-color:var(--hc);color:#fff}
+.hg .mchips button.on::before{color:#fff}
+@media (max-width:700px){.hall2{grid-template-columns:1fr}}
