@@ -960,6 +960,6 @@ body.light .medbtn{color:#8a1676;background:rgba(255,79,216,.08)}body.light .med
 @media (max-width:900px){.top{position:fixed}.medbtn{position:absolute;top:14px;right:16px;margin:0;padding:8px 12px;font-size:11px;letter-spacing:.1em;z-index:2}.medbtn .mb-l{display:none}.top .cmx{display:none}.top.solid .medbtn{top:10px}}
 body.med .medbtn{display:inline-flex}
 .medbtn.on{background:#FF4FD8;color:#16081a}
-.medbtn.on em{font-style:normal;opacity:.7}
+.medbtn.on em{font-style:normal;opacity:.65;font-size:9px;letter-spacing:.1em;font-weight:700;margin-left:2px}
 .medbtn.on:hover{background:rgba(255,79,216,.15);color:#fff}
 @media (max-width:900px){.medbtn.on em{display:none}}
