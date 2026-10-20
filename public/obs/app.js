@@ -49,6 +49,10 @@ var PERFIL=null;try{PERFIL=localStorage.getItem('obs-perfil');}catch(e){}
 if(PERFIL!=='med')PERFIL='fam';
 function tx(t,u){return PERFIL==='fam'?t:u;}
 function gT(g){return PERFIL==='med'&&g.tm?g.tm:g.t;}function gS(g){return PERFIL==='med'&&g.sm?g.sm:g.s;}
+function vidOk(w){return w.t==='video'&&(PERFIL==='med'||w.aud!=='medicos');}
+function vidSort(a,b){return (b.mx||0)-(a.mx||0)||((a.min||0)-(b.min||0));}
+function vidBadge(w){var c=(w.inst||'').split(' · ')[1];return w.mx?'<span class="vsrc mx"><i aria-hidden="true"></i>Fuente mexicana</span>':'<span class="vsrc"><i aria-hidden="true"></i>Fuente internacional'+(c?' · '+esc(c):'')+'</span>';}
+function vidMeta(w){return esc(w.canal)+(w.min?' · '+w.min+' min':'')+(w.aud==='medicos'?' · <b class="vmed">Para médicos</b>':'');}
 function dDesc(e){return e?(PERFIL==='med'?(e.medico||e.familia||''):(e.familia||'')):'';}
 function applyPerfil(){var b=document.body;b.classList.toggle('fam',PERFIL==='fam');b.classList.toggle('med',PERFIL==='med');b.classList.toggle('pres',PERFIL==='pres');
   if(PERFIL==='med'||PERFIL==='pres'){MED=true;try{sessionStorage.setItem('obs-medico','1');}catch(e){}}else if(PERFIL==='fam'){MED=false;try{sessionStorage.removeItem('obs-medico');}catch(e){}}
@@ -193,7 +197,7 @@ function inheritX(w){var c='#FF4FD8',p='#00C8D6',n='#5b7a8c',L=w.lab,P=w.par;
    '</svg><div class="wn">Cuadro: hombre · círculo: mujer</div>';}
 function renderW(w){var b=h('div','wg'),L={video:'Video',steps:'Paso a paso',check:'Lista',stat:'Dato',contact:'Contacto',link:'Liga',map:'Mapa',inherit:'Diagrama',compare:'Comparativo',chips:'De un vistazo',pension:'Apoyo'};
   var H='<div class="wk">'+L[w.t]+'</div>';
-  if(w.t==='video')H='<a class="wv" href="https://www.youtube.com/watch?v='+esc(w.yt)+'" target="_blank" rel="noopener"><span class="th"><img alt="" loading="lazy" src="'+esc(w.thumb)+'"></span><span class="vt"><span class="wk">Video</span><b>'+esc(w.title)+'</b><span>'+esc(w.canal)+' · '+esc(w.nota)+'</span><em>Ver en YouTube ↗</em></span></a>';
+  if(w.t==='video')H='<a class="wv" href="https://www.youtube.com/watch?v='+esc(w.yt)+'" target="_blank" rel="noopener"><span class="th"><img alt="" loading="lazy" src="'+esc(w.thumb)+'"></span><span class="vt"><span class="wk">Video</span>'+vidBadge(w)+'<b>'+esc(w.title)+'</b><span>'+vidMeta(w)+'</span><em>Ver en YouTube ↗</em></span></a>';
   else if(w.t==='steps')H+=wImg(w)+'<b class="wt">'+esc(w.title)+'</b><ol>'+w.items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ol>'+wSrc(w);
   else if(w.t==='check')H+='<b class="wt">'+esc(w.title)+'</b><ul class="ck">'+w.items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>'+(w.nota?'<p class="wn">'+esc(w.nota)+'</p>':'')+wSrc(w);
   else if(w.t==='stat')H+='<div class="sb"><b>'+esc(w.big)+'</b><div class="bars"><i style="width:'+parseInt(w.big)+'%"></i><i class="c" style="width:'+parseInt(w.vs)+'%"></i></div></div><p>'+esc(w.label)+'</p><p class="wn">'+esc(w.sub)+'</p>'+wSrc(w);
@@ -477,9 +481,10 @@ V.acervo=function(q){
   if(AV)html=acvHtml(AV,{dis:dis,E:E,head:head,aud:aud,special:special,nOf:nOf,SUGQ:SUGQ});
   view.innerHTML=html;
   var ans=$('#ans'),qi=$('#q');
-  function vids(){var V2=RM.w.filter(function(w){return w.t==='video'&&(dis==='all'||w.d===dis);}).slice(0,dis==='all'?4:6),el=$('#vids');
+  function vids(){var V2=RM.w.filter(function(w){return vidOk(w)&&(dis==='all'?(w.d==='general'||w.d==='tamiz'):w.d===dis);}).sort(vidSort).slice(0,dis==='all'?4:8),el=$('#vids');
     if(!el)return;if(!V2.length){(el.closest('[data-vw]')||el).remove();return;}
-    el.innerHTML='<span class="tk">Videos</span><div class="vr">'+V2.map(function(w){return '<a href="https://www.youtube.com/watch?v='+esc(w.yt)+'" target="_blank" rel="noopener"><span class="vt2" style="background-image:url('+esc(w.thumb)+')"></span><b>'+esc(w.title)+'</b><span class="note">'+esc(w.canal)+' · '+esc(DSHORT[w.d]||'')+'</span></a>';}).join('')+'</div>';}
+    var nmx=V2.filter(function(w){return w.mx;}).length;
+    el.innerHTML='<span class="tk">Videos</span><p class="vleg">'+(nmx?tx('Primero, las fuentes mexicanas: instituciones de salud, universidades y asociaciones de pacientes.','Primero, las fuentes mexicanas: instituciones de salud, universidades y asociaciones de pacientes.'):tx('Para esta enfermedad no encontramos videos confiables de fuentes mexicanas; estos son de instituciones de otros países.','No hay videos confiables de fuentes mexicanas para esta enfermedad; se muestran fuentes internacionales.'))+'</p><div class="vr">'+V2.map(function(w){return '<a href="https://www.youtube.com/watch?v='+esc(w.yt)+'" target="_blank" rel="noopener" class="'+(w.mx?'is-mx':'')+'"><span class="vt2" style="background-image:url('+esc(w.thumb)+')">'+vidBadge(w)+'</span><b>'+esc(w.title)+'</b><span class="note">'+vidMeta(w)+'</span></a>';}).join('')+'</div>';}
   function list(){var el=$('#tiles');if(!el)return;
     var L=C.filter(function(d){return d.enfermedad===dis&&(aud==='all'||d.publico===aud||d.publico==='ambos');});
     if(AV==='2'&&$('#toc'))$('#toc').innerHTML=L.slice(0,shown).map(function(d){return '<a href="#" data-f="f-'+d.id+'">'+esc(d.tema.replace(/^Tamiz neonatal · /,''))+'</a>';}).join('');
@@ -578,8 +583,8 @@ V.rumbo=function(q){
     $('#w-dato').innerHTML='<span class="tk">Dato que importa</span><div class="big">8 <small>de cada 10</small></div><p>personas con una enfermedad poco frecuente viven con alguna discapacidad, y apenas 57% ha tenido una valoración. En Europa ya se mide; en Latinoamérica todavía no.</p><span class="src">'+EUROPA+'</span>';
     var P=PD.atlas.pts.filter(function(p){return sin||p.d.indexOf(dis)>=0;}),nh=P.filter(function(p){return p.l==='h';}).length,na=P.filter(function(p){return p.l==='a';}).length;
     var w=$('#w-cerca');w.href='#/atlas?ruta=1'+(sin?'':'&d='+dis);w.innerHTML='<span class="tk">Dónde atienden</span><div class="big">'+nh+' <small>hospitales</small></div><p>'+(sin||!na?'con experiencia'+(sin?' en enfermedades poco frecuentes':' en '+esc((DSHORT[dis]||'').toLowerCase()))+'. '+tx('Te decimos cuáles quedan más cerca.','Ubique el centro de referencia más cercano.'):na+(na===1?' asociación':' asociaciones')+' de pacientes con experiencia en '+esc((DSHORT[dis]||'').toLowerCase())+'.')+'</p><span class="go">'+tx('Buscar el más cercano →','Ver centros de referencia →')+'</span>';
-    var v=RM.w.filter(function(x){return x.t==='video'&&x.d===dis;})[0];
-    $('#w-video').innerHTML=v?'<span class="tk">Para entenderla</span><a href="https://www.youtube.com/watch?v='+esc(v.yt)+'" target="_blank" rel="noopener" style="display:block;aspect-ratio:16/9;border-radius:12px;background:#000 url('+esc(v.thumb)+') center/cover"></a><b style="font-size:14px;line-height:1.35">'+esc(v.title)+'</b><span class="note">'+esc(v.canal)+'</span>'
+    var v=RM.w.filter(function(x){return vidOk(x)&&x.d===dis;}).sort(vidSort)[0];
+    $('#w-video').innerHTML=v?'<span class="tk">Para entenderla</span><a href="https://www.youtube.com/watch?v='+esc(v.yt)+'" target="_blank" rel="noopener" style="display:block;aspect-ratio:16/9;border-radius:12px;background:#000 url('+esc(v.thumb)+') center/cover;position:relative">'+vidBadge(v)+'</a><b style="font-size:14px;line-height:1.35">'+esc(v.title)+'</b><span class="note">'+vidMeta(v)+'</span>'
       :M&&E.senales_medico&&E.senales_medico.length?'<span class="tk">Signos de sospecha</span><ul class="ck sm">'+E.senales_medico.slice(0,5).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>'
       :M?'<span class="tk">Al referir</span><ul class="ck sm"><li>Resumen clínico con cronología de síntomas</li><li>Estudios previos, incluido el resultado del tamiz</li><li>Fotografías o videos de los hallazgos</li><li>Sospecha diagnóstica y pregunta concreta al especialista</li></ul>'
       :(E.senales&&E.senales.length?'<span class="tk">Señales que vale la pena vigilar</span><ul class="ck sm">'+E.senales.slice(0,5).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>'
