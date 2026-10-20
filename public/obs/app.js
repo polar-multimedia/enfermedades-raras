@@ -969,7 +969,7 @@ function asocV(q){var v=q.v,fam=PERFIL!=='med',A=asocData(),grp='all',dis='all';
   var lead=tx('Las forman familias que ya pasaron por lo mismo que tú. Te escuchan, te orientan en trámites y te ayudan a encontrar médicos que conocen la enfermedad.','Además del manejo clínico, las familias necesitan acompañamiento. Estas asociaciones las orientan en trámites, cuidados y apoyo entre pares; puede recomendarlas desde la primera consulta.');
   var h1=tx('No tienes que vivirlo sola, ni solo','Asociaciones de pacientes para referir a las familias');
   var chips=function(){return '<div class="avchips" role="group" aria-label="Filtrar por grupo"><button type="button" data-g="all" class="'+(grp==='all'?'on':'')+'">Todas <i>'+A.length+'</i></button>'+groups.map(function(g){var n=A.filter(function(a){return inG(a,g.k);}).length;return '<button type="button" data-g="'+g.k+'" style="--gc:'+GCLR[g.k]+'" class="'+(grp===g.k?'on':'')+'"><span class="dot"></span>'+esc(GCORTO[g.k]||gT(g))+' <i>'+n+'</i></button>';}).join('')+'</div>';};
-  var acts=function(a,cls){var m=asocMaps(a);return '<div class="'+(cls||'avact')+'">'+(m?'<a href="'+m+'" target="_blank" rel="noopener">'+tx('Cómo llegar','Ubicación')+'</a>':'')+'<a href="'+esc(a.u)+'" target="_blank" rel="noopener">'+tx('Conocerla','Más información')+' ↗</a></div>';};
+  var acts=function(a,cls){var m=asocMaps(a);return '<div class="'+(cls||'avact')+'">'+(m?'<a href="'+m+'" target="_blank" rel="noopener">'+tx('Ubicación','Ubicación')+'</a>':'')+'<a href="'+esc(a.u)+'" target="_blank" rel="noopener">'+tx('Conocerla','Más información')+' ↗</a></div>';};
   var html='',bind;
   if(v==='1'){
     var mx=PD.atlas.mx;
