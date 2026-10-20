@@ -1349,3 +1349,6 @@ body.light .vr a.is-mx .vt2{box-shadow:0 0 0 2px #fbf7f1,0 0 0 4px #006847}
 .hg .mchips button.on{background:var(--hc);border-color:var(--hc);color:#fff}
 .hg .mchips button.on::before{color:#fff}
 @media (max-width:700px){.hall2{grid-template-columns:1fr}}
+/* distancia header–título igual en todas las secciones */
+.r2,.a1,.a2,.a3,.av,.cl{padding-top:30px}
+@media (max-width:900px){.r2,.a1,.a2,.a3,.av,.cl{padding-top:22px}}
