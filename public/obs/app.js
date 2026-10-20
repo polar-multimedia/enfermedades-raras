@@ -403,6 +403,49 @@ var EUROPA=srcA(SRC_DISC);
 
 /* ---------- Acervo: pregunta o explora ---------- */
 var GCORTO={tamiz:'Detectadas en el tamiz neonatal',musculo:'Músculo y movimiento',sangre:'Sangre y coagulación',piel:'Piel',lisosomal:'Huesos, bazo y crecimiento',dolor:'Dolor, riñón y corazón'};
+/* ---------- Acervo: tres propuestas de diseño (?v=1, 2, 3) ---------- */
+function acvHtml(v,o){var dis=o.dis,E=o.E,head=o.head,aud=o.aud,nOf=o.nOf,all=dis==='all';
+  var L=function(k){return '#/acervo?v='+v+(k?'&d='+k:'');};
+  var sw='<div class="avsw">'+'<span>Propuesta de diseño</span>'+[['1','A · Buscador'],['2','B · Biblioteca'],['3','C · Mosaico']].map(function(x){return '<a href="'+L(all?'':dis).replace('v='+v,'v='+x[0])+'" class="'+(x[0]===v?'on':'')+'">'+x[1]+'</a>';}).join('')+'<a href="#/acervo'+(all?'':'?d='+dis)+'">Actual</a></div>';
+  var gcl=function(k){var e=ENFBY[k];return e?GCLR[e.grupo]:(k==='tamiz'?'#E0A800':'#00A6B8');};
+  var nV=function(k){return RM.w.filter(function(w){return w.t==='video'&&w.d===k;}).length;};
+  var nH=function(k){return PD.atlas.pts.filter(function(p){return p.l==='h'&&p.d.indexOf(k)>=0;}).length;};
+  var ask='<form class="ask big" id="ask"><span class="pk-ic" aria-hidden="true"></span><input id="q" placeholder="'+(all?tx('Pregunta o busca un tema…','Pregunte o busque un tema…'):tx('Pregunta sobre ','Pregunte sobre ')+esc(head)+'…')+'" maxlength="300" aria-label="Pregunta al Acervo" autocomplete="off">'+MIC+'<button class="btn" type="submit">Preguntar</button></form><div class="qlive" id="ql"></div>';
+  var sug=all?'<div class="chips sq" id="sq">'+o.SUGQ.map(function(x){return '<button type="button">'+esc(x)+'</button>';}).join('')+'</div>':'';
+  var seg='<div class="seg2" id="fa">'+[['familia','Para familias'],['medico','Para médicos'],['all','Todo']].map(function(x){return '<button type="button" data-p="'+x[0]+'" class="'+(aud===x[0]?'on':'')+'">'+x[1]+'</button>';}).join('')+'</div>';
+  var links=E?'<div class="dlinks"><a class="btn ghost" href="#/rumbo?d='+dis+'">Preguntarle a Rumbo</a><a class="btn ghost" href="#/atlas?ruta=1&d='+dis+'">Dónde se atiende</a>'+(PERFIL==='med'?'<a class="btn ghost" href="#/clara">Analizar un caso en Clara</a>':'')+'</div>':'';
+  var desc=all?tx('Escribe tu duda con tus palabras o elige un tema. Cada dato dice de dónde sale.','Escriba su pregunta o elija un tema. Cada dato indica su fuente.'):(E?dDesc(E):(o.special[dis]||['',''])[1]);
+  var extra=[['tamiz','Tamiz neonatal','Qué se busca al nacer'],['general','Trámites y apoyos','Pensión, credenciales y derechos']];
+  var c=gcl(dis);
+  if(v==='1'){ /* A · buscador protagonista */
+    if(all)return '<section class="a1">'+sw+'<div class="wrap"><div class="a1-hero"><span class="kick">El Acervo</span><h1>'+tx('¿Qué quieres saber?','¿Qué necesita consultar?')+'</h1><p>'+desc+'</p><div class="a1-ask">'+ask+'</div>'+sug+'<div class="answer" id="ans"></div>'+
+      '<div class="a1-k"><span><b>'+C.length+'</b> fichas con fuente</span><span><b>'+ENF.length+'</b> enfermedades</span><span><b>'+RM.w.filter(function(w){return w.t==='video';}).length+'</b> videos</span></div></div>'+
+      '<h2 class="a1-t">Explora por tema</h2><div class="a1-g">'+GRUPOS.map(function(g){var Ls=ENF.filter(function(e){return e.grupo===g.k;});if(!Ls.length)return '';return '<div class="a1-gc" style="--gc:'+GCLR[g.k]+'"><b>'+esc(GCORTO[g.k]||gT(g))+'</b><div>'+Ls.map(function(e){return '<a href="'+L(e.key)+'">'+esc(e.corto)+'<i>'+nOf(e.key)+'</i></a>';}).join('')+'</div></div>';}).join('')+
+      '<div class="a1-gc" style="--gc:#00A6B8"><b>Para todas</b><div>'+extra.map(function(x){return '<a href="'+L(x[0])+'">'+x[1]+'<i>'+nOf(x[0])+'</i></a>';}).join('')+'</div></div></div>'+
+      '<div class="tile s4 vrow a1-v" data-vw id="vids"></div><div class="more" id="more"></div></div></section>';
+    return '<section class="a1">'+sw+'<div class="wrap"><div class="a1-band" style="--gc:'+c+'"><a class="a1-back" href="'+L('')+'">← Todo el Acervo</a><span class="kick">El Acervo</span><h1>'+esc(head)+'</h1><p class="a1-n">'+esc(E?E.nombre:'')+'</p><p>'+esc(desc)+'</p>'+
+      '<div class="a1-k"><span><b>'+nOf(dis)+'</b> fichas</span>'+(nV(dis)?'<span><b>'+nV(dis)+'</b> videos</span>':'')+(E?'<span><b>'+nH(dis)+'</b> hospitales con experiencia</span>':'')+'</div></div>'+
+      '<div class="a1-ask in">'+ask+'</div><div class="answer" id="ans"></div>'+
+      '<div class="a1-tabs"><button type="button" data-dtab="f" class="on">Fichas</button>'+(nV(dis)?'<button type="button" data-dtab="v">Videos</button>':'')+'<span class="sp"></span>'+seg+'</div>'+
+      '<div data-dpan="f"><div class="a1-fl" id="tiles"></div><div class="more" id="more"></div></div><div data-dpan="v" hidden><div class="vrow" id="vids"></div></div>'+
+      (links?'<div class="a1-links">'+links+'</div>':'')+'</div></section>';}
+  if(v==='2'){ /* B · biblioteca con índice */
+    var side='<aside class="a2-side"><a class="a2-all'+(all?' on':'')+'" href="'+L('')+'">Todo el Acervo</a>'+GRUPOS.map(function(g){var Ls=ENF.filter(function(e){return e.grupo===g.k;});if(!Ls.length)return '';return '<div class="a2-g" style="--gc:'+GCLR[g.k]+'"><b>'+esc(GCORTO[g.k]||gT(g))+'</b>'+Ls.map(function(e){return '<a href="'+L(e.key)+'" class="'+(dis===e.key?'on':'')+'">'+esc(e.corto)+'<i>'+nOf(e.key)+'</i></a>';}).join('')+'</div>';}).join('')+
+      '<div class="a2-g" style="--gc:#00A6B8"><b>Para todas</b>'+extra.map(function(x){return '<a href="'+L(x[0])+'" class="'+(dis===x[0]?'on':'')+'">'+x[1]+'<i>'+nOf(x[0])+'</i></a>';}).join('')+'</div></aside>';
+    if(all)return '<section class="a2">'+sw+'<div class="wrap a2-w">'+side+'<div class="a2-m"><span class="kick m">El Acervo</span><h1>'+tx('La biblioteca del Observatorio','La biblioteca del Observatorio')+'</h1><p class="a2-lead">'+desc+'</p>'+ask+sug+'<div class="answer" id="ans"></div>'+
+      '<h2 class="a2-t">Para empezar</h2><div class="a2-feat">'+[['tamiz','Tamiz neonatal','Qué se busca al nacer en cada institución y qué hacer si sale alterado.'],['general','Trámites y apoyos','Pensión por discapacidad, credenciales y derechos.'],['eb','Piel de mariposa','Cuidados de la piel, curaciones y apoyo en México.'],['hem','Hemofilia','Tratamiento, centros y profilaxis.']].map(function(x){return ENFBY[x[0]]||x[0]==='tamiz'||x[0]==='general'?'<a href="'+L(x[0])+'" style="--gc:'+gcl(x[0])+'"><b>'+x[1]+'</b><span>'+x[2]+'</span><em>'+nOf(x[0])+' fichas →</em></a>':'';}).join('')+'</div>'+
+      '<div class="vrow a2-v" data-vw id="vids"></div><div class="more" id="more"></div></div></div></section>';
+    return '<section class="a2">'+sw+'<div class="wrap a2-w">'+side+'<div class="a2-m"><span class="kick m">El Acervo</span><h1>'+esc(head)+'</h1><p class="a2-n">'+esc(E?E.nombre:'')+'</p><p class="a2-lead">'+esc(desc)+'</p>'+
+      '<div class="a2-bar">'+seg+links+'</div>'+ask+'<div class="answer" id="ans"></div>'+
+      '<div class="a2-art"><nav class="a2-toc"><b>En esta página</b><div id="toc"></div></nav><div class="a2-body" id="tiles"></div></div><div class="more" id="more"></div><div class="vrow a2-v" data-vw id="vids"></div></div></div></section>';}
+  /* C · mosaico */
+  if(all)return '<section class="a3">'+sw+'<div class="wrap"><div class="a3-h"><div><span class="kick y">El Acervo</span><h1>'+tx('Pregunta o explora','Pregunte o explore')+'</h1><p>'+desc+'</p></div><div class="a3-ask">'+ask+sug+'</div></div><div class="answer" id="ans"></div>'+
+    '<div class="a3-g">'+ENF.map(function(e){return '<a class="a3-t" href="'+L(e.key)+'" style="--gc:'+GCLR[e.grupo]+'"><span class="a3-gr">'+esc(GCORTO[e.grupo]||'')+'</span><b>'+esc(e.corto)+'</b><p>'+esc(dDesc(e))+'</p><em>'+nOf(e.key)+' fichas'+(nV(e.key)?' · '+nV(e.key)+' videos':'')+'</em></a>';}).join('')+
+    extra.map(function(x){return '<a class="a3-t" href="'+L(x[0])+'" style="--gc:'+gcl(x[0])+'"><span class="a3-gr">Para todas</span><b>'+x[1]+'</b><p>'+x[2]+'</p><em>'+nOf(x[0])+' fichas</em></a>';}).join('')+'</div>'+
+    '<div class="vrow a3-v" data-vw id="vids"></div><div class="more" id="more"></div></div></section>';
+  return '<section class="a3">'+sw+'<div class="wrap"><div class="a3-dh" style="--gc:'+c+'"><a class="a1-back" href="'+L('')+'">← Todo el Acervo</a><h1>'+esc(head)+'</h1><p>'+esc(desc)+'</p>'+links+'</div>'+
+    '<div class="a3-bar">'+seg+'<div class="a3-ask in">'+ask+'</div></div><div class="answer" id="ans"></div>'+
+    '<div class="a3-fl" id="tiles"></div><div class="more" id="more"></div><div class="vrow a3-v" data-vw id="vids"></div></div></section>';}
 V.acervo=function(q){
   var dis=q.d||'all',aud=q.p||(PERFIL==='fam'?'familia':PERFIL==='med'?'medico':'all'),shown=12,ctl=null,E=ENFBY[dis];
   var nOf=function(k){return C.filter(function(d){return d.enfermedad===k;}).length;};
@@ -410,7 +453,8 @@ V.acervo=function(q){
     :['¿Qué detecta el tamiz de mi bebé?','¿Qué es la piel de mariposa?','¿La hemofilia tiene tratamiento?','¿Qué apoyos hay para familias?'];
   var special={tamiz:['Tamiz neonatal','Qué se busca al nacer y qué hacer si sale alterado'],general:['Trámites y apoyos','Pensión, credenciales y derechos']};
   var head=dis==='all'?'':(E?E.corto:special[dis]?special[dis][0]:dis);
-  view.innerHTML='<section class="pg"><div class="wrap">'+
+  var AV=(q.v==='1'||q.v==='2'||q.v==='3')?q.v:'';
+  var html='<section class="pg"><div class="wrap">'+
    '<div class="pg-h"><div><span class="tk">El Acervo</span><h1>'+(dis==='all'?tx('Pregunta o explora','Pregunte o explore'):esc(head))+'</h1><p>'+(dis==='all'?tx('Escribe tu duda con tus palabras o elige un tema. Cada dato dice de dónde sale.','Escriba su pregunta o elija un tema. Cada dato indica su fuente.'):esc(E?E.nombre+(dDesc(E)?' · '+dDesc(E):''):special[dis]?special[dis][1]:''))+'</p></div>'+
    (dis!=='all'?'<a class="dpill" href="#/acervo"><span><small>'+tx('Estás en','Consulta')+'</small><b>'+esc(head)+'</b></span><em>Todo el Acervo</em></a>':'')+'</div>'+
    '<div class="bento">'+
@@ -430,17 +474,23 @@ V.acervo=function(q){
       '<div class="tile s4 flist" id="tiles"></div><div class="tile s4 vrow" id="vids"></div>')+
    '</div><div class="more" id="more"></div>'+
   '</div></section>';
+  if(AV)html=acvHtml(AV,{dis:dis,E:E,head:head,aud:aud,special:special,nOf:nOf,SUGQ:SUGQ});
+  view.innerHTML=html;
   var ans=$('#ans'),qi=$('#q');
   function vids(){var V2=RM.w.filter(function(w){return w.t==='video'&&(dis==='all'||w.d===dis);}).slice(0,dis==='all'?4:6),el=$('#vids');
-    if(!V2.length){el.remove();return;}
+    if(!el)return;if(!V2.length){(el.closest('[data-vw]')||el).remove();return;}
     el.innerHTML='<span class="tk">Videos</span><div class="vr">'+V2.map(function(w){return '<a href="https://www.youtube.com/watch?v='+esc(w.yt)+'" target="_blank" rel="noopener"><span class="vt2" style="background-image:url('+esc(w.thumb)+')"></span><b>'+esc(w.title)+'</b><span class="note">'+esc(w.canal)+' · '+esc(DSHORT[w.d]||'')+'</span></a>';}).join('')+'</div>';}
   function list(){var el=$('#tiles');if(!el)return;
     var L=C.filter(function(d){return d.enfermedad===dis&&(aud==='all'||d.publico===aud||d.publico==='ambos');});
-    el.innerHTML='<span class="tk">'+L.length+' ficha'+(L.length===1?'':'s')+' · '+tx('toca una para leerla completa','seleccione una para leerla completa')+'</span>'+(L.slice(0,shown).map(function(d){return '<details class="fi"><summary><b>'+esc(d.tema.replace(/^Tamiz neonatal · /,''))+'</b><span>'+esc(d.texto.slice(0,120))+(d.texto.length>120?'…':'')+'</span><i class="aud '+d.publico+'">'+({medico:'Médicos',familia:'Familias',ambos:'Todos'})[d.publico]+'</i></summary><p>'+esc(d.texto)+'</p><a class="src" href="'+esc(d.url)+'" target="_blank" rel="noopener">Fuente: '+esc(d.fuente)+' ↗</a></details>';}).join('')||'<p class="note">'+tx('No hay fichas para este público. Prueba con «Todo».','No hay fichas para este público. Pruebe con «Todo».')+'</p>');
+    if(AV==='2'&&$('#toc'))$('#toc').innerHTML=L.slice(0,shown).map(function(d){return '<a href="#" data-f="f-'+d.id+'">'+esc(d.tema.replace(/^Tamiz neonatal · /,''))+'</a>';}).join('');
+    el.innerHTML='<span class="tk">'+L.length+' ficha'+(L.length===1?'':'s')+' · '+tx('toca una para leerla completa','seleccione una para leerla completa')+'</span>'+(L.slice(0,shown).map(function(d){if(AV==='2')return '<article class="a2f" id="f-'+d.id+'"><h3>'+esc(d.tema.replace(/^Tamiz neonatal · /,''))+'<i class="aud '+d.publico+'">'+({medico:'Médicos',familia:'Familias',ambos:'Todos'})[d.publico]+'</i></h3><p>'+esc(d.texto)+'</p><a class="src" href="'+esc(d.url)+'" target="_blank" rel="noopener">Fuente: '+esc(d.fuente)+' ↗</a></article>';
+      return '<details class="fi"><summary><b>'+esc(d.tema.replace(/^Tamiz neonatal · /,''))+'</b><span>'+esc(d.texto.slice(0,120))+(d.texto.length>120?'…':'')+'</span><i class="aud '+d.publico+'">'+({medico:'Médicos',familia:'Familias',ambos:'Todos'})[d.publico]+'</i></summary><p>'+esc(d.texto)+'</p><a class="src" href="'+esc(d.url)+'" target="_blank" rel="noopener">Fuente: '+esc(d.fuente)+' ↗</a></details>';}).join('')||'<p class="note">'+tx('No hay fichas para este público. Prueba con «Todo».','No hay fichas para este público. Pruebe con «Todo».')+'</p>');
     $('#more').innerHTML=L.length>shown?'<button class="btn ghost" type="button">Ver más ('+(L.length-shown)+')</button>':'';
     var mb=$('#more button');if(mb)mb.onclick=function(){shown+=12;list();};}
   $$('#fa button').forEach(function(b){b.onclick=function(){$$('#fa button').forEach(function(x){x.classList.toggle('on',x===b);});aud=b.dataset.p;shown=12;list();};});
   list();vids();
+  $$('#toc').forEach(function(t){t.onclick=function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();var f=document.getElementById(a.dataset.f);if(f)f.scrollIntoView({behavior:'smooth',block:'start'});};});
+  $$('[data-dtab]').forEach(function(b){b.onclick=function(){$$('[data-dtab]').forEach(function(x){x.classList.toggle('on',x===b);});$$('[data-dpan]').forEach(function(pn){pn.hidden=pn.dataset.dpan!==b.dataset.dtab;});};});
   qi.oninput=function(){var v=qi.value.trim(),M=dis==='all'?disMatch(v):[];$('#ql').innerHTML=M.length?'<span class="note">Ir al tema:</span>'+M.slice(0,3).map(function(e){return '<a href="#/acervo?d='+e.key+'">'+esc(e.corto)+' →</a>';}).join(''):'';};
   $$('#sq button').forEach(function(b){b.onclick=function(){qi.value=b.textContent;$('#ask').requestSubmit();};});
   dictado($('#ask .mic'),qi,function(){$('#ask').requestSubmit();});
@@ -1108,7 +1158,7 @@ function route(){
   voice.stop();
   $$('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.v===name);if(a.dataset.v===name)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   V[name](q);window.scrollTo(0,0);if(name!=='inicio')view.focus({preventScroll:true});
-  document.body.classList.toggle('home',name==='inicio');document.body.classList.toggle('light',name==='rumbo'||(name==='asociaciones'&&q.v!=='1'));solidHead();
+  document.body.classList.toggle('home',name==='inicio');document.body.classList.toggle('light',name==='rumbo'||(name==='asociaciones'&&q.v!=='1')||(name==='acervo'&&q.v==='2'));solidHead();
   FX.go(name);view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter');firstRoute=false;
   document.title=(name==='inicio'?'':({acervo:'Acervo',rumbo:'Rumbo',clara:'Clara',atlas:'Atlas',asociaciones:'Asociaciones',barometro:'Barómetro'})[name]+' · ')+'Observatorio · Enfermedades Poco Frecuentes';}
 
