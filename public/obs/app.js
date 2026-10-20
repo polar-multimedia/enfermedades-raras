@@ -528,6 +528,7 @@ function picker(root,onPick,opts){opts=opts||{};
 
 /* ---------- Rumbo (luz clara) ---------- */
 V.rumbo=function(q){
+  if(q.v==='1'||q.v==='2'||q.v==='3')return rumbo2(q);
   if(!q.d||(!DIS[q.d]&&q.d!=='sin')){
     view.innerHTML='<section class="pg"><div class="wrap narrow">'+
      '<div class="pg-h"><div><span class="tk c-b">'+tx('Para familias y pacientes','Para el médico tratante')+'</span><h1>Rumbo</h1><p>'+tx('No necesitas saber términos médicos. Cuéntanos qué te dijeron o qué notas, y te acompañamos con información aprobada, con la fuente a la vista.','Seguimiento de su paciente fuera del consultorio: confirmación diagnóstica, tratamiento disponible en México, centros de referencia, trámites y apoyos para la familia. Cada dato indica su fuente.')+'</p></div></div>'+
@@ -632,6 +633,108 @@ V.rumbo=function(q){
     a.scrollIntoView({block:'nearest'});busy=false;form.querySelector('.btn').disabled=false;}
   hello();
 };
+
+/* ---------- Rumbo 2: IA escrita con tarjetas y resultados para compartir (?v=1, 2, 3) ---------- */
+function rumbo2(q){var v=q.v,M=PERFIL==='med';
+  var L=function(k){return '#/rumbo?v='+v+(k?'&d='+k:'');};
+  var sw='<div class="avsw"><span>Propuesta de diseño</span>'+[['1','A · Conversación'],['2','B · Hoja'],['3','C · Tarjetas']].map(function(x){return '<a href="'+L(q.d||'').replace('v='+v,'v='+x[0])+'" class="'+(x[0]===v?'on':'')+'">'+x[1]+'</a>';}).join('')+'<a href="#/rumbo'+(q.d?'?d='+q.d:'')+'">Actual</a></div>';
+  var kick=tx('Para familias y pacientes','Para el médico tratante');
+  if(!q.d||(!DIS[q.d]&&q.d!=='sin')){
+    view.innerHTML='<section class="r2 r2-'+v+'">'+sw+'<div class="wrap narrow"><div class="r2-h"><span class="kick m">'+kick+'</span><h1>Rumbo</h1><p>'+tx('Escríbele o díctale con tu voz lo que están viviendo. Te responde con información aprobada, con tarjetas que lo explican y la fuente de cada dato. Puedes compartir cada respuesta.','Seguimiento de su paciente fuera del consultorio: escriba o dicte su pregunta. Cada respuesta cita su fuente y se puede compartir con la familia.')+'</p></div><div class="tile pk-tile" id="pkw"></div></div></section>';
+    picker($('#pkw'),function(k){location.hash=L(k);});return;}
+  var sin=q.d==='sin',dis=sin?'general':q.d,E=ENFBY[dis]||{},turns=[],busy=false,items=[],ctl=null;
+  var nomE=sin?'':(DIS[dis]||E.nombre||'');
+  var hola=M?(sin?'Doctor, doctora: soy Rumbo. Le oriento con su paciente aún sin diagnóstico: a qué especialidad referir, qué estudios solicitar y qué centros tienen experiencia.':'Doctor, doctora: soy Rumbo. Le oriento con el seguimiento de su paciente con '+nomE.replace(/^(.)/,function(c){return c.toLowerCase();})+': confirmación, tratamiento disponible, centros de referencia y apoyos para la familia.')
+    :(sin?'Hola, soy Rumbo. No tener un diagnóstico todavía es muy común y agotador. Te ayudo a saber a quién acudir, qué pedir y qué preguntar.':'Hola, soy Rumbo. Te acompaño con '+nomE.replace(/^(.)/,function(c){return c.toLowerCase();})+': qué es, qué vigilar, tratamiento, dónde se atiende y qué apoyos hay. Pregúntame con tus palabras.');
+  var sugs=M?(sin?['¿A qué especialidad lo refiero?','¿Qué estudios solicito antes de referir?','¿Qué centros tienen experiencia?','¿Qué apoyos tiene la familia?']:E.grupo==='tamiz'?['¿Cómo se confirma un tamiz alterado?','¿Cuál es el manejo inicial?','¿A qué centro refiero al recién nacido?','¿Qué asociación le recomiendo a la familia?']:['¿Cómo se confirma el diagnóstico?','¿Qué tratamiento hay disponible en México?','¿Dónde se atiende?','¿Qué signos de sospecha debo buscar?','¿Qué asociación le recomiendo a la familia?'])
+    :(sin?['¿Cómo pido que lo vea un especialista?','¿Qué es el tamiz neonatal?','¿Dónde hay hospitales con experiencia?','¿Qué apoyos existen?']:E.grupo==='tamiz'?['¿Qué significa que salió alterado el tamiz?','¿Qué estudios siguen?','¿Tiene tratamiento?','¿Dónde la atienden?','¿Hay una asociación de pacientes?']:['¿Qué es y por qué pasa?','¿Qué señales debo vigilar?','¿Tiene tratamiento en México?','¿Dónde la atienden?','¿Hay una asociación de pacientes?']);
+  /* motor */
+  function okDoc(d){return (d.enfermedad===dis||d.enfermedad==='general'||(E.grupo==='tamiz'||sin)&&d.enfermedad==='tamiz');}
+  function clean(t){return t.split(/\n?\s*WIDGETS?\s*:/i)[0].trim();}
+  function plain(t){return t.replace(/\s*\[[a-z]{1,4}\d+(?:\s*,\s*[a-z]{1,4}\d+)*\]/gi,'').replace(/\*\*/g,'');}
+  function autoW(qq){var t=fold(qq),out=[],k=sin?null:dis;
+    var pts=PD.atlas.pts.filter(function(p){return p.px!=null&&(sin?p.l==='h':p.d.indexOf(dis)>=0);});
+    var wantMap=/donde|hospital|atiend|centro|refier|refer|cerca|especialista/.test(t);
+    if(wantMap&&pts.length&&k)out.push({t:'map',k:k,title:tx('Dónde se atiende en México','Centros con experiencia')});
+    var sen=M?E.senales_medico:E.senales;
+    if(/senal|sintom|vigil|signo|sospech|nota/.test(t)&&sen&&sen.length)out.push({t:'check',title:tx('Señales que vale la pena vigilar','Signos de sospecha'),items:sen.slice(0,6)});
+    if(/tamiz|nacer|recien|bebe|detect/.test(t)&&E.tamiz){var tz=E.tamiz,yn=function(x){return x===true?'<b class="y">Sí</b>':x===false?'<b class="n">No</b>':'<b class="u">Varía</b>';};
+      out.push({t:'dyn',title:'¿La detecta el tamiz?',html:'<div class="wk">Tamiz neonatal</div><b class="wt">¿El tamiz detecta '+esc(E.corto||'')+'?</b><div class="tzw"><span>Sin seguridad social'+yn(tz.ssa)+'</span><span>IMSS'+yn(tz.imss)+'</span><span>Pemex'+yn(tz.pemex)+'</span><span>Privado'+yn(tz.privado)+'</span></div>'+(tz.nota?'<p class="wn">'+esc(tz.nota)+'</p>':'')});}
+    if(/asociaci|apoyo|grupo|familia|hablar|acompan|pasen por lo mismo/.test(t)){var A=PD.atlas.pts.filter(function(p){return p.l==='a'&&(sin||p.d.indexOf(dis)>=0);}).slice(0,2);
+      A.forEach(function(p){var ct=(p.ct||[]),web=p.web||'';out.push({t:'dyn',title:p.n,html:'<div class="wk">Asociación de pacientes</div><b class="wt">'+esc(p.n)+'</b><p class="wn">'+esc(/No confirmada/i.test(p.c)?'Alcance nacional':p.c)+'</p><p class="wn">'+esc(p.x||'')+'</p><div class="wct">'+(ct.length?ct.slice(0,3).map(function(c){var hr=c.t==='email'?'mailto:'+c.v:c.t==='tel'?'tel:'+c.v.replace(/[^\d+]/g,''):c.t==='wa'?'https://wa.me/'+c.v.replace(/\D/g,''):c.v;return '<a class="wb" href="'+esc(hr)+'" target="_blank" rel="noopener">'+esc({email:'Correo',tel:'Teléfono',wa:'WhatsApp',fb:'Facebook',ig:'Instagram',x:'X',yt:'YouTube'}[c.t]||c.t)+'</a>';}).join(''):'')+'<a class="wb" href="'+esc(web||p.u)+'" target="_blank" rel="noopener">'+(web?'Sitio web':'Fuente')+' ↗</a><a class="wb" href="#/asociaciones">Directorio</a></div>'});});}
+    if(/cuant|cifra|frecuen|personas|casos|cuantos/.test(t)&&E.brecha)out.push({t:'dyn',title:'Cifras',html:'<div class="wk">En México</div><b class="wt">¿Cuántas personas?</b><p class="wbig">'+esc(E.brecha.estimados||'')+'</p><p class="wn">Diagnosticadas: '+esc(E.brecha.diagnosticados||'')+'</p><a class="wsrc" href="'+esc(E.brecha.url||'#')+'" target="_blank" rel="noopener">Fuente: '+esc(E.brecha.fuente||'')+' ↗</a>'});
+    if(!out.length&&pts.length&&k&&!/que es|por que|hered/.test(t))out.push({t:'map',k:k,title:tx('Dónde se atiende en México','Centros con experiencia')});
+    return out;}
+  async function ask(qq,onText){
+    var ctx=turns.slice(-2).map(function(t){return t.content;}).join(' ');
+    var fr=cSearch(qq+' '+qq+' '+ctx,6,function(d){return okDoc(d)&&(M?d.publico!=='familia':d.publico!=='medico');});
+    if(fr.length<3)fr=fr.concat(cSearch(qq,6,okDoc).filter(function(d){return fr.indexOf(d)<0;})).slice(0,6);
+    var cat=RM.w.filter(function(w){return (w.d===dis||w.d==='general')&&(w.t!=='video'||vidOk(w));}).map(function(w){return w.id+': '+w.desc;}).join('\n');
+    var text='',ids=[],err=null;
+    if(fr.length){var hist=turns.slice(-4).map(function(t){return (t.role==='user'?(M?'Médico: ':'Familia: '):'Rumbo: ')+t.content;}).join('\n');
+      var prompt=(M?'Eres Rumbo, del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. Hablas con un médico sobre su paciente'+(sin?', que todavía no tiene diagnóstico; oriéntalo sobre referencia, estudios y centros sin aventurar diagnósticos.':' con '+DIS[dis]+'.')+' Háblale de usted, colega a colega, en registro clínico: usa terminología médica precisa y refiérete a «su paciente» y a «la familia del paciente». Si la respuesta no está en los fragmentos, dilo y sugiere consultar la guía correspondiente o referir al especialista. No indiques dosis ni ajustes de tratamiento.'
+        :'Eres Rumbo, el acompañante para familias del Acervo del Observatorio Latinoamericano de Enfermedades Poco Frecuentes, en México. '+(sin?'La familia todavía no tiene un diagnóstico; ayúdale a orientarse sin adivinar enfermedades.':'La familia vive con '+DIS[dis]+'.')+' Puede ser su primer contacto con el tema: no des nada por sabido y explica cualquier término. Háblale siempre de tú, con empatía: reconoce primero cómo se siente si lo expresa; cálida, clara y serena. Si la respuesta no está en los fragmentos, dilo con honestidad y sugiere hablar con su equipo médico o con la asociación de pacientes. No indiques dosis ni hagas diagnósticos.')+
+        ' Responde en un máximo de 90 palabras: la respuesta se lee en pantalla junto a tarjetas visuales y se puede compartir. Usa SOLO la información de los FRAGMENTOS. Después de cada dato, pon entre corchetes la etiqueta del fragmento, por ejemplo [e7]. Nunca digas «enfermedades raras»: di «enfermedades poco frecuentes». Sin títulos ni listas.'+(cat?'\n\nAl final, en una línea aparte, escribe WIDGETS: seguido de 0 a 2 identificadores del CATÁLOGO que complementen la respuesta, separados por comas.\n\nCATÁLOGO:\n'+cat:'')+'\n\nFRAGMENTOS:\n'+fragBlock(fr)+(hist?'\n\nCONVERSACIÓN PREVIA:\n'+hist:'')+'\n\nPREGUNTA '+(M?'DEL MÉDICO':'DE LA FAMILIA')+': '+qq;
+      if(ctl)ctl.abort();ctl=new AbortController();
+      try{var r=await aiStream(prompt,function(t){onText(clean(t));},ctl.signal);var m=r.match(/WIDGETS?\s*:\s*(.+)/i);ids=m?m[1].split(/[\s,]+/).map(function(s){return s.replace(/[^\w-]/g,'');}).filter(Boolean):[];text=clean(r);}
+      catch(e){if(e.name==='AbortError')throw e;err=e;text=fr[0].tema+'. '+fr[0].texto+' ['+fr[0].id+']';}}
+    else text=M?'Eso no está en el Acervo del Observatorio. Le sugiero consultar la guía de práctica clínica correspondiente o referir al especialista.':'No encontré información sobre eso en las fuentes de Rumbo. Te sugiero preguntarlo a tu equipo médico o a la asociación de pacientes.';
+    var c=cite(text),cw=pickW(ids,dis,fr).filter(function(w){return w.t!=='video'||vidOk(w);}),aw=autoW(qq);
+    var ws=[];aw.concat(cw).forEach(function(w){if(ws.length<4&&!ws.some(function(x){return x.t===w.t&&x.t!=='dyn'&&x.t!=='check';}))ws.push(w);});
+    turns.push({role:'user',content:qq},{role:'assistant',content:plain(text)});
+    return {q:qq,text:text,plain:plain(text),html:c.html,used:c.used,ws:ws,err:err};}
+  /* compartir */
+  function link(it){return location.origin+'/#/rumbo?d='+(sin?'sin':dis)+'&q='+encodeURIComponent(it.q);}
+  function shareText(it){return (sin?'':'Sobre '+(E.nombre||'')+'\n')+'Pregunta: '+it.q+'\n\n'+it.plain+(it.used.length?'\n\nFuentes:\n'+it.used.map(function(id,i){return (i+1)+'. '+CBY[id].fuente+' · '+CBY[id].url;}).join('\n'):'')+'\n\nRumbo · Observatorio Latinoamericano de Enfermedades Poco Frecuentes\n'+link(it);}
+  function shareBar(it,cls){return '<div class="r2-share '+(cls||'')+'"><span>'+tx('Compartir esta respuesta','Compartir esta respuesta')+'</span>'+
+    '<a class="sh wa" href="https://wa.me/?text='+encodeURIComponent(shareText(it))+'" target="_blank" rel="noopener">WhatsApp</a>'+
+    (navigator.share?'<button type="button" class="sh" data-sh="native">Compartir</button>':'')+
+    '<button type="button" class="sh" data-sh="copy">Copiar texto</button><button type="button" class="sh" data-sh="link">Copiar liga</button><button type="button" class="sh" data-sh="pdf">Guardar PDF</button></div>';}
+  function bindShare(root,it,printEl){$$('[data-sh]',root).forEach(function(b){b.onclick=function(){var k=b.dataset.sh;
+    if(k==='native'){navigator.share({title:'Rumbo · '+it.q,text:shareText(it)}).catch(function(){});}
+    else if(k==='copy'||k==='link'){var t=k==='copy'?shareText(it):link(it);try{navigator.clipboard.writeText(t).then(function(){b.textContent='¡Copiado!';setTimeout(function(){b.textContent=k==='copy'?'Copiar texto':'Copiar liga';},1800);});}catch(e){}}
+    else if(k==='pdf'){var el=printEl||root;el.classList.add('r2-print');document.body.classList.add('r2-printing');setTimeout(function(){window.print();setTimeout(function(){el.classList.remove('r2-print');document.body.classList.remove('r2-printing');},400);},50);}};});}
+  function srcList(it){return it.used.length?'<ol class="r2-src">'+it.used.map(function(id){var d=CBY[id];return '<li><a href="'+esc(d.url)+'" target="_blank" rel="noopener">'+esc(d.fuente)+' ↗</a></li>';}).join('')+'</ol>':'';}
+  function wgrid(it){var g=h('div','wgs r2-wg');it.ws.forEach(function(w){g.appendChild(w.t==='dyn'?h('div','wg',w.html):renderW(w));});return g;}
+  var pill='<a class="dpill '+(DCOL[dis]||'')+'" href="'+L('')+'"><span><small>'+tx('Te acompaño con','Paciente con')+'</small><b>'+esc(sin?'Sin diagnóstico todavía':(E.corto||DSHORT[dis]))+'</b></span><em>Cambiar</em></a>';
+  var form='<form class="r2-f" id="f"><input id="inp" placeholder="'+tx('Escribe o dicta tu pregunta…','Escriba o dicte su pregunta…')+'" maxlength="300" aria-label="'+tx('Tu pregunta','Su pregunta')+'" autocomplete="off">'+MIC+'<button class="btn" type="submit">'+tx('Preguntar','Preguntar')+'</button></form>';
+  var chips='<div class="r2-sug" id="sug">'+sugs.map(function(s){return '<button type="button">'+esc(s)+'</button>';}).join('')+'</div>';
+  var note='<p class="r2-note">'+tx('Orientación general con información aprobada; no sustituye la consulta médica.','Información de apoyo; no sustituye el juicio clínico ni la valoración del especialista.')+'</p>';
+  var head='<div class="r2-h row"><div><span class="kick m">'+kick+'</span><h1>Rumbo</h1></div>'+pill+'</div>';
+  var out,render;
+  if(v==='1'){
+    view.innerHTML='<section class="r2 r2-1">'+sw+'<div class="wrap narrow">'+head+'<div class="r2a-log" id="out"><div class="r2a-m bot"><span class="r2-av">'+ava()+'</span><div class="r2a-b"><p>'+esc(hola)+'</p></div></div></div><div class="r2a-dock">'+chips+form+note+'</div></div></section>';
+    out=$('#out');
+    render=function(qq){out.appendChild(h('div','r2a-m me','<div class="r2a-b">'+esc(qq)+'</div>'));var m=h('div','r2a-m bot','<span class="r2-av">'+ava()+'</span><div class="r2a-b"><p class="r2-t"><span class="wait">Buscando en las fuentes</span></p></div>');out.appendChild(m);m.scrollIntoView({block:'nearest'});
+      return {stream:function(t){$('.r2-t',m).innerHTML=cite(t).html;},done:function(it){var b=$('.r2a-b',m);$('.r2-t',b).innerHTML=it.html;b.insertAdjacentHTML('beforeend',srcList(it));if(it.ws.length)b.appendChild(wgrid(it));b.insertAdjacentHTML('beforeend',shareBar(it));bindShare(b,it,m);}};};
+  }else if(v==='2'){
+    view.innerHTML='<section class="r2 r2-2">'+sw+'<div class="wrap">'+head+'<div class="r2b"><aside class="r2b-l"><div class="r2b-ask">'+form+chips+'</div><div class="r2b-hist"><b>'+tx('Tus preguntas','Sus preguntas')+'</b><div id="hist"><p class="note">Aquí aparecerán las preguntas que hagas.</p></div></div>'+note+'</aside>'+
+      '<article class="r2b-sheet" id="out"><header><img src="/obs/img/brand/icono.webp" alt=""><div><b>Hoja de Rumbo</b><span>Observatorio Latinoamericano de Enfermedades Poco Frecuentes · Capítulo México</span></div><em>'+esc(sin?'Sin diagnóstico':(E.corto||''))+'</em></header><div class="r2b-c" id="sheet"><p class="r2b-hello">'+esc(hola)+'</p><p class="note">'+tx('Cada respuesta se arma como una hoja que puedes mandar por WhatsApp, guardar en PDF o llevar a tu próxima consulta.','Cada respuesta se arma como una hoja que puede enviar a la familia o guardar en PDF.')+'</p></div></article></div></div></section>';
+    out=$('#sheet');var hist=$('#hist');
+    var show=function(it){out.innerHTML='<p class="r2b-q">'+esc(it.q)+'</p><div class="r2b-a">'+it.html+'</div>';if(it.ws.length)out.appendChild(wgrid(it));out.insertAdjacentHTML('beforeend',(it.used.length?'<div class="r2b-f"><b>Fuentes</b>'+srcList(it)+'</div>':'')+'<p class="r2b-date">'+new Date().toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'})+' · www.pocofrecuentes.com</p>'+shareBar(it,'big'));bindShare(out,it,$('#out'));
+      $$('#hist button').forEach(function(b){b.classList.toggle('on',b.dataset.i==String(items.indexOf(it)));});};
+    render=function(qq){out.innerHTML='<p class="r2b-q">'+esc(qq)+'</p><div class="r2b-a"><span class="wait">Buscando en las fuentes</span></div>';$('#out').scrollIntoView({block:'nearest',behavior:'smooth'});
+      return {stream:function(t){$('.r2b-a',out).innerHTML=cite(t).html;},done:function(it){if(items.length===1)hist.innerHTML='';var b=h('button','',esc(it.q));b.type='button';b.dataset.i=items.indexOf(it);b.onclick=function(){show(it);};hist.insertBefore(b,hist.firstChild);show(it);}};};
+  }else{
+    view.innerHTML='<section class="r2 r2-3">'+sw+'<div class="wrap">'+head+'<div class="r2c-ask">'+form+chips+'</div><div id="out" class="r2c-out"><div class="r2c-deck"><div class="r2c-card hello"><span class="r2-av">'+ava()+'</span><p>'+esc(hola)+'</p><p class="note">'+tx('Cada respuesta llega como un juego de tarjetas que puedes deslizar y compartir una por una.','Cada respuesta llega como un juego de tarjetas que puede compartir una por una.')+'</p></div></div></div><div class="r2c-prev" id="prev"></div>'+note+'</div></section>';
+    out=$('#out');var prev=$('#prev');
+    render=function(qq){if(out.firstChild&&out.firstChild.dataset&&out.firstChild.dataset.q){var old=out.firstChild;var det=h('details','r2c-old','<summary>'+esc(old.dataset.q)+'</summary>');det.appendChild(old);prev.insertBefore(det,prev.firstChild);}
+      out.innerHTML='';var deck=h('div','r2c-deck');deck.dataset.q=qq;deck.innerHTML='<div class="r2c-card main"><span class="r2c-k">'+esc(qq)+'</span><div class="r2-t"><span class="wait">Buscando en las fuentes</span></div></div>';out.appendChild(deck);
+      return {stream:function(t){$('.r2-t',deck).innerHTML=cite(t).html;},done:function(it){var mc=$('.r2c-card.main',deck);$('.r2-t',mc).innerHTML=it.html;mc.insertAdjacentHTML('beforeend',srcList(it));
+        it.ws.forEach(function(w){var c=h('div','r2c-card w');c.appendChild(w.t==='dyn'?h('div','wg',w.html):renderW(w));deck.appendChild(c);});
+        var sc=h('div','r2c-card sh','<span class="r2c-k">'+tx('¿Te sirvió?','Para la familia')+'</span><h3>'+tx('Compártelo con quien te acompaña','Envíe esta información a la familia')+'</h3>'+shareBar(it,'col'));deck.appendChild(sc);bindShare(sc,it,deck);
+        var nav=h('div','r2c-nav','<button type="button" data-d="-1" aria-label="Anterior">←</button><span>'+(deck.children.length)+' tarjetas</span><button type="button" data-d="1" aria-label="Siguiente">→</button>');out.appendChild(nav);
+        $$('button',nav).forEach(function(b){b.onclick=function(){deck.scrollBy({left:+b.dataset.d*deck.clientWidth*0.8,behavior:'smooth'});};});}};};
+  }
+  var f=$('#f'),inp=$('#inp');
+  async function send(qq){if(busy)return;busy=true;f.querySelector('.btn').disabled=true;var R=render(qq);
+    try{var it=await ask(qq,R.stream);items.push(it);R.done(it);}catch(e){}
+    busy=false;f.querySelector('.btn').disabled=false;}
+  f.onsubmit=function(e){e.preventDefault();var t=inp.value.trim();if(t&&!busy){inp.value='';send(t);}};
+  dictado($('#f .mic'),inp,function(){f.requestSubmit();});
+  $$('#sug button').forEach(function(b){b.onclick=function(){send(b.textContent);};});
+  if(q.q)send(q.q);
+}
 
 /* ---------- Clara: solo médicos; ficha del caso, tamiz y consulta guiada ---------- */
 var MED=false;try{MED=sessionStorage.getItem('obs-medico')==='1';}catch(e){}
