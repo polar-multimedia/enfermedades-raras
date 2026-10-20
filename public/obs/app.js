@@ -51,7 +51,7 @@ function tx(t,u){return PERFIL==='fam'?t:u;}
 function applyPerfil(){var b=document.body;b.classList.toggle('fam',PERFIL==='fam');b.classList.toggle('med',PERFIL==='med');b.classList.toggle('pres',PERFIL==='pres');
   if(PERFIL==='med'||PERFIL==='pres'){MED=true;try{sessionStorage.setItem('obs-medico','1');}catch(e){}}else if(PERFIL==='fam'){MED=false;try{sessionStorage.removeItem('obs-medico');}catch(e){}}
   var pb=document.getElementById('perfilBtn');if(pb){pb.onclick=entrada;pb.setAttribute('aria-label','Perfil: '+(PERFIL==='med'?'médico':PERFIL==='fam'?'familia':'sin elegir')+'. Cambiar');}if(pb)pb.innerHTML='<img src="/obs/img/brand/rayos.svg" alt="" aria-hidden="true">'+(PERFIL==='med'?'Médico':PERFIL==='fam'?'Familia':PERFIL==='pres'?'Presentación':'Elegir perfil');}
-function setPerfil(p){PERFIL=p;try{localStorage.setItem('obs-perfil',p);}catch(e){}applyPerfil();}
+function setPerfil(p){PERFIL=p;try{localStorage.setItem('obs-perfil',p);}catch(e){}applyPerfil();if(typeof medBtnSync==='function')medBtnSync();}
 var INSTL={ssa:'Secretaría de Salud',imssb:'IMSS-Bienestar',imss:'IMSS',issste:'ISSSTE',pemex:'Pemex',mil:'Sedena o Semar',priv:'Médico privado',ninguna:'Todavía no se atiende'};
 function censoHecho(){try{return localStorage.getItem('obs-censo')==='1';}catch(e){return false;}}
 function censoForm(host,done){
@@ -126,7 +126,10 @@ function entrada(o){o=o||{};var old=document.getElementById('entrada');if(old)ol
       if(!$('#enck').checked){er.textContent='Confirma que eres profesional de la salud.';return;}
       try{localStorage.setItem('obs-cedula',c);}catch(x){}close('med');};};
   setTimeout(function(){var b=$('.en-o.fam',d);if(b)b.focus();},50);}
-(function(){var mb=document.getElementById('medBtn');if(mb)mb.onclick=function(){entrada({med:true});};})();
+function medBtnSync(){var mb=document.getElementById('medBtn');if(!mb)return;var on=PERFIL==='med';mb.classList.toggle('on',on);
+  mb.querySelector('.mb-t').innerHTML=on?'Modo médico <em>· Salir</em>':'<span class="mb-l">Acceso </span>médicos';
+  mb.setAttribute('aria-label',on?'Modo médico activo. Salir del modo médico':'Acceso para médicos');}
+(function(){var mb=document.getElementById('medBtn');if(mb)mb.onclick=function(){if(PERFIL==='med'){setPerfil('fam');if(/clara/.test(location.hash))location.hash='#/';else route();}else entrada({med:true});};})();
 document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-censo]');if(t){e.preventDefault();entrada({censo:true});}});
 
 /* ---------- inteligencia artificial (pasa por el servidor; la llave no llega al navegador) ---------- */
@@ -1031,7 +1034,7 @@ fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
   RM=PD.rumbo||RM;RM.w.forEach(function(w){RW[w.id]=w;});
   var LP=(location.pathname.match(/^\/(familias|medicos)\/?$/)||[])[1];
   if(LP==='familias'&&PERFIL!=='fam')setPerfil('fam');
-  applyPerfil();window.addEventListener('hashchange',route);route();
+  applyPerfil();medBtnSync();window.addEventListener('hashchange',route);route();
   if(LP==='medicos'&&PERFIL!=='med')entrada({med:true});
 }).catch(function(){view.innerHTML='<section class="blk"><div class="wrap"><h2>No se pudo cargar el Acervo</h2><p class="lead">Recarga la página.</p></div></section>';});
 })();

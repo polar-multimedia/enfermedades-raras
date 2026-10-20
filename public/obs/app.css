@@ -956,5 +956,10 @@ body.pres .pub-only{display:none!important}
 .medbtn{display:inline-flex;align-items:center;gap:7px;margin-left:6px;padding:8px 15px;border-radius:999px;border:1.5px solid #FF4FD8;background:rgba(255,79,216,.12);color:#fff;font:800 12px/1 Manrope,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:background .2s,transform .2s}
 .medbtn:hover,.medbtn:focus-visible{background:#FF4FD8;color:#16081a;transform:translateY(-1px)}
 body.light .medbtn{color:#8a1676;background:rgba(255,79,216,.08)}body.light .medbtn:hover{color:#fff;background:#d02bb0;border-color:#d02bb0}
-body.med .medbtn,body.pres .medbtn{display:none}
-@media (max-width:900px){.top{position:fixed}.medbtn{position:absolute;top:14px;right:16px;margin:0;padding:8px 12px;font-size:11px;letter-spacing:.1em;z-index:2}.medbtn .mb-l{display:none}body:not(.med):not(.pres) .top .cmx{display:none}.top.solid .medbtn{top:10px}}
+
+@media (max-width:900px){.top{position:fixed}.medbtn{position:absolute;top:14px;right:16px;margin:0;padding:8px 12px;font-size:11px;letter-spacing:.1em;z-index:2}.medbtn .mb-l{display:none}.top .cmx{display:none}.top.solid .medbtn{top:10px}}
+body.med .medbtn{display:inline-flex}
+.medbtn.on{background:#FF4FD8;color:#16081a}
+.medbtn.on em{font-style:normal;opacity:.7}
+.medbtn.on:hover{background:rgba(255,79,216,.15);color:#fff}
+@media (max-width:900px){.medbtn.on em{display:none}}
