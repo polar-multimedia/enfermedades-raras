@@ -1352,3 +1352,4 @@ body.light .vr a.is-mx .vt2{box-shadow:0 0 0 2px #fbf7f1,0 0 0 4px #006847}
 /* distancia header–título igual en todas las secciones */
 .r2,.a1,.a2,.a3,.av,.cl{padding-top:30px}
 @media (max-width:900px){.r2,.a1,.a2,.a3,.av,.cl{padding-top:22px}}
+.vr a{grid-template-columns:minmax(0,1fr)}.vt2{width:100%;min-width:0;overflow:hidden}
