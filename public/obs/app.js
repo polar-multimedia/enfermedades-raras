@@ -283,7 +283,7 @@ V.inicio=function(){
   '<p class="hero-hint"><span class="hh-ini"><img src="/obs/img/brand/28wh.svg" alt="Twentyeight Women\'s Health" width="92" height="92"><span>Una iniciativa de Twentyeight Women\'s Health</span></span>Capítulo México · Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</p>'+
   '<aside class="pendon" aria-label="Con el respaldo del Senado de la República, LXVI Legislatura"><span class="pd-logo"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura" width="96" height="96"></span><small>Con el respaldo del</small><b>Senado de la República</b><em>LXVI Legislatura</em></aside>'+
   '</section>'+
-  '<section class="labsband" id="labs"><p class="lb-k">El Acervo se construye con el conocimiento de</p>'+
+  '<section class="labsband" id="labs">'+
    '<div class="ribbon" id="lg" aria-label="Laboratorios con tratamientos en México. Toca un logo para ver sus medicamentos.">'+labRibbon()+'</div>'+
    '<div class="wrap"><div class="labp" id="lp" aria-live="polite"></div><p class="note lb-n">'+tx('Toca un logo para ver sus medicamentos y las enfermedades que tratan.','Seleccione un logo para ver sus medicamentos y las enfermedades que tratan.')+' Aparecer aquí no implica patrocinio ni recomendación.</p></div></section>'+
   '<div class="ctx">'+
