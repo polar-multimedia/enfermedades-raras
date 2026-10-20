@@ -74,5 +74,32 @@
       "source": "/medicos",
       "destination": "/observatorio"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/rumbo",
+      "destination": "/#/rumbo",
+      "permanent": false
+    },
+    {
+      "source": "/acervo",
+      "destination": "/#/acervo",
+      "permanent": false
+    },
+    {
+      "source": "/atlas",
+      "destination": "/#/atlas",
+      "permanent": false
+    },
+    {
+      "source": "/asociaciones",
+      "destination": "/#/asociaciones",
+      "permanent": false
+    },
+    {
+      "source": "/clara",
+      "destination": "/#/clara",
+      "permanent": false
+    }
   ]
 }

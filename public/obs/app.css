@@ -1289,3 +1289,5 @@ body.light .vr a.is-mx .vt2{box-shadow:0 0 0 2px #fbf7f1,0 0 0 4px #006847}
 .r2a-dock .r2-sug{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:8px 0}.r2a-dock .r2-sug button{flex:none}
 @media (max-width:700px){.r2a-m.bot .r2-av{display:none}.r2c-ask .r2-sug,.r2b-ask .r2-sug{flex-wrap:nowrap;overflow-x:auto;flex-direction:row}.r2c-ask .r2-sug button,.r2b-ask .r2-sug button{flex:none}}
 .r2b>*{min-width:0}@media (max-width:900px){.r2b{grid-template-columns:minmax(0,1fr)}}.r2-f{min-width:0}
+.r2b-dis{margin-bottom:12px}.r2b-dis label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#d02bb0;margin-bottom:6px}
+.r2b-dis select{width:100%;font:700 15px Manrope,sans-serif;padding:12px 14px;border-radius:14px;border:1.5px solid rgba(22,32,44,.14);background:#fff;color:#16202c}
