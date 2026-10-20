@@ -1464,3 +1464,9 @@ body.light .vr a.is-mx .vt2{box-shadow:0 0 0 2px #fbf7f1,0 0 0 4px #006847}
 .seg .r2-share .sh{background:#fff;color:#16202c;border-color:#fff}.seg .r2-share .sh.wa{background:#25D366;border-color:#25D366;color:#fff}
 .apy-v{display:block;margin-top:8px;font-size:11px;color:#6b7785}
 .apy-f select{min-width:0;flex:1;max-width:100%}
+.apt{display:inline-flex;gap:4px;padding:4px;margin:0 0 18px;border-radius:999px;background:rgba(22,32,44,.06);max-width:100%}
+.apt a{text-decoration:none;font:800 13px Manrope,sans-serif;color:#4c5664;padding:9px 16px;border-radius:999px;white-space:nowrap}
+.apt a.on{background:#fff;color:#16202c;box-shadow:0 1px 4px rgba(22,32,44,.12)}
+@media (max-width:420px){.apt{display:flex}.apt a{flex:1;text-align:center;padding:9px 8px;font-size:12px}}
+.apy-cta{margin-top:12px}.apy-cta .red-ic{background:conic-gradient(#0a8a4a,#00A6B8,#8B5CF6,#0a8a4a)}.apy-cta em{color:#0a8a4a}
+.apy-cta em{color:#34d399}body.light .apy-cta em{color:#0a8a4a}

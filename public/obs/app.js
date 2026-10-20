@@ -340,6 +340,8 @@ var APOYOS=[
 {n:'FEMEXER',cat:'Asociaciones',tipo:'red',d:['all'],que:'Federación Mexicana de Enfermedades Raras: orienta y te conecta con la asociación de tu enfermedad.',quien:'Pacientes y familias.',como:'Escribe a info@femexer.org.',u:'https://www.femexer.org'},
 {n:'Asociación Mexicana de Fibrosis Quística',cat:'Asociaciones',tipo:'red',d:['fq'],que:'Orientación, acompañamiento y apoyo a familias con fibrosis quística.',quien:'Pacientes y familias.',como:'Llama al 55 5511 1498 o escribe a info@fibrosisquistica.org.mx.',u:'https://www.fq.org.mx'}
 ];
+function apTabs(on,k){var d=k?'?d='+k:'';return '<nav class="apt" aria-label="Apoyos"><a href="#/asociaciones'+d+'" class="'+(on==='asoc'?'on':'')+'">Asociaciones</a><a href="#/apoyos'+d+'" class="'+(on==='prog'?'on':'')+'">Programas de apoyo</a></nav>';}
+function apoyosCta(){return '<a class="cnso red-cta apy-cta" href="#/apoyos"><span class="red-ic" aria-hidden="true"></span><div><b>'+tx('¿A qué apoyos puedes tener derecho?','¿A qué apoyos puede orientar a la familia?')+'</b><span>'+tx('Pensión, atención gratuita, rehabilitación, escuela y tus derechos, cada uno con su información oficial.','Pensión, atención gratuita, rehabilitación, educación especial y derechos, cada uno con su información oficial.')+'</span></div><em>Ver apoyos →</em></a>';}
 function redHecho(){try{return localStorage.getItem('obs-red')||'';}catch(e){return '';}}
 function redCta(k,ctx,sit){if(PERFIL==='med'||redHecho())return '';var n=k&&ENFBY[k]?ENFBY[k].corto:'',qs=[];if(k&&ENFBY[k])qs.push('d='+k);if(sit)qs.push('s='+sit);
   return '<a class="cnso red-cta" href="#/red'+(qs.length?'?'+qs.join('&'):'')+'"><span class="red-ic" aria-hidden="true"></span><div><b>'+(ctx==='rumbo'?'¿Quieres que te acompañemos'+(n?' con '+esc(n):'')+'?':'Súmate a la Red de Acompañamiento')+'</b><span>'+tx('Con diagnóstico, con sospecha o mientras siguen buscando: te orientamos, te conectamos con la asociación de tu enfermedad y te decimos a qué apoyos puedes tener derecho.','Las familias de sus pacientes pueden sumarse a la Red para recibir acompañamiento.')+'</span></div><em>Sumarme →</em></a>';}
@@ -405,11 +407,11 @@ V.red=function(q){q=q||{};var k=ENFBY[q.d]?q.d:'',sit=/^(confirmado|sospecha|bus
   if(sit)form();else paso1();};
 V.apoyos=function(q){q=q||{};var k=ENFBY[q.d]?q.d:'';
   var cats=[];APOYOS.forEach(function(a){if(cats.indexOf(a.cat)<0)cats.push(a.cat);});
-  view.innerHTML='<section class="red"><div class="wrap"><div class="red-h"><span class="kick m">Programas de apoyo</span><h1>'+tx('Apoyos a los que puedes tener derecho','Apoyos para las familias de sus pacientes')+'</h1><p>'+tx('Programas públicos, documentos, rehabilitación y derechos para personas con una enfermedad poco frecuente y sus familias en México. Cada uno enlaza a su información oficial.','Programas públicos, documentos, rehabilitación y derechos a los que puede orientar a la familia. Cada uno enlaza a su información oficial.')+'</p>'+
+  view.innerHTML='<section class="red"><div class="wrap">'+apTabs('prog',k)+'<div class="red-h"><span class="kick m">Programas de apoyo</span><h1>'+tx('Apoyos a los que puedes tener derecho','Apoyos para las familias de sus pacientes')+'</h1><p>'+tx('Programas públicos, documentos, rehabilitación y derechos para personas con una enfermedad poco frecuente y sus familias en México. Cada uno enlaza a su información oficial.','Programas públicos, documentos, rehabilitación y derechos a los que puede orientar a la familia. Cada uno enlaza a su información oficial.')+'</p>'+
    '<div class="apy-f"><label for="apd">Enfermedad</label><select id="apd"><option value="">Todas</option>'+disOptions(k)+'</select></div></div>'+
    '<div id="apl"></div>'+redCta(k)+'</div></section>';
   function list(){var kk=$('#apd').value;$('#apl').innerHTML=cats.map(function(c){var L=APOYOS.filter(function(a){return a.cat===c&&(!kk||!a.d||!a.d.length||a.d.indexOf('all')>=0||a.d.indexOf('discapacidad')>=0||a.d.indexOf(kk)>=0);});return L.length?'<h2 class="apy-h">'+esc(c)+'</h2>'+apoyosHtml(L):'';}).join('')||'<p class="note">Estamos verificando los programas de apoyo.</p>';}
-  $('#apd').onchange=list;list();};
+  $('#apd').onchange=function(){var kk=$('#apd').value;var a=view.querySelector('.apt a');if(a)a.href='#/asociaciones'+(kk?'?d='+kk:'');list();};list();};
 V.privacidad=function(){view.innerHTML='<section class="red"><div class="wrap narrow"><div class="red-h"><span class="kick m">Aviso de privacidad</span><h1>Cómo cuidamos tus datos</h1><p class="note">Versión preliminar 1 · octubre de 2026. En revisión legal.</p></div><div class="priv">'+PRIV_HTML+'</div></div></section>';};
 
 
@@ -438,7 +440,7 @@ V.inicio=function(){
     '<div class="stat"><b>× 2.1</b><span>si hay que salir de la propia región para ver a un especialista</span></div>'+
    '</div>'+
    '<p class="note" style="margin-top:16px">Fuentes: '+srcA(SRC_DX)+' · '+srcA(SRC_ESP)+'. Para México se estiman entre 8 y 10 millones de personas con una enfermedad poco frecuente, sin censo nacional (<a href="'+esc(CBY.x2?CBY.x2.url:'#')+'" target="_blank" rel="noopener">Excélsior, feb. 2026</a>). Medir la cifra latinoamericana, empezando por México, es la primera tarea del Observatorio.</p>'+
-   redCta('')+
+   redCta('')+apoyosCta()+
   '</div></section>'+
 
   '<section class="blk"><div class="wrap">'+
@@ -1279,7 +1281,8 @@ V.atlas=function(q){
 /* ---------- Asociaciones (luz clara) ---------- */
 V.asociaciones=function(q){q=q||{};
   if(q.v==='1'||q.v==='3')return asocV(q);
-  q.v='2';return asocV(q);};
+  q.v='2';asocV(q);var k=ENFBY[q.d]?q.d:'',w=view.querySelector('.av2 .wrap');if(w)w.insertAdjacentHTML('afterbegin',apTabs('asoc',k));
+  if(k){var b=view.querySelector('.av2 .avchips button[data-g="'+ENFBY[k].grupo+'"]');if(b)b.click();}};
 /* ---------- Asociaciones: tres propuestas de diseño (?v=1, 2, 3) ---------- */
 var GCLR={tamiz:'#E0A800',musculo:'#8B5CF6',sangre:'#E5484D',piel:'#FF4FD8',lisosomal:'#00A6B8',dolor:'#F97316'};
 function asocData(){return PD.atlas.pts.filter(function(p){return p.l==='a';}).map(function(p,i){var e=ENFBY[p.d[0]]||{},nat=/No confirmada/i.test(p.c||'');
@@ -1437,11 +1440,11 @@ function route(){
   (parts[1]||'').split('&').forEach(function(kv){if(!kv)return;var p=kv.split('=');q[decodeURIComponent(p[0])]=decodeURIComponent(p[1]||'');});
   if(!V[name])name='inicio';
   voice.stop();
-  $$('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.v===name);if(a.dataset.v===name)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  $$('.nav a').forEach(function(a){var on=a.dataset.v===name||(a.dataset.v==='asociaciones'&&name==='apoyos');a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   V[name](q);window.scrollTo(0,0);if(name!=='inicio')view.focus({preventScroll:true});
   document.body.classList.toggle('home',name==='inicio');document.body.classList.toggle('light',name==='rumbo'||name==='red'||name==='apoyos'||name==='privacidad'||(name==='asociaciones'&&q.v!=='1')||(name==='acervo'&&q.v!=='1'&&q.v!=='3'));solidHead();
   FX.go(name);view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter');firstRoute=false;
-  document.title=(name==='inicio'?'':({acervo:'Acervo',rumbo:'Rumbo',clara:'Clara',atlas:'Atlas',asociaciones:'Asociaciones',barometro:'Barómetro'})[name]+' · ')+'Observatorio · Enfermedades Poco Frecuentes';}
+  document.title=(name==='inicio'?'':({acervo:'Acervo',rumbo:'Rumbo',clara:'Clara',atlas:'Atlas',asociaciones:'Asociaciones',apoyos:'Programas de apoyo',red:'Red de Acompañamiento',privacidad:'Aviso de privacidad',barometro:'Barómetro'})[name]+' · ')+'Observatorio · Enfermedades Poco Frecuentes';}
 
 fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
   PD=d;C=PD.corpus||[];C.forEach(function(x){CBY[x.id]=x;});initDis(PD.enfermedades);
