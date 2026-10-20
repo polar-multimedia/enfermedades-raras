@@ -1462,3 +1462,5 @@ body.light .vr a.is-mx .vt2{box-shadow:0 0 0 2px #fbf7f1,0 0 0 4px #006847}
 .cl-upd .field input,.cl-upd .field select{width:100%}
 .flinks{margin:10px 0 4px;font-size:13.5px;font-weight:700}.flinks a{color:inherit}
 .seg .r2-share .sh{background:#fff;color:#16202c;border-color:#fff}.seg .r2-share .sh.wa{background:#25D366;border-color:#25D366;color:#fff}
+.apy-v{display:block;margin-top:8px;font-size:11px;color:#6b7785}
+.apy-f select{min-width:0;flex:1;max-width:100%}
