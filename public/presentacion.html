@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Observatorio · Presentación del proyecto</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#06121c">
+<link rel="icon" type="image/png" href="/obs/img/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..700,50&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06121c;--bg2:#0a1c2a;--ink:#fff;--soft:#d6e8f2;--dim:#9fb6c4;--line:rgba(255,255,255,.12);--m:#FF4FD8;--c:#00C8D6;--y:#F2D14B;--g:#4ADE80;--v:#8B5CF6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-weight:500;-webkit-font-smoothing:antialiased}
+.s{min-height:100vh;min-height:100svh;scroll-snap-align:start;position:relative;display:flex;align-items:center;padding:72px 7vw;overflow:hidden}
+.in{width:100%;max-width:1180px;margin:0 auto;position:relative;z-index:1}
+h1,h2,.serif{font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 50;font-weight:600;letter-spacing:.005em}
+h1{font-size:clamp(34px,5.2vw,64px);line-height:1.06}
+h2{font-size:clamp(28px,3.6vw,46px);line-height:1.1;max-width:900px}
+h3{font-size:19px;font-weight:800;margin-bottom:6px}
+p{color:var(--soft);font-size:clamp(16px,1.4vw,19px);line-height:1.55}
+.k{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--c);margin-bottom:18px}
+.k::before{content:"";width:22px;height:2px;background:currentColor}
+.k.m{color:var(--m)}.k.y{color:var(--y)}.k.g{color:var(--g)}.k.v{color:#b79bff}
+.lead{max-width:760px;margin-top:18px}
+.note{font-size:13px;color:var(--dim);margin-top:22px;line-height:1.5}
+.note a{color:var(--dim)}
+.grid{display:grid;gap:16px;margin-top:34px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}.s{padding:64px 20px}}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;padding:22px}
+.card p{font-size:15.5px}
+.card .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:999px;margin-bottom:12px;background:rgba(0,200,214,.14);color:var(--c)}
+.tag.m{background:rgba(255,79,216,.14);color:var(--m)}.tag.y{background:rgba(242,209,75,.14);color:var(--y)}.tag.g{background:rgba(74,222,128,.14);color:var(--g)}.tag.v{background:rgba(139,92,246,.18);color:#b79bff}
+.stat b{display:block;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(36px,4.4vw,58px);line-height:1;color:var(--y)}
+.stat>span{display:block;color:var(--soft);margin-top:10px;font-size:15.5px;line-height:1.45}
+.big{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(56px,9vw,120px);line-height:.95;color:var(--g)}
+/* portada */
+.cover{background:#06121c}
+.cover .bg{position:absolute;inset:0;background:url(/obs/img/brand/isla.webp) 70% 40%/cover no-repeat;opacity:.55}
+.cover .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#06121c 0%,rgba(6,18,28,.85) 38%,rgba(6,18,28,.1) 75%),linear-gradient(0deg,#06121c 0%,rgba(6,18,28,0) 30%)}
+.cover .ico{width:84px;height:84px;border-radius:50%;margin-bottom:22px}
+.cmx{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:7px 12px;border:1px solid var(--line);border-radius:999px;margin-bottom:20px}
+.cmx i{width:16px;height:11px;background:linear-gradient(90deg,#006847 33%,#fff 33% 66%,#CE1126 66%);border-radius:2px}
+.creds{display:flex;align-items:center;gap:26px;margin-top:40px;flex-wrap:wrap}
+.cr{display:flex;align-items:center;gap:14px}
+.cr img{border-radius:50%;background:#fff}
+.cr small{display:block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.cr b{font-family:Fraunces,Georgia,serif;font-weight:600}
+.cr.sen img{width:84px;height:84px}.cr.sen b{font-size:22px}
+.cr.wh img{width:54px;height:54px;background:none;border-radius:0}.cr.wh b{font-size:15px}
+.sep{width:1px;height:56px;background:var(--line)}
+/* herramientas */
+.tool{display:flex;flex-direction:column;gap:6px}
+.tool .who{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.tool h3{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:28px}
+/* barras */
+.bars{margin-top:30px;display:grid;gap:14px;max-width:880px}
+.bar{display:grid;grid-template-columns:minmax(150px,280px) 1fr 54px;gap:14px;align-items:center}
+.bar .l{font-weight:700;font-size:15px}.bar .l small{display:block;color:var(--dim);font-weight:600;font-size:12.5px}
+.bar .t{height:16px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.bar .t i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--y),var(--c));width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.bar.lo .t i{background:var(--m)}.bar.ref{opacity:.6}.bar.ref .t i{background:repeating-linear-gradient(90deg,#a3bccb 0 6px,transparent 6px 10px)}
+.bar .v{font-family:Fraunces,Georgia,serif;font-size:24px;font-weight:600;text-align:right}
+@media (max-width:600px){.bar{grid-template-columns:1fr 46px}.bar .t{grid-column:1/-1;grid-row:2}}
+.on .bar .t i{width:var(--w)}
+/* flujo */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;counter-reset:f}
+.flow div{counter-increment:f;border-top:2px solid var(--c);padding-top:16px}
+.flow div::before{content:"0" counter(f);font-family:Fraunces,Georgia,serif;font-size:30px;color:var(--c);display:block;margin-bottom:8px}
+@media (max-width:700px){.flow{grid-template-columns:1fr}}
+/* senado */
+.sen-g{display:grid;grid-template-columns:260px 1fr;gap:34px;margin-top:30px;align-items:start}
+@media (max-width:800px){.sen-g{grid-template-columns:1fr}}
+.sen-who img{width:120px;height:120px;border-radius:50%;background:#fff;margin-bottom:14px}
+.sen-who b{display:block;font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:600}
+.sen-who span{display:block;color:var(--dim);font-size:14px;margin-top:4px;line-height:1.4}
+blockquote{font-family:Fraunces,Georgia,serif;font-size:clamp(19px,1.9vw,25px);line-height:1.45;color:#fff;border-left:3px solid var(--m);padding-left:22px}
+.qc{margin-top:14px;padding-left:25px;font-size:13px;color:var(--dim)}.qc b{color:#fff}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.tl div{border-top:2px solid var(--line);padding-top:12px}
+.tl div.now{border-color:var(--m)}
+.tl b{display:block;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.tl .now b{color:var(--m)}
+.tl span{display:block;font-size:15px;margin-top:6px;color:var(--soft);line-height:1.4}
+@media (max-width:800px){.tl{grid-template-columns:1fr 1fr}}
+/* faro */
+.arch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:30px;align-items:stretch}
+.arch .shot{border-radius:20px;overflow:hidden;border:1px solid var(--line)}
+.arch .shot img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:800px){.arch{grid-template-columns:1fr}.arch .shot{max-height:260px}}
+.labs{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.labs img{height:30px;width:auto;max-width:110px;display:block}
+.labs span{display:flex;align-items:center;justify-content:center;padding:10px 16px;background:#fff;border-radius:14px}
+.srcs{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.srcs img.dk{background:#12293a;border:1px solid var(--line)}
+.srcs img{height:40px;width:auto;max-width:150px;background:#fff;border-radius:12px;padding:8px 12px;object-fit:contain}
+/* cierre */
+.end{background:radial-gradient(80% 80% at 80% 30%,rgba(139,92,246,.22),transparent 60%),var(--bg)}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:16px;padding:14px 22px;border-radius:999px;background:var(--c);color:#022a30;margin-top:28px}
+.btn.gh{background:transparent;color:#fff;border:1.5px solid var(--m);margin-left:10px}
+.url{font-family:Fraunces,Georgia,serif;font-size:clamp(28px,4vw,48px);color:var(--c);margin-top:10px}
+.foot{position:absolute;left:0;right:0;bottom:22px;text-align:center;font-size:13px;color:var(--dim)}
+/* navegación */
+.nav{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:10}
+.nav a{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);display:block;transition:background .3s,transform .3s}
+.nav a.on{background:var(--m);transform:scale(1.4)}
+.cnt{position:fixed;left:20px;bottom:18px;font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--dim);z-index:10}
+@media (max-width:600px){.nav,.cnt{display:none}html{scroll-snap-type:y proximity}}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s}
+.on .rv{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<section class="s cover" id="s1"><div class="bg" aria-hidden="true"></div><div class="in">
+  <img class="ico rv" src="/obs/img/brand/icono.webp" alt="">
+  <div class="cmx rv"><i aria-hidden="true"></i>Capítulo México</div>
+  <h1 class="rv">Observatorio Latinoamericano<br>de Enfermedades Poco Frecuentes</h1>
+  <p class="lead rv">Una plataforma pública que reúne lo que se sabe, mide lo que falta y acompaña a familias, médicos y a quienes deciden.</p>
+  <div class="creds rv">
+    <div class="cr sen"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura"><div><small>Con el respaldo del</small><b>Senado de la República</b></div></div>
+    <span class="sep" aria-hidden="true"></span>
+    <div class="cr wh"><img src="/obs/img/brand/28wh.svg" alt="Twentyeight Women's Health"><div><small>Una iniciativa de</small><b>Twentyeight Women's Health</b></div></div>
+  </div>
+</div></section>
+
+<section class="s" id="s2"><div class="in">
+  <span class="k m rv">El problema</span>
+  <h2 class="rv">En Europa ya se mide cuánto tarda un diagnóstico. En Latinoamérica, todavía no.</h2>
+  <div class="grid g4 rv">
+    <div class="stat"><b>4.7 años</b><span>tarda en promedio un diagnóstico en Europa</span></div>
+    <div class="stat"><b>10.4 años</b><span>esperan los adolescentes, el grupo con mayor retraso</span></div>
+    <div class="stat"><b>× 2.6</b><span>más probabilidad de retraso tras consultar a más de 10 especialistas</span></div>
+    <div class="stat"><b>× 2.1</b><span>si hay que salir de la propia región para ver a un especialista</span></div>
+  </div>
+  <p class="lead rv">En México se estima que entre <b>8 y 10 millones de personas</b> viven con una enfermedad poco frecuente. No hay censo nacional: nadie sabe cuántas son, dónde viven ni dónde se atienden.</p>
+  <p class="note rv">Fuentes: <a href="https://www.eurordis.org/survey-reveals-lengthy-diagnostic-delays" target="_blank" rel="noopener">EURORDIS, Rare Barometer 2024</a> · <a href="https://repisalud.isciii.es/entities/publication/feeadffd-12e4-49be-a62e-cda35bb99713" target="_blank" rel="noopener">Benito-Lozano et al., 2022</a> · Excélsior, feb. 2026.</p>
+</div></section>
+
+<section class="s" id="s3"><div class="in">
+  <span class="k y rv">La propuesta</span>
+  <h2 class="rv">Un observatorio que mide. Un acervo que acompaña.</h2>
+  <div class="arch rv">
+    <div class="shot"><img src="/obs/img/brand/faro-3d.webp" alt="El faro del Observatorio: una torre con piel de cebra coronada por un ojo con iris de colores" loading="lazy"></div>
+    <div class="card"><span class="tag y">El Observatorio</span><h3>Mide y da la cara</h3><p>Publica el Atlas y los informes, cuenta a las personas que viven con estas enfermedades y lleva los datos a quienes deciden.</p></div>
+    <div class="card"><span class="tag">El Acervo</span><h3>Reúne y responde</h3><p>Fichas, videos y asistentes que responden solo con información revisada y citan su fuente. Hoy: <b data-n="fichas">219</b> fichas sobre <b data-n="enf">18</b> enfermedades y <b data-n="pts">147</b> puntos de atención.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="s4"><div class="in">
+  <span class="k rv">Qué hay dentro</span>
+  <h2 class="rv">Una herramienta para cada quien, con la fuente siempre a la vista</h2>
+  <div class="grid g4 rv">
+    <div class="card tool"><span class="who">Familias y pacientes</span><h3>Rumbo</h3><p>Acompaña después del diagnóstico, o mientras se busca: cuidados en casa, trámites, apoyos y a dónde acudir. Por escrito o por voz, de tú y sin tecnicismos.</p></div>
+    <div class="card tool"><span class="who">Médicos</span><h3>Clara</h3><p>Orienta al médico de primer contacto: escucha el caso, pregunta lo que más cambia la sospecha y dice a dónde referir. Acceso con cédula profesional. No diagnostica.</p></div>
+    <div class="card tool"><span class="who">Quien decide</span><h3>Atlas</h3><p>El mapa de México con hospitales con experiencia, asociaciones, ensayos clínicos y el tamiz neonatal por institución y por estado.</p></div>
+    <div class="card tool"><span class="who">Todos</span><h3>Acervo</h3><p>La base de conocimiento que alimenta todo lo anterior, con directorio de asociaciones de pacientes.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="s5"><div class="in">
+  <span class="k g rv">El censo</span>
+  <h2 class="rv">Contar a quienes ya tienen diagnóstico</h2>
+  <div class="grid g2 rv" style="align-items:center">
+    <div>
+      <p>Cuando una familia tiene la enfermedad confirmada por un estudio o un especialista, se registra en el Observatorio: <b>sin nombre</b>, con la enfermedad, cómo se confirmó, la edad, el estado donde vive y dónde se atiende.</p>
+      <p style="margin-top:14px">Con eso el Observatorio publica cifras agregadas por enfermedad y por estado: la información que un Registro Nacional necesita para arrancar.</p>
+    </div>
+    <div class="card" style="text-align:center"><span class="tag g">Registros hoy</span><div class="big" id="censo">0</div><p style="margin-top:8px">personas con diagnóstico confirmado</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="s6"><div class="in">
+  <span class="k y rv">Tamiz neonatal</span>
+  <h2 class="rv">Lo que se busca al nacer depende de dónde naces</h2>
+  <p class="lead rv">Enfermedades que detecta el tamiz según la institución donde nace el bebé:</p>
+  <div class="bars rv" id="bars"></div>
+  <p class="lead rv" style="margin-top:22px"><b id="sindato">21</b> de 32 estados no tienen un dato público sobre su tamiz. El Atlas los muestra en el mapa.</p>
+  <p class="note rv" id="barsrc">Fuentes: CNEGSR 2022; IMSS, Boletín 058/2026; Rev Mex Pediatr 2023; UNAM 2024.</p>
+</div></section>
+
+<section class="s" id="s7"><div class="in">
+  <span class="k rv">Cómo está hecho</span>
+  <h2 class="rv">El conocimiento de los laboratorios, convertido en respuestas con fuente</h2>
+  <div class="flow rv">
+    <div><h3>Aportan</h3><p>Cada laboratorio comparte el conocimiento científico de su área terapéutica: estudios, guías, materiales para pacientes.</p></div>
+    <div><h3>Se valida</h3><p>Un comité médico y representantes de las asociaciones de pacientes revisan cada ficha antes de publicarla.</p></div>
+    <div><h3>Responde con fuente</h3><p>Rumbo, Clara y el Atlas usan solo ese corpus y citan de dónde sale cada dato. Conocimiento, no producto.</p></div>
+  </div>
+  <p class="note rv" style="margin-top:30px">Laboratorios con tratamientos en México para enfermedades del Acervo:</p>
+  <div class="labs rv">
+    <span><img src="/obs/img/labs/sanofi.svg" alt="Sanofi"></span><span><img src="/obs/img/labs/takeda.svg" alt="Takeda"></span><span><img src="/obs/img/labs/biomarin.svg" alt="BioMarin"></span><span><img src="/obs/img/labs/pfizer.svg" alt="Pfizer"></span><span><img src="/obs/img/labs/novartis.svg" alt="Novartis"></span><span><img src="/obs/img/labs/roche.svg" alt="Roche"></span><span><img src="/obs/img/labs/biogen.svg" alt="Biogen"></span><span><img src="/obs/img/labs/vertex.svg" alt="Vertex"></span><span><img src="/obs/img/labs/bayer.svg" alt="Bayer"></span><span><img src="/obs/img/labs/abbott.svg" alt="Abbott"></span>
+  </div>
+  <p class="note rv">Fuentes públicas del Acervo:</p>
+  <div class="srcs rv"><img src="/obs/img/fuentes/imss.svg" alt="IMSS"><img src="/obs/img/fuentes/unam.webp" alt="UNAM"><img src="/obs/img/fuentes/acta-pediatrica.webp" alt="Acta Pediátrica de México"><img class="dk" src="/obs/img/fuentes/nlm.svg" alt="National Library of Medicine"><img src="/obs/img/fuentes/medlineplus.webp" alt="MedlinePlus"><img src="/obs/img/fuentes/orphanet.webp" alt="Orphanet"><img class="dk" src="/obs/img/fuentes/nord.webp" alt="NORD"><img src="/obs/img/fuentes/wfh.svg" alt="World Federation of Hemophilia"></div>
+</div></section>
+
+<section class="s" id="s8"><div class="in">
+  <span class="k v rv">Asociaciones de pacientes</span>
+  <h2 class="rv">Su causa, en el centro del Acervo</h2>
+  <p class="lead rv">Las asociaciones participan sin costo. Aportan la cercanía con las familias y validan lo que se publica de su enfermedad; el Observatorio les da visibilidad, herramientas y todo el conocimiento del Acervo.</p>
+  <div class="grid g4 rv">
+    <div class="card"><span class="tag m">Visibilidad</span><h3>Ficha propia</h3><p>Perfil en el directorio y presencia en el Atlas, en Rumbo y en Clara cuando alguien pregunta por su enfermedad.</p></div>
+    <div class="card"><span class="tag v">Contenido</span><h3>Voz en el Acervo</h3><p>Testimonios, guías y eventos. Revisan lo que se dice de su enfermedad antes de publicarse.</p></div>
+    <div class="card"><span class="tag g">Herramientas</span><h3>Para crecer</h3><p>El censo del Observatorio, convocatorias de financiamiento y materiales para su incidencia.</p></div>
+    <div class="card"><span class="tag y">Sin costo</span><div class="big" style="font-size:64px;color:var(--y)">$0</div><p>Lo sostienen laboratorios que patrocinan conocimiento, no producto.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="s9"><div class="in">
+  <span class="k m rv">Desde el Senado</span>
+  <h2 class="rv">Legislar con datos: el Registro Nacional y el Observatorio</h2>
+  <div class="sen-g rv">
+    <div class="sen-who"><img src="/obs/img/brand/senado-lxvi.webp" alt="Senado de la República, LXVI Legislatura"><b>Sen. Emmanuel Reyes Carmona</b><span>Presidente de la Comisión de Economía · Integrante de la Comisión de Salud</span><span style="margin-top:10px">Principal promotor del Registro Nacional de pacientes con enfermedades poco frecuentes.</span></div>
+    <figure><blockquote>En México hay familias que tardan años en ponerle nombre a lo que vive su hija o su hijo. Con el Registro Nacional queremos que el Estado sepa cuántas personas viven con una enfermedad poco frecuente y dónde están. El Observatorio nos da algo igual de urgente: un mapa claro de dónde hay atención y dónde no, y un lugar donde las familias y los médicos encuentran información confiable. Desde el Senado respaldamos este esfuerzo, porque legislar con datos es legislar con justicia.</blockquote>
+      <figcaption class="qc"><b>Sen. Emmanuel Reyes Carmona</b> · Propuesta de mensaje, por validar con su equipo</figcaption></figure>
+  </div>
+  <div class="tl rv">
+    <div><b>25 y 26 feb 2026</b><span>Primer Foro Bicameral sobre enfermedades poco frecuentes, en el Senado</span></div>
+    <div><b>15 abr 2026</b><span>Diputados aprueba el Registro Nacional con 440 votos y lo envía al Senado</span></div>
+    <div><b>30 sep 2026</b><span>Encuentro Iberoamericano en el Senado: se pide aprobar la minuta</span></div>
+    <div class="now"><b>28 oct 2026</b><span>Conversatorio: la financiación de los tratamientos y las experiencias europeas</span></div>
+  </div>
+  <p class="note rv">Fuentes de la cronología: N+ (16 abr 2026), LaSalud.mx (1 mar 2026), Argonmexico (1 oct 2026).</p>
+</div></section>
+
+<section class="s" id="s10"><div class="in">
+  <span class="k g rv">Lo que aporta al Registro</span>
+  <h2 class="rv">Los datos que un Registro Nacional necesita para arrancar, desde el primer día</h2>
+  <div class="grid g3 rv">
+    <div class="card"><span class="tag">Dónde hay atención</span><div class="stat"><b data-n="hosp">66</b><span>hospitales con experiencia ubicados en el Atlas, y los estados sin un solo punto</span></div></div>
+    <div class="card"><span class="tag y">Qué se busca al nacer</span><div class="stat"><b><span data-n="sindato">21</span> de 32</b><span>estados sin dato público sobre su tamiz neonatal</span></div></div>
+    <div class="card"><span class="tag g">Quiénes son</span><div class="stat"><b data-n="censo2">0</b><span>personas con diagnóstico confirmado en el censo del Observatorio</span></div></div>
+  </div>
+</div></section>
+
+<section class="s end" id="s11"><div class="in">
+  <span class="k rv">En funcionamiento</span>
+  <h2 class="rv">El Observatorio ya está en línea</h2>
+  <div class="url rv">pocofrecuentes.com</div>
+  <div class="rv"><a class="btn" href="https://www.pocofrecuentes.com/" target="_blank" rel="noopener">Abrir el sitio ↗</a><a class="btn gh" href="https://www.pocofrecuentes.com/medicos" target="_blank" rel="noopener">Acceso para médicos ↗</a></div>
+</div><p class="foot">© Polar Multimedia 2026 · Plataforma desarrollada y operada por Polar Multimedia</p></section>
+
+<nav class="nav" id="nav" aria-label="Diapositivas"></nav>
+<div class="cnt" id="cnt" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var S=[].slice.call(document.querySelectorAll('.s')),nav=document.getElementById('nav'),cnt=document.getElementById('cnt'),cur=0;
+  S.forEach(function(s,i){var a=document.createElement('a');a.href='#'+s.id;a.setAttribute('aria-label','Diapositiva '+(i+1));nav.appendChild(a);});
+  var dots=[].slice.call(nav.children);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');cur=S.indexOf(e.target);dots.forEach(function(d,i){d.classList.toggle('on',i===cur);});cnt.textContent=String(cur+1).padStart(2,'0')+' / '+String(S.length).padStart(2,'0');}});},{threshold:.45});
+  S.forEach(function(s){io.observe(s);});
+  function go(i){i=Math.max(0,Math.min(S.length-1,i));S[i].scrollIntoView({behavior:'smooth'});}
+  document.addEventListener('keydown',function(e){if(/^(ArrowDown|ArrowRight|PageDown| )$/.test(e.key)){e.preventDefault();go(cur+1);}else if(/^(ArrowUp|ArrowLeft|PageUp)$/.test(e.key)){e.preventDefault();go(cur-1);}else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);});
+  function set(k,v){[].forEach.call(document.querySelectorAll('[data-n="'+k+'"]'),function(el){el.textContent=v;});}
+  function bars(panel){var mx=Math.max.apply(null,panel.map(function(p){return p.v;}));
+    document.getElementById('bars').innerHTML=panel.map(function(p,i){var ref=/Referencia/i.test(p.n);
+      return '<div class="bar'+(ref?' ref':'')+(i===0?' lo':'')+'"><span class="l">'+p.n.replace(/\s*\(.*\)/,'')+'<small>'+(p.nota||'')+'</small></span><span class="t"><i style="--w:'+(p.v/mx*100)+'%"></i></span><span class="v">'+p.v+'</span></div>';}).join('');}
+  fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
+    set('fichas',d.corpus.length);var base=['eb','gaucher','fabry','mps'];set('enf',base.length+d.enfermedades.filter(function(e){return base.indexOf(e.key)<0;}).length);set('pts',d.atlas.pts.length);
+    set('hosp',d.atlas.pts.filter(function(p){return p.l==='h';}).length);
+    var sd=(d.tamiz.estados||[]).filter(function(e){return e.cat==='sin_dato';}).length;set('sindato',sd);document.getElementById('sindato').textContent=sd;
+    if(d.tamiz.panel)bars(d.tamiz.panel);
+  }).catch(function(){});
+  fetch('/api/registro').then(function(r){return r.ok?r.json():null;}).then(function(c){if(c){document.getElementById('censo').textContent=c.total;set('censo2',c.total);}}).catch(function(){});
+})();
+</script>
+</body>
+</html>

@@ -46,6 +46,7 @@ function bindSeg(root,fn){$$('.seg button',root).forEach(function(b){b.onclick=f
 
 /* ---------- perfil de entrada: familia o médico ---------- */
 var PERFIL=null;try{PERFIL=localStorage.getItem('obs-perfil');}catch(e){}
+if(PERFIL!=='med')PERFIL='fam';
 function tx(t,u){return PERFIL==='fam'?t:u;}
 function applyPerfil(){var b=document.body;b.classList.toggle('fam',PERFIL==='fam');b.classList.toggle('med',PERFIL==='med');b.classList.toggle('pres',PERFIL==='pres');
   if(PERFIL==='med'||PERFIL==='pres'){MED=true;try{sessionStorage.setItem('obs-medico','1');}catch(e){}}else if(PERFIL==='fam'){MED=false;try{sessionStorage.removeItem('obs-medico');}catch(e){}}
@@ -100,10 +101,10 @@ function entrada(o){o=o||{};var old=document.getElementById('entrada');if(old)ol
     '<div class="en-opts" id="eno">'+
      '<button type="button" class="en-o fam" data-p="fam"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><small>Soy paciente o familiar</small><b>Entrar</b><span>Rumbo, el Acervo, el Atlas y las asociaciones, con palabras sencillas.</span></button>'+
      '<button type="button" class="en-o med" data-p="med"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><small>Soy médico o profesional de la salud</small><b>Entrar</b><span>Todo lo anterior y Clara, la herramienta de orientación clínica.</span></button>'+
-    '</div><p class="en-n" id="enn">Puedes cambiarlo cuando quieras desde el menú.</p><button type="button" class="en-pres" id="enp">Modo presentación</button></div>';
+    '</div><p class="en-n" id="enn"></p></div>';
   document.body.appendChild(d);document.body.classList.add('en-open');
   var box=$('#eno',d),sub=$('#ens',d);
-  function hideFoot(){$('#enn',d).hidden=true;$('#enp',d).hidden=true;}
+  function hideFoot(){$('#enn',d).hidden=true;}
   function shut(){d.classList.add('out');document.body.classList.remove('en-open');setTimeout(function(){d.remove();},500);}
   function close(p){setPerfil(p);shut();
     if(!/^#\/(clara|rumbo|atlas|acervo|asociaciones)/.test(location.hash)||(p==='fam'&&/clara/.test(location.hash)))location.hash='#/';else route();}
@@ -114,13 +115,12 @@ function entrada(o){o=o||{};var old=document.getElementById('entrada');if(old)ol
      '<div class="en-qo"><button class="btn" type="button" id="enq1">Sí, ya está confirmado</button><button class="btn ghost" type="button" id="enq2">Todavía no, estamos buscando</button></div><button class="en-back" type="button" id="enb">← Volver</button></div>';
     $('#enq1').onclick=function(){sub.textContent='Un registro breve y entras.';censoForm(box,function(){close('fam');});};
     $('#enq2').onclick=function(){close('fam');};$('#enb').onclick=function(){entrada();};$('#enq1').focus();};
-  $('#enp',d).onclick=function(){close('pres');};
-  $('.en-o.med',d).onclick=function(){hideFoot();var ced='';try{ced=localStorage.getItem('obs-cedula')||'';}catch(e){}
+    $('.en-o.med',d).onclick=function(){hideFoot();var ced='';try{ced=localStorage.getItem('obs-cedula')||'';}catch(e){}
     box.innerHTML='<form class="en-conf" id="enc"><b>Clara es exclusiva para profesionales de la salud.</b>'+
     '<div class="field"><label for="encd">Cédula profesional</label><input id="encd" inputmode="numeric" maxlength="8" autocomplete="off" required value="'+esc(ced)+'" placeholder="7 u 8 dígitos"></div>'+
     '<label class="ckl"><input type="checkbox" id="enck" required> Confirmo que soy médico o profesional de la salud.</label><p class="en-err" id="ence" aria-live="polite"></p>'+
-    '<div class="factions"><button class="btn" type="submit">Entrar</button><button class="btn ghost" type="button" id="enb">Volver</button></div></form>';
-    $('#encd').focus();$('#encd').oninput=function(){this.value=this.value.replace(/\D/g,'');};$('#enb').onclick=function(){entrada();};
+    '<div class="factions"><button class="btn" type="submit">Entrar</button><button class="btn ghost" type="button" id="enb">Cancelar</button></div></form>';
+    $('#encd').focus();$('#encd').oninput=function(){this.value=this.value.replace(/\D/g,'');};$('#enb').onclick=function(){shut();};
     $('#enc').onsubmit=function(e){e.preventDefault();var c=$('#encd').value.trim(),er=$('#ence');
       if(!/^\d{7,8}$/.test(c)){er.textContent='Escribe tu cédula profesional: 7 u 8 dígitos.';$('#encd').focus();return;}
       if(!$('#enck').checked){er.textContent='Confirma que eres profesional de la salud.';return;}
@@ -311,9 +311,7 @@ V.inicio=function(){
      '<b>Sen. Emmanuel Reyes Carmona</b><span>Presidente de la Comisión de Economía · Integrante de la Comisión de Salud</span>'+
      '<p>Principal promotor del Registro Nacional de pacientes con enfermedades poco frecuentes. Convocó el Primer Foro Bicameral en el Senado.</p></div>'+
     '<div class="sn-q sn-pub pub-only"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><p class="sn-lead">El Registro Nacional de pacientes con enfermedades poco frecuentes, aprobado por la Cámara de Diputados en abril de 2026, fue turnado al Senado.</p><p>El Observatorio pone a disposición de legisladores, médicos y familias los datos públicos que un registro necesita para arrancar: dónde hay atención, qué se busca al nacer en cada institución y en qué estados no hay información.</p><a class="go" href="#/atlas">Ver el Atlas →</a></div>'+
-    '<figure class="sn-q pres-only"><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><blockquote>En México hay familias que tardan años en ponerle nombre a lo que vive su hija o su hijo. Con el Registro Nacional queremos que el Estado sepa cuántas personas viven con una enfermedad poco frecuente y dónde están. El Observatorio nos da algo igual de urgente: un mapa claro de dónde hay atención y dónde no, y un lugar donde las familias y los médicos encuentran información confiable. Desde el Senado respaldamos este esfuerzo, porque legislar con datos es legislar con justicia.</blockquote>'+
-     '<figcaption><b>Sen. Emmanuel Reyes Carmona</b><i>Propuesta de mensaje · por validar con su equipo</i></figcaption></figure>'+
-   '</div>'+
+       '</div>'+
    '<div class="sn-t">'+[['25 y 26 feb 2026','Primer Foro Bicameral sobre enfermedades poco frecuentes, en el Senado'],['15 abr 2026','La Cámara de Diputados aprueba el Registro Nacional con 440 votos y lo envía al Senado'],['30 sep 2026','Encuentro Iberoamericano en el Senado: se pide aprobar la minuta'],['28 oct 2026','Conversatorio: la financiación de los tratamientos y las experiencias europeas']].map(function(t,i){return '<div class="'+(i===3?'now':'')+'"><b>'+t[0]+'</b><span>'+t[1]+'</span></div>';}).join('')+'</div>'+
    '<h3 style="margin-top:26px">Lo que el Observatorio aporta al Registro</h3>'+
    '<div class="flow3 two"><div><b>Dónde hay atención</b><span>El Atlas ubica '+PD.atlas.pts.filter(function(p){return p.l==='h';}).length+' hospitales con experiencia y muestra los estados sin un solo punto.</span></div>'+
@@ -323,25 +321,7 @@ V.inicio=function(){
   '</div></section>'+
   '</div>'+
   '<section class="srcband" aria-label="Fuentes de información del Acervo"><div class="wrap"><p class="lb-k">El Acervo se nutre de fuentes públicas como</p><div class="srcrow"><img src="/obs/img/fuentes/imss.svg" alt="Instituto Mexicano del Seguro Social" title="Instituto Mexicano del Seguro Social" loading="lazy"><img src="/obs/img/fuentes/unam.webp" alt="Universidad Nacional Autónoma de México" title="Universidad Nacional Autónoma de México" loading="lazy"><img src="/obs/img/fuentes/acta-pediatrica.webp" alt="Acta Pediátrica de México" title="Acta Pediátrica de México" loading="lazy"><img src="/obs/img/fuentes/nlm.svg" alt="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" title="National Library of Medicine (NIH): ClinicalTrials.gov y PubMed Central" loading="lazy"><img src="/obs/img/fuentes/medlineplus.webp" alt="MedlinePlus" title="MedlinePlus" loading="lazy"><img src="/obs/img/fuentes/orphanet.webp" alt="Orphanet" title="Orphanet" loading="lazy"><img src="/obs/img/fuentes/nord.webp" alt="National Organization for Rare Disorders" title="National Organization for Rare Disorders" loading="lazy"><img src="/obs/img/fuentes/wfh.svg" alt="World Federation of Hemophilia" title="World Federation of Hemophilia" loading="lazy"></div><p class="note">Cada ficha enlaza a su fuente original. Citar una fuente no implica su aval.</p></div></section>'+
-  '<div class="pres-only">'+
-  '<section class="blk"><div class="wrap">'+
-   '<span class="kick y">Cómo está hecho</span><h2>Un observatorio que mide. Un acervo que acompaña.</h2>'+
-   '<div class="arch"><div class="brandshot"><img src="/obs/img/brand/faro-3d.webp" alt="El faro del Observatorio: una torre con piel de cebra, el símbolo de las enfermedades poco frecuentes, coronada por un ojo con iris de colores y rodeada de rayos de luz en forma de manos" loading="lazy"></div>'+
-    '<div class="card"><span class="pill y">El Observatorio</span><h3 style="margin-top:10px">Mide y da la cara</h3><p>Publica el Atlas y los informes, lleva los datos al Senado y firma los informes. Tiene consejo honorífico y presidencia médica.</p></div>'+
-    '<div class="card"><span class="pill">El Acervo</span><h3 style="margin-top:10px">Reúne y responde</h3><p>Fichas, entrevistas, videos y asistentes que responden solo con información aprobada. Hoy contiene <b>'+nFichas+' fichas con fuente</b>, <b>'+nVid+' videos</b> y <b>'+nPts+' puntos de atención</b> sobre '+ENF.length+' enfermedades.</p></div>'+
-   '</div>'+
-   '<p class="sub" style="margin-top:18px">Enfermedades que hoy cubre el Acervo: '+esc(ENF.map(function(e){return e.nombre.replace(/^Enfermedad de /,'');}).join(', '))+'.</p>'+
-  '</div></section>'+
-
-  '<section class="blk"><div class="wrap">'+
-   '<span class="kick">El corpus del Acervo</span><h2>El conocimiento de los laboratorios, convertido en respuestas con fuente</h2>'+
-   '<p class="sub">Los laboratorios que investigan y tratan estas enfermedades en México guardan años de conocimiento: estudios, guías, materiales para pacientes. El Observatorio lo convierte en el corpus del Acervo, para que Rumbo, Clara y el Atlas respondan solo con información revisada.</p>'+
-   '<div class="flow3"><div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Aportan</b><span>Cada laboratorio comparte el conocimiento científico de su área terapéutica.</span></div>'+
-    '<div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Se valida</b><span>Un comité médico y las asociaciones de pacientes revisan cada ficha antes de publicarla.</span></div>'+
-    '<div><img src="/obs/img/brand/rayos-fan.svg" alt="" aria-hidden="true"><b>Responde con fuente</b><span>Los asistentes solo usan ese corpus y citan de dónde sale cada dato. Conocimiento, no producto.</span></div></div>'+
-   '<p class="note" style="margin-top:14px">Los laboratorios de la cinta tienen medicamentos en México para enfermedades del Acervo (Cuadro Básico del IMSS, julio de 2026, y autorizaciones de Cofepris).</p>'+
-  '</div></section>'+
-  '</div>';
+  '';
   heroVideo();bindLabs();
 };
 
@@ -951,8 +931,7 @@ V.atlas=function(q){
 
 /* ---------- Asociaciones (luz clara) ---------- */
 V.asociaciones=function(q){
-  if(PERFIL!=='pres')return asocDir(q||{});
-  asocPres();};
+  return asocDir(q||{});};
 function asocDir(q){
   var fam=PERFIL==='fam',dis=DIS[q.d]?q.d:'all',col=['c-m','c-b','c-v','c-g','c-p'];
   view.innerHTML='<section class="pg"><div class="wrap">'+
@@ -978,29 +957,10 @@ function asocDir(q){
       :'<div class="tile s4"><p>'+(fam?'Todavía no tenemos registrada una asociación para esta enfermedad. Mira abajo cómo encontrar apoyo.':'No hay una asociación registrada para esta enfermedad. Vea abajo otras opciones.')+'</p></div>';}
   $('#adz').onchange=function(){dis=this.value;list();};
   list();}
-function asocPres(){
-  var A=PD.atlas.pts.filter(function(p){return p.l==='a';}),col=['c-m','c-b','c-v','c-g','c-p'];
-  view.innerHTML='<section class="pg"><div class="wrap">'+
-   '<div class="pg-h"><div><span class="tk c-m">Para asociaciones de pacientes</span><h1>Su causa, en el centro del Acervo</h1><p>Las asociaciones participan sin costo. Aportan la cercanía con las familias y validan lo que se publica de su enfermedad; el Observatorio les da visibilidad, herramientas y todo el conocimiento del Acervo.</p></div></div>'+
-   '<div class="bento">'+
-    '<div class="tile c-p"><span class="tk">Visibilidad</span><h3>Ficha propia</h3><p>Perfil en el directorio y presencia en el Atlas, en Rumbo y en Clara cuando alguien pregunta por su enfermedad.</p></div>'+
-    '<div class="tile c-v"><span class="tk">Contenido</span><h3>Voz en el Acervo</h3><p>Testimonios, guías y eventos. Revisan y aprueban lo que se dice de su enfermedad antes de publicarse.</p></div>'+
-    '<div class="tile c-g"><span class="tk">Herramientas</span><h3>Para crecer</h3><p>Registro de pacientes con consentimiento, convocatorias de financiamiento y materiales para su incidencia.</p></div>'+
-    '<div class="tile ink"><span class="tk" style="color:#FF8FB1">Sin costo</span><div class="big">$0</div><p style="color:#cfd8e3">El Observatorio lo sostienen laboratorios que patrocinan conocimiento, no producto.</p></div>'+
-    A.map(function(p,i){return '<article class="tile s2 '+col[i%5]+'"><span class="tk">'+p.d.map(function(k){return DSHORT[k];}).join(' · ')+'</span><h3>'+esc(p.n)+'</h3><p class="note">'+esc(p.c)+'</p><p>'+esc(p.x)+'</p><a class="src" href="'+esc(p.u)+'" target="_blank" rel="noopener">Fuente ↗</a></article>';}).join('')+
-    '<form class="tile s2 c-y" id="join"><span class="tk">Súmese</span><h3>Solicitud para formar parte</h3>'+
-     '<div class="field"><label for="jn">Nombre de la asociación</label><input id="jn" required></div>'+
-     '<div class="field"><label for="je">Enfermedad o grupo de enfermedades</label><input id="je" required></div>'+
-     '<div class="field"><label for="jc">Ciudad o estado</label><input id="jc"></div>'+
-     '<button class="btn" type="submit" style="align-self:flex-start">Enviar solicitud</button><p class="note" id="jmsg">Al enviar se abre un correo dirigido al equipo del Observatorio.</p></form>'+
-   '</div></div></section>';
-  $('#join').onsubmit=function(e){e.preventDefault();var b='Asociación: '+$('#jn').value+'\nEnfermedad o grupo: '+$('#je').value+'\nCiudad o estado: '+$('#jc').value;
-    location.href='mailto:'+CONTACTO+'?subject='+encodeURIComponent('Solicitud para formar parte del Observatorio: '+$('#jn').value)+'&body='+encodeURIComponent(b);
-    $('#jmsg').textContent='Se abrió tu correo con la solicitud. Envíalo y el equipo del Observatorio te responderá.';};
-};
+
 
 /* ---------- liga directa al modo presentación ---------- */
-V.presentacion=function(){setPerfil('pres');var e=document.getElementById('entrada');if(e){e.remove();document.body.classList.remove('en-open');}location.replace('#/');};
+
 
 /* ---------- Barómetro ---------- */
 V.barometro=function(){
@@ -1069,9 +1029,9 @@ fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
   PD=d;C=PD.corpus||[];C.forEach(function(x){CBY[x.id]=x;});initDis(PD.enfermedades);
   cSearch=Index(C,function(x){return x.tema+' '+x.tema+' '+x.texto;});
   RM=PD.rumbo||RM;RM.w.forEach(function(w){RW[w.id]=w;});
-  var LP=location.pathname==='/'?'':(location.pathname.match(/^\/(familias|medicos|presentacion)\/?$/)||[])[1];
-  if(LP==='familias')setPerfil('fam');else if(LP==='presentacion')setPerfil('pres');
+  var LP=(location.pathname.match(/^\/(familias|medicos)\/?$/)||[])[1];
+  if(LP==='familias'&&PERFIL!=='fam')setPerfil('fam');
   applyPerfil();window.addEventListener('hashchange',route);route();
-  if(LP==='medicos'&&PERFIL!=='med'){entrada();var mb=document.querySelector('#entrada .en-o.med');if(mb)mb.click();}else if(!PERFIL||(location.pathname==='/'&&!/^#\/./.test(location.hash)))entrada();
+  if(LP==='medicos'&&PERFIL!=='med')entrada({med:true});
 }).catch(function(){view.innerHTML='<section class="blk"><div class="wrap"><h2>No se pudo cargar el Acervo</h2><p class="lead">Recarga la página.</p></div></section>';});
 })();

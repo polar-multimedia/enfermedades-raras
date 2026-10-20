@@ -49,6 +49,15 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/presentacion(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "cleanUrls": true,
@@ -63,10 +72,6 @@
     },
     {
       "source": "/medicos",
-      "destination": "/observatorio"
-    },
-    {
-      "source": "/presentacion",
       "destination": "/observatorio"
     }
   ]
