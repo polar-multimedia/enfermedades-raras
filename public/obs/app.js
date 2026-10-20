@@ -528,7 +528,7 @@ function picker(root,onPick,opts){opts=opts||{};
 
 /* ---------- Rumbo (luz clara) ---------- */
 V.rumbo=function(q){
-  if(q.v==='1'||q.v==='2'||q.v==='3')return rumbo2(q);
+  if(q.v!=='1'&&q.v!=='3')q.v='2';return rumbo2(q);
   if(!q.d||(!DIS[q.d]&&q.d!=='sin')){
     view.innerHTML='<section class="pg"><div class="wrap narrow">'+
      '<div class="pg-h"><div><span class="tk c-b">'+tx('Para familias y pacientes','Para el médico tratante')+'</span><h1>Rumbo</h1><p>'+tx('No necesitas saber términos médicos. Cuéntanos qué te dijeron o qué notas, y te acompañamos con información aprobada, con la fuente a la vista.','Seguimiento de su paciente fuera del consultorio: confirmación diagnóstica, tratamiento disponible en México, centros de referencia, trámites y apoyos para la familia. Cada dato indica su fuente.')+'</p></div></div>'+
@@ -636,8 +636,8 @@ V.rumbo=function(q){
 
 /* ---------- Rumbo 2: IA escrita con tarjetas y resultados para compartir (?v=1, 2, 3) ---------- */
 function rumbo2(q){var v=q.v,M=PERFIL==='med';
-  var L=function(k){return '#/rumbo?v='+v+(k?'&d='+k:'');};
-  var sw='<div class="avsw"><span>Propuesta de diseño</span>'+[['1','A · Conversación'],['2','B · Hoja'],['3','C · Tarjetas']].map(function(x){return '<a href="'+L(q.d||'').replace('v='+v,'v='+x[0])+'" class="'+(x[0]===v?'on':'')+'">'+x[1]+'</a>';}).join('')+'<a href="#/rumbo'+(q.d?'?d='+q.d:'')+'">Actual</a></div>';
+  var L=function(k){return v==='2'?'#/rumbo'+(k?'?d='+k:''):'#/rumbo?v='+v+(k?'&d='+k:'');};
+  var sw=v==='2'?'':'<div class="avsw"><span>Propuesta de diseño</span>'+[['1','A · Conversación'],['2','B · Hoja'],['3','C · Tarjetas']].map(function(x){return '<a href="'+L(q.d||'').replace('v='+v,'v='+x[0])+'" class="'+(x[0]===v?'on':'')+'">'+x[1]+'</a>';}).join('')+'<a href="#/rumbo'+(q.d?'?d='+q.d:'')+'">Actual</a></div>';
   var kick=tx('Para familias y pacientes','Para el médico tratante');
   if(!q.d||(!DIS[q.d]&&q.d!=='sin')){
     view.innerHTML='<section class="r2 r2-'+v+'">'+sw+'<div class="wrap narrow"><div class="r2-h"><span class="kick m">'+kick+'</span><h1>Rumbo</h1><p>'+tx('Escríbele o díctale con tu voz lo que están viviendo. Te responde con información aprobada, con tarjetas que lo explican y la fuente de cada dato. Puedes compartir cada respuesta.','Seguimiento de su paciente fuera del consultorio: escriba o dicte su pregunta. Cada respuesta cita su fuente y se puede compartir con la familia.')+'</p></div><div class="tile pk-tile" id="pkw"></div></div></section>';
