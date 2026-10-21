@@ -292,9 +292,9 @@ function ribbonDrag(){var R=$('#lg'),T=R&&R.querySelector('.track');if(!T)return
     if(!drag){if(Math.abs(vel)>.02){x+=vel*dt;vel*=Math.pow(.94,dt/16);}
       else if(!rm&&!hover&&!R.classList.contains('paused')&&!document.hidden){x-=.045*dt;}}
     wrap();T.style.transform='translate3d('+x.toFixed(2)+'px,0,0)';R._rd=requestAnimationFrame(tick);}
-  R.addEventListener('pointerdown',function(e){if(e.button!==0)return;drag=true;moved=0;vel=0;sx=lx=e.clientX;sxPos=x;lt=performance.now();R.classList.add('dragging');});
+  R.addEventListener('pointerdown',function(e){if(e.button!==0)return;drag=true;moved=0;vel=0;sx=lx=e.clientX;sxPos=x;lt=performance.now();});
   addEventListener('pointermove',function(e){if(!drag)return;var now=performance.now(),dx=e.clientX-lx;x=sxPos+(e.clientX-sx);moved=Math.max(moved,Math.abs(e.clientX-sx));
-    if(now>lt)vel=.7*vel+.3*(dx/(now-lt));lx=e.clientX;lt=now;if(moved>6&&!R.hasPointerCapture(e.pointerId)){try{R.setPointerCapture(e.pointerId);}catch(_){}}});
+    if(now>lt)vel=.7*vel+.3*(dx/(now-lt));lx=e.clientX;lt=now;if(moved>6&&!R.hasPointerCapture(e.pointerId)){R.classList.add('dragging');try{R.setPointerCapture(e.pointerId);}catch(_){}}});
   function up(){if(!drag)return;drag=false;R.classList.remove('dragging');if(performance.now()-lt>90)vel=0;vel=Math.max(-3,Math.min(3,vel));}
   addEventListener('pointerup',up);addEventListener('pointercancel',up);
   R.addEventListener('click',function(e){if(moved>6){e.stopPropagation();e.preventDefault();moved=0;}},true);
