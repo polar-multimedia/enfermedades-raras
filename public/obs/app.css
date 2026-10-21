@@ -1474,3 +1474,7 @@ body.light .vr a.is-mx .vt2{box-shadow:0 0 0 2px #fbf7f1,0 0 0 4px #006847}
 @media (max-width:440px){.nav a{padding:8px 9px;letter-spacing:.08em;font-size:11.5px}}
 @media (max-width:520px){.red-cta{align-items:flex-start}.red-cta .red-ic{width:32px;height:32px;margin-top:2px}}
 @media (max-width:380px){.nav a{padding:8px 7px;letter-spacing:.04em;font-size:11px}}
+.srcrow span{font:700 15px Manrope,sans-serif;color:rgba(214,232,242,.82);letter-spacing:.01em}
+body.light .srcrow span{color:#4c5664}
+@media (max-width:700px){.srcrow span{font-size:13px}}
+.ribbon .labc{width:170px;height:72px}.ribbon .labc b{font:800 18px Manrope,sans-serif;color:#06121c;letter-spacing:-.01em}
