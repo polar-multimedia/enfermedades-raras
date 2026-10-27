@@ -1460,7 +1460,7 @@ function presSteps(){var D=presData(),n=function(x){return x==null?'—':String(
    m:'Señalar el respaldo del Senado y bajar a «¿Por dónde entras?»: una sola base de conocimiento y una puerta para cada quien.'},
   {h:'#/rumbo',p:'fam',k:'Para familias',t:'Rumbo: qué sigue después del diagnóstico',
    a:'Las familias reciben respuestas claras, de tú, solo con información del Acervo y con la fuente a la vista. Cada respuesta trae un apoyo visual y «Qué hacer ahora», y se puede enviar por WhatsApp o guardar en PDF para llevarla a consulta. No da diagnósticos, dosis ni marcas.',
-   d:[[n(D.enf),'enfermedades'],[n(D.fichas),'fichas con fuente'],['≈ $0.01','costo por respuesta']],
+   d:[[n(D.enf),'enfermedades'],[n(D.fichas),'fichas con fuente'],['WhatsApp','o PDF para llevar a consulta']],
    m:'Elegir una enfermedad y preguntar, por ejemplo: «¿Dónde le hacen el tamiz a mi bebé en el IMSS?».'},
   {h:'#/clara',p:'med',k:'Para médicos de primer contacto',t:'Clara: pensar a tiempo en una enfermedad poco frecuente',
    a:'El pediatra o el médico general describe el caso o sube el resultado del tamiz. Clara ordena los hallazgos por grupo, hace dos o tres preguntas, estima el nivel de sospecha y dice a dónde referir. No diagnostica. Si la sospecha es alta, el médico registra el caso en seguimiento con un folio, sin datos del paciente, e invita a la familia a la Red.',
@@ -1484,7 +1484,7 @@ function presSteps(){var D=presData(),n=function(x){return x==null?'—':String(
    m:'Mostrar las tres situaciones y la bienvenida con folio.'},
   {h:'#/',p:'fam',k:'Lo que sigue',t:'Del Observatorio al Registro Nacional',s:'.senado',
    a:'El Observatorio ya funciona y está en línea. Lo que sigue: convenios con asociaciones e instituciones, un informe anual con las cifras de la Red y poner los datos a disposición del Registro Nacional cuando el Senado lo apruebe.',
-   d:[['En línea','www.pocofrecuentes.com'],['Sin costo','para familias, médicos y asociaciones'],['Senado','respaldo institucional']],
+   d:[['En línea','www.pocofrecuentes.com'],['3','puertas: familias, médicos y quien decide'],['Senado','respaldo institucional']],
    m:'Cerrar en el bloque «Desde el Senado».'}];}
 function presLive(){Promise.all([fetch('/api/registro').then(function(r){return r.json();}).catch(function(){return {};}),fetch('/api/seguimiento').then(function(r){return r.json();}).catch(function(){return {};})]).then(function(a){
   PLIVE.red=a[0].total||0;PLIVE.seg=(a[1].totales||{}).casos||0;if(PI===6)presDraw();});}
