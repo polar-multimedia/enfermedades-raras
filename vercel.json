@@ -58,10 +58,27 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/diapositivas(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "cleanUrls": true,
   "rewrites": [
+    {
+      "source": "/presentacion/diapositivas",
+      "destination": "/diapositivas"
+    },
+    {
+      "source": "/presentacion",
+      "destination": "/observatorio"
+    },
     {
       "source": "/",
       "destination": "/observatorio"

@@ -1444,6 +1444,74 @@ var topEl=document.querySelector('.top');
 function solidHead(){if(topEl)topEl.classList.toggle('solid',scrollY>40||!document.body.classList.contains('home'));}
 addEventListener('scroll',solidHead,{passive:true});
 
+/* ---------- modo presentación (solo en /presentacion, sin enlaces desde el sitio) ---------- */
+var PRES=/^\/presentacion\/?$/.test(location.pathname),PI=0,PLIVE={};
+function presData(){var P=PD.atlas.pts,C0=PD.corpus||[],W=((PD.rumbo||{}).w||[]).filter(function(w){return w.t==='video';});
+  var hs={};P.forEach(function(p){if(p.l==='h')hs[p.s]=1;});
+  var f={};C0.forEach(function(c){if(c.fuente)f[c.fuente]=1;});
+  return {enf:ENF.length,fichas:C0.length,fuentes:Object.keys(f).length,vid:W.length,vidmx:W.filter(function(w){return w.mx;}).length,
+    hosp:P.filter(function(p){return p.l==='h';}).length,asoc:P.filter(function(p){return p.l==='a';}).length,ens:P.filter(function(p){return p.l==='t';}).length,
+    sinT:(PD.tamiz.estados||[]).filter(function(e){return e.cat==='sin_dato';}).length,sinH:32-Object.keys(hs).length,apoyos:APOYOS.length};}
+function presSteps(){var D=presData(),n=function(x){return x==null?'—':String(x);};
+  return [
+  {h:'#/',p:'fam',k:'El problema',t:'Nadie debería navegar solo una enfermedad poco frecuente',
+   a:'En México viven entre 8 y 10 millones de personas con una enfermedad poco frecuente y no existe un censo. En Europa ya se mide cuánto tarda un diagnóstico; aquí todavía no. El Observatorio reúne lo que se sabe, mide lo que falta y lo pone al servicio de familias, médicos y quienes deciden.',
+   d:[['8–10 M','personas en México, sin censo nacional'],['4.7 años','tarda en promedio un diagnóstico en Europa'],['Abr 2026','Diputados aprueba el Registro Nacional; hoy está en el Senado']],
+   m:'Señalar el respaldo del Senado y bajar a «¿Por dónde entras?»: una sola base de conocimiento y una puerta para cada quien.'},
+  {h:'#/rumbo',p:'fam',k:'Para familias',t:'Rumbo: qué sigue después del diagnóstico',
+   a:'Las familias reciben respuestas claras, de tú, solo con información del Acervo y con la fuente a la vista. Cada respuesta trae un apoyo visual y «Qué hacer ahora», y se puede enviar por WhatsApp o guardar en PDF para llevarla a consulta. No da diagnósticos, dosis ni marcas.',
+   d:[[n(D.enf),'enfermedades'],[n(D.fichas),'fichas con fuente'],['≈ $0.01','costo por respuesta']],
+   m:'Elegir una enfermedad y preguntar, por ejemplo: «¿Dónde le hacen el tamiz a mi bebé en el IMSS?».'},
+  {h:'#/clara',p:'med',k:'Para médicos de primer contacto',t:'Clara: pensar a tiempo en una enfermedad poco frecuente',
+   a:'El pediatra o el médico general describe el caso o sube el resultado del tamiz. Clara ordena los hallazgos por grupo, hace dos o tres preguntas, estima el nivel de sospecha y dice a dónde referir. No diagnostica. Si la sospecha es alta, el médico registra el caso en seguimiento con un folio, sin datos del paciente, e invita a la familia a la Red.',
+   d:[[n(D.enf),'enfermedades que orienta'],[n(D.hosp),'centros con experiencia para referir'],['Folio','cada caso queda en seguimiento']],
+   m:'Mostrar la ficha del caso, marcar hallazgos y llegar a la orientación con el medidor de sospecha.'},
+  {h:'#/atlas',p:'fam',k:'Para quien decide',t:'Atlas: dónde hay atención en México y dónde no',
+   a:'Por primera vez en un solo mapa: hospitales con experiencia, asociaciones de pacientes, ensayos clínicos y qué se busca en el tamiz neonatal en cada estado e institución. Los huecos del mapa son el argumento para legislar con datos.',
+   d:[[n(D.hosp),'hospitales con experiencia'],[n(D.ens),'ensayos clínicos'],[D.sinT+' de 32','estados sin dato público de tamiz'],[n(D.sinH),'estados sin hospital identificado']],
+   m:'Activar la capa de tamiz y señalar los estados sin dato.'},
+  {h:'#/acervo',p:'fam',k:'La base de todo',t:'El Acervo: cada dato con su fuente',
+   a:'Todo lo que dicen Rumbo y Clara sale de aquí: fichas de fuentes públicas mexicanas e internacionales, organizadas por enfermedad, y videos de instituciones confiables, primero los mexicanos. Sin contenido de laboratorios. La misma información se presenta con palabras sencillas para familias y en registro clínico para médicos.',
+   d:[[n(D.fichas),'fichas'],[n(D.fuentes),'fuentes públicas'],[n(D.vid),'videos verificados ('+D.vidmx+' mexicanos)']],
+   m:'Abrir una enfermedad y hacer una pregunta en el buscador: la respuesta llega con gráfica, puntos clave y «Qué hacer ahora».'},
+  {h:'#/apoyos',p:'fam',k:'Para familias',t:'Apoyos: asociaciones y programas a los que tienen derecho',
+   a:'Las familias suelen enterarse tarde de los apoyos. Aquí están las asociaciones de pacientes y los programas públicos vigentes, verificados uno por uno y con su liga oficial: pensión, atención gratuita, rehabilitación, escuela y derechos.',
+   d:[[n(D.apoyos),'programas verificados (oct 2026)'],[n(D.asoc),'asociaciones de pacientes'],['079','Receta Completa para reportar un medicamento negado']],
+   m:'Filtrar por una enfermedad y pasar a la pestaña Asociaciones.'},
+  {h:'#/red',p:'fam',k:'El dato que falta',t:'Red de Acompañamiento: cada familia acompañada es un dato para México',
+   a:'Las familias se registran con diagnóstico, con sospecha o mientras siguen buscando, y autorizan por separado qué compartir y con quién. Reciben un folio, su asociación, hospitales cercanos y los apoyos que les tocan. Junto con los casos en seguimiento de Clara, es la base de la cifra que el Registro Nacional necesita.',
+   d:[PLIVE.red>=5?[String(PLIVE.red),'registros en la Red, en vivo']:['Oct 2026','la Red abre sus registros'],PLIVE.seg>=5?[String(PLIVE.seg),'casos en seguimiento de médicos']:['3','situaciones: confirmado, sospecha o en búsqueda'],['4','autorizaciones separadas']],
+   m:'Mostrar las tres situaciones y la bienvenida con folio.'},
+  {h:'#/',p:'fam',k:'Lo que sigue',t:'Del Observatorio al Registro Nacional',s:'.senado',
+   a:'El Observatorio ya funciona y está en línea. Lo que sigue: convenios con asociaciones e instituciones, un informe anual con las cifras de la Red y poner los datos a disposición del Registro Nacional cuando el Senado lo apruebe.',
+   d:[['En línea','www.pocofrecuentes.com'],['Sin costo','para familias, médicos y asociaciones'],['Senado','respaldo institucional']],
+   m:'Cerrar en el bloque «Desde el Senado».'}];}
+function presLive(){Promise.all([fetch('/api/registro').then(function(r){return r.json();}).catch(function(){return {};}),fetch('/api/seguimiento').then(function(r){return r.json();}).catch(function(){return {};})]).then(function(a){
+  PLIVE.red=a[0].total||0;PLIVE.seg=(a[1].totales||{}).casos||0;if(PI===6)presDraw();});}
+function presDraw(){var S=presSteps(),s=S[PI],el=$('#pres');if(!el)return;
+  el.innerHTML='<div class="ps-top"><span class="ps-k">Modo presentación · '+(PI+1)+' de '+S.length+'</span><button type="button" class="ps-min" aria-label="Minimizar">–</button></div>'+
+   '<div class="ps-b"><span class="ps-tag">'+esc(s.k)+'</span><h3>'+esc(s.t)+'</h3><p>'+esc(s.a)+'</p>'+
+   '<div class="ps-d">'+s.d.map(function(x){return '<div><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>';}).join('')+'</div>'+
+   '<p class="ps-m"><b>Cómo mostrarlo:</b> '+esc(s.m)+'</p></div>'+
+   '<div class="ps-nav"><button type="button" class="ps-prev"'+(PI?'':' disabled')+'>← Anterior</button><div class="ps-dots">'+S.map(function(x,i){return '<i class="'+(i===PI?'on':'')+'" data-i="'+i+'" title="'+esc(x.t)+'"></i>';}).join('')+'</div><button type="button" class="ps-next"'+(PI<S.length-1?'':' disabled')+'>Siguiente →</button></div>'+
+   '<a class="ps-dk" href="/presentacion/diapositivas" target="_blank" rel="noopener">Ver las diapositivas del proyecto ↗</a>';
+  el.querySelector('.ps-prev').onclick=function(){presGo(PI-1);};el.querySelector('.ps-next').onclick=function(){presGo(PI+1);};
+  el.querySelector('.ps-min').onclick=function(){el.classList.toggle('min');};
+  el.querySelector('.ps-top').ondblclick=function(){el.classList.toggle('min');};
+  $$('#pres .ps-dots i').forEach(function(d){d.onclick=function(){presGo(+d.dataset.i);};});}
+function presGo(i){var S=presSteps();if(i<0||i>=S.length)return;PI=i;var s=S[i];try{sessionStorage.setItem('obs-pres-i',i);}catch(e){}
+  if(s.p&&PERFIL!==s.p)setPerfil(s.p);
+  var same=location.hash===s.h||(s.h==='#/'&&(location.hash===''||location.hash==='#'));
+  if(same)route();else location.hash=s.h;
+  presDraw();$('#pres').classList.remove('min');
+  if(s.s)setTimeout(function(){var t=document.querySelector(s.s);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});},700);}
+function presInit(){if(!PRES)return;document.body.classList.add('presmode');
+  var m=document.createElement('meta');m.name='robots';m.content='noindex, nofollow';document.head.appendChild(m);document.title='Presentación · Observatorio · Enfermedades Poco Frecuentes';
+  var el=document.createElement('aside');el.id='pres';el.setAttribute('aria-label','Guion de presentación');document.body.appendChild(el);
+  try{PI=+(sessionStorage.getItem('obs-pres-i')||0)||0;}catch(e){}
+  presLive();presGo(PI);
+  addEventListener('keydown',function(e){if(/INPUT|TEXTAREA|SELECT/.test((e.target||{}).tagName||'')||e.target.isContentEditable)return;
+    if(e.key==='ArrowRight'||e.key==='PageDown')presGo(PI+1);else if(e.key==='ArrowLeft'||e.key==='PageUp')presGo(PI-1);});}
 /* ---------- enrutador ---------- */
 function route(){
   var hs=location.hash.replace(/^#\/?/,''),parts=hs.split('?'),name=parts[0]||'inicio',q={};
@@ -1462,7 +1530,7 @@ fetch('/obs/acervo.json').then(function(r){return r.json();}).then(function(d){
   RM=PD.rumbo||RM;RM.w.forEach(function(w){RW[w.id]=w;});
   var LP=(location.pathname.match(/^\/(familias|medicos)\/?$/)||[])[1];
   if(LP==='familias'&&PERFIL!=='fam')setPerfil('fam');
-  applyPerfil();medBtnSync();window.addEventListener('hashchange',route);route();
+  applyPerfil();medBtnSync();window.addEventListener('hashchange',route);if(PRES)presInit();else route();
   if(LP==='medicos'&&PERFIL!=='med')entrada({med:true});
 }).catch(function(){view.innerHTML='<section class="blk"><div class="wrap"><h2>No se pudo cargar el Acervo</h2><p class="lead">Recarga la página.</p></div></section>';});
 })();
